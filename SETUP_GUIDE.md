@@ -1,10 +1,10 @@
 ﻿# QUIZ LAB - Setup Guide (Updated)
 
-Tai lieu nay mo ta quy trinh setup theo trang thai code hien tai.
+Tài liệu này mô tả quy trình setup theo trạng thái code hiện tại.
 
-## 1) Chuan bi Google Sheets
+## 1) Chuẩn bị Google Sheets
 
-Tao 4 sheet dung ten:
+Tạo 4 sheet đúng tên:
 - Users
 - Quiz_List
 - Questions
@@ -22,9 +22,9 @@ Header:
 Header:
 - QuestionID | QuizID | QuestionText | A | B | C | D | CorrectAnswer | Explanation
 
-Luu y:
-- Schema moi KHONG co cot Reserved.
-- Backend van doc tuong thich du lieu cu neu sheet da tung dung cot Reserved.
+Lưu ý:
+- Schema mới KHÔNG có cột Reserved.
+- Backend vẫn đọc tương thích dữ liệu cũ nếu sheet đã từng dùng cột Reserved.
 
 ### Attempt_Logs
 Header:
@@ -32,45 +32,45 @@ Header:
 
 ## 2) Deploy Google Apps Script
 
-1. Mo Google Sheet.
+1. Mở Google Sheet.
 2. Extensions > Apps Script.
-3. Dan code Quiz_Lab_Backend.gs.
-4. Neu la standalone script, dien SPREADSHEET_ID.
+3. Dán code Quiz_Lab_Backend.gs.
+4. Nếu là standalone script, điền SPREADSHEET_ID.
 5. Deploy > New deployment > Web app:
-   - Execute as: ban
+   - Execute as: bạn
    - Who has access: Anyone
 6. Copy deployment URL.
 
-## 3) Cau hinh frontend
+## 3) Cấu hình frontend
 
-Cap nhat URL tai:
+Cập nhật URL tại:
 - assets/script.js (APIClient.GAS_URL)
 
-Luu y:
-- Hien tai frontend goi API thong qua APIClient, khong can sua tung HTML rieng.
+Lưu ý:
+- Hiện tại frontend gọi API thông qua APIClient, không cần sửa từng HTML riêng.
 
-## 4) Tao password hash
+## 4) Tạo password hash
 
-Dung console:
+Dùng console:
 - await sha256('matkhau')
 
-Dan hash vao cot Password_Hash trong Users.
+Dán hash vào cột Password_Hash trong Users.
 
 ## 5) Test nhanh
 
 ### User flow
 1. Login user.
-2. Chon mon hoc > chon quiz > lam bai.
-3. Nop bai > xem result + review.
+2. Chọn môn học > chọn quiz > làm bài.
+3. Nộp bài > xem result + review.
 
 ### Admin flow
 1. Login admin.
-2. Vao admin.html.
-3. Chuyen view bang nut:
-   - Quan Ly Bai Thi
-   - Nhap Cau Hoi Hang Loat
-4. Thu toggle status/showAnswer.
-5. Thu import Aiken.
+2. Vào admin.html.
+3. Chuyển view bằng nút:
+   - Quản Lý Bài Thi
+   - Nhập Câu Hỏi Hàng Loạt
+4. Thử toggle status/showAnswer.
+5. Thử import Aiken.
 
 ## 6) Aiken format
 
@@ -80,25 +80,25 @@ B) Option B
 C) Option C
 D) Option D
 ANSWER: B
-EXP: Giai thich
+EXP: Giải thích
 
-Co the dung A. B. C. D. hoac A) B) C) D).
+Có thể dùng A. B. C. D. hoặc A) B) C) D).
 
-## 7) Loi thuong gap
+## 7) Lỗi thường gặp
 
 - Invalid token:
-  - Sai deployment URL hoac token het han.
+  - Sai deployment URL hoặc token hết hạn.
 - Unauthorized:
-  - Role khong dung (User vao API admin).
-- Quiz khong hien:
-  - Quiz status chua Active.
-- Diem sai:
-  - Kiem tra CorrectAnswer co dung A/B/C/D.
-  - Deploy lai GAS sau thay doi backend.
+  - Role không đúng (User vào API admin).
+- Quiz không hiện:
+  - Quiz status chưa Active.
+- Điểm sai:
+  - Kiểm tra CorrectAnswer có đúng A/B/C/D.
+  - Deploy lại GAS sau thay đổi backend.
 
-## 8) Checklist truoc khi ban giao
+## 8) Checklist trước khi bàn giao
 
-- Deploy GAS moi nhat.
-- APIClient.GAS_URL dung deployment URL moi nhat.
-- Test user + admin tren browser private.
-- Kiem tra import Aiken va ket qua review sau nop bai.
+- Deploy GAS mới nhất.
+- APIClient.GAS_URL đúng deployment URL mới nhất.
+- Test user + admin trên browser private.
+- Kiểm tra import Aiken và kết quả review sau nộp bài.
