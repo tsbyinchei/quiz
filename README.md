@@ -4,30 +4,30 @@
 > Stack: Vanilla JS + Google Apps Script + Google Sheets  
 > Status: Production-ready core flow (User + Admin + Anti-cheat + Review)
 
-Quiz Lab la he thong kiem tra truc tuyen gon nhe, de trien khai, de mo rong, va toi uu cho van hanh tren Google Apps Script.
+Quiz Lab là hệ thống kiểm tra trực tuyến gọn nhẹ, dễ triển khai, dễ mở rộng, và tối ưu cho vận hành trên Google Apps Script.
 
 ---------------------------------------------------------------------
 
 ## 1) PROJECT OVERVIEW
 
-Quiz Lab gom 2 vai tro chinh:
+Quiz Lab gồm 2 vai trò chính:
 
 - User:
-  - Dang nhap, chon mon, chon bai quiz, lam bai theo timer.
-  - Xem ket qua sau khi nop bai, review tung cau hoi.
+  - Đăng nhập, chọn môn, chọn bài quiz, làm bài theo timer.
+  - Xem kết quả sau khi nộp bài, review từng câu hỏi.
 
 - Admin:
-  - Quan ly trang thai quiz (Active/Inactive).
-  - Bat/tat che do show answer.
-  - Import cau hoi hang loat bang Aiken format.
-  - Theo doi thong ke va bieu do hoat dong.
+  - Quản lý trạng thái quiz (Active/Inactive).
+  - Bật/tắt chế độ show answer.
+  - Import câu hỏi hàng loạt bằng Aiken format.
+  - Theo dõi thống kê và biểu đồ hoạt động.
 
-Muc tieu cua he thong:
+Mục tiêu của hệ thống:
 
-- Don gian khi setup.
-- Chay duoc tren static hosting + GAS backend.
-- Cham diem dung, review ro rang, chong gian lan co ban.
-- Giao dien hien dai, responsive, thong nhat voi tsbyin.dev.
+- Đơn giản khi setup.
+- Chạy được trên static hosting + GAS backend.
+- Chấm điểm đúng, review rõ ràng, chống gian lận cơ bản.
+- Giao diện hiện đại, responsive, thống nhất với tsbyin.dev.
 
 ---------------------------------------------------------------------
 
@@ -35,53 +35,53 @@ Muc tieu cua he thong:
 
 ### 2.1 User Experience
 
-- Login SHA-256 (khong gui mat khau thuong).
-- Dashboard da duoc redesign:
-  - Subject picker dang pills.
-  - Quiz cards dong deu chieu cao.
-  - Nut action can deu, ten dai khong pha bo cuc.
+- Login SHA-256 (không gửi mật khẩu thường).
+- Dashboard đã được redesign:
+  - Subject picker dạng pills.
+  - Quiz cards đồng đều chiều cao.
+  - Nút action căn đều, tên dài không phá bố cục.
 - Quiz player:
   - Swiper slide.
   - Timer, progress, indicator.
-  - Confirm modal noi bo (khong dung alert/confirm browser).
+  - Confirm modal nội bộ (không dùng alert/confirm browser).
 - Result page redesign:
-  - Tong quan ket qua.
-  - Review chi tiet theo tung cau.
-  - Hien thi dap an da chon, dap an dung, giai thich.
+  - Tổng quan kết quả.
+  - Review chi tiết theo từng câu.
+  - Hiển thị đáp án đã chọn, đáp án đúng, giải thích.
 
 ### 2.2 Admin Experience
 
-- Admin dashboard da tach view bang nut:
-  - Quan Ly Bai Thi
-  - Nhap Cau Hoi Hang Loat
-- Chart.js da nang cap:
-  - Bar: so luot lam
-  - Line: so cau hoi
-- Card quan ly quiz ro rang:
-  - QuizID, subject, title, mo ta
-  - So cau hoi, so luot lam
+- Admin dashboard đã tách view bằng nút:
+  - Quản Lý Bài Thi
+  - Nhập Câu Hỏi Hàng Loạt
+- Chart.js đã nâng cấp:
+  - Bar: số lượt làm
+  - Line: số câu hỏi
+- Card quản lý quiz rõ ràng:
+  - QuizID, subject, title, mô tả
+  - Số câu hỏi, số lượt làm
   - Toggle status + showAnswer
 
 ### 2.3 Security and Reliability
 
 - Token auth + role-based routing.
-- Backend cham diem server-side (khong phu thuoc diem client gui len).
+- Backend chấm điểm server-side (không phụ thuộc điểm client gửi lên).
 - Anti-cheat:
-  - Chan keyboard shortcuts, right-click, clipboard, text selection.
-  - Theo doi tab/focus khi dang lam bai.
-  - Co cooldown + dialog lock de tranh false positive.
-  - Auto-submit mode khi vi pham qua nguong.
-- Co log vi pham anti-cheat ve backend.
+  - Chặn keyboard shortcuts, right-click, clipboard, text selection.
+  - Theo dõi tab/focus khi đang làm bài.
+  - Có cooldown + dialog lock để tránh false positive.
+  - Auto-submit mode khi vi phạm quá ngưỡng.
+- Có log vi phạm anti-cheat về backend.
 
 ### 2.4 Performance Optimizations
 
-- Them endpoint `getDashboardInit` de gom subjects + stats trong 1 request.
-- Dashboard ap dung stale-while-revalidate:
-  - Render nhanh tu session cache.
-  - Refresh ngam de cap nhat du lieu moi.
-- Cache quiz theo tung subject trong sessionStorage.
-- Admin data aggregation da toi uu bang object mapping (giam nested loops).
-- Lazy chart render trong admin (chi ve khi view quan ly dang hien).
+- Thêm endpoint `getDashboardInit` để gom subjects + stats trong 1 request.
+- Dashboard áp dụng stale-while-revalidate:
+  - Render nhanh từ session cache.
+  - Refresh ngầm để cập nhật dữ liệu mới.
+- Cache quiz theo từng subject trong sessionStorage.
+- Admin data aggregation đã tối ưu bằng object mapping (giảm nested loops).
+- Lazy chart render trong admin (chỉ vẽ khi view quản lý đang hiện).
 
 ---------------------------------------------------------------------
 
@@ -117,14 +117,14 @@ quiz/
 - HTML/CSS/JS thuần.
 - Shared API layer: `assets/script.js` (`APIClient`).
 - Shared visual system: `assets/style.css`.
-- Anti-cheat module rieng: `assets/anticheating.js`.
+- Anti-cheat module riêng: `assets/anticheating.js`.
 
 ### 4.2 Backend
 
 - Google Apps Script Web App (`Quiz_Lab_Backend.gs`).
 - Action-based router qua `doPost`.
 
-Actions hien co:
+Actions hiện có:
 
 - `login`
 - `getSubjects`
@@ -141,7 +141,7 @@ Actions hien co:
 
 ### 4.3 Data Store
 
-- Google Sheets dong vai tro database.
+- Google Sheets đóng vai trò database.
 
 ---------------------------------------------------------------------
 
@@ -185,18 +185,18 @@ Actions hien co:
 - User_Answers
 - Timestamp
 
-Luu y tuong thich:
+Lưu ý tương thích:
 
-- Backend co helper de doc du lieu Questions theo ca schema cu va schema moi.
-- Bulk upload hien ghi theo schema moi (khong chen cot rong Reserved).
+- Backend có helper để đọc dữ liệu Questions theo cả schema cũ và schema mới.
+- Bulk upload hiện ghi theo schema mới (không chèn cột rỗng Reserved).
 
 ---------------------------------------------------------------------
 
 ## 6) SETUP QUICK START
 
-### Step 1: Tao Google Sheets
+### Step 1: Tạo Google Sheets
 
-Tao 4 sheet dung ten chinh xac:
+Tạo 4 sheet đúng tên chính xác:
 
 - Users
 - Quiz_List
@@ -205,27 +205,27 @@ Tao 4 sheet dung ten chinh xac:
 
 ### Step 2: Deploy GAS
 
-1. Mo Google Sheets > Extensions > Apps Script.
-2. Dan code tu `Quiz_Lab_Backend.gs`.
-3. Neu standalone script: dien `SPREADSHEET_ID`.
+1. Mở Google Sheets > Extensions > Apps Script.
+2. Dán code từ `Quiz_Lab_Backend.gs`.
+3. Nếu standalone script: điền `SPREADSHEET_ID`.
 4. Deploy Web App:
-   - Execute as: ban
+  - Execute as: bạn
    - Who has access: Anyone
 5. Copy deployment URL.
 
-### Step 3: Cau hinh frontend API
+### Step 3: Cấu hình frontend API
 
-Cap nhat `APIClient.GAS_URL` trong `assets/script.js`.
+Cập nhật `APIClient.GAS_URL` trong `assets/script.js`.
 
-### Step 4: Tao user va password hash
+### Step 4: Tạo user và password hash
 
-Tao SHA-256 cho password va luu vao cot `Password_Hash`.
+Tạo SHA-256 cho password và lưu vào cột `Password_Hash`.
 
 ### Step 5: Test end-to-end
 
 1. Login user.
-2. Chon subject/quiz.
-3. Lam bai, nop bai, xem result + review.
+2. Chọn subject/quiz.
+3. Làm bài, nộp bài, xem result + review.
 4. Login admin.
 5. Test toggle + import Aiken + chart.
 
@@ -243,7 +243,7 @@ ANSWER: B
 EXP: Explanation
 ```
 
-Chap nhan ca dinh dang:
+Chấp nhận cả định dạng:
 
 - `A)` `B)` `C)` `D)`
 - `A.` `B.` `C.` `D.`
@@ -252,30 +252,30 @@ Chap nhan ca dinh dang:
 
 ## 8) ANTI-CHEAT NOTES
 
-Co che hien tai tap trung vao quiz page:
+Cơ chế hiện tại tập trung vào quiz page:
 
-- Chan thao tac copy/inspect co ban.
-- Theo doi tab switch/focus loss.
-- Canh bao theo lan vi pham.
-- Auto-submit mode khi vuot nguong.
+- Chặn thao tác copy/inspect cơ bản.
+- Theo dõi tab switch/focus loss.
+- Cảnh báo theo lần vi phạm.
+- Auto-submit mode khi vượt ngưỡng.
 
-Cac fix quan trong da ap dung:
+Các fix quan trọng đã áp dụng:
 
 - Event conflict blur + visibilitychange.
 - Popup loop do browser alert/confirm.
 - Dialog lock + cooldown + anti-repeat punishment.
-- Chuyen sang in-app modal de giu UX on dinh.
+- Chuyển sang in-app modal để giữ UX ổn định.
 
 ---------------------------------------------------------------------
 
 ## 9) KNOWN OPERATION RULES
 
-- Sau moi thay doi backend, can deploy lai GAS.
-- Neu dashboard khong co stats ngay:
-  - He thong co fallback ve API cu (`getSubjects` + `getUserStats`).
-- Neu score/review khong dung:
-  - Kiem tra cot `CorrectAnswer` co A/B/C/D hop le.
-  - Kiem tra du lieu Question/QuizID khop nhau.
+- Sau mỗi thay đổi backend, cần deploy lại GAS.
+- Nếu dashboard không có stats ngay:
+  - Hệ thống có fallback về API cũ (`getSubjects` + `getUserStats`).
+- Nếu score/review không đúng:
+  - Kiểm tra cột `CorrectAnswer` có A/B/C/D hợp lệ.
+  - Kiểm tra dữ liệu Question/QuizID khớp nhau.
 
 ---------------------------------------------------------------------
 
@@ -283,40 +283,40 @@ Cac fix quan trong da ap dung:
 
 ### Invalid token
 
-- Kiem tra GAS deployment URL dung.
-- Kiem tra Web App access la `Anyone`.
-- Kiem tra token da het han chua.
+- Kiểm tra GAS deployment URL đúng.
+- Kiểm tra Web App access là `Anyone`.
+- Kiểm tra token đã hết hạn chưa.
 
-### Quiz khong hien o dashboard
+### Quiz không hiện ở dashboard
 
-- Kiem tra `Status` quiz = `Active`.
-- Kiem tra `Subject` co du lieu.
+- Kiểm tra `Status` quiz = `Active`.
+- Kiểm tra `Subject` có dữ liệu.
 
-### Nop bai ra diem sai
+### Nộp bài ra điểm sai
 
-- Kiem tra `CorrectAnswer`.
-- Kiem tra backend da deploy ban moi.
+- Kiểm tra `CorrectAnswer`.
+- Kiểm tra backend đã deploy bản mới.
 
-### Admin chart/trang thai bat thuong
+### Admin chart/trạng thái bất thường
 
-- Kiem tra logs co gia tri score hop le.
-- Kiem tra du lieu quiz/question co day du.
+- Kiểm tra logs có giá trị score hợp lệ.
+- Kiểm tra dữ liệu quiz/question có đầy đủ.
 
 ### Anti-cheat trigger sai
 
-- Dam bao dang dung ban code moi co modal noi bo.
-- Refresh trinh duyet de clear stale JS.
+- Đảm bảo đang dùng bản code mới có modal nội bộ.
+- Refresh trình duyệt để clear stale JS.
 
 ---------------------------------------------------------------------
 
 ## 11) CHANGE SUMMARY (RECENT)
 
 - Redesign dashboard/result/admin UI.
-- Tach view admin theo nut.
-- Server-side scoring va review payload day du.
-- Fix cot dap an khi bulk upload.
-- Toi uu dashboard init va admin aggregation.
-- Dong bo header/footer style theo tsbyin.dev.
+- Tách view admin theo nút.
+- Server-side scoring và review payload đầy đủ.
+- Fix cột đáp án khi bulk upload.
+- Tối ưu dashboard init và admin aggregation.
+- Đồng bộ header/footer style theo tsbyin.dev.
 
 ---------------------------------------------------------------------
 
