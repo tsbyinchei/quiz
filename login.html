@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Đăng nhập Quiz Lab">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>Đăng Nhập - Quiz Lab</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="has-topbar">
+    <header class="site-topbar">
+        <div class="site-topbar-inner">
+            <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="login.html">Đăng nhập</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="login-page">
+            <div class="login-card glassmorphism">
+                <div class="login-header">
+                    <h1>Quiz Lab</h1>
+                    <p>Hệ thống Kiểm tra Trực tuyến</p>
+                </div>
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Tên Đăng Nhập</label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Nhập tên đăng nhập"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mật Khẩu</label>
+                        <div class="password-field-wrap">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Nhập mật khẩu"
+                                required
+                            >
+                            <button type="button" id="peekPasswordBtn" class="password-peek" aria-label="Nhấn giữ để hiện mật khẩu" title="Nhấn giữ để hiện mật khẩu">
+                                <svg class="password-peek-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                                    <circle cx="12" cy="12" r="3.2"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-login">Đăng Nhập</button>
+                </form>
+
+                <div id="errorMessage" class="error-message"></div>
+                <button type="button" id="unlockLoginBtn" class="btn-unlock-login hidden">Đăng Xuất Tài Khoản Hiện Tại</button>
+                <div id="loadingSpinner" class="spinner hidden"></div>
+
+                <p class="back-link">
+                    <a href="index.html">← Quay lại trang chủ</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Trang chủ</a>
+                <a href="../../privacy.html">Privacy Policy</a>
+                <a href="../../index.html">tsbyin.dev</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="assets/anticheating.js"></script>
+    <script src="assets/script.js"></script>
+    <script>
+        // Kích hoạt Anti-Cheat (Chế độ Login - Không bắt lỗi chuyển tab)
+        document.addEventListener('DOMContentLoaded', () => {
+            antiCheat.enable(false);
+
+            const passwordInput = document.getElementById('password');
+            const peekButton = document.getElementById('peekPasswordBtn');
+            const usernameInput = document.getElementById('username');
+            const loginSubmitButton = document.querySelector('#loginForm .btn-login');
+            const unlockLoginBtn = document.getElementById('unlockLoginBtn');
+            const errorDiv = document.getElementById('errorMessage');
+
+            const hasActiveSession = () => {
+                return !!(
+                    localStorage.getItem('quizToken') &&
+                    localStorage.getItem('quizRole') &&
+                    localStorage.getItem('quizUsername')
+                );
+            };
+
+            const setLoginLocked = (locked) => {
+                usernameInput.disabled = locked;
+                passwordInput.disabled = locked;
+                loginSubmitButton.disabled = locked;
+                unlockLoginBtn.classList.toggle('hidden', !locked);
+
+                if (locked) {
+                    const currentUser = localStorage.getItem('quizUsername');
+                    const currentRole = localStorage.getItem('quizRole');
+                    errorDiv.textContent = `Bạn đang đăng nhập với ${currentUser} (${currentRole}). Hãy đăng xuất trước khi đổi tài khoản.`;
+                } else {
+                    errorDiv.textContent = '';
+                }
+            };
+
+            setLoginLocked(hasActiveSession());
+
+            unlockLoginBtn.addEventListener('click', () => {
+                localStorage.removeItem('quizToken');
+                localStorage.removeItem('quizRole');
+                localStorage.removeItem('quizUsername');
+                localStorage.removeItem('currentQuizID');
+                setLoginLocked(false);
+            });
+
+            const revealPassword = () => {
+                passwordInput.type = 'text';
+                peekButton.classList.add('is-active');
+            };
+
+            const hidePassword = () => {
+                passwordInput.type = 'password';
+                peekButton.classList.remove('is-active');
+            };
+
+            // Tránh click/focus mặc định gây rung layout trên một số trình duyệt.
+            peekButton.addEventListener('click', (event) => {
+                event.preventDefault();
+            });
+
+            peekButton.addEventListener('pointerdown', (event) => {
+                event.preventDefault();
+                if (peekButton.setPointerCapture && event.pointerId !== undefined) {
+                    peekButton.setPointerCapture(event.pointerId);
+                }
+                revealPassword();
+            });
+
+            ['pointerup', 'pointerleave', 'pointercancel', 'blur'].forEach((eventName) => {
+                peekButton.addEventListener(eventName, hidePassword);
+            });
+
+            peekButton.addEventListener('touchstart', (event) => {
+                event.preventDefault();
+                revealPassword();
+            }, { passive: false });
+
+            peekButton.addEventListener('touchend', hidePassword);
+            peekButton.addEventListener('touchcancel', hidePassword);
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            if (localStorage.getItem('quizToken') && localStorage.getItem('quizUsername')) {
+                document.getElementById('errorMessage').textContent = 'Bạn đang đăng nhập tài khoản khác. Vui lòng đăng xuất trước khi đăng nhập lại.';
+                return;
+            }
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            const spinner = document.getElementById('loadingSpinner');
+
+            errorDiv.textContent = '';
+            spinner.classList.remove('hidden');
+
+            try {
+                const passwordHash = await sha256(password);
+
+                const result = await APIClient.login(username, passwordHash);
+
+                if (result.success) {
+                    // Lưu token và role vào localStorage
+                    localStorage.setItem('quizToken', result.token);
+                    localStorage.setItem('quizRole', result.role);
+                    localStorage.setItem('quizUsername', result.username);
+                    
+                    // Redirect theo vai trò
+                    window.location.href = result.role === 'Admin' ? 'admin.html' : 'dashboard.html';
+                } else {
+                    errorDiv.textContent = result.message || 'Đăng nhập thất bại!';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorDiv.textContent = 'Lỗi kết nối. Vui lòng thử lại!';
+            } finally {
+                spinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+
+

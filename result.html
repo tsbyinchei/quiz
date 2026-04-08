@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kết quả bài kiểm tra - Xem điểm số và giải thích.">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>Kết Quả - Quiz Lab</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .result-shell {
+            display: grid;
+            gap: 1rem;
+            padding-bottom: 1.2rem;
+        }
+
+        .result-hero {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: color-mix(in srgb, var(--surface) 88%, transparent);
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+            gap: 1rem;
+            align-items: stretch;
+        }
+
+        .result-headline h1 {
+            margin: 0;
+            font-size: clamp(1.35rem, 2.3vw, 2rem);
+        }
+
+        .result-headline p {
+            margin: 0.35rem 0 0.9rem;
+            color: var(--text-light);
+        }
+
+        .result-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .metric-box {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--surface-2) 78%, transparent);
+            padding: 0.7rem;
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .metric-value {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-top: 0.2rem;
+        }
+
+        .score-tile {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: linear-gradient(155deg, color-mix(in srgb, var(--cyan) 20%, var(--surface)) 0%, color-mix(in srgb, var(--violet) 15%, var(--surface-2)) 100%);
+            display: grid;
+            place-items: center;
+            gap: 0.6rem;
+            padding: 1rem;
+        }
+
+        .score-big {
+            font-size: clamp(2rem, 5vw, 2.9rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .score-mini {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 10px;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--surface) 70%, black);
+            overflow: hidden;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            width: 0%;
+            background: var(--grad);
+            transition: width 0.4s ease;
+        }
+
+        .result-message {
+            margin-top: 0.85rem;
+        }
+
+        .result-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.7rem;
+        }
+
+        .review-wrap {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: color-mix(in srgb, var(--surface) 88%, transparent);
+            padding: 1rem;
+        }
+
+        .review-wrap h2 {
+            margin: 0 0 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .review-list {
+            display: grid;
+            gap: 0.75rem;
+            max-height: 58vh;
+            overflow-y: auto;
+            padding-right: 0.2rem;
+        }
+
+        .review-card {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--surface-2) 76%, transparent);
+            padding: 0.85rem;
+        }
+
+        .review-question {
+            font-weight: 700;
+            line-height: 1.45;
+            margin-bottom: 0.6rem;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 0.65rem;
+        }
+
+        .review-row {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0.55rem 0.65rem;
+            background: color-mix(in srgb, var(--surface) 80%, transparent);
+        }
+
+        .review-row span {
+            display: block;
+        }
+
+        .review-row span:first-child {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.28px;
+            color: var(--text-light);
+            margin-bottom: 0.2rem;
+        }
+
+        .review-answer {
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .review-explanation {
+            color: var(--text-light);
+            line-height: 1.55;
+            font-size: 0.9rem;
+            border-top: 1px dashed var(--line);
+            padding-top: 0.58rem;
+        }
+
+        @media (max-width: 860px) {
+            .result-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .review-grid,
+            .result-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="has-topbar">
+    <header class="site-topbar">
+        <div class="site-topbar-inner">
+            <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="result.html">Kết quả</a>
+            </nav>
+            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="result-shell">
+            <section class="result-hero">
+                <div class="result-headline">
+                    <h1 id="resultTitle">Kết Quả Bài Thi</h1>
+                    <p>Bạn có thể xem lại toàn bộ đáp án và giải thích chi tiết ngay bên dưới.</p>
+
+                    <div class="result-metrics">
+                        <div class="metric-box">
+                            <div class="metric-label">Câu Đúng</div>
+                            <div class="metric-value" id="correctCount">0</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Tổng Số Câu</div>
+                            <div class="metric-value" id="totalCount">0</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Tỷ Lệ</div>
+                            <div class="metric-value" id="ratioValue">0/0</div>
+                        </div>
+                    </div>
+
+                    <div id="resultMessage" class="result-message"></div>
+
+                    <div class="result-actions">
+                        <button class="btn-restart" onclick="restartQuiz()">
+                            🔄 Làm Lại Bài
+                        </button>
+                        <button class="btn-back-dashboard" onclick="window.location.href='dashboard.html'">
+                            📊 Về Dashboard
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="score-tile" id="scoreCircle">
+                    <div class="score-big" id="scoreValue">0/0</div>
+                    <div class="score-mini">Số câu đúng</div>
+                    <div class="progress-track">
+                        <div class="progress-bar-inner" id="scoreProgressBar"></div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="review-wrap">
+                <h2>Review Câu Hỏi</h2>
+                <div id="reviewList" class="review-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Trang chủ</a>
+                <a href="../../privacy.html">Privacy Policy</a>
+                <a href="../../index.html">tsbyin.dev</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+    <script>
+        function escapeHtml(text) {
+            return String(text || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getAnswerText(answerKey, item) {
+            const answerMap = {
+                A: item.optionA || '',
+                B: item.optionB || '',
+                C: item.optionC || '',
+                D: item.optionD || ''
+            };
+
+            const key = String(answerKey || '').trim().toUpperCase();
+            return answerMap[key] || '';
+        }
+
+        function formatAnswerLabel(answerKey, item) {
+            const key = String(answerKey || '').trim().toUpperCase();
+            const text = getAnswerText(key, item);
+
+            if (!key) {
+                return 'Chưa chọn';
+            }
+
+            return text ? `${key} - ${text}` : key;
+        }
+
+        function displayResult() {
+            const result = sessionStorage.getItem('quizResult');
+            
+            if (!result) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            const data = JSON.parse(result);
+            const score = data.score;
+            const correct = data.correct;
+            const total = data.total;
+            const reviewItems = data.reviewItems || [];
+
+            // Cập nhật UI
+            document.getElementById('scoreValue').textContent = `${correct}/${total}`;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('ratioValue').textContent = `${correct}/${total}`;
+            document.getElementById('scoreProgressBar').style.width = `${Math.max(0, Math.min(100, score))}%`;
+
+            // Thông điệp kết quả
+            const messageDiv = document.getElementById('resultMessage');
+            let message = '';
+            let messageClass = '';
+
+            if (score >= 80) {
+                message = '🎉 Xuất Sắc! Bạn đã làm rất tốt!';
+                messageClass = 'correct';
+            } else if (score >= 60) {
+                message = '👍 Tốt! Hãy tiếp tục cố gắng!';
+                messageClass = 'correct';
+            } else if (score >= 40) {
+                message = '⚠️ Bạn cần tập luyện thêm!';
+                messageClass = 'warning';
+            } else {
+                message = '📚 Hãy ôn luyện thêm trước khi thi lại!';
+                messageClass = 'incorrect';
+            }
+
+            messageDiv.textContent = message;
+            messageDiv.className = `result-message feedback ${messageClass}`;
+
+            renderReviewList(reviewItems);
+
+            // Xóa từ sessionStorage sau khi hiển thị
+            sessionStorage.removeItem('quizResult');
+        }
+
+        function renderReviewList(reviewItems) {
+            const container = document.getElementById('reviewList');
+
+            if (!reviewItems || reviewItems.length === 0) {
+                container.innerHTML = '<p class="empty-state">Không có dữ liệu review.</p>';
+                return;
+            }
+
+            container.innerHTML = reviewItems.map((item, index) => `
+                <div class="review-card">
+                    <div class="review-question">${index + 1}. ${escapeHtml(item.questionText || '')}</div>
+                    <div class="review-grid">
+                        <div class="review-row">
+                            <span>Đáp án bạn chọn</span>
+                            <span class="review-answer">${escapeHtml(formatAnswerLabel(item.userAnswer, item))}</span>
+                        </div>
+                        <div class="review-row">
+                            <span>Đáp án đúng</span>
+                            <span class="review-answer">${escapeHtml(formatAnswerLabel(item.correctAnswer, item))}</span>
+                        </div>
+                    </div>
+                    <div class="review-explanation">
+                        <strong>Giải thích:</strong> ${escapeHtml(item.explanation || 'Chưa có giải thích')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function restartQuiz() {
+            const quizID = localStorage.getItem('currentQuizID');
+            window.location.href = quizID ? 'quiz.html' : 'dashboard.html';
+        }
+
+        // Hiển thị kết quả khi trang load
+        displayResult();
+    </script>
+</body>
+</html>

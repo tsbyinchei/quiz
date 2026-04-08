@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard - Quản lý bài thi và thống kê.">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>Admin Dashboard - Quiz Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .admin-shell {
+            display: grid;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .admin-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            align-items: center;
+        }
+
+        .admin-view-btn {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+            color: var(--text-light);
+            font-weight: 700;
+            padding: 0.5rem 0.95rem;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+
+        .admin-view-btn.is-active,
+        .admin-view-btn:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: color-mix(in srgb, var(--cyan) 12%, var(--surface-2));
+        }
+
+        .admin-panel {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: color-mix(in srgb, var(--surface) 90%, transparent);
+            padding: 1rem;
+        }
+
+        .admin-panel.is-hidden {
+            display: none;
+        }
+
+        .chart-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .chart-title-row p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.88rem;
+        }
+
+        .quiz-management {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.9rem;
+            align-items: stretch;
+        }
+
+        .quiz-manage-card {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--surface-2) 82%, transparent);
+        }
+
+        .quiz-headline {
+            display: grid;
+            gap: 0.2rem;
+        }
+
+        .quiz-meta {
+            font-size: 0.76rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 700;
+        }
+
+        .quiz-title {
+            margin: 0;
+            line-height: 1.4;
+            display: -webkit-box;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .quiz-desc {
+            margin: 0;
+            color: var(--text-light);
+            line-height: 1.5;
+            display: -webkit-box;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 3em;
+        }
+
+        .quiz-insight-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.45rem;
+        }
+
+        .quiz-insight {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0.45rem 0.55rem;
+            background: color-mix(in srgb, var(--surface) 78%, transparent);
+            font-size: 0.82rem;
+        }
+
+        .quiz-insight strong {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 0.1rem;
+        }
+
+        .toggle-grid {
+            display: grid;
+            gap: 0.45rem;
+            margin-top: auto;
+        }
+
+        .import-grid {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 760px) {
+            .quiz-insight-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="has-topbar">
+    <header class="site-topbar">
+        <div class="site-topbar-inner">
+            <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="admin-shell">
+            <header class="admin-header glassmorphism">
+                <div class="header-content">
+                    <h1>🛡️ Admin Dashboard</h1>
+                    <button type="button" class="btn-back" onclick="logoutAdmin()">Đăng Xuất</button>
+                </div>
+            </header>
+
+            <section class="admin-panel">
+                <h2>📊 Thống Kê Tổng Quan</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <p class="stat-label">Tổng Bài Thi</p>
+                        <p class="stat-value" id="totalQuizzes">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Tổng Lượt Làm</p>
+                        <p class="stat-value" id="totalAttempts">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Người Dùng Hoạt Động</p>
+                        <p class="stat-value" id="activeUsers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Điểm Trung Bình</p>
+                        <p class="stat-value" id="avgScore">0%</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="admin-panel">
+                <div class="admin-controls">
+                    <button type="button" class="admin-view-btn is-active" data-view="manage" onclick="switchAdminView('manage')">⚙️ Quản Lý Bài Thi</button>
+                    <button type="button" class="admin-view-btn" data-view="import" onclick="switchAdminView('import')">📥 Nhập Câu Hỏi Hàng Loạt</button>
+                </div>
+            </section>
+
+            <section id="managePanel" class="admin-panel">
+                <div class="chart-title-row">
+                    <h2>📈 Biểu Đồ Hoạt Động Quiz</h2>
+                    <p>Bar: Lượt làm | Line: Số câu hỏi</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="attemptChart"></canvas>
+                </div>
+
+                <h2 style="margin-top: 1rem;">Danh sách quản lý</h2>
+                <div id="quizManagement" class="quiz-management"></div>
+            </section>
+
+            <section id="importPanel" class="admin-panel is-hidden">
+                <h2>📥 Nhập Câu Hỏi Hàng Loạt (Aiken Format)</h2>
+                <div class="import-grid">
+                    <div class="form-group">
+                        <label for="quizIDImport">Chọn Bài Quiz</label>
+                        <select id="quizIDImport" class="form-control">
+                            <option value="">-- Chọn bài quiz --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aikenContent">Nội dung Aiken Format</label>
+                        <textarea 
+                            id="aikenContent" 
+                            class="textarea"
+                            placeholder="Dán nội dung theo định dạng Aiken:
+Question 1?
+A) Answer A
+B) Answer B
+C) Answer C
+D) Answer D
+ANSWER: B
+EXP: Giải thích cho câu hỏi"
+                            rows="16"
+                        ></textarea>
+                        <p class="help-text">
+                            📝 Định dạng Aiken: Câu hỏi → A) B) C) D) → ANSWER: X → EXP: Giải thích
+                        </p>
+                    </div>
+
+                    <button class="btn-import" onclick="importAiken()">
+                        🚀 Nhập Câu Hỏi
+                    </button>
+                    <div id="importFeedback" class="feedback"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Trang chủ</a>
+                <a href="../../privacy.html">Privacy Policy</a>
+                <a href="../../index.html">tsbyin.dev</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+    <script>
+        let attemptChart;
+        let adminView = 'manage';
+        let adminQuizzesData = [];
+
+        async function initAdmin() {
+            // Kiểm tra quyền Admin
+            const token = localStorage.getItem('quizToken');
+            const role = localStorage.getItem('quizRole');
+
+            if (!token || role !== 'Admin') {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            loadAdminData();
+        }
+
+        function switchAdminView(view) {
+            adminView = view;
+            document.querySelectorAll('.admin-view-btn').forEach((button) => {
+                button.classList.toggle('is-active', button.getAttribute('data-view') === view);
+            });
+            document.getElementById('managePanel').classList.toggle('is-hidden', view !== 'manage');
+            document.getElementById('importPanel').classList.toggle('is-hidden', view !== 'import');
+
+            if (view === 'manage') {
+                ensureManageChart();
+            }
+        }
+
+        function ensureManageChart() {
+            if (adminView !== 'manage') {
+                return;
+            }
+            if (!adminQuizzesData || adminQuizzesData.length === 0) {
+                return;
+            }
+
+            drawAttemptChart(adminQuizzesData);
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('quizToken');
+            localStorage.removeItem('quizRole');
+            localStorage.removeItem('quizUsername');
+            localStorage.removeItem('currentQuizID');
+            sessionStorage.removeItem('quizSubjectsCache');
+            window.location.href = 'login.html';
+        }
+
+        // Load dữ liệu Admin
+        async function loadAdminData() {
+            try {
+                const result = await APIClient.getAdminData();
+
+                if (result.success) {
+                    // Cập nhật thống kê
+                    document.getElementById('totalQuizzes').textContent = result.stats.totalQuizzes;
+                    document.getElementById('totalAttempts').textContent = result.stats.totalAttempts;
+                    document.getElementById('activeUsers').textContent = result.stats.activeUsers;
+                    document.getElementById('avgScore').textContent = 
+                        (result.stats.averageScore || 0).toFixed(2) + '%';
+
+                    adminQuizzesData = result.quizzes || [];
+                    ensureManageChart();
+
+                    // Render quản lý bài thi
+                    renderQuizManagement(adminQuizzesData);
+
+                    // Load danh sách quiz cho import
+                    loadQuizList(adminQuizzesData);
+                }
+            } catch (error) {
+                console.error('Error loading admin data:', error);
+            }
+        }
+
+        // Vẽ biểu đồ
+        function drawAttemptChart(quizzes) {
+            const ctx = document.getElementById('attemptChart').getContext('2d');
+
+            const sorted = (quizzes || [])
+                .slice()
+                .sort((a, b) => (b.attempts || 0) - (a.attempts || 0))
+                .slice(0, 12);
+
+            const labels = sorted.map((q) => {
+                const title = String(q.title || 'Quiz');
+                return title.length > 26 ? `${title.slice(0, 26)}...` : title;
+            });
+
+            if (attemptChart) {
+                attemptChart.destroy();
+            }
+            
+            attemptChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: 'Số Lượt Làm',
+                            data: sorted.map((q) => q.attempts || 0),
+                            backgroundColor: 'rgba(34, 211, 238, 0.32)',
+                            borderColor: 'rgba(34, 211, 238, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            type: 'line',
+                            label: 'Số Câu Hỏi',
+                            data: sorted.map((q) => q.questionCount || 0),
+                            borderColor: 'rgba(167, 139, 250, 1)',
+                            backgroundColor: 'rgba(167, 139, 250, 0.22)',
+                            yAxisID: 'y1',
+                            tension: 0.35,
+                            pointRadius: 3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#94a3b8'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#94a3b8'
+                            },
+                            grid: {
+                                color: 'rgba(148, 163, 184, 0.18)'
+                            }
+                        },
+                        y1: {
+                            beginAtZero: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                color: '#94a3b8'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#94a3b8'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Render quản lý bài thi
+        function renderQuizManagement(quizzes) {
+            const container = document.getElementById('quizManagement');
+            container.innerHTML = '';
+
+            const isEnabled = (value) => {
+                if (typeof value === 'boolean') return value;
+                const normalized = String(value || '').trim().toLowerCase();
+                return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'active';
+            };
+
+            quizzes.forEach(quiz => {
+                const card = document.createElement('div');
+                card.className = 'quiz-manage-card';
+                card.innerHTML = `
+                    <div class="quiz-headline">
+                        <div class="quiz-meta">${quiz.quizID} • ${quiz.subject || 'N/A'}</div>
+                        <h4 class="quiz-title">${quiz.title}</h4>
+                    </div>
+                    <p class="quiz-desc">${quiz.description}</p>
+
+                    <div class="quiz-insight-row">
+                        <div class="quiz-insight"><strong>Số câu hỏi</strong>${quiz.questionCount}</div>
+                        <div class="quiz-insight"><strong>Lượt làm</strong>${quiz.attempts}</div>
+                    </div>
+
+                    <div class="toggle-grid">
+                        <label class="toggle-label">
+                            <span>Kích Hoạt Bài Thi</span>
+                            <input type="checkbox" class="toggle-switch" 
+                                ${isEnabled(quiz.status) ? 'checked' : ''}
+                                onchange="updateQuizStatus('${quiz.quizID}', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+
+                        <label class="toggle-label">
+                            <span>Chế Độ Luyện Tập (Hiển Thị Đáp Án)</span>
+                            <input type="checkbox" class="toggle-switch" 
+                                ${isEnabled(quiz.showAnswer) ? 'checked' : ''}
+                                onchange="updateShowAnswer('${quiz.quizID}', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Load danh sách quiz
+        function loadQuizList(quizzes) {
+            const select = document.getElementById('quizIDImport');
+            select.innerHTML = '<option value="">-- Chọn bài quiz --</option>';
+            quizzes.forEach(quiz => {
+                const option = document.createElement('option');
+                option.value = quiz.quizID;
+                option.textContent = `[${quiz.quizID}] ${quiz.title} (${quiz.subject || 'N/A'})`;
+                select.appendChild(option);
+            });
+        }
+
+        // Cập nhật trạng thái bài thi
+        async function updateQuizStatus(quizID, isActive) {
+            try {
+                await APIClient.updateQuizStatus(quizID, isActive ? 'Active' : 'Inactive');
+            } catch (error) {
+                console.error('Error updating quiz status:', error);
+            }
+        }
+
+        // Cập nhật chế độ Show Answer
+        async function updateShowAnswer(quizID, showAnswer) {
+            try {
+                await APIClient.updateShowAnswer(quizID, showAnswer ? 'True' : 'False');
+            } catch (error) {
+                console.error('Error updating show answer:', error);
+            }
+        }
+
+        // Import Aiken Format
+        async function importAiken() {
+            const quizID = document.getElementById('quizIDImport').value;
+            const content = document.getElementById('aikenContent').value;
+            const feedback = document.getElementById('importFeedback');
+
+            if (!quizID) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Vui lòng chọn bài quiz!';
+                return;
+            }
+
+            if (!content.trim()) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Vui lòng nhập nội dung Aiken!';
+                return;
+            }
+
+            // Parse Aiken format
+            const questions = parseAikenFormat(content);
+
+            if (questions.length === 0) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Không tìm thấy câu hỏi hợp lệ!';
+                return;
+            }
+
+            if (!confirm(`Bạn sắp nhập ${questions.length} câu hỏi vào quiz ${quizID}. Xác nhận tiếp tục?`)) {
+                return;
+            }
+
+            try {
+                const result = await APIClient.bulkUpload(quizID, questions);
+
+                if (result.success) {
+                    feedback.className = 'feedback correct';
+                    feedback.textContent = `✓ Đã nhập ${questions.length} câu hỏi thành công!`;
+                    document.getElementById('aikenContent').value = '';
+                    setTimeout(() => loadAdminData(), 1000);
+                } else {
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = '❌ Lỗi nhập liệu: ' + result.message;
+                }
+            } catch (error) {
+                console.error('Error uploading questions:', error);
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Lỗi kết nối!';
+            }
+        }
+
+        // Parse định dạng Aiken
+        function parseAikenFormat(content) {
+            return AikenParser.parse(content || '');
+        }
+
+        // Khởi chạy
+        initAdmin();
+    </script>
+</body>
+</html>

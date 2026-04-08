@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Công cụ tạo mã Hash nội bộ cho Quiz Lab">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>Tạo Mã Hash - Quiz Lab</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .hash-output-container {
+            position: relative;
+            margin-top: 1rem;
+        }
+        .hash-output {
+            width: 100%;
+            min-height: 80px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            color: var(--success-color);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            word-break: break-all;
+            resize: none;
+        }
+        .btn-copy {
+            margin-top: 0.5rem;
+            width: 100%;
+            background: var(--dark-bg-tertiary);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        .btn-copy:hover {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-page"> <div class="login-card glassmorphism" style="max-width: 500px;">
+                <div class="login-header">
+                    <h1>🔐 SHA-256 Generator</h1>
+                    <p>Công cụ tạo mã Hash nội bộ cho Database</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputText">Nhập Mật khẩu (hoặc Chuỗi cần băm)</label>
+                    <input 
+                        type="text" 
+                        id="inputText" 
+                        placeholder="Ví dụ: 12345678"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <button id="generateBtn" class="btn-login" style="margin-top: 1rem; width: 100%;">
+                    Tạo Mã Hash
+                </button>
+
+                <div class="hash-output-container">
+                    <label>Kết quả (Chuỗi HEX):</label>
+                    <textarea id="outputText" class="hash-output" readonly placeholder="Mã hash sẽ hiện ở đây..."></textarea>
+                    <button id="copyBtn" class="btn-start btn-copy" style="padding: 0.75rem;">
+                        📋 Copy vào Clipboard
+                    </button>
+                </div>
+                
+                <div id="feedback" class="error-message" style="text-align: center; margin-top: 1rem; color: var(--success-color);"></div>
+
+                <p class="back-link">
+                    <a href="admin.html">← Quay lại trang Admin</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const inputText = document.getElementById('inputText').value;
+            const outputText = document.getElementById('outputText');
+            const feedback = document.getElementById('feedback');
+            
+            if (!inputText) {
+                feedback.style.color = 'var(--danger-color)';
+                feedback.textContent = '❌ Vui lòng nhập chuỗi cần băm!';
+                outputText.value = '';
+                return;
+            }
+
+            try {
+                // Gọi hàm sha256 đã được export ở global (window.sha256) từ script.js
+                const hashValue = await window.sha256(inputText);
+                outputText.value = hashValue;
+                
+                feedback.style.color = 'var(--success-color)';
+                feedback.textContent = '✅ Tạo mã thành công!';
+            } catch (error) {
+                feedback.style.color = 'var(--danger-color)';
+                feedback.textContent = '❌ Lỗi khi tạo mã: ' + error.message;
+            }
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', async () => {
+            const outputText = document.getElementById('outputText');
+            const feedback = document.getElementById('feedback');
+
+            if (!outputText.value) {
+                feedback.style.color = 'var(--danger-color)';
+                feedback.textContent = '❌ Chưa có mã để copy!';
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(outputText.value);
+                feedback.style.color = 'var(--success-color)';
+                feedback.textContent = '📋 Đã copy vào Clipboard!';
+                
+                // Trả lại thông báo sau 2 giây
+                setTimeout(() => {
+                    feedback.textContent = '';
+                }, 2000);
+            } catch (err) {
+                // Fallback nếu API Clipboard bị chặn
+                outputText.select();
+                document.execCommand('copy');
+                feedback.style.color = 'var(--success-color)';
+                feedback.textContent = '📋 Đã copy vào Clipboard!';
+            }
+        });
+
+        // Hỗ trợ ấn Enter để tạo mã luôn
+        document.getElementById('inputText').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                document.getElementById('generateBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>

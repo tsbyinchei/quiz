@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Làm bài Quiz Lab">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>Quiz Player - Quiz Lab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .quiz-dialog-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 10, 20, 0.64);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 1rem;
+        }
+
+        .quiz-dialog-overlay.is-open {
+            display: flex;
+        }
+
+        .quiz-dialog {
+            width: min(520px, 95vw);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: linear-gradient(155deg, rgba(8, 13, 33, 0.95), rgba(10, 28, 48, 0.9));
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+            padding: 1.2rem 1.2rem 1rem;
+            color: #eef3ff;
+        }
+
+        .quiz-dialog-title {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .quiz-dialog-message {
+            margin: 0.85rem 0 1.15rem;
+            white-space: pre-line;
+            line-height: 1.5;
+            color: rgba(236, 244, 255, 0.92);
+        }
+
+        .quiz-dialog-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.7rem;
+        }
+
+        .quiz-dialog-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .quiz-dialog-btn.primary {
+            background: linear-gradient(135deg, #37d4ff, #4f7dff);
+            color: #04121f;
+        }
+
+        .quiz-dialog-btn.ghost {
+            background: rgba(255, 255, 255, 0.14);
+            color: #f4f7ff;
+        }
+    </style>
+</head>
+<body class="has-topbar">
+    <header class="site-topbar">
+        <div class="site-topbar-inner">
+            <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="javascript:void(0)" onclick="confirmExit()">Dashboard</a>
+                <a href="javascript:void(0)" onclick="submitQuiz()">Kết quả</a>
+            </nav>
+            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="quiz-page">
+            <!-- Header -->
+            <header class="quiz-header glassmorphism">
+                <div class="quiz-header-left">
+                    <button class="btn-back" onclick="confirmExit()">← Quay Lại</button>
+                    <h2 id="quizTitle">Bài Quiz</h2>
+                </div>
+                <div class="quiz-header-right">
+                    <div class="timer" id="timer">
+                        <span class="timer-label">⏱️ Thời gian:</span>
+                        <span class="timer-value" id="timerValue">00:00</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <p class="progress-text">
+                    Câu <span id="currentQuestion">1</span> / <span id="totalQuestions">0</span>
+                </p>
+            </div>
+
+            <!-- Quiz Content -->
+            <main class="quiz-content">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper" id="questionContainer">
+                        <!-- Questions will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="quiz-navigation">
+                    <button class="btn-prev" id="prevBtn" onclick="prevQuestion()" disabled>
+                        ← Câu Trước
+                    </button>
+                    <button class="btn-submit" id="submitBtn" onclick="submitQuiz()">
+                        Nộp Bài
+                    </button>
+                    <button class="btn-next" id="nextBtn" onclick="nextQuestion()">
+                        Câu Tiếp →
+                    </button>
+                </div>
+
+                <!-- Question Indicator -->
+                <div class="question-indicator" id="questionIndicator"></div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Trang chủ</a>
+                <a href="../../privacy.html">Privacy Policy</a>
+                <a href="../../index.html">tsbyin.dev</a>
+            </nav>
+        </div>
+    </footer>
+
+    <div id="quizDialogOverlay" class="quiz-dialog-overlay" aria-hidden="true">
+        <div class="quiz-dialog" role="dialog" aria-modal="true" aria-labelledby="quizDialogTitle">
+            <h3 id="quizDialogTitle" class="quiz-dialog-title">Thông báo</h3>
+            <p id="quizDialogMessage" class="quiz-dialog-message"></p>
+            <div class="quiz-dialog-actions" id="quizDialogActions"></div>
+        </div>
+    </div>
+
+    <!-- Anticheating Module -->
+    <script src="assets/anticheating.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/script.js"></script>
+    <script>
+        let swiper;
+        let quizData = {};
+        let userAnswers = {};
+        let timerInterval;
+        let timeRemaining = 0;
+        let isSubmitting = false;
+
+        function openInAppDialog({ title = 'Thông báo', message = '', type = 'alert' }) {
+            const overlay = document.getElementById('quizDialogOverlay');
+            const titleNode = document.getElementById('quizDialogTitle');
+            const messageNode = document.getElementById('quizDialogMessage');
+            const actionsNode = document.getElementById('quizDialogActions');
+
+            titleNode.textContent = title;
+            messageNode.textContent = message;
+            actionsNode.innerHTML = '';
+
+            return new Promise((resolve) => {
+                const close = (result) => {
+                    overlay.classList.remove('is-open');
+                    overlay.setAttribute('aria-hidden', 'true');
+                    resolve(result);
+                };
+
+                if (type === 'confirm') {
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.className = 'quiz-dialog-btn ghost';
+                    cancelBtn.textContent = 'Hủy';
+                    cancelBtn.onclick = () => close(false);
+
+                    const okBtn = document.createElement('button');
+                    okBtn.className = 'quiz-dialog-btn primary';
+                    okBtn.textContent = 'Đồng ý';
+                    okBtn.onclick = () => close(true);
+
+                    actionsNode.appendChild(cancelBtn);
+                    actionsNode.appendChild(okBtn);
+                } else {
+                    const okBtn = document.createElement('button');
+                    okBtn.className = 'quiz-dialog-btn primary';
+                    okBtn.textContent = 'OK';
+                    okBtn.onclick = () => close(true);
+                    actionsNode.appendChild(okBtn);
+                }
+
+                overlay.classList.add('is-open');
+                overlay.setAttribute('aria-hidden', 'false');
+            });
+        }
+
+        window.showInAppAlert = function(message, title = 'Thông báo') {
+            return openInAppDialog({ title, message, type: 'alert' });
+        };
+
+        window.showInAppConfirm = function(message, title = 'Xác nhận') {
+            return openInAppDialog({ title, message, type: 'confirm' });
+        };
+
+        async function initQuiz() {
+            sessionStorage.clear();
+
+            // Kích hoạt Anti-Cheat (Chế độ Quiz - Giám sát chuyển tab nghiêm ngặt)
+            antiCheat.enable(true);
+
+            // Kiểm tra authentication
+            const token = localStorage.getItem('quizToken');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const quizID = localStorage.getItem('currentQuizID');
+            if (!quizID) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            // Load quiz data từ GAS
+            await loadQuizData(quizID, token);
+        }
+
+        // Load dữ liệu bài quiz
+        async function loadQuizData(quizID, token) {
+            try {
+                const result = await APIClient.getQuizData(quizID);
+
+                if (result.success) {
+                    quizData = result;
+                    document.getElementById('quizTitle').textContent = result.quizInfo.title;
+                    document.getElementById('totalQuestions').textContent = result.questions.length;
+                    
+                    renderQuestions(result.questions);
+                    startTimer(result.quizInfo.timeLimit);
+                    initSwiper();
+                    updateQuestionIndicator();
+                }
+            } catch (error) {
+                console.error('Error loading quiz:', error);
+                await showInAppAlert('Lỗi khi tải bài quiz');
+                window.location.href = 'dashboard.html';
+            }
+        }
+
+        // Render các câu hỏi
+        function renderQuestions(questions) {
+            const container = document.getElementById('questionContainer');
+            container.innerHTML = '';
+
+            questions.forEach((question, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.innerHTML = `
+                    <div class="question-card">
+                        <h3>${index + 1}. ${question.questionText}</h3>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q${question.questionID}" value="A" 
+                                    onchange="selectAnswer('${question.questionID}', 'A')">
+                                <span class="option-text">A. ${question.A}</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q${question.questionID}" value="B"
+                                    onchange="selectAnswer('${question.questionID}', 'B')">
+                                <span class="option-text">B. ${question.B}</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q${question.questionID}" value="C"
+                                    onchange="selectAnswer('${question.questionID}', 'C')">
+                                <span class="option-text">C. ${question.C}</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q${question.questionID}" value="D"
+                                    onchange="selectAnswer('${question.questionID}', 'D')">
+                                <span class="option-text">D. ${question.D}</span>
+                            </label>
+                        </div>
+                        <div class="feedback" id="feedback-${question.questionID}" style="display:none;"></div>
+                        ${quizData.quizInfo.showAnswer ? `
+                            <div class="explanation" id="exp-${question.questionID}"></div>
+                        ` : ''}
+                    </div>
+                `;
+                container.appendChild(slide);
+            });
+        }
+
+        // Init Swiper
+        function initSwiper() {
+            swiper = new Swiper('.mySwiper', {
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+                allowTouchMove: false,
+                on: {
+                    slideChange: function() {
+                        updateQuestionIndicator();
+                        updateNavigationButtons();
+                    }
+                }
+            });
+        }
+
+        // Chọn câu trả lời
+        async function selectAnswer(questionID, answer) {
+            userAnswers[questionID] = answer;
+
+            // Nếu bật chế độ luyện tập (Show_Answer = TRUE), hiển thị kết quả ngay
+            if (quizData.quizInfo.showAnswer) {
+                const question = quizData.questions.find(q => q.questionID === questionID);
+                const userHash = await sha256(questionID + answer + 'TsByinChei');
+                const isCorrect = userHash === question.answerHash;
+
+                const feedbackDiv = document.getElementById(`feedback-${questionID}`);
+                feedbackDiv.style.display = 'block';
+                feedbackDiv.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                feedbackDiv.textContent = isCorrect ? '✓ Đúng!' : '✗ Sai!';
+
+                // Hiển thị giải thích
+                const expDiv = document.getElementById(`exp-${questionID}`);
+                if (expDiv) {
+                    expDiv.textContent = '💡 ' + question.explanation;
+                    expDiv.style.display = 'block';
+                }
+            }
+
+            updateQuestionIndicator();
+        }
+
+        // Cập nhật chỉ báo câu hỏi
+        function updateQuestionIndicator() {
+            const currentIndex = swiper.activeIndex + 1;
+            document.getElementById('currentQuestion').textContent = currentIndex;
+
+            const progressPercent = (currentIndex / quizData.questions.length) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+
+            // Cập nhật chỉ báo câu hỏi đã làm
+            const indicatorDiv = document.getElementById('questionIndicator');
+            let html = '';
+            for (let i = 0; i < quizData.questions.length; i++) {
+                const qID = quizData.questions[i].questionID;
+                const answered = userAnswers[qID] ? 'answered' : '';
+                const active = i === swiper.activeIndex ? 'active' : '';
+                html += `<span class="indicator ${answered} ${active}" onclick="goToQuestion(${i})"></span>`;
+            }
+            indicatorDiv.innerHTML = html;
+        }
+
+        // Điều hướng
+        function prevQuestion() {
+            if (swiper.activeIndex > 0) {
+                swiper.slidePrev();
+            }
+        }
+
+        function nextQuestion() {
+            if (swiper.activeIndex < quizData.questions.length - 1) {
+                swiper.slideNext();
+            }
+        }
+
+        function goToQuestion(index) {
+            swiper.slideTo(index);
+        }
+
+        function updateNavigationButtons() {
+            const currentIndex = swiper.activeIndex;
+            const total = quizData.questions.length;
+
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === total - 1;
+        }
+
+        // Timer
+        function startTimer(minutes) {
+            timeRemaining = minutes * 60;
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+
+                const mins = Math.floor(timeRemaining / 60);
+                const secs = timeRemaining % 60;
+                document.getElementById('timerValue').textContent = 
+                    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz(false, true);
+                }
+            }, 1000);
+        }
+
+        // Nộp bài
+        async function submitQuiz(isForced = false, skipConfirm = false) {
+            if (isSubmitting) {
+                return;
+            }
+
+            isSubmitting = true;
+            clearInterval(timerInterval);
+            
+            try {
+                if (!skipConfirm) {
+                    antiCheat.isDialogOpen = true;
+                    const confirmed = await showInAppConfirm('Bạn có chắc muốn nộp bài?');
+                    antiCheat.isDialogOpen = false;
+
+                    if (!confirmed) {
+                        startTimer(Math.ceil(timeRemaining / 60));
+                        isSubmitting = false;
+                        return;
+                    }
+                }
+
+                // Tính điểm
+                let score = 0;
+                let totalQuestions = quizData.questions.length;
+
+                if (!isForced) {
+                    for (const question of quizData.questions) {
+                        const userAnswer = userAnswers[question.questionID];
+                        if (userAnswer) {
+                            const userHash = await sha256(question.questionID + userAnswer + 'TsByinChei');
+                            if (userHash === question.answerHash) {
+                                score++;
+                            }
+                        }
+                    }
+                } else {
+                    score = 0;
+                }
+
+                const scorePercent = (score / totalQuestions) * 100;
+
+                // Gửi kết quả lên GAS
+                const username = localStorage.getItem('quizUsername');
+                const quizID = localStorage.getItem('currentQuizID');
+
+                const result = await APIClient.submitScore(username, quizID, scorePercent, userAnswers);
+
+                if (!result.success) {
+                    await showInAppAlert(result.message || 'Lỗi khi nộp bài. Vui lòng thử lại!');
+                    isSubmitting = false;
+                    return;
+                }
+
+                const finalScore = typeof result.score === 'number' ? result.score : scorePercent;
+                const finalCorrect = typeof result.correctCount === 'number' ? result.correctCount : score;
+                const finalTotal = typeof result.totalQuestions === 'number' ? result.totalQuestions : totalQuestions;
+
+                // Lưu kết quả vào sessionStorage để hiển thị ở trang kết quả
+                sessionStorage.setItem('quizResult', JSON.stringify({
+                    score: finalScore,
+                    correct: finalCorrect,
+                    total: finalTotal,
+                    reviewItems: result.reviewItems || result.correctAnswers || [],
+                    explanations: result.explanations || []
+                }));
+
+                // Redirect tới trang kết quả
+                window.location.href = 'result.html';
+            } catch (error) {
+                console.error('Error submitting quiz:', error);
+                await showInAppAlert('Lỗi khi nộp bài. Vui lòng thử lại!');
+                isSubmitting = false;
+            }
+        }
+
+        // Xác nhận thoát
+        async function confirmExit() {
+            if (isSubmitting) {
+                return;
+            }
+
+            antiCheat.isDialogOpen = true;
+            const shouldExit = await showInAppConfirm('Bạn chưa nộp bài. Quay lại bây giờ?');
+            antiCheat.isDialogOpen = false;
+
+            if (shouldExit) {
+                window.location.href = 'dashboard.html';
+            }
+        }
+
+        // Khởi chạy
+        initQuiz();
+    </script>
+</body>
+</html>

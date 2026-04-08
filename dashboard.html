@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard - Chọn môn học và bài kiểm tra.">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>Dashboard - Quiz Lab</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .dashboard-shell {
+            display: grid;
+            gap: 1.2rem;
+            padding-bottom: 1.2rem;
+        }
+
+        .dashboard-welcome {
+            padding: 1.1rem 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.9rem;
+            align-items: center;
+        }
+
+        .dashboard-welcome p {
+            margin: 0;
+        }
+
+        .dashboard-main {
+            display: grid;
+            grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+            gap: 1rem;
+        }
+
+        .dashboard-side,
+        .dashboard-content-pane {
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: color-mix(in srgb, var(--surface) 90%, transparent);
+        }
+
+        .dashboard-side h3,
+        .dashboard-content-pane h3 {
+            margin: 0 0 0.75rem;
+            font-size: 1rem;
+        }
+
+        .subject-pill-grid {
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .subject-pill {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--surface-2) 78%, transparent);
+            color: var(--text);
+            text-align: left;
+            font-weight: 700;
+            padding: 0.7rem 0.85rem;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s, background 0.2s;
+        }
+
+        .subject-pill:hover,
+        .subject-pill.is-active {
+            border-color: var(--cyan);
+            background: color-mix(in srgb, var(--cyan) 14%, var(--surface-2));
+            transform: translateY(-1px);
+        }
+
+        .quiz-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.85rem;
+        }
+
+        .quiz-card-modern {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--surface-2) 78%, transparent);
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 230px;
+            gap: 0.75rem;
+        }
+
+        .quiz-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.35px;
+        }
+
+        .quiz-card-modern h4 {
+            margin: 0;
+            line-height: 1.45;
+            min-height: 2.8em;
+            display: -webkit-box;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .quiz-card-modern .quiz-desc {
+            margin: 0;
+            color: var(--text-light);
+            line-height: 1.55;
+            display: -webkit-box;
+            line-clamp: 3;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 4.65em;
+        }
+
+        .quiz-card-modern .btn-start-quiz {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .selected-subject-line {
+            margin: 0 0 0.8rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .selected-subject-badge {
+            color: var(--cyan);
+            font-weight: 700;
+        }
+
+        .quiz-stats-panel {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--surface) 88%, transparent);
+        }
+
+        .quiz-stats-panel h3 {
+            margin: 0 0 0.8rem;
+        }
+
+        @media (max-width: 940px) {
+            .dashboard-main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="has-topbar">
+    <header class="site-topbar">
+        <div class="site-topbar-inner">
+            <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-shell">
+            <header class="dashboard-welcome glassmorphism">
+                <div>
+                    <h1>Student Dashboard</h1>
+                    <p>Chọn môn, chọn bài, làm nhanh gọn và xem tiến độ của bạn.</p>
+                </div>
+                <div class="header-right">
+                    <span class="user-info" id="userInfo"></span>
+                    <button class="btn-logout" onclick="logout()">Đăng Xuất</button>
+                </div>
+            </header>
+
+            <main class="dashboard-main">
+                <aside class="dashboard-side">
+                    <h3>Môn học</h3>
+                    <div id="subjectsList" class="subject-pill-grid">
+                        <div class="skeleton-loader"></div>
+                        <div class="skeleton-loader"></div>
+                        <div class="skeleton-loader"></div>
+                    </div>
+
+                    <div id="quizStats" class="quiz-stats-panel" style="display:none;">
+                        <h3>Thống Kê Cá Nhân</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <p class="stat-label">Bài Làm</p>
+                                <p class="stat-value" id="totalAttempts">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <p class="stat-label">Điểm Cao Nhất (100)</p>
+                                <p class="stat-value" id="highestScore">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <p class="stat-label">Điểm Trung Bình (100)</p>
+                                <p class="stat-value" id="averageScore">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <section class="dashboard-content-pane">
+                    <h3>Danh sách bài quiz</h3>
+                    <p class="selected-subject-line">Môn đang chọn: <span id="selectedSubjectLabel" class="selected-subject-badge">Chưa chọn</span></p>
+                    <div id="quizList" class="quiz-list-grid">
+                        <div class="empty-state">
+                            <p>Vui lòng chọn một môn học để xem bài quiz</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Trang chủ</a>
+                <a href="../../privacy.html">Privacy Policy</a>
+                <a href="../../index.html">tsbyin.dev</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+    <script>
+        let selectedSubject = '';
+        let allSubjects = [];
+
+        function getQuizCacheStore() {
+            try {
+                return JSON.parse(sessionStorage.getItem('quizBySubjectCache') || '{}');
+            } catch (error) {
+                return {};
+            }
+        }
+
+        function setQuizCacheStore(cacheStore) {
+            sessionStorage.setItem('quizBySubjectCache', JSON.stringify(cacheStore || {}));
+        }
+
+        function getStatsCacheKey() {
+            const username = localStorage.getItem('quizUsername') || 'anonymous';
+            return `quizStatsCache:${username}`;
+        }
+
+        // Kiểm tra authentication
+        function checkAuth() {
+            const token = localStorage.getItem('quizToken');
+            const username = localStorage.getItem('quizUsername');
+            const role = localStorage.getItem('quizRole');
+
+            if (!token || !username) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            if (role === 'Admin') {
+                window.location.href = 'admin.html';
+                return;
+            }
+
+            document.getElementById('userInfo').textContent = `👤 ${username}`;
+
+            loadDashboard();
+        }
+
+        // Load dữ liệu Dashboard
+        async function loadDashboard() {
+            const username = localStorage.getItem('quizUsername');
+            const cachedSubjects = sessionStorage.getItem('quizSubjectsCache');
+            const cachedStats = sessionStorage.getItem(getStatsCacheKey());
+            const cachedLastSubject = sessionStorage.getItem('quizLastSubject');
+
+            if (cachedSubjects) {
+                try {
+                    const subjects = JSON.parse(cachedSubjects);
+                    renderSubjects(subjects);
+                    allSubjects = subjects;
+
+                    if (cachedLastSubject && subjects.includes(cachedLastSubject)) {
+                        selectSubject(cachedLastSubject, false);
+                    }
+                } catch (error) {
+                    sessionStorage.removeItem('quizSubjectsCache');
+                }
+            }
+
+            if (cachedStats) {
+                try {
+                    renderUserStats(JSON.parse(cachedStats));
+                } catch (error) {
+                    sessionStorage.removeItem(getStatsCacheKey());
+                }
+            }
+
+            await refreshDashboardInit(username);
+        }
+
+        async function refreshDashboardInit(username) {
+            try {
+                const result = await APIClient.getDashboardInit(username);
+
+                if (!result.success) {
+                    await fallbackLoadDashboardData(username);
+                    return;
+                }
+
+                const subjects = result.subjects || [];
+                const stats = result.stats || null;
+
+                allSubjects = subjects;
+                sessionStorage.setItem('quizSubjectsCache', JSON.stringify(subjects));
+                renderSubjects(subjects);
+
+                if (stats) {
+                    sessionStorage.setItem(getStatsCacheKey(), JSON.stringify(stats));
+                    renderUserStats(stats);
+                }
+
+                const lastSelected = sessionStorage.getItem('quizLastSubject');
+                const preferredSubject = lastSelected && subjects.includes(lastSelected)
+                    ? lastSelected
+                    : subjects[0];
+
+                if (preferredSubject) {
+                    selectSubject(preferredSubject, true);
+                }
+            } catch (error) {
+                console.error('Error refreshing dashboard init:', error);
+                await fallbackLoadDashboardData(username);
+            }
+        }
+
+        async function fallbackLoadDashboardData(username) {
+            try {
+                const [subjectResult, statsResult] = await Promise.all([
+                    APIClient.getSubjects(),
+                    APIClient.getUserStats(username)
+                ]);
+
+                if (subjectResult && subjectResult.success) {
+                    const subjects = subjectResult.subjects || [];
+                    allSubjects = subjects;
+                    sessionStorage.setItem('quizSubjectsCache', JSON.stringify(subjects));
+                    renderSubjects(subjects);
+
+                    const lastSelected = sessionStorage.getItem('quizLastSubject');
+                    const preferredSubject = lastSelected && subjects.includes(lastSelected)
+                        ? lastSelected
+                        : subjects[0];
+
+                    if (preferredSubject) {
+                        selectSubject(preferredSubject, true);
+                    }
+                }
+
+                if (statsResult && statsResult.success && statsResult.stats) {
+                    sessionStorage.setItem(getStatsCacheKey(), JSON.stringify(statsResult.stats));
+                    renderUserStats(statsResult.stats);
+                }
+            } catch (fallbackError) {
+                console.error('Fallback dashboard load failed:', fallbackError);
+            }
+        }
+
+        // Render danh sách môn học
+        function renderSubjects(subjects) {
+            const container = document.getElementById('subjectsList');
+            container.innerHTML = '';
+
+            if (!subjects || subjects.length === 0) {
+                container.innerHTML = '<p class="empty-state">Không có môn học đang hoạt động.</p>';
+                return;
+            }
+
+            subjects.forEach(subject => {
+                const button = document.createElement('button');
+                button.className = 'subject-pill';
+                button.type = 'button';
+                button.textContent = subject;
+                button.addEventListener('click', () => selectSubject(subject));
+                container.appendChild(button);
+            });
+        }
+
+        // Chọn môn học
+        async function selectSubject(subject, revalidate = true) {
+            selectedSubject = subject;
+            document.getElementById('selectedSubjectLabel').textContent = subject;
+            sessionStorage.setItem('quizLastSubject', subject);
+
+            document.querySelectorAll('.subject-pill').forEach((node) => {
+                node.classList.toggle('is-active', node.textContent === subject);
+            });
+
+            const quizCacheStore = getQuizCacheStore();
+            if (Array.isArray(quizCacheStore[subject])) {
+                renderQuizzes(quizCacheStore[subject]);
+            }
+
+            if (!revalidate) {
+                return;
+            }
+
+            try {
+                const result = await APIClient.getQuizzesBySubject(subject);
+
+                if (result.success) {
+                    const quizzes = result.quizzes || [];
+                    quizCacheStore[subject] = quizzes;
+                    setQuizCacheStore(quizCacheStore);
+                    renderQuizzes(quizzes);
+                }
+            } catch (error) {
+                console.error('Error loading quizzes:', error);
+            }
+        }
+
+        // Render danh sách bài quiz
+        function renderQuizzes(quizzes) {
+            const container = document.getElementById('quizList');
+            container.innerHTML = '';
+
+            if (quizzes.length === 0) {
+                container.innerHTML = '<p class="empty-state">Không có bài quiz nào</p>';
+                return;
+            }
+
+            quizzes.forEach(quiz => {
+                const card = document.createElement('div');
+                card.className = 'quiz-card-modern';
+                const safeDescription = (quiz.description || 'Không có mô tả.').trim();
+                card.innerHTML = `
+                    <div class="quiz-meta-row">
+                        <span>${selectedSubject || quiz.subject || 'Môn học'}</span>
+                        <span>⏱ ${quiz.timeLimit} phút</span>
+                    </div>
+                    <h4>${quiz.title}</h4>
+                    <p class="quiz-desc">${safeDescription}</p>
+                    <button class="btn-start-quiz" type="button">
+                        Bắt Đầu Làm Bài
+                    </button>
+                `;
+                card.querySelector('.btn-start-quiz').addEventListener('click', () => startQuiz(quiz.quizID));
+                container.appendChild(card);
+            });
+        }
+
+        // Bắt đầu làm bài
+        function startQuiz(quizID) {
+            localStorage.setItem('currentQuizID', quizID);
+            window.location.href = 'quiz.html';
+        }
+
+        // Load thống kê cá nhân
+        function renderUserStats(stats) {
+            if (!stats) {
+                return;
+            }
+
+            document.getElementById('quizStats').style.display = 'block';
+            document.getElementById('totalAttempts').textContent = stats.attempts || 0;
+            document.getElementById('highestScore').textContent =
+                (stats.highestScore || 0).toFixed(2);
+            document.getElementById('averageScore').textContent =
+                (stats.averageScore || 0).toFixed(2);
+        }
+
+        // Đăng xuất
+        function logout() {
+            localStorage.removeItem('quizToken');
+            localStorage.removeItem('quizRole');
+            localStorage.removeItem('quizUsername');
+            window.location.href = 'login.html';
+        }
+
+        // Khởi chạy khi trang load
+        checkAuth();
+    </script>
+</body>
+</html>
