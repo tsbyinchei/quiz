@@ -245,6 +245,7 @@
         </div>
     </footer>
 
+    <script src="assets/anticheating.js"></script>
     <script src="assets/script.js"></script>
     <script>
         let selectedSubject = '';
@@ -558,6 +559,10 @@
         }
 
         // Khởi chạy khi trang load
+        if (window.antiCheat && typeof window.antiCheat.enable === 'function') {
+            window.antiCheat.enable(false);
+        }
+
         updateMusicUI();
         initGridModeToggle();
         checkAuth();
