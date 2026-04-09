@@ -54,6 +54,8 @@ Mục tiêu của hệ thống:
 - Admin dashboard đã tách view bằng nút:
   - Quản Lý Bài Thi
   - Nhập Câu Hỏi Hàng Loạt
+- Màn quản lý bài thi đã chuyển sang danh sách môn giống dashboard, chỉ hiển thị quiz của môn đang chọn.
+- Có cụm nút bật/tắt hàng loạt theo từng môn cho status, show answer, shuffle, anti-cheat, auto-next và allow-back.
 - Chart.js đã nâng cấp:
   - Bar: số lượt làm
   - Line: số câu hỏi
@@ -225,7 +227,7 @@ Tạo SHA-256 cho password và lưu vào cột `Password_Hash`.
 2. Chọn subject/quiz.
 3. Làm bài, nộp bài, xem result + review.
 4. Login admin.
-5. Test toggle + import Aiken + chart.
+5. Test chọn môn, bulk toggle theo môn, import Aiken và chart.
 
 ---------------------------------------------------------------------
 
@@ -245,6 +247,8 @@ Chấp nhận cả định dạng:
 
 - `A)` `B)` `C)` `D)`
 - `A.` `B.` `C.` `D.`
+
+Ngoài dán trực tiếp, phần admin import còn hỗ trợ nạp file `.txt` vào ô nội dung rồi kiểm tra / chỉnh tay trước khi nhập.
 
 ---------------------------------------------------------------------
 

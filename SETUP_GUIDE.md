@@ -69,8 +69,9 @@ Dán hash vào cột Password_Hash trong Users.
 3. Chuyển view bằng nút:
    - Quản Lý Bài Thi
    - Nhập Câu Hỏi Hàng Loạt
-4. Thử toggle status/showAnswer.
-5. Thử import Aiken.
+4. Chọn một môn ở danh sách bên trái để xem quiz của riêng môn đó.
+5. Thử bulk toggle theo môn cho status/showAnswer/shuffle/anti-cheat/auto-next/allow-back.
+6. Thử import Aiken bằng cách dán nội dung hoặc nạp file `.txt`.
 
 ## 6) Aiken format
 

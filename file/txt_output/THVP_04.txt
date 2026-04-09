@@ -1,0 +1,230 @@
+Thay đổi thiết kế của Slide trong Powerpoint, ta thực hiện:
+A. Format - Slide Design…
+B. Tools - Slide Design…
+C. Format - Design Slide …
+D. Insert - Slide Design
+ANSWER: A
+
+Thiết lập hiệu ứng cho văn bản, hình ảnh,… trong powerpoint ta thực hiện:
+A. Insert - Custom Animation, rồi chọn Add Effect
+B. Format - Custom Animation, rồi chọn Add Effect
+C. View - Custom Animation, rồi chọn Add Effect
+D. Slide Show - Custom Animation, rồi chọn Add Effect
+ANSWER: D
+
+Trong Powerpoint cách nào để thay đổi khoảng cách dãn dòng cho danh sách?
+A. Home/Paragraph
+B. Insert/Paragraph
+C. Home/Theme Colors
+D. Home/Font
+ANSWER: A
+
+Trong Powerpoint lệnh Insert/Shapes dùng để thực hiện công việc gì?
+A. Chèn hình vẽ vào Slide
+B. Chèn công thức toán học vào Slide
+C. Chèn video vào Slide
+D. Chèn các file âm thanh vào Slide
+ANSWER: A
+
+Mỗi trang trình diễn trong Powerpoint được gọi là?
+A. Một Slide
+B. Một Page
+C. Một Sheet
+D. Một cơ sở dữ liệu
+ANSWER: A
+
+Trong Powerpoint chế độ hiển thị nào cho phép thực hiện sắp xếp lại các Slide?
+A. View/ Page Layout
+B. View/ Slide Sorter
+C. View/ Normal
+D. View/ Reading View
+ANSWER: B
+
+Trong Powerpoint nút lệnh ScreenShot có chức năng?
+A. Chụp ảnh màn hình để chèn vào Slide
+B. Chèn video vào Slide
+C. Chèn hình ảnh từ vị trí bất kỳ trong máy vào Slide
+D. Chèn âm thanh vào Slide
+ANSWER: A
+
+Trong Powerpoint nếu chọn 2 Slide và dùng lệnh Duplicate Slide thì tạo ra thêm mấy Slide ?
+A. 2
+B. 4
+C. 6
+D. 8
+ANSWER: A
+
+Trong PowerPoint mỗi bài thuyết trình có tối đa là bao nhiêu Slide Master ?
+A. 2
+B. Không giới hạn
+C. 1
+D. 5
+ANSWER: B
+
+Kết thúc phiên trình chiếu trong powerpoint, ta thực hiện? (chọn nhiều đáp án)
+A. Nháy chuột phải, rồi chọn Exit
+B. Nháy chuột phải, rồi chọn End Show
+C. Nhấn phím End
+D. Nhấn phím ESC
+ANSWER: B
+
+Trong PowerPoint sau khi đã chèn một bảng vào slide, muốn chia ô hiện tại thành 2 ô
+A. Nhấn chuột phải và chọn Split Cells.
+B. Vào Table / Split Cells
+C. Nhấn chuột trái và chọn Split Cells.
+D. Vào Home / Split Cells
+ANSWER: A
+
+Trong PowerPoint thao tác nào sau đây để mở một bài thuyết trình đồng thời trên hai của sổ ?
+A. Vào Review/New Windows
+B. Vào Home/New Windows
+C. Vào Data/New Windows
+D. Vào View/New Windows
+ANSWER: D
+
+Trong Powerpoint để thêm 1 slide giống slide được chọn ta dùng tố hợp phím lệnh nào sau đây?
+A. ALT + H + E + I
+B. ALT + H + E + D
+C. ALT + H + I + D
+D. ALT + H + D + I
+ANSWER: C
+
+Tại một slide dùng tổ hợp phím nào sau đây sẽ xoá slide đó? (chọn nhiều đáp án)
+A. ALT+E+D
+B. ALT+E+C
+C. ALT+F+D
+D. Bấm delete (trên bàn phím)
+ANSWER: A
+
+Trong PowerPoint để chỉnh sửa giao diện, bố cục của tất cả các trang Slide ta vào View và chọn:
+A. Note Master
+B. Handout Master
+C. Slide Master
+D. Master Slide
+ANSWER: C
+
+Chèn bảng biểu vào slide trong powerpoint ta thực hiện như sau:
+A. Table -> Insert Table
+B. Insert -> Table
+C. Table -> Insert
+D. Format -> Table
+ANSWER: B
+
+Trong Powerpoint lệnh Insert/ Equation dùng để thực hiện công việc gì?
+A. Chèn công thức toán học vào Slide
+B. Chèn biểu đồ vào Slide
+C. Chèn hình ảnh vào Slide
+D. Chèn các file âm thanh vào Slide
+ANSWER: A
+
+Thiết lập hiệu ứng cho văn bản, hình ảnh,… trong powerpoint ta thực hiện:
+A. Insert - Custom Animation, rồi chọn Add Effect
+B. Format - Custom Animation, rồi chọn Add Effect
+C. View - Custom Animation, rồi chọn Add Effect
+D. Slide Show - Custom Animation, rồi chọn Add Effect
+ANSWER: D
+
+Trong Powerpoint lệnh Insert/Shapes dùng để thực hiện công việc gì?
+A. Chèn hình vẽ vào Slide
+B. Chèn công thức toán học vào Slide
+C. Chèn video vào Slide
+D. Chèn các file âm thanh vào Slide
+ANSWER: A
+
+Thay đổi thiết kế của Slide trong Powerpoint, ta thực hiện
+A. Format - Slide Design…
+B. Tools - Slide Design…
+C. Format - Design Slide …
+D. Insert - Slide Design…
+ANSWER: A
+
+Trong PowerPoint sau khi đã chèn một bảng vào slide, muốn chia ô hiện tại thành 2 ô
+A. Nhấn chuột phải và chọn Split Cells.
+B. Vào Table / Split Cells
+C. Nhấn chuột trái và chọn Split Cells.
+D. Vào Home / Split Cells
+ANSWER: A
+
+Chèn hiệu ứng cho đối tượng trên Slide, muốn hiệu ứng xuất hiện đồng thời khi trình diễn, tại mục Start ta chọn
+A. After previous
+B. With previous
+C. click After
+D. On click
+ANSWER: B
+
+Trong Powerpoint chế độ hiển thị nào cho phép thực hiện sắp xếp lại các Slide?
+A. View/ Page Layout
+B. View/ Slide Sorter
+C. View/ Normal
+D. View/ Reading View
+ANSWER: B
+
+Trong PowerPoint thao tác nào sau đây để mở một bài thuyết trình đồng thời trên hai của sổ ?
+A. Vào Review/New Windows
+B. Vào Home/New Windows
+C. Vào Data/New Windows
+D. Vào View/New Windows
+ANSWER: D
+
+Trong PowerPoint thao tác nào sau đây dùng để bật, tắt khung lưới Gridlines?
+A. Nhấn tổ hợp phím Shift + F9
+B. Vào Home / Arrange / Align / View Gridlines
+C. Vào View chọn Gridlines
+D. Tất cả đều đúng
+ANSWER: D
+
+Chức năng Animations/ Timing/ Delay dùng để:
+A. Thiết lập thời gian chờ trước khi hiệu ứng bắt đầu
+B. Thiết lập thời gian chờ trước khi slide được trình chiếu
+C. Thiết lập thời gian hoạt động cho tất cả các hiệu ứng
+D. Tất cả đều đúng
+ANSWER: D
+
+Trong PowerPoint thao tác nào sau đây để tùy chọn phần ẩn/hiện của các thanh công cụ ?
+A. File/Options/Customize Ribbon
+B. File/Options/Advanced
+C. File/Options/General
+D. File/Options/Proofing
+ANSWER: A
+
+Trong PowerPoint thao tác nào sau đây dùng để bật, tắt khung lưới Gridlines?
+A. Tất cả đều đúng
+B. Nhấn tổ hợp phím Shift + F9
+C. Vào View chọn Gridlines
+D. Vào Home / Arrange / Align / View Gridlines
+ANSWER: A
+
+Trong PowerPoint thao tác nào sau đây để mở một bài thuyết trình đồng thời trên hai của sổ ?
+A. Vào Review/New Windows
+B. Vào Home/New Windows
+C. Vào Data/New Windows
+D. Vào View/New Windows
+ANSWER: D
+
+Hiệu ứng nào sau đây cho đối tượng di chuyển theo một đường dẫn? (chọn nhiều đáp án)
+A. Loops
+B. Wipe
+C. Arcs
+D. Line Color
+ANSWER: A
+
+Thi tốt nhá =))
+A. A+ thẳng tiến
+B. tạch :))
+C. đủ điểm qua môn
+D. Hong
+ANSWER: A
+
+Học lại?
+A. Yeppp
+B. Yesss
+C. Cóa
+D. Kó
+ANSWER: C
+
+Cậu có thể Zn ưn chúng tớ bằng cách
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :)) )
+C. Lời kẹm ưn so ciuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

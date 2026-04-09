@@ -82,9 +82,18 @@
                 <a href="javascript:void(0)" onclick="confirmExit()">Dashboard</a>
                 <a href="javascript:void(0)" onclick="submitQuiz()">Kết quả</a>
             </nav>
-            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+            <div class="site-topbar-actions">
+                <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+                <button type="button" class="theme-toggle" onclick="toggleMusic()" title="Bật/Tắt nhạc" id="musicBtn">
+                    <span id="musicIcon">🎵</span>
+                </button>
+            </div>
         </div>
     </header>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/bg-music.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         <div class="quiz-page">
@@ -120,19 +129,6 @@
                     </div>
                 </div>
 
-                <!-- Navigation -->
-                <div class="quiz-navigation">
-                    <button class="btn-prev" id="prevBtn" onclick="prevQuestion()" disabled>
-                        ← Câu Trước
-                    </button>
-                    <button class="btn-submit" id="submitBtn" onclick="submitQuiz()">
-                        Nộp Bài
-                    </button>
-                    <button class="btn-next" id="nextBtn" onclick="nextQuestion()">
-                        Câu Tiếp →
-                    </button>
-                </div>
-
                 <!-- Question Indicator -->
                 <div class="question-indicator" id="questionIndicator"></div>
             </main>
@@ -166,10 +162,31 @@
     <script>
         let swiper;
         let quizData = {};
+        let displayQuestions = [];
         let userAnswers = {};
         let timerInterval;
         let timeRemaining = 0;
         let isSubmitting = false;
+        let allowBackNavigation = true;
+        let autoNextEnabled = false;
+        let autoNextTimer = null;
+        let isMusicEnabled = localStorage.getItem('musicEnabled') !== 'false';
+        const bgMusic = document.getElementById('bgMusic');
+        let musicInteractionHandler = null;
+
+        function shuffleArray(items) {
+            const arr = [...items];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function normalizeOptionText(value) {
+            // Remove legacy Aiken-style prefixes to avoid duplicated labels like "A. A. ..."
+            return String(value || '').replace(/^[A-D][\.)]\s*/i, '').trim();
+        }
 
         function openInAppDialog({ title = 'Thông báo', message = '', type = 'alert' }) {
             const overlay = document.getElementById('quizDialogOverlay');
@@ -222,14 +239,76 @@
             return openInAppDialog({ title, message, type: 'confirm' });
         };
 
+        function updateMusicUI() {
+            const icon = document.getElementById('musicIcon');
+            const musicBtn = document.getElementById('musicBtn');
+
+            if (icon) {
+                icon.textContent = isMusicEnabled ? '🎵' : '🔇';
+            }
+
+            if (musicBtn) {
+                musicBtn.classList.toggle('music-off', !isMusicEnabled);
+                musicBtn.style.opacity = isMusicEnabled ? '1' : '0.5';
+            }
+        }
+
+        function stopMusic() {
+            if (!bgMusic) {
+                return;
+            }
+
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+        }
+
+        function playMusic() {
+            if (!bgMusic || !isMusicEnabled) {
+                return Promise.resolve();
+            }
+
+            bgMusic.volume = 0.3;
+            return bgMusic.play();
+        }
+
+        function bindFirstMusicInteraction() {
+            if (!isMusicEnabled || musicInteractionHandler) {
+                return;
+            }
+
+            musicInteractionHandler = (event) => {
+                if (event && event.target && event.target.closest && event.target.closest('#musicBtn')) {
+                    return;
+                }
+
+                playMusic().catch(() => {
+                    console.log('Chờ tương tác để phát nhạc');
+                });
+            };
+
+            document.addEventListener('pointerdown', musicInteractionHandler, { once: true, capture: true });
+        }
+
+        function toggleMusic() {
+            isMusicEnabled = !isMusicEnabled;
+            localStorage.setItem('musicEnabled', String(isMusicEnabled));
+            updateMusicUI();
+
+            if (isMusicEnabled) {
+                bindFirstMusicInteraction();
+                playMusic().catch(() => {
+                    console.log('Cần tương tác để phát nhạc');
+                });
+            } else {
+                stopMusic();
+            }
+        }
+
         async function initQuiz() {
             sessionStorage.clear();
 
-            // Kích hoạt Anti-Cheat (Chế độ Quiz - Giám sát chuyển tab nghiêm ngặt)
-            antiCheat.enable(true);
-
             // Kiểm tra authentication
-            const token = localStorage.getItem('quizToken');
+            const token = AuthManager.getToken();
             if (!token) {
                 window.location.href = 'login.html';
                 return;
@@ -252,13 +331,38 @@
 
                 if (result.success) {
                     quizData = result;
+                    const shouldEnableAntiCheat = !(quizData.quizInfo && quizData.quizInfo.antiCheat === false);
+                    autoNextEnabled = !!(quizData.quizInfo && quizData.quizInfo.autoNext);
+                    allowBackNavigation = !(quizData.quizInfo && quizData.quizInfo.allowBack === false);
+                    document.body.classList.toggle('quiz-no-back', !allowBackNavigation);
+
+                    if (typeof antiCheat !== 'undefined') {
+                        if (shouldEnableAntiCheat) {
+                            antiCheat.enable(true);
+                            console.log('Anti-Cheat: ENABLED');
+                        } else {
+                            antiCheat.disable();
+                            console.log('Anti-Cheat: DISABLED');
+                        }
+                    }
+
                     document.getElementById('quizTitle').textContent = result.quizInfo.title;
-                    document.getElementById('totalQuestions').textContent = result.questions.length;
-                    
-                    renderQuestions(result.questions);
+                    displayQuestions = Array.isArray(result.questions) ? [...result.questions] : [];
+                    if (quizData.quizInfo && quizData.quizInfo.shuffle) {
+                        displayQuestions = shuffleArray(displayQuestions);
+                    }
+
+                    document.getElementById('totalQuestions').textContent = displayQuestions.length;
+
+                    renderQuestions(displayQuestions);
                     startTimer(result.quizInfo.timeLimit);
                     initSwiper();
                     updateQuestionIndicator();
+                    updateMusicUI();
+                    bindFirstMusicInteraction();
+                } else {
+                    await showInAppAlert(result.message || 'Không thể tải dữ liệu bài quiz');
+                    window.location.href = 'dashboard.html';
                 }
             } catch (error) {
                 console.error('Error loading quiz:', error);
@@ -271,34 +375,41 @@
         function renderQuestions(questions) {
             const container = document.getElementById('questionContainer');
             container.innerHTML = '';
+            const isGridMode = localStorage.getItem('quizGridMode') === 'true';
 
             questions.forEach((question, index) => {
+                const isFirst = index === 0;
+                const isLast = index === questions.length - 1;
+                const shouldShuffleOptions = !!(quizData.quizInfo && quizData.quizInfo.shuffle);
+                const shouldShowOptionPrefix = !shouldShuffleOptions;
+                const optionList = [
+                    { key: 'A', text: normalizeOptionText(question.A) },
+                    { key: 'B', text: normalizeOptionText(question.B) },
+                    { key: 'C', text: normalizeOptionText(question.C) },
+                    { key: 'D', text: normalizeOptionText(question.D) }
+                ];
+                const renderedOptions = shouldShuffleOptions ? shuffleArray(optionList) : optionList;
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
                 slide.innerHTML = `
                     <div class="question-card">
-                        <h3>${index + 1}. ${question.questionText}</h3>
-                        <div class="answers">
-                            <label class="answer-option">
-                                <input type="radio" name="q${question.questionID}" value="A" 
-                                    onchange="selectAnswer('${question.questionID}', 'A')">
-                                <span class="option-text">A. ${question.A}</span>
-                            </label>
-                            <label class="answer-option">
-                                <input type="radio" name="q${question.questionID}" value="B"
-                                    onchange="selectAnswer('${question.questionID}', 'B')">
-                                <span class="option-text">B. ${question.B}</span>
-                            </label>
-                            <label class="answer-option">
-                                <input type="radio" name="q${question.questionID}" value="C"
-                                    onchange="selectAnswer('${question.questionID}', 'C')">
-                                <span class="option-text">C. ${question.C}</span>
-                            </label>
-                            <label class="answer-option">
-                                <input type="radio" name="q${question.questionID}" value="D"
-                                    onchange="selectAnswer('${question.questionID}', 'D')">
-                                <span class="option-text">D. ${question.D}</span>
-                            </label>
+                        <h3>Câu ${index + 1}: ${question.questionText}</h3>
+                        <div class="answers ${isGridMode ? 'grid-mode' : ''}">
+                            ${renderedOptions.map((option) => `
+                                <label class="answer-option">
+                                    <input type="radio" name="q${question.questionID}" value="${option.key}" 
+                                        onchange="selectAnswer('${question.questionID}', '${option.key}')">
+                                    <span class="option-text">${shouldShowOptionPrefix ? `${option.key}. ` : ''}${option.text}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                        <div class="quiz-navigation">
+                            <button class="btn-prev" onclick="prevQuestion()" ${(isFirst || !allowBackNavigation) ? 'disabled' : ''}>
+                                ← Câu Trước
+                            </button>
+                            ${isLast
+                                ? '<button class="btn-submit" onclick="submitQuiz()">Nộp Bài</button>'
+                                : '<button class="btn-next" onclick="nextQuestion()">Câu Tiếp →</button>'}
                         </div>
                         <div class="feedback" id="feedback-${question.questionID}" style="display:none;"></div>
                         ${quizData.quizInfo.showAnswer ? `
@@ -317,11 +428,13 @@
                 fadeEffect: {
                     crossFade: true
                 },
+                autoHeight: true,
+                observer: true,
+                observeParents: true,
                 allowTouchMove: false,
                 on: {
                     slideChange: function() {
                         updateQuestionIndicator();
-                        updateNavigationButtons();
                     }
                 }
             });
@@ -331,8 +444,18 @@
         async function selectAnswer(questionID, answer) {
             userAnswers[questionID] = answer;
 
+            if (autoNextTimer) {
+                clearTimeout(autoNextTimer);
+                autoNextTimer = null;
+            }
+
             // Nếu bật chế độ luyện tập (Show_Answer = TRUE), hiển thị kết quả ngay
             if (quizData.quizInfo.showAnswer) {
+                const radios = document.querySelectorAll(`input[name="q${questionID}"]`);
+                radios.forEach((radio) => {
+                    radio.disabled = true;
+                });
+
                 const question = quizData.questions.find(q => q.questionID === questionID);
                 const userHash = await sha256(questionID + answer + 'TsByinChei');
                 const isCorrect = userHash === question.answerHash;
@@ -351,6 +474,13 @@
             }
 
             updateQuestionIndicator();
+
+            if (autoNextEnabled && swiper && swiper.activeIndex < displayQuestions.length - 1) {
+                autoNextTimer = setTimeout(() => {
+                    nextQuestion();
+                    autoNextTimer = null;
+                }, 800);
+            }
         }
 
         // Cập nhật chỉ báo câu hỏi
@@ -358,44 +488,48 @@
             const currentIndex = swiper.activeIndex + 1;
             document.getElementById('currentQuestion').textContent = currentIndex;
 
-            const progressPercent = (currentIndex / quizData.questions.length) * 100;
+            const progressPercent = displayQuestions.length > 0
+                ? (currentIndex / displayQuestions.length) * 100
+                : 0;
             document.getElementById('progressFill').style.width = progressPercent + '%';
 
             // Cập nhật chỉ báo câu hỏi đã làm
             const indicatorDiv = document.getElementById('questionIndicator');
             let html = '';
-            for (let i = 0; i < quizData.questions.length; i++) {
-                const qID = quizData.questions[i].questionID;
+            for (let i = 0; i < displayQuestions.length; i++) {
+                const qID = displayQuestions[i].questionID;
                 const answered = userAnswers[qID] ? 'answered' : '';
                 const active = i === swiper.activeIndex ? 'active' : '';
-                html += `<span class="indicator ${answered} ${active}" onclick="goToQuestion(${i})"></span>`;
+                const disabled = !allowBackNavigation ? 'is-disabled' : '';
+                const clickHandler = allowBackNavigation ? `onclick="goToQuestion(${i})"` : '';
+                html += `<span class="indicator ${answered} ${active} ${disabled}" ${clickHandler}></span>`;
             }
             indicatorDiv.innerHTML = html;
         }
 
         // Điều hướng
         function prevQuestion() {
+            if (!allowBackNavigation) {
+                return;
+            }
+
             if (swiper.activeIndex > 0) {
                 swiper.slidePrev();
             }
         }
 
         function nextQuestion() {
-            if (swiper.activeIndex < quizData.questions.length - 1) {
+            if (swiper.activeIndex < displayQuestions.length - 1) {
                 swiper.slideNext();
             }
         }
 
         function goToQuestion(index) {
+            if (!allowBackNavigation) {
+                return;
+            }
+
             swiper.slideTo(index);
-        }
-
-        function updateNavigationButtons() {
-            const currentIndex = swiper.activeIndex;
-            const total = quizData.questions.length;
-
-            document.getElementById('prevBtn').disabled = currentIndex === 0;
-            document.getElementById('nextBtn').disabled = currentIndex === total - 1;
         }
 
         // Timer
@@ -425,6 +559,10 @@
 
             isSubmitting = true;
             clearInterval(timerInterval);
+            if (autoNextTimer) {
+                clearTimeout(autoNextTimer);
+                autoNextTimer = null;
+            }
             
             try {
                 if (!skipConfirm) {
@@ -441,10 +579,10 @@
 
                 // Tính điểm
                 let score = 0;
-                let totalQuestions = quizData.questions.length;
+                let totalQuestions = displayQuestions.length;
 
                 if (!isForced) {
-                    for (const question of quizData.questions) {
+                    for (const question of displayQuestions) {
                         const userAnswer = userAnswers[question.questionID];
                         if (userAnswer) {
                             const userHash = await sha256(question.questionID + userAnswer + 'TsByinChei');
@@ -457,13 +595,13 @@
                     score = 0;
                 }
 
-                const scorePercent = (score / totalQuestions) * 100;
+                const scoreOutOf10 = totalQuestions > 0 ? (score / totalQuestions) * 10 : 0;
 
                 // Gửi kết quả lên GAS
                 const username = localStorage.getItem('quizUsername');
                 const quizID = localStorage.getItem('currentQuizID');
 
-                const result = await APIClient.submitScore(username, quizID, scorePercent, userAnswers);
+                const result = await APIClient.submitScore(username, quizID, scoreOutOf10, userAnswers);
 
                 if (!result.success) {
                     await showInAppAlert(result.message || 'Lỗi khi nộp bài. Vui lòng thử lại!');
@@ -471,7 +609,7 @@
                     return;
                 }
 
-                const finalScore = typeof result.score === 'number' ? result.score : scorePercent;
+                const finalScore = typeof result.score === 'number' ? result.score : scoreOutOf10;
                 const finalCorrect = typeof result.correctCount === 'number' ? result.correctCount : score;
                 const finalTotal = typeof result.totalQuestions === 'number' ? result.totalQuestions : totalQuestions;
 
@@ -481,8 +619,14 @@
                     correct: finalCorrect,
                     total: finalTotal,
                     reviewItems: result.reviewItems || result.correctAnswers || [],
-                    explanations: result.explanations || []
+                    explanations: result.explanations || [],
+                    quizMode: {
+                        shuffle: !!(quizData.quizInfo && quizData.quizInfo.shuffle),
+                        questionOrder: displayQuestions.map((question) => String(question.questionID || ''))
+                    }
                 }));
+
+                stopMusic();
 
                 // Redirect tới trang kết quả
                 window.location.href = 'result.html';
@@ -504,9 +648,17 @@
             antiCheat.isDialogOpen = false;
 
             if (shouldExit) {
+                if (autoNextTimer) {
+                    clearTimeout(autoNextTimer);
+                    autoNextTimer = null;
+                }
+                stopMusic();
                 window.location.href = 'dashboard.html';
             }
         }
+
+        window.addEventListener('pagehide', stopMusic);
+        window.addEventListener('beforeunload', stopMusic);
 
         // Khởi chạy
         initQuiz();

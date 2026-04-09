@@ -1,0 +1,244 @@
+Sắp xếp theo thứ tự trước - sau của 3 giai đoạn cuối trong quy trình kiểm tra của tổ chức:
+A. Đo lường, So sánh kết quả với tiêu chuẩn, Thực thi
+B. Đo lường, Thực thi các hành động điều chỉnh, So sánh các hành động điều chỉnh kết quả với tiêu chuẩn
+C. Thực thi các hành động điều chỉnh, So sánh kết quả
+D. So sánh kết quả với tiêu chuẩn, Đo lường, Thực thi với tiêu chuẩn, Đo lường các hành động điều chỉnh
+ANSWER: A
+
+“Kiểm tra đầu ra để khắc phục vấn đề sau khi xảy ra” là nội dung của kiểm tra:
+A. Kiểm tra song hành
+B. Kiểm tra đầu ra
+C. Kiểm tra đầu vào
+D. Kiểm tra phòng ngừa
+ANSWER: B
+
+...... được thực hiện trong khi công việc đang tiến hành, các nhà quản trị có thể khắc phục những vấn đề ngay khi xảy ra.
+A. Kiểm tra song hành
+B. Kiểm tra phản hồi
+C. Kiểm tra phòng ngừa
+D. Kiểm tra thời gian
+ANSWER: A
+
+Nhà quản trị so sánh kết quả thực hiện với mục tiêu đề ra và thực hiện các biện pháp khắc phục thuộc chức năng quản trị nào?
+A. Lập kế hoạch
+B. Tổ chức
+C. Lãnh đạo
+D. Kiểm tra
+ANSWER: D
+
+Kiểm tra trực tiếp là gì?
+A. Nhà quản trị xuống trực tiếp nơi làm việc để tương tác
+B. Nhà quản trị kiểm tra đầu ra để khắc phục hậu quả trực tiếp với nhân viên
+C. Nhà quản trị kiểm tra đầu vào để dự báo vấn đề
+D. Nhà quản trị khắc phục vấn đề ngay khi xảy ra
+ANSWER: A
+
+Kiểm tra chất lượng nguyên liệu trước khi sản xuất thuộc loại kiểm tra nào?
+A. Kiểm tra song hành
+B. Kiểm tra đầu ra
+C. Kiểm tra phản hồi
+D. Kiểm tra đầu vào
+ANSWER: D
+
+Nhà quản trị sử dụng thẻ điểm cân bằng BSC (Balance Scorecard) để thiết lập mục tiêu và tiêu chí đo lường cho các hoạt động nào?
+A. Tài chính; Quy trình nội bộ; Khách hàng
+B. Tài chính; Khách hàng; Sáng tạo và phát triển
+C. Quy trình nội bộ; Khách hàng; Sáng tạo và phát triển
+D. Tài chính; Quy trình nội bộ; Khách hàng; Sáng tạo và phát triển;
+ANSWER: D
+
+Kết quả nào sau đây KHÔNG cần phải có sự thực hiện điều chỉnh ở bước tiếp theo của nhà quản trị:
+A. Các bất thường ngoài vùng chấp nhận
+B. Các xu hướng bất thường trong vùng chấp nhận
+C. Các kết quả đo lường nhận được nằm trong khoảng
+D. Các kết quả đo lường nhận được nằm ngoài khoảng sai lệch chấp nhận được vốn đã được xác định trước sai lệch xác định trước đó
+ANSWER: C
+
+Yếu tố đầu ra của hệ thống tổ chức cần được:
+A. Kiểm tra song hành
+B. Kiểm tra phòng ngừa
+C. Kiểm tra phản hồi
+D. Kiểm tra thời gian
+ANSWER: C
+
+Kiểm tra chiến lược được thực hiện bởi nhà quản trị nào?
+A. Quản trị cấp cao
+B. Quản trị cấp trung
+C. Quản trị cấp cơ sở
+D. Quản trị cấp dưới
+ANSWER: A
+
+McDonald’s gửi các chuyên gia kiểm tra chất lượng đến những quốc gia nơi công ty của họ mới mở chi nhánh để đảm bảo rằng tất cả các nguyên liệu dùng làm thức ăn đều đạt tiêu chuẩn của công ty. Đây là ví dụ của:
+A. Kiểm tra đầu vào
+B. Kiểm tra song hành
+C. Kiểm tra phản hồi
+D. Không có phương án nào đúng
+ANSWER: A
+
+Để đảm bảo tổ chức hoạt động theo kế hoạch và đạt mục tiêu đề ra, nhà quản trị cần phải kiểm tra những lĩnh vực nào dưới đây?
+A. Tài sản cố định
+B. Nguồn lực tài chính
+C. Nguồn lực con người
+D. Tất cả các đáp án đều đúng
+ANSWER: D
+
+Hiếu, giám đốc quản trị rủi ro, yêu cầu làm báo cáo về tỉ lệ sản phẩm sản xuất bị lỗi của lô hàng trước đó. Ông đang thực hiện chức năng kiểm tra nào?
+A. Kiểm tra song hành
+B. Kiểm tra phản hồi
+C. Kiểm tra phòng ngừa
+D. Kiểm tra thời gian
+ANSWER: B
+
+Việc thiết lập các chỉ tiêu để đánh giá kết quả thực hiện kế hoạch thuộc chức năng quản trị nào?
+A. Tổ chức
+B. Kiểm tra
+C. Hoạch định/ Lập kế hoạch
+D. Lãnh đạo
+ANSWER: B
+
+Đâu KHÔNG phải là vai trò của chức năng kiểm tra?
+A. Thích nghi với thay đổi và những điều không chắc
+B. Phát hiện sai lầm và sự việc bất thường chắn
+C. Giảm chi phí, nâng cao năng suất lao động và tạo giá
+D. Hoạch định chiến lược và thiết kế tổ chức trị
+ANSWER: D
+
+Nội dung của chức năng kiểm tra bao gồm:
+A. Vật chất, Con người, Thông tin, Cơ cấu tổ chức, Văn
+B. Vật chất, Con người, Thông tin, Tài chính, Cơ cấu tổ hóa tổ chức chức, Văn hóa tổ chức
+C. Thông tin, Tài chính, Cơ cấu tổ chức, Văn hóa tổ chức
+D. Con người, Thông tin, Tài chính, Cơ cấu tổ chức, Văn hóa tổ chức
+ANSWER: B
+
+“Xác định mức độ chênh lệch giữa kết quả thực tế và tiêu chuẩn” là nội dung của giai đoạn nào?
+A. So sánh
+B. Thực thi hành động điều chỉnh
+C. Phân công công việc
+D. Đo lường kết quả thực tế
+ANSWER: A
+
+Lợi ích của việc thực hiện chức năng kiểm tra là gì?
+A. Giúp nhà quản trị phát hiện sai lầm và sự việc bất
+B. Giúp nhà quản trị thiết lập mục tiêu thường
+C. Giúp nhà quản trị tập trung quyền lực kiểm tra
+D. Giúp nhà quản trị thiết kế tổ chức
+ANSWER: A
+
+Đặc điểm của hệ thống kiểm tra hiệu quả, ngoại trừ:
+A. Quy trình kiểm tra được tuân thủ nghiêm ngặt theo
+B. Khách quan, chính xác, kịp thời tiêu chuẩn rõ ràng
+C. Chất lượng nguồn nhân lực thuộc hệ thống kiểm tra
+D. Không linh hoạt và khó thích ứng trong các hoàn cảnh cao
+ANSWER: D
+
+Trưởng phòng Marketing yêu cầu nhân viên cấp dưới phối hợp với phòng IT để xây dựng các bảng biểu và sơ đồ thể hiện tình hình thực hiện các KPI của phòng. Phương pháp kiểm tra này có nhược điểm nào sau?
+A. Có ít hoặc không thể hiện được thông tin về các yếu
+B. Bị ảnh hưởng bởi thành kiến cá nhân tố gây ảnh hưởng như bối cảnh
+C. Thông tin chưa được xử lý
+D. Thông tin không chỉ ra mối quan hệ giữa các yếu tố
+ANSWER: A
+
+“Kiểm tra ban đầu để dự báo vấn đề” là nội dung của kiểm tra:
+A. Kiểm tra song hành
+B. Kiểm tra phản hồi
+C. Kiểm tra phòng ngừa
+D. Kiểm tra đầu vào
+ANSWER: D
+
+Nhận định nào sau đây KHÔNG đúng?
+A. Kiểm tra là khâu sau cùng trong chức năng quản trị
+B. Công tác kiểm tra có thể giải quyết được mọi vấn đề.
+C. Nhà quản trị cần phải theo dõi thường xuyên công
+D. Nhà quản trị cần khéo léo phát huy tác dụng của kiểm việc và sử dụng biện pháp kiểm tra hữu hiệu trong tra, cần có năng lực giải thích các số liệu thống kê và công tác kiểm tra. bảng biểu.
+ANSWER: B
+
+Kiểm tra là gì?
+A. Là quá trình theo dõi, đánh giá hiệu quả tổ chức và đề
+B. Là hoạt động theo dõi, đánh giá hiệu quả tổ chức và ra các hành động cần thiết để duy trì hoặc nâng cao đề ra các hành động cần thiết để duy trì hoặc nâng hiệu quả. cao hiệu quả.
+C. Là quá trình theo dõi tổ chức và đề ra các hành động
+D. Là quá trình đánh giá hiệu quả tổ chức và đề ra các cần thiết để duy trì hoặc nâng cao hiệu quả. hành động cần thiết để duy trì hoặc nâng cao hiệu quả.
+ANSWER: A
+
+Hoạt động đầu tiên của quy trình kiểm tra là gì?
+A. Thực hiện đo lường
+B. Thiết lập tiêu chuẩn
+C. Thực thi các hành động điều chỉnh
+D. So sánh kết quả thực tế và tiêu chuẩn
+ANSWER: B
+
+Một đốc công trong xưởng đã làm việc riêng trong quá trình giám sát sản xuất dẫn đến sai hỏng lô hàng. Quy trình… đã bị vi phạm trong trường hợp này.
+A. Kiểm tra song hành
+B. Kiểm tra trước
+C. Kiểm tra sau
+D. Kiểm tra toàn thời gian
+ANSWER: A
+
+Đâu là vai trò của chức năng kiểm tra?
+A. Tất cả các đáp án đều đúng
+B. Thích nghi với thay đổi và những điều không chắc chắn
+C. Phát hiện sai lầm và sự việc bất thường
+D. Giảm chi phí, nâng cao năng suất lao động và tạo giá trị
+ANSWER: A
+
+Chức năng cuối cùng trong hoạt động quản trị?
+A. Hoạch định/ Lập kế hoạch
+B. Lãnh đạo
+C. Tổ chức
+D. Kiểm tra
+ANSWER: D
+
+Hoạt động đầu tiên của chức năng kiểm tra là:
+A. Thực thi các hành động điều chỉnh
+B. Giám sát
+C. Thực hiện tiêu chuẩn
+D. So sánh kết quả với tiêu chuẩn
+ANSWER: B
+
+Quy trình kiểm tra bao gồm những bước nào?
+A. Thiết lập tiêu chuẩn; Thực hiện đo lường; So sánh kết
+B. Thực hiện đo lường; So sánh kết quả thực tế và tiêu quả thực tế và tiêu chuẩn; Thực hiện hành động khắc chuẩn; Thực hiện hành động khắc phục nếu cần thiết phục nếu cần thiết
+C. Thiết lập tiêu chuẩn; Thực hiện đo lường; So sánh kết
+D. Thiết lập tiêu chuẩn; So sánh kết quả thực tế và tiêu quả thực tế và tiêu chuẩn; chuẩn; Thực hiện hành động khắc phục nếu cần thiết
+ANSWER: A
+
+Trong tuyển dụng, các công ty thường yêu cầu ứng viên nộp lý lịch tư pháp trước khi mời đi phỏng vấn. Công ty đang thực hiện loại kiểm tra nào?
+A. Kiểm tra song hành
+B. Kiểm tra phản hồi
+C. Kiểm tra đầu vào
+D. Hậu kiểm
+ANSWER: C
+
+Hệ thống kiểm tra hiệu quả cần:
+A. Mang tính chiến lược và hướng đến nhiều mục tiêu
+B. Thực tế, tích cực, dễ hiểu và khuyến khích tự kiểm của nhà quản trị. tra.
+C. Khách quan, chính xác, và ít linh hoạt
+D. Không làm gì
+ANSWER: B
+
+Nhà quản trị chỉ cần thực hiện kiểm tra khi:
+A. Sau khi hoàn thành kế hoạch
+B. Không có câu nào hoàn toàn chính xác
+C. Trước khi thực hiện kế hoạch
+D. Trong khi thực hiện kế hoạch
+ANSWER: B
+
+Khi một huấn luyện viên bóng đá đang thực hiện hành động thay thế cầu thủ chơi trong một trận đấu là ví dụ của:
+A. Điều chỉnh sai lệch
+B. Hành động khắc phục cơ bản
+C. Hành động khắc phục ngay
+D. Điều chỉnh tiêu chuẩn
+ANSWER: C
+
+Ngày hôm nay của cậu:
+A. Quấ là quỵt zời
+B. Một ngày thật đẹp nhó
+C. Như mọi ngày
+D. Buồn 🥰
+ANSWER: D
+
+Cậu có thể Zn ưn chúng tớ bằng cách:
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường:)) )
+C. Lời kẹm ưn so ciuuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

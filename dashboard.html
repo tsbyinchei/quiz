@@ -167,7 +167,12 @@
                 <a href="index.html">Trang chủ</a>
                 <a href="dashboard.html">Dashboard</a>
             </nav>
-            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+            <div class="site-topbar-actions">
+                <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+                <button type="button" class="theme-toggle" onclick="toggleMusic()" title="Bật/Tắt nhạc" id="musicBtn">
+                    <span id="musicIcon">🎵</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -179,6 +184,10 @@
                     <p>Chọn môn, chọn bài, làm nhanh gọn và xem tiến độ của bạn.</p>
                 </div>
                 <div class="header-right">
+                    <label class="toggle-label" style="margin-right: 0.7rem; font-size: 0.85rem;">
+                        <span>Mode 4 ô</span>
+                        <input type="checkbox" id="gridModeToggle" class="toggle-switch" aria-label="Bật tắt Mode 4 ô">
+                    </label>
                     <span class="user-info" id="userInfo"></span>
                     <button class="btn-logout" onclick="logout()">Đăng Xuất</button>
                 </div>
@@ -201,11 +210,11 @@
                                 <p class="stat-value" id="totalAttempts">0</p>
                             </div>
                             <div class="stat-card">
-                                <p class="stat-label">Điểm Cao Nhất (100)</p>
+                                    <p class="stat-label">Điểm Cao Nhất (10)</p>
                                 <p class="stat-value" id="highestScore">0</p>
                             </div>
                             <div class="stat-card">
-                                <p class="stat-label">Điểm Trung Bình (100)</p>
+                                    <p class="stat-label">Điểm Trung Bình (10)</p>
                                 <p class="stat-value" id="averageScore">0</p>
                             </div>
                         </div>
@@ -240,6 +249,31 @@
     <script>
         let selectedSubject = '';
         let allSubjects = [];
+        let isMusicEnabled = localStorage.getItem('musicEnabled') !== 'false';
+
+        function updateMusicUI() {
+            const icon = document.getElementById('musicIcon');
+            const musicBtn = document.getElementById('musicBtn');
+
+            if (icon) {
+                icon.textContent = isMusicEnabled ? '🎵' : '🔇';
+            }
+
+            if (musicBtn) {
+                musicBtn.classList.toggle('music-off', !isMusicEnabled);
+                musicBtn.style.opacity = isMusicEnabled ? '1' : '0.5';
+            }
+        }
+
+        function persistMusicPreference() {
+            localStorage.setItem('musicEnabled', String(isMusicEnabled));
+        }
+
+        function toggleMusic() {
+            isMusicEnabled = !isMusicEnabled;
+            persistMusicPreference();
+            updateMusicUI();
+        }
 
         function getQuizCacheStore() {
             try {
@@ -253,6 +287,11 @@
             sessionStorage.setItem('quizBySubjectCache', JSON.stringify(cacheStore || {}));
         }
 
+        function isAuthErrorResult(result) {
+            const message = String((result && result.message) || '').toLowerCase();
+            return message.includes('invalid token') || message.includes('unauthorized');
+        }
+
         function getStatsCacheKey() {
             const username = localStorage.getItem('quizUsername') || 'anonymous';
             return `quizStatsCache:${username}`;
@@ -260,9 +299,9 @@
 
         // Kiểm tra authentication
         function checkAuth() {
-            const token = localStorage.getItem('quizToken');
-            const username = localStorage.getItem('quizUsername');
-            const role = localStorage.getItem('quizRole');
+            const token = AuthManager.getToken();
+            const username = AuthManager.getUsername();
+            const role = AuthManager.getRole();
 
             if (!token || !username) {
                 window.location.href = 'login.html';
@@ -316,16 +355,26 @@
                 const result = await APIClient.getDashboardInit(username);
 
                 if (!result.success) {
+                    if (isAuthErrorResult(result)) {
+                        AuthManager.clearAuth();
+                        window.location.href = 'login.html';
+                        return;
+                    }
                     await fallbackLoadDashboardData(username);
                     return;
                 }
 
                 const subjects = result.subjects || [];
                 const stats = result.stats || null;
+                const quizzesBySubject = result.quizzesBySubject || {};
 
                 allSubjects = subjects;
                 sessionStorage.setItem('quizSubjectsCache', JSON.stringify(subjects));
                 renderSubjects(subjects);
+
+                if (quizzesBySubject && typeof quizzesBySubject === 'object') {
+                    setQuizCacheStore(quizzesBySubject);
+                }
 
                 if (stats) {
                     sessionStorage.setItem(getStatsCacheKey(), JSON.stringify(stats));
@@ -338,7 +387,8 @@
                     : subjects[0];
 
                 if (preferredSubject) {
-                    selectSubject(preferredSubject, true);
+                    const hasPrefetchedQuizzes = Array.isArray(quizzesBySubject[preferredSubject]);
+                    selectSubject(preferredSubject, !hasPrefetchedQuizzes);
                 }
             } catch (error) {
                 console.error('Error refreshing dashboard init:', error);
@@ -352,6 +402,12 @@
                     APIClient.getSubjects(),
                     APIClient.getUserStats(username)
                 ]);
+
+                if (isAuthErrorResult(subjectResult) || isAuthErrorResult(statsResult)) {
+                    AuthManager.clearAuth();
+                    window.location.href = 'login.html';
+                    return;
+                }
 
                 if (subjectResult && subjectResult.success) {
                     const subjects = subjectResult.subjects || [];
@@ -463,6 +519,7 @@
 
         // Bắt đầu làm bài
         function startQuiz(quizID) {
+            persistMusicPreference();
             localStorage.setItem('currentQuizID', quizID);
             window.location.href = 'quiz.html';
         }
@@ -483,13 +540,26 @@
 
         // Đăng xuất
         function logout() {
-            localStorage.removeItem('quizToken');
-            localStorage.removeItem('quizRole');
-            localStorage.removeItem('quizUsername');
+            AuthManager.clearAuth();
             window.location.href = 'login.html';
         }
 
+        function initGridModeToggle() {
+            const gridToggle = document.getElementById('gridModeToggle');
+            if (!gridToggle) {
+                return;
+            }
+
+            gridToggle.checked = localStorage.getItem('quizGridMode') === 'true';
+            gridToggle.addEventListener('change', (event) => {
+                localStorage.setItem('quizGridMode', String(!!event.target.checked));
+                Utils.showNotification('Đã lưu tùy chọn giao diện!', 'info', 1800);
+            });
+        }
+
         // Khởi chạy khi trang load
+        updateMusicUI();
+        initGridModeToggle();
         checkAuth();
     </script>
 </body>

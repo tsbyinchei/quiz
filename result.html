@@ -139,10 +139,59 @@
             padding: 0.85rem;
         }
 
+        .review-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .review-status {
+            flex: 0 0 auto;
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.88rem;
+            line-height: 1;
+            margin-top: 0.1rem;
+        }
+
+        .review-status.correct {
+            background: color-mix(in srgb, var(--green) 18%, transparent);
+            color: var(--green);
+            border: 1px solid color-mix(in srgb, var(--green) 48%, transparent);
+        }
+
+        .review-status.wrong {
+            background: color-mix(in srgb, var(--red) 18%, transparent);
+            color: var(--red);
+            border: 1px solid color-mix(in srgb, var(--red) 48%, transparent);
+        }
+
+        .review-status.unanswered {
+            background: color-mix(in srgb, var(--amber) 18%, transparent);
+            color: var(--amber);
+            border: 1px solid color-mix(in srgb, var(--amber) 48%, transparent);
+        }
+
+        .review-card-title {
+            flex: 1;
+            min-width: 0;
+        }
+
         .review-question {
             font-weight: 700;
             line-height: 1.45;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .review-status-text {
+            color: var(--text-light);
+            font-size: 0.82rem;
         }
 
         .review-grid {
@@ -205,7 +254,12 @@
                 <a href="dashboard.html">Dashboard</a>
                 <a href="result.html">Kết quả</a>
             </nav>
-            <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+            <div class="site-topbar-actions">
+                <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
+                <button type="button" class="theme-toggle" onclick="toggleMusic()" title="Bật/Tắt nhạc" id="musicBtn">
+                    <span id="musicIcon">🎵</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -226,7 +280,7 @@
                             <div class="metric-value" id="totalCount">0</div>
                         </div>
                         <div class="metric-box">
-                            <div class="metric-label">Tỷ Lệ</div>
+                            <div class="metric-label">Điểm Số</div>
                             <div class="metric-value" id="ratioValue">0/0</div>
                         </div>
                     </div>
@@ -272,6 +326,8 @@
 
     <script src="assets/script.js"></script>
     <script>
+        let isMusicEnabled = localStorage.getItem('musicEnabled') !== 'false';
+
         function escapeHtml(text) {
             return String(text || '')
                 .replace(/&/g, '&amp;')
@@ -281,19 +337,47 @@
                 .replace(/'/g, '&#39;');
         }
 
+        function updateMusicUI() {
+            const icon = document.getElementById('musicIcon');
+            const musicBtn = document.getElementById('musicBtn');
+
+            if (icon) {
+                icon.textContent = isMusicEnabled ? '🎵' : '🔇';
+            }
+
+            if (musicBtn) {
+                musicBtn.classList.toggle('music-off', !isMusicEnabled);
+                musicBtn.style.opacity = isMusicEnabled ? '1' : '0.5';
+            }
+        }
+
+        function persistMusicPreference() {
+            localStorage.setItem('musicEnabled', String(isMusicEnabled));
+        }
+
+        function toggleMusic() {
+            isMusicEnabled = !isMusicEnabled;
+            persistMusicPreference();
+            updateMusicUI();
+        }
+
+        function normalizeOptionText(value) {
+            return String(value || '').replace(/^[A-D][\.)]\s*/i, '').trim();
+        }
+
         function getAnswerText(answerKey, item) {
             const answerMap = {
-                A: item.optionA || '',
-                B: item.optionB || '',
-                C: item.optionC || '',
-                D: item.optionD || ''
+                A: normalizeOptionText(item.optionA || ''),
+                B: normalizeOptionText(item.optionB || ''),
+                C: normalizeOptionText(item.optionC || ''),
+                D: normalizeOptionText(item.optionD || '')
             };
 
             const key = String(answerKey || '').trim().toUpperCase();
             return answerMap[key] || '';
         }
 
-        function formatAnswerLabel(answerKey, item) {
+        function formatAnswerLabel(answerKey, item, showPrefix) {
             const key = String(answerKey || '').trim().toUpperCase();
             const text = getAnswerText(key, item);
 
@@ -301,7 +385,15 @@
                 return 'Chưa chọn';
             }
 
-            return text ? `${key} - ${text}` : key;
+            if (!text) {
+                return key;
+            }
+
+            return showPrefix ? `${key}. ${text}` : text;
+        }
+
+        function getItemQuestionID(item) {
+            return String(item.questionID || item.questionId || item.id || '').trim();
         }
 
         function displayResult() {
@@ -313,30 +405,31 @@
             }
 
             const data = JSON.parse(result);
-            const score = data.score;
+            const score = Number(data.score || 0);
             const correct = data.correct;
             const total = data.total;
             const reviewItems = data.reviewItems || [];
+            const quizMode = data.quizMode || {};
 
             // Cập nhật UI
-            document.getElementById('scoreValue').textContent = `${correct}/${total}`;
+            document.getElementById('scoreValue').textContent = `${score.toFixed(1)}/10`;
             document.getElementById('correctCount').textContent = correct;
             document.getElementById('totalCount').textContent = total;
             document.getElementById('ratioValue').textContent = `${correct}/${total}`;
-            document.getElementById('scoreProgressBar').style.width = `${Math.max(0, Math.min(100, score))}%`;
+            document.getElementById('scoreProgressBar').style.width = `${Math.max(0, Math.min(100, score * 10))}%`;
 
             // Thông điệp kết quả
             const messageDiv = document.getElementById('resultMessage');
             let message = '';
             let messageClass = '';
 
-            if (score >= 80) {
+            if (score >= 8) {
                 message = '🎉 Xuất Sắc! Bạn đã làm rất tốt!';
                 messageClass = 'correct';
-            } else if (score >= 60) {
+            } else if (score >= 6) {
                 message = '👍 Tốt! Hãy tiếp tục cố gắng!';
                 messageClass = 'correct';
-            } else if (score >= 40) {
+            } else if (score >= 4) {
                 message = '⚠️ Bạn cần tập luyện thêm!';
                 messageClass = 'warning';
             } else {
@@ -347,13 +440,13 @@
             messageDiv.textContent = message;
             messageDiv.className = `result-message feedback ${messageClass}`;
 
-            renderReviewList(reviewItems);
+            renderReviewList(reviewItems, quizMode);
 
             // Xóa từ sessionStorage sau khi hiển thị
             sessionStorage.removeItem('quizResult');
         }
 
-        function renderReviewList(reviewItems) {
+        function renderReviewList(reviewItems, quizMode = {}) {
             const container = document.getElementById('reviewList');
 
             if (!reviewItems || reviewItems.length === 0) {
@@ -361,32 +454,61 @@
                 return;
             }
 
-            container.innerHTML = reviewItems.map((item, index) => `
+            const shouldShowOptionPrefix = !(quizMode && quizMode.shuffle);
+            const questionOrder = Array.isArray(quizMode.questionOrder) ? quizMode.questionOrder.map((id) => String(id)) : [];
+            const orderMap = new Map(questionOrder.map((id, index) => [id, index]));
+            const orderedItems = [...reviewItems].sort((a, b) => {
+                const aID = getItemQuestionID(a);
+                const bID = getItemQuestionID(b);
+                const aOrder = orderMap.has(aID) ? orderMap.get(aID) : Number.MAX_SAFE_INTEGER;
+                const bOrder = orderMap.has(bID) ? orderMap.get(bID) : Number.MAX_SAFE_INTEGER;
+                return aOrder - bOrder;
+            });
+
+            container.innerHTML = orderedItems.map((item, index) => {
+                const userAnswer = String(item.userAnswer || '').trim().toUpperCase();
+                const correctAnswer = String(item.correctAnswer || '').trim().toUpperCase();
+                const isAnswered = userAnswer !== '';
+                const isCorrect = isAnswered && userAnswer === correctAnswer;
+                const statusClass = isCorrect ? 'correct' : (isAnswered ? 'wrong' : 'unanswered');
+                const statusIcon = isCorrect ? '✓' : (isAnswered ? '✕' : '–');
+                const statusText = isCorrect ? 'Đúng' : (isAnswered ? 'Sai' : 'Chưa làm');
+
+                return `
                 <div class="review-card">
-                    <div class="review-question">${index + 1}. ${escapeHtml(item.questionText || '')}</div>
+                    <div class="review-card-header">
+                        <div class="review-status ${statusClass}" aria-hidden="true">${statusIcon}</div>
+                        <div class="review-card-title">
+                            <div class="review-question">${index + 1}. ${escapeHtml(item.questionText || '')}</div>
+                            <div class="review-status-text">${statusText}</div>
+                        </div>
+                    </div>
                     <div class="review-grid">
                         <div class="review-row">
                             <span>Đáp án bạn chọn</span>
-                            <span class="review-answer">${escapeHtml(formatAnswerLabel(item.userAnswer, item))}</span>
+                            <span class="review-answer">${escapeHtml(formatAnswerLabel(item.userAnswer, item, shouldShowOptionPrefix))}</span>
                         </div>
                         <div class="review-row">
                             <span>Đáp án đúng</span>
-                            <span class="review-answer">${escapeHtml(formatAnswerLabel(item.correctAnswer, item))}</span>
+                            <span class="review-answer">${escapeHtml(formatAnswerLabel(item.correctAnswer, item, shouldShowOptionPrefix))}</span>
                         </div>
                     </div>
                     <div class="review-explanation">
                         <strong>Giải thích:</strong> ${escapeHtml(item.explanation || 'Chưa có giải thích')}
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         function restartQuiz() {
+            persistMusicPreference();
             const quizID = localStorage.getItem('currentQuizID');
             window.location.href = quizID ? 'quiz.html' : 'dashboard.html';
         }
 
         // Hiển thị kết quả khi trang load
+        updateMusicUI();
         displayResult();
     </script>
 </body>

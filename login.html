@@ -80,8 +80,8 @@
             <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
             <nav class="footer-nav" aria-label="Footer navigation">
                 <a href="index.html">Trang chủ</a>
-                <a href="../../privacy.html">Privacy Policy</a>
-                <a href="../../index.html">tsbyin.dev</a>
+                <a href="../privacy.html">Privacy Policy</a>
+                <a href="../index.html">tsbyin.dev</a>
             </nav>
         </div>
     </footer>
@@ -89,8 +89,23 @@
     <script src="assets/anticheating.js"></script>
     <script src="assets/script.js"></script>
     <script>
+        function redirectIfAuthenticated() {
+            if (!AuthManager.isAuthenticated()) {
+                return false;
+            }
+
+            window.location.replace(AuthManager.isAdmin() ? 'admin.html' : 'dashboard.html');
+            return true;
+        }
+
+        const redirectedFromLogin = redirectIfAuthenticated();
+
         // Kích hoạt Anti-Cheat (Chế độ Login - Không bắt lỗi chuyển tab)
         document.addEventListener('DOMContentLoaded', () => {
+            if (redirectedFromLogin) {
+                return;
+            }
+
             antiCheat.enable(false);
 
             const passwordInput = document.getElementById('password');
@@ -101,11 +116,7 @@
             const errorDiv = document.getElementById('errorMessage');
 
             const hasActiveSession = () => {
-                return !!(
-                    localStorage.getItem('quizToken') &&
-                    localStorage.getItem('quizRole') &&
-                    localStorage.getItem('quizUsername')
-                );
+                return AuthManager.isAuthenticated() && !!AuthManager.getUsername();
             };
 
             const setLoginLocked = (locked) => {
@@ -115,8 +126,8 @@
                 unlockLoginBtn.classList.toggle('hidden', !locked);
 
                 if (locked) {
-                    const currentUser = localStorage.getItem('quizUsername');
-                    const currentRole = localStorage.getItem('quizRole');
+                    const currentUser = AuthManager.getUsername();
+                    const currentRole = AuthManager.getRole();
                     errorDiv.textContent = `Bạn đang đăng nhập với ${currentUser} (${currentRole}). Hãy đăng xuất trước khi đổi tài khoản.`;
                 } else {
                     errorDiv.textContent = '';
@@ -126,10 +137,7 @@
             setLoginLocked(hasActiveSession());
 
             unlockLoginBtn.addEventListener('click', () => {
-                localStorage.removeItem('quizToken');
-                localStorage.removeItem('quizRole');
-                localStorage.removeItem('quizUsername');
-                localStorage.removeItem('currentQuizID');
+                AuthManager.clearAuth();
                 setLoginLocked(false);
             });
 
@@ -173,7 +181,7 @@
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            if (localStorage.getItem('quizToken') && localStorage.getItem('quizUsername')) {
+            if (AuthManager.isAuthenticated() && AuthManager.getUsername()) {
                 document.getElementById('errorMessage').textContent = 'Bạn đang đăng nhập tài khoản khác. Vui lòng đăng xuất trước khi đăng nhập lại.';
                 return;
             }
@@ -192,10 +200,10 @@
                 const result = await APIClient.login(username, passwordHash);
 
                 if (result.success) {
-                    // Lưu token và role vào localStorage
-                    localStorage.setItem('quizToken', result.token);
-                    localStorage.setItem('quizRole', result.role);
-                    localStorage.setItem('quizUsername', result.username);
+                    AuthManager.setAuth(result.token, result.role, result.username);
+                    sessionStorage.removeItem('adminPinVerified');
+                    sessionStorage.removeItem('adminPinVerifiedFor');
+                    sessionStorage.removeItem('adminPinProof');
                     
                     // Redirect theo vai trò
                     window.location.href = result.role === 'Admin' ? 'admin.html' : 'dashboard.html';

@@ -1,0 +1,269 @@
+Một hệ điều hành cho phép tạo nhiều tài khoản người dùng đăng nhập vào hệ thống, được gọi là gì?
+A. Hệ điều hành đa nhiệm
+B. Hệ điều hành đa kết nối
+C. Hệ điều hành đa người dùng
+D. Hệ điều hành đa xử lý
+ANSWER: C
+
+Trong hệ thống máy tính, 1Kbyte bằng bao nhiêu byte?
+A. 1036 bytes
+B. 1000 bytes
+C. 1012 bytes
+D. 1024 bytes
+ANSWER: D
+
+Ý nghĩa cơ bản nhất của mạng máy tính là gì?
+A. Phát triển ứng dụng trên máy tính
+B. Nâng cao độ tin cậy của hệ thống máy tính
+C. Trao đổi và chia sẻ thông tin
+D. Nâng cao chất lượng khai thác thông tin
+ANSWER: C
+
+Phần cứng máy tính là gì?
+A. Cấu tạo của máy tính về mặt logic
+B. Cấu tạo của phần mềm về mặt logic
+C. Cấu tạo của máy tính về mặt vật lý
+D. Cấu tạo của phần mềm về mặt vật lý
+ANSWER: C
+
+Trình tự nào sau đây là trình tự xử lý thông tin của máy tính điện tử?
+A. Màn hình -> CPU -> Đĩa cứng
+B. Đĩa cứng -> Màn hình ->CPU
+C. Nhập thông tin -> Xử lý thông tin -> Xuất thông tin
+D. Màn hình -> Máy in -> CPU
+ANSWER: C
+
+Các thiết bị: màn hình, loa, máy in, thuộc khối chức năng nào?
+A. Thiết bị nhập
+B. Thiết bị xuất
+C. Khối xử lý
+ANSWER: B
+
+Việc làm nào sau đây không phải là nguyên nhân có thể làm cho máy tính của bạn bị nhiễm virus và phần mềm độc hại qua Internet?
+A. Truy cập vào các website có cài đặt sẵn virus
+B. Lây nhiễm thông qua việc mở các thư điện tử hoặc tin nhắn chứa liên kết dẫn đến các website lạ
+C. Bình luận trên trang cá nhân của một người bạn trên
+D. Tải các tệp tin tài liệu hoặc phần mềm từ Internet mạng xã hội Facebook mà máy tính cá nhân của họ bị nhiễm virus
+ANSWER: C
+
+Bộ nhớ truy nhập trực tiếp RAM được viết tắt từ cụm từ nào sau đây?
+A. Random Access Memory
+B. Read Access Memory
+C. Không đáp án nào đúng
+D. Rewrite Access Memory
+ANSWER: A
+
+Trong máy tính, thiết bị nào sau đây dùng để xử lý dữ liệu và hệ điều hành trên máy tính?
+A. CPU
+B. RAM
+C. ROM
+D. Đĩa cứng
+ANSWER: A
+
+Thuật ngữ viết tắt bằng tiếng Anh của mạng toàn cục là gì?
+A. WAN (Wide Area Network)
+B. GAN (Global Area Network)
+C. MAN (Metropolitan Area Network)
+D. LAN (Local Area Network)
+ANSWER: B
+
+Hệ thống nhớ của máy tính bao gồm những thành phần nào sau đây?
+A. Bộ nhớ ngoài, ROM
+B. Cache, Bộ nhớ ngoài
+C. Đĩa quang, Bộ nhớ trong
+D. Bộ nhớ trong, Bộ nhớ ngoài
+ANSWER: D
+
+Công dụng của phím Print Screen là gì?
+A. In văn bản hiện hành ra máy in
+B. Chụp màn hình hiện hành
+C. In màn hình hiện hành ra máy in
+D. Không có công dụng gì khi sử dụng 1 mình nó.
+ANSWER: B
+
+Thành phần giao diện đồ họa nào trong Windows cho phép người dùng thiết lập hệ thống bằng cách thêm phần cứng mới, thêm hoặc gỡ bỏ chương trình và chỉnh sửa tài khoản người dùng, tùy chỉnh âm thanh và hiển thị?
+A. Windows Explorer
+B. Phần mềm người dùng
+C. Bảng điều khiển (Control Panel)
+ANSWER: C
+
+Đặc điểm nào sau đây không phải là tính chất của virus máy tính?
+A. Virus là các chương trình tương đối nhỏ, hiệu quả cao
+B. Có khả năng lây lan, khi xâm nhập vào một máy, nó và thường có các cơ chế chống phát hiện chiếm quyền điều khiển máy để tự nhân bản nhằm lây lan từ máy này sang máy khác
+C. Virus máy tính có khả năng lây nhiễm qua nguồn
+D. Virus có thể gây nhiễu chương trình hệ thống hoặc điện phá hỏng dữ liệu
+ANSWER: C
+
+Bộ nhớ RAM và ROM là bộ nhớ gì?
+A. Random access memory
+B. Primary memory
+C. Secondary memory
+D. Receive memory
+ANSWER: B
+
+Những thiết bị nào sau đây là thiết bị xuất của máy tính?
+A. Bàn phím, màn hình, chuột
+B. Màn hình, máy in.
+C. Bàn phím, màn hình, loa
+D. Chuột, màn hình, CPU
+ANSWER: B
+
+Các thiết bị nào thông dụng nhất hiện nay dùng để cung cấp dữ liệu cho máy xử lý?
+A. Bàn phím (Keyboard), Chuột (Mouse) và Máy quét
+B. Máy quét ảnh (Scaner) ảnh (Scaner).
+C. Máy quét ảnh (Scaner), Chuột (Mouse)
+D. Bàn phím (Keyboard), Chuột (Mouse), Máy in (Printer)
+ANSWER: A
+
+Về bộ nhớ RAM của máy tính, phát biểu nào sau đây là đúng?
+A. Là bộ nhớ chỉ xử lý thông tin
+B. Là bộ nhớ truy xuất ngẫu nhiên
+C. Là bộ nhớ chỉ đọc
+D. Câu trả lời có thể Là bộ nhớ chỉ ghi
+ANSWER: B
+
+Khái niệm hệ điều hành là gì ?
+A. Là một phần mềm chạy trên máy tính, dùng để điều
+B. Nghiên cứu phương pháp, kỹ thuật xử lý thông tin hành, quản lý các thiết bị phần cứng và các tài bằng máy tính điện tử nguyên phần mềm trên máy tính
+C. Cung cấp và xử lý các phần cứng và phần mềm
+D. Nghiên cứu về công nghệ phần cứng và phần mềm
+ANSWER: A
+
+Phần mềm nào sau đây không phải là tên của một loại phần mềm độc hại?
+A. Sâu máy tính (worm)
+B. Phần mềm đóng băng ổ đĩa
+C. Phần mềm quảng cáo (adware)
+D. Phần mềm gián điệp (spyware)
+ANSWER: B
+
+Cho biết cách xóa một tập tin hay thư mục mà không di chuyển vào Recycle Bin?
+A. Chọn thư mục hay tâp tin cần xóa -> Alt + Delete
+B. Chọn thư mục hay tâp tin cần xóa -> Delete
+C. Chọn thư mục hay tâp tin cần xóa -> Ctrl + Delete
+D. Chọn thư mục hay tâp tin cần xóa -> Shift + Delete
+ANSWER: D
+
+Mạng Internet là mạng thuộc loại mạng nào?
+A. GAN
+B. LAN
+C. MAN
+D. WAN
+ANSWER: A
+
+Danh sách các mục chọn trong thực đơn (menu) gọi là gì?
+A. Menu options
+B. Menu pad
+C. Menu bar
+D. Tất cả đều sai
+ANSWER: C
+
+Lựa chọn nào sau đây không phải là tác hại phổ biến mà virus và phần mềm độc hại gây ra cho máy tính của bạn?
+A. Phá hủy các thiết bị ngoại vi kết nối với máy tính
+B. Chiếm quyền điều khiển hệ thống
+C. Ăn cắp thông tin người dùng
+D. Phá hủy dữ liệu
+ANSWER: A
+
+Lựa chọn nào sau đây không phải là tác hại phổ biến mà virus và phần mềm độc hại gây ra cho máy tính của bạn?
+A. Phá hủy các thiết bị ngoại vi kết nối với máy tính
+B. Chiếm quyền điều khiển hệ thống
+C. Ăn cắp thông tin người dùng
+D. Phá hủy dữ liệu
+ANSWER: A
+
+Khái niệm nào cho biết hệ điều hành thực thi nhiều tiến trình khác nhau cùng lúc?
+A. Đa xử lý
+B. Đa nhiệm
+C. Đa người dùng
+D. Đơn nhiệm
+ANSWER: B
+
+Hành động nào sau đây KHÔNG phải là biện pháp được khuyến khích áp dụng để máy tính của bạn tránh bị lây nhiễm virus?
+A. Lưu tất cả các tệp tin mà bạn tải về từ Internet vào
+B. Luôn quét tất cả các tệp tin đính kèm email trước khi một thư mục khác với thư mục dữ liệu của bạn, quét mở chúng, ngay cả khi chúng đến từ một người bạn tất cả các tệp tin này trước khi mở. quen biết
+C. Quét bất kỳ phương tiện di động nào (CD, USB) trước
+D. Kích hoạt các tệp tin tải về có đuôi .exe khi sao chép hoặc mở tệp tin chứa trên chúng
+ANSWER: D
+
+Thiết bị nào sau đây là thiết bị nhập thông tin vào máy tính?
+A. Máy quét
+B. Máy quét và máy in
+C. Máy in
+ANSWER: A
+
+Dữ liệu trong thiết bị nhớ nào sau đây sẽ mất khi mất điện?
+A. Đĩa cứng
+B. RAM
+C. Đĩa mềm
+D. ROM
+ANSWER: B
+
+Có thể hồi phục (restore) các tệp tin bị xoá sau khi nhấn phím Delete bằng cách nào?
+A. Mở Recycle Bin/Nháy chuột phải vào tệp/Restore
+B. Mở Documents
+C. Mở Internet Explorer
+D. Mở Recycle Bin/Nháy chuột phải vào tệp/Cut
+ANSWER: A
+
+Hệ điều hành đưa ra thông báo lỗi khi nào?(Chọn các phương án đúng) (2 đáp án đúng)
+A. Nhập tên của thư mục mới có dấu chấm
+B. Nhập tên của thư mục mới có dấu gạch chéo
+C. Nhập tên của thư mục mới trùng với tên của thư mục
+D. Nhập tên của thư mục có chứa dấu cách đã có trong cùng một thư mục mẹ
+ANSWER: B
+
+Chương trình nào trong các chương trình sau đây giúp diệt Virus?
+A. Microsoft Office
+B. Outlook Express
+C. Kaspersky
+D. Winrar
+ANSWER: C
+
+Thiết bị xuất của máy tính gồm?
+A. Bàn phím, màn hình, chuột
+B. Màn hình, máy in.
+C. Chuột, màn hình, CPU
+D. Bàn phím, màn hình, loa
+ANSWER: B
+
+Để thay đổi độ phân giải màn hình nền Desktop, bạn nháy chuột phải vào vùng trống trên màn hình nền Desktop và chọn mục chọn nào sau đây?
+A. Screen resolution
+B. Gadgets
+C. Personalize
+D. Refresh
+ANSWER: A
+
+Nếu bạn tải một chương trình từ Internet, quá trình nào bạn nên sử dụng trước khi cài đặt chương trình?
+A. Kiểm tra việc mua chương trình phần mềm hoàn tất
+B. Lưu các tệp tin và tiến hành cài đặt từ trang web
+C. Lưu các tệp tin và quét virus và các phần mềm độc
+D. Nén tệp tin hại khác trên tệp tin
+ANSWER: C
+
+Muốn mở một tệp tin, thư mục hay chương trình trong Windows theo mặc định thì bạn KHÔNG sử dụng được cách làm nào sau đây? (Chọn 2)
+A. Nháy chuột trái để chọn và nhấn phím Enter
+B. Nháy đúp chuột trái
+C. Nháy chuột phải và chọn lệnh Open
+D. Nháy đúp chuột phải e) Nháy chuột phải và chọn lệnh Properties
+ANSWER: D
+
+Trong hệ thống máy tính, 1Kbyte bằng bao nhiêu bit?
+A. 1000 bits
+B. 8000 bits
+C. 8192 bits
+D. 9000 bits
+ANSWER: C
+
+Áp dụng luật hấp dẫn nào mọi ngừi ưi Kết quả thi của cậu là:
+A. 10 đỉm không có nhưng
+B. Tiếng mưa rơi tí tách
+C. "Suýt nữa thì"
+D. "Hẹn em kỳ sau"
+ANSWER: C
+
+Cậu có thể Zn ưn chúng tớ bằng cách
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :)) )
+C. Lời kẹm ưn so ciuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

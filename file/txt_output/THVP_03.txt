@@ -1,0 +1,468 @@
+Để xóa biểu đồ đã tạo, ta thực hiện như thế nào?
+A. Nhấn phím Delete
+B. Tất cả đều sai
+C. Nháy chuột trên biểu đồ và nhấn phím Insert
+D. Nháy chuột trên biểu đồ và nhấn phím Delete
+ANSWER: D
+
+Cách nào sau đây là cách đặt mật khẩu cho file Excel?
+A. File\Save\Tools\ Properties
+B. File\Save\Tools\ General Options
+C. File\Save\Tools\ PassWord
+D. File\Save\Tools\ Web Option
+ANSWER: B
+
+Công thức =MID(“PHENIKAA”,3,2)& LEFT(RIGHT(“PHENIKAA”,4),2) trả về kết quả nào dưới đây:
+A. ENIK
+B. IKAA
+C. NIKA
+D. HENIK
+ANSWER: A
+
+Mục đích của việc sử dụng biểu đồ là gì?
+A. Minh họa dữ liệu trực quan
+B. Dễ dự đoán xu thế tăng hay giảm của các số liệu
+C. Tất cả các ý trên
+D. Dễ so sánh số liệu
+ANSWER: C
+
+Để sắp xếp dữ liệu trong một cột theo thứ tự tăng dần, ta chọn Menu lệnh Data\Sort, sau đó chọn?
+A. Cả 3 câu trên đều sai
+B. Ascending
+C. Descending
+D. Sort By
+ANSWER: C
+
+Để trích lọc dữ liệu tự động trong Excel thực hiện lệnh?
+A. Data\Filter\Advance Filter
+B. Tất cả các đáp án đều sai
+C. Data\Filter\Auto Filter
+D. Data\Sort\Auto Filter
+ANSWER: C
+
+Trong bảng tính Excel, hộp thoại Chart Wizard cho phép xác định các thông tin nào sau đây cho biểu đồ?
+A. Cả 3 câu đều đúng.
+B. Chú giải cho các trục
+C. Có đường lưới hay không.
+D. Tiêu đề biểu đồ.
+ANSWER: A
+
+Trong các thành phần sau, Excel có thể xử lý được những phần nào?
+A. Bảng tính điện tử SpreadSheet
+B. Biểu đồ Chart
+C. Tất cả các thành phần trên
+D. Cơ sở dữ liệu DataBase
+ANSWER: C
+
+Nếu ô A2 có giá trị là 8 thì công thức sau: =MAX(IF(AND(A2>=5,A2<=10), SUM(MOD(10,3),2,7),AVERAGE(9,10,11)),125,115) sẽ trả về kết quả nào dưới đây:
+A. 115
+B. 10
+C. 3
+D. 125
+ANSWER: A
+
+Nếu B1 có giá trị là 8 và C3 có giá trị là 25 thì công thức sau: =AVERAGE(IF(AND(B1>5,B1<=9),MOD(20,3),COUNTA(20,30,”Nam”,”Dung”,22)),MiN(673,575,705),IF(C3<INT(20/3),60,620) sẽ trả về kết quả nào dưới đây:
+A. 275
+B. 399
+C. 175
+D. 400
+ANSWER: B
+
+Trong Microsoft Excel, khi vẽ biểu đồ bằng công cụ Chart Wizard, thẻ Data Range cho phép làm gì?
+A. Thêm 1 vùng dữ liệu
+B. Thay đổi vùng dữ liệu vẽ biểu đồ
+C. Gán nhãn cho vùng dữ liệu
+D. Xoá dữ liệu
+ANSWER: B
+
+Loại biểu đồ nào được sử dụng trong hình dưới đây?
+A. Biểu đồ dạng đường (line)
+B. Biểu đồ dạng thanh (bar)
+C. Biểu đồ dạng cột (column)
+D. Biểu đồ dạng bánh (pie)
+ANSWER: B
+
+Thao tác lọc dữ liệu chỉ có thể thực hiện được sau khi lựa chọn bảng tính cần lọc sau đó chọn?
+A. Data- Filter
+B. View - Filter
+C. Edit- Filter
+D. Format - Filter
+ANSWER: A
+
+Trong bảng tính sau, công thức cần nhập vào ô C4 để điền Tên hàng là gì?
+A. =VLOOKUP(B4;$D$11:$F$14;2;0)
+B. =HLOOKUP(B4;$D$11:$F$14;2;0)
+C. =VLOOKUP(B4;$D$11:$F$14;3;0)
+D. =HLOOKUP(B4;$D$11:$F$14;3;0)
+ANSWER: A
+
+Ý nghĩa của việc sắp xếp dữ liệu là gì?
+A. Để nhanh chóng tìm được dữ liệu cần thiết và dễ so
+B. Tất cả đều sai sánh dữ liệu.
+C. Sắp xếp dữ liệu giúp tính toán dữ liệu dễ hơn
+D. Tất cả đều đúng
+ANSWER: UNKNOWN
+
+Trong bảng tính sau, cột Kết quả được sử dụng để xếp hạng các học sinh dựa trên Điểm học tập giảm dần (học sinh có Điểm học tập cao nhất có thứ hạng 1). Cần nhập vào ô E2 công thức nào sau đây?
+A. =RANK(C2,$C$2:$C$:6,1)
+B. =SORT(C2,$C$2:$C$:6,0)
+C. =RANK(C2,$C$2:$C$:6,0)
+D. =SORT(C2,$C$2:$C$:6,1)
+ANSWER: C
+
+Trong Microsoft Excel, công thức =COUNT(25,11,4) sẽ trả về kết quả là bao nhiêu?
+A. 11
+B. 4
+C. 3
+D. 25
+ANSWER: A
+
+Để lọc dữ liệu ta thực hiện?
+A. Mở dải lệnh Data → chọn lệnh AutoFilter
+B. Chọn vùng dữ liệu cần lọc→ chọn menu Data → chọn lệnh Filter
+C. Mở dải lệnh Data → chọn lệnh Sort
+D. Tất cả đều sai
+ANSWER: B
+
+Biết vùng dữ liệu từ C2:C10 chứa Tên chức vụ, muốn xem có bao nhiêu Kế toán trong vùng dữ liệu ta thực hiện công thức:
+A. =Countif(C2:C10,’‘’Kế toán’‘’)
+B. =Countif(C2:C10,”Kế toán”)
+C. =Countif(C2:C10,Kế toán)
+D. =Countif(C2:C10,’Kế toán’)
+ANSWER: B
+
+Hãy cho biết biểu đồ trong hình dưới đây thuộc loại nào?
+A. Pie
+B. Bar
+C. Column
+D. Line
+ANSWER: D
+
+BHYT (Bảo hiểm y tế) được tính bằng 10% của lương và phụ cấp. Công thức nào bạn sẽ sử dụng tại ô E4 để tính giá trị cho cột BHYT? Muốn Lọc ra các học sinh có Điểm TB bằng 7.0 ta thực hiện các bước lần lượt như thế nào dưới đây?
+A. =10%(C4+D4)
+B. =10%*C4+D4
+C. =10%*(C4+D4)
+D. =10%C4+D4
+ANSWER: C
+
+Cho bảng dữ liệu Excel như sau: Câu hỏi: Chọn công thức ĐÚNG cho cột Chức vụ để điền vào ô D1. Biết rằng : nội dung cột này được dò tìm và lấy ra Phòng ban và bảng Chức vụ & Lương dựa vào ký tự đầu và ký tự thứ hai của MA-NV. Ký tự đầu của MA-NV cho biết P nhân viên đó Ký tự thứ hai của MA-NV cho biết Chức vụ
+A. =HLOOKUP(MID(B6,2,1),$D$18:$F$19,2,0)&VLOOKUP(LEFT(B6),$A$18:$B$22,2,0)
+B. =VLOOKUP(MID(B6,2,1),$D$1 "&HLOOKUP(LEFT(B6),$A$18
+C. =HLOOKUP(MID(B6,2,1),$D$18:$F$19,2,0)&"
+D. =VLOOKUP(MID(B6,2,1),$D$1 "&VLOOKUP(LEFT(B6),$A$18:$B$22,2,0) "&VLOOKUP(LEFT(B6),$A$18
+ANSWER: C
+
+Nếu thí sinh đạt từ 5 điểm trở lên, thí sinh đó được xếp loại Đạt, ngược lại nếu dưới 5 điểm, thì xếp loại Không đạt. Công thức nào dưới đây thể hiện đúng điều này (Giả sử ô G6 đang chứa điểm thi)
+A. =IF(G6=<5,Đạt, Không đạt)
+B. =IF(G6=<5,”Đạt”, “Không đạt”)
+C. IF(G6>=5,”Đạt”) ELSE (“Không đạt”)
+D. =IF(G6<5,”Không đạt”,”Đạt”)
+ANSWER: UNKNOWN
+
+Trong bảng tính MS Excel, hàm nào sau đây cho phép đếm các giá trị thỏa mãn một điều kiện cho trước:
+A. COUNTIF
+B. COUNT
+C. SUMIF
+D. SUM
+ANSWER: A
+
+Trong bảng tính MS Excel, công thức:=Mid(“abc1234”,2,3) cho kết quả:
+A. c12
+B. 123
+C. bc
+D. bc1
+ANSWER: D
+
+Sau khi lọc theo yêu cầu thì dữ liệu trong cột được lọc đó sẽ thay đổi thế nào?
+A. Dữ liệu được giữ nguyên theo vị trí ban đầu
+B. Sẽ được sắp xếp giảm dần
+C. Sẽ được sắp xếp tăng dần
+D. Cả 3 đáp án trên đều sai
+ANSWER: D
+
+Biểu thức sau: =ROUND(A1,2) cho kết quả là bao nhiêu nếu tại ô A1 có giá trị là 4.567
+A. 4.5
+B. 4.56
+C. 4.6
+D. 4.57
+ANSWER: D
+
+Giả sử ngày hệ thống của máy tính là: 03/22/2022; Khi đó tại ô C2 gõ vào công thức =Today()-2 thì nhận được kết quả là:
+A. 05/22/2022
+B. 01/22/2022
+C. 03/20/2022
+D. 03/22/2020
+ANSWER: C
+
+Nếu C3 có giá trị là 15 thì công thức sau: =AVERAGE(IF(AND(C3>5,C3<=9), MOD(20,3),COUNT(20,30,115)),4,IF(3>2,5,6))) sẽ trả về kết quả nào dưới đây:
+A. 4
+B. 3
+C. 5
+D. 6
+ANSWER: A
+
+Thao tác để di chuyển đến một sheet khác trong cùng một tập tin?
+A. Nhấn phím F2 và số thứ tự của các sheet
+B. Nhấn chuột lên tên sheet cần di chuyển đến hoặc nhấn tổ hợp phím Ctrl + PgUp hoặc Ctrl + PgUp
+C. Nhấn phím F5 và số thứ tự của các sheet
+D. Nhấn phím F3 và số thứ tự của các sheet
+ANSWER: B
+
+Trong hình ảnh dưới đây, thao tác nào được thực hiện?
+A. Ẩn trang tính
+B. Ẩn cột E
+C. Ẩn cột G
+D. Ẩn cột F
+ANSWER: D
+
+Cho bảng số liệu như sau: Yêu cầu: Tính TRỊ GIÁ = Số lượng Đơn giá (1 - Mức giảm) . Trong đó, mức giảm được tính như sau: Nếu số lượng bán ra dưới 50 thì mức giảm là 0; ngược lại thì mức giảm sẽ là 10 %. Công thức tại ô F2 như thế nào?
+A. =D2E2 (1-If (D2 <50; 0%;10%))
+B. =D2E2 (1-If (D2 >=50; 0%;10%))
+C. =D2E2 (1-If (D2 <50; 10%;0%)
+D. =D2E2 1-If (D2 <50; 0%;10%)
+ANSWER: A
+
+Trong MS Excel, công thức sau trả về giá trị nào: = IF(5 >= 5, “Không được tuyển dụng”)
+A. FALSE
+B. Không được tuyển dụng
+C. Công thức sai vì trong Excel không có phép toán =>
+D. Công thức sai vì thiếu đối số trong hàm IF
+ANSWER: B
+
+Muốn tính trung bình của hàng hay cột, ta sử dụng hàm nào sau đây:
+A. SUM(TOTAL)/TOTAL()
+B. Lợi ích khi thực hiện vấn đề này?
+C. Average()
+D. Medium()
+ANSWER: C
+
+Kết quả của việ nhập công thức =AND(C2>=8;D2>=80) ở ô E2 là gì?
+A. FALSE
+B. TRUE
+C. Cả hai đáp án đều sai
+D. Cả hai đán án đúng
+ANSWER: B
+
+Kết quả của việc nhập công thức =OR(C3<5;D3<50) ở ô E2 là gì?
+A. TRUE
+B. Cả hai đáp án đều sai
+C. FALSE
+D. Cả hai đán án đúng
+ANSWER: C
+
+Biểu thức sau cho kết quả là bao nhiêu nếu DTB = 8?=If(DTB>=5, Dau, Truot)
+A. #NAME
+B. Dau
+C. #VALUE
+D. Truot
+ANSWER: A
+
+Trong bảng tính sau, công thức cần nhập vào ô F4 để điền Đơn giá là gì?
+A. =HLOOKUP(B4;$D$11:$F$14;2;0)
+B. =VLOOKUP(B4;$D$11:$F$14;3;0)
+C. =HLOOKUP(B4;$D$11:$F$14;3;0)
+D. =VLOOKUP(B4;$D$11:$F$14;2;0)
+ANSWER: B
+
+Biểu thức sau cho kết quả là bao nhiêu nếu trong ô B2 là 20 và dữ liệu trong D2=”B” IF(AND(B2>=8,D2=”A”),1000,300)
+A. 300
+B. 1000
+C. A
+D. 20
+ANSWER: UNKNOWN
+
+Cho bảng tính theo mẫu: Chọn đáp án đúng xây dựng công thức lọc ra các sinh viên xếp loại Xuất sắc và Giỏi, các cột thứ tự từ A->Q tính từ trái sang; các dòng bắt đầu từ 1->13 tính từ trên xuống.
+A. Tất cả các đáp án đều đúng
+B. =or( Xếp loại="Xuất Sắc",Xếp loại="Giỏi")
+C. =and( P2="Xuất Sắc",P2="Giỏi")
+D. =or( P2="Xuất Sắc",P2="Giỏi")
+ANSWER: D
+
+Trong công thức của Microsoft Excel, sử dụng phím nào để chuyển đổi địa chỉ tuyệt đối sang địa chỉ tương đối hoặc ngược lại cho ô hoặc vùng đã chọn?
+A. F5
+B. F2
+C. F3
+D. F4
+ANSWER: D
+
+Nếu muốn tính tổng của vùng D2:D8 với điều kiện là “Ô tô” trong vùng dữ liệu A2:A8, ta có công thức:
+A. SUMIF(“Ô tô”,A2:A8,D2:D8)
+B. SUMIF(A2:A8,”Ô tô”)
+C. SUMIF(A2:A8,”Ô tô”,D2:D8)
+D. SUMIF(D2:D8,”Ô tô”,A2:A8)
+ANSWER: C
+
+Trong bảng tính Excel, điều kiện trong hàm IF được phát biểu dưới dạng một phép so sánh. Khi cần so sánh khác nhau thì sử dụng kí hiệu nào?
+A. &
+B. >< >< >< >< >< ><
+C. #
+D. <> <> <> <> <> <>
+ANSWER: D
+
+Cho bảng dữ liệu Excel như sau: Câu hỏi: Công thức nào dưới đây là công thức ĐÚNG cần điền vào ô H3 để lập công thức cho ô Tổng số ngày làm thêm, Tổng số ngày làm thêm là số ngày làm vượt ngày công qui định của tất cả nhân viên. (Cho biết ngày công qui định là 22).
+A. =SUMIF(F6:F15,">22",F6:F15)-
+B. =SUMIF(F6:F15,">22",F6:F15)- COUNTIF(F6:F15,">22")*22 COUNTIF(F6:F15,>22)*22
+C. =SUMIF(F6:F15,>22,F6:F15)-
+D. =COUNTIF(F6:F15,">22",F6:F15)- COUNTIF(F6:F15,">22")*22 COUNTIF(F6:F15,">22")*22
+ANSWER: A
+
+Cú pháp hàm IF là?
+A. IF(logical_test, [value_if_true])
+B. IF(logical_test, [value_if_true], [value_if_false])
+C. IF(logical_test, [value_if_false], [value_if_true])
+D. IF([value_if_true], logical_test, [value_if_false])
+ANSWER: B
+
+Trong MS Excel, cột Kết quả được sử dụng để xét thưởng 100000 cho những học sinh có Điểm học tập từ 8.0 trở lên và Điểm rèn luyện từ 80 trở lên. Công thức nào sau đây phù hợp để nhập vào ô E2?
+A. =IF(C2>=8 OR D2>=80, 100000,"")
+B. =IF(OR(C2>=8, D2>=80), 100000,"")
+C. =IF(AND(C2>=8, D2>=80), 100000,"")
+D. =IF(C2>=8 AND D2>=80, 100000,"")
+ANSWER: C
+
+Trong bảng tính Excel, nếu trong một ô tính có các kí hiệu #####, điều đó có nghĩa là gì?
+A. Cột chứa ô đó có độ rộng quá hẹp nên không hiển thị
+B. Hàng chứa ô đó có độ cao quá thấp nên không hiển hết chữ số thị hết chữ số
+C. Công thức nhập sai và Excel thông báo lỗi
+D. Chương trình bảng tính bị nhiễm virus
+ANSWER: A
+
+Nếu máy tính được cập nhật ngày giờ chính xác. Giả sử ô E6 có giá trị là 20/11/2011, tại ô G6 gõ công thức: =YEAR(now())-YEAR(E6), kết quả là?
+A. 20
+B. 12
+C. 19
+D. 11
+ANSWER: B
+
+Công thức sau =COUNTA(A5,A6) +COUNT(A5,A6). Hỏi kết quả trả về là bao nhiêu nếu A5 có giá trị: 5 và A6 có giá trị là: DUNG
+A. 3
+B. 5DUNG
+C. 5
+D. 5+DUNG
+ANSWER: A
+
+Cho bảng dữ liệu Excel như sau: Biết rằng Kết Quả: được tính là ĐẬU nếu hội đủ 2 điều kiện sau đây: Phải không có môn nào dưới 3 điểm. Tổng điểm phải đạt (>=) điểm đậu chiếu theo khu vực, khu vực A có điểm đậu là 18, khu vực B có điểm đậu là 17, khu được coi là HỎNG nếu như một trong 3 môn bị điểm < 3 hoặc Tổng Điểm không đạt (nhỏ hơn điểm đậu chiếu theo kh Câu hỏi: Công thức nào sau đây là công thức Đúng tại ô I11
+A. =IF(OR(E11>=3,F11>=3,G11>=3,H11>=IF(LEFT(D11)="A",18,IF(LEFT(D11)="B",17,16))),"ĐẬU","HỎNG")
+B. =IF(AND(E1
+C. =IF(AND(E11>=3,F11>=3,G11>=3,H11>IF(LEFT(D11)="A",18,IF(LEFT(D11)="B",17,16))),"ĐẬU","HỎNG")
+D. =IF(AND(E1
+ANSWER: D
+
+Công thức =MID(“PHENIKAA”,3,2)& LEFT(RIGHT(“PHENIKAA”,4),2) trả về kết quả nào dưới đây:
+A. IKAA
+B. ENIK
+C. NIKA
+D. HENIK
+ANSWER: UNKNOWN
+
+Nếu B1 có giá trị là 8 thì công thức sau: =AVERAGE(IF(AND(B1>5,B1<=9),MOD(20,3),COUNTA(20,30,115,”Nam”,”Dung”)),MIN(673,575,705),IF(3>2,20,6)) sẽ trả về kết quả nào dưới đây:
+A. 575
+B. 673
+C. 298
+D. 199
+ANSWER: D
+
+Để nhanh chóng xem các thí sinh xếp loại “xuất sắc”, ta bôi đen toàn bộ vùng có chứa dữ liệu cần xem rồi sử dụng công cụ gì trong số các công cụ sau:Kết quả của việc nhập công thức =AND(C2>=8;D2>=80) ở ô E2 là gì?
+A. Vào menu Data, chọn Validation
+B. Vào menu Data, chọn Filter - Autofilter
+C. Vào menu View, chọn mức “xuất sắc”
+D. Vào menu Tools, chọn Quick view, chọn mức “xuất sắc”
+ANSWER: B
+
+Kết quả của việc nhập công thức =AND(C2>=8;D2>=80) ở ô E2 là gì?
+A. FALSE
+B. Cả hai đán án đúng
+C. TRUE
+D. Cả hai đáp án đều sai
+ANSWER: C
+
+Nếu ô A2 có giá trị là 8 thì công thức sau: =MAX(IF(AND(A2>=5,A2<=10), SUM(MOD(10,3),2,7),AVERAGE(9,10,11)),125,115) sẽ trả về kết quả nào dưới đây:
+A. 3
+B. 115
+C. 125
+D. 10
+ANSWER: C
+
+Bảng tính dưới đây chứa số lượng tiêu thụ của một số mặt hàng giải khát. Công thức đúng cần nhập vào ô J3 để tính số lượng tiêu thụ trung bình của Nước cam trong tuần là gì?
+A. =AVERAGE(C3:I3)
+B. =AVERAGE(B3:I3)
+C. =SUM(C3:I3)
+D. =SUM(B3:I3)
+ANSWER: A
+
+Cho bảng dữ liệu sau: Câu hỏi: Công thức hàm nào dưới đây là ĐÚNG để điền vào ô I16 của bảng. Thống kê số lượng mặt hàng Đường được (Nhập).
+A. =SUMIF($B$3:$B$12,"*D*N",$F$3:$F$12)
+B. =SUMIF($B$3:$B$12,"D*N",$F$3:$F$12)
+C. =SUMIF($B$3:$B$12,*DN*,$F$3:$F$12)
+D. =SUMIF($B$3:$B$12,D*N,$F$3:$F$12)
+ANSWER: B
+
+Để thêm thông tin giải thích biểu đồ, ta chọn biểu đồ cần sửa sau đó sử dụng các lệnh trong nhóm nào?
+A. Layout / Change Chart Type
+B. Design / Move Chart
+C. Layout / Labels
+D. Design / Change Chart Type
+ANSWER: C
+
+Cho biết kết quả của công thức sau: =AND(OR(FALSE,3>2),OR( TRUE,FALSE,4<3))
+A. FALSE
+B. TRUE
+C. 3
+D. 2
+ANSWER: B
+
+Trong bảng tính Excel, cho biết kết quả khi thực hiện lệnh: = INT(13/2)+MOD(13,2)+COUNT(5,4,9)
+A. 2
+B. 9
+C. 10
+D. 13
+ANSWER: C
+
+Cho bảng tính sau: Muốn sắp xếp cột điểm Vật lý theo thứ tự tăng dần ta làm như thế nào?
+A. Chọn một ô trong cột điểm Vật lý \Chọn menu
+B. Chọn một ô trong cột điểm Vật lý \Chọn menu Data\Sort&Filter\ Nhấn nút Filter Data\Sort&Filter\ Nhấn nút Z to A
+C. Không có đáp án đúng
+D. Chọn một ô trong cột điểm Vật lý \Chọn menu Data\Sort&Filter\ Nhấn nút A to Z
+ANSWER: D
+
+Để giữ cố định hàng được lặp lại qua các trang, ta chọn hàng bên dưới hàng đó và thực hiện:
+A. View\Freeze Panes
+B. Page Layout\Freeze Panes
+C. Review\Freeze Panes
+D. Data\Freeze Panes
+ANSWER: D
+
+Địa chỉ nào dưới đây là địa chỉ không hợp lệ?
+A. BB221
+B. $BA$25
+C. 221$A
+D. AA$123
+ANSWER: C
+
+Tại ô C1 nhập chuỗi PHENIKAA, cho biết kết quả khi thực hiện công thức =RIGHT(C1)
+A. A
+B. #VALUE
+C. #NAME
+D. P
+ANSWER: A
+
+Khi sử dụng hàm SUM ta có thể:
+A. Sử dụng tối đa là 10 tham số
+B. Sử dụng tối đa là 20 tham số
+C. Sử dụng tối đa là 255 tham số
+D. Sử dụng tối đa là 100 tham số
+ANSWER: C
+
+Áp dụng luật hấp dẫn nào mọi ngừi ưi Kết quả thi của cậu là:
+A. 10 đỉm ko có nhưng
+B. Tiếng mưa rơi tí tách
+C. "Suýt nữa thì"
+D. "Hẹn em kỳ sau"
+ANSWER: C
+
+Cậu có thể Zn ưn chúng tớ bằng cách
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :)) )
+C. Lời kẹm ưn so ciuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

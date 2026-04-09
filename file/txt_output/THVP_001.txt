@@ -1,0 +1,356 @@
+Phần cứng máy tính là gì?
+A. Cấu tạo của máy tính về mặt vật lý
+B. Cấu tạo của phần mềm về mặt logic
+C. Cấu tạo của phần mềm về mặt vật lý
+D. Cấu tạo của máy tính về mặt logic
+ANSWER: A
+
+Nếu bạn muốn làm cho cửa sổ nhỏ hơn (không kín màn hình), bạn nên sử dụng nút nào?
+A. Maximum
+B. Minimum
+C. Restore down
+D. Close
+ANSWER: C
+
+Hệ thống nhớ của máy tính bao gồm những thành phần nào sau đây?
+A. Bộ nhớ trong, Bộ nhớ ngoài
+B. Cache, Bộ nhớ ngoài
+C. Bộ nhớ ngoài, ROM
+D. Đĩa quang, Bộ nhớ trong
+ANSWER: A
+
+Công dụng của phím Print Screen là gì?
+A. In màn hình hiện hành ra máy in
+B. Không có công dụng gì khi sử dụng 1 mình nó.
+C. In văn bản hiện hành ra máy in
+D. Chụp màn hình hiện hành
+ANSWER: D
+
+Để tùy chỉnh kích cỡ biểu tượng trên màn hình nền Desktop, bạn nháy chuột phải vào vùng trống trên màn hình nền Desktop để mở trình đơn chuột phải và sử dụng tùy chọn nào sau đây?
+A. View
+B. Sort by
+C. Refresh
+D. Personalize
+ANSWER: A
+
+Trong hệ thống máy tính, 1Kbyte bằng bao nhiêu byte?
+A. 1023
+B. 1024
+C. 1224
+D. 1124
+ANSWER: B
+
+Khả năng xử lý của máy tính phụ thuộc chính vào yếu tố nào sau đây?
+A. Tốc độ CPU.
+B. Dung lượng bộ nhớ RAM
+C. Dung lượng và tốc độ ổ cứng.
+D. all
+ANSWER: D
+
+Thành phần giao diện đồ họa nào trong Windows cho phép người dùng thiết lập hệ thống bằng cách thêm phần cứng mới, thêm hoặc gỡ bỏ chương trình và chỉnh sửa tài khoản người dùng, tùy chỉnh âm thanh và hiển thị?
+A. Bảng điều khiển (Control Panel)
+B. Windows Explorer
+C. Phần mềm người dùng
+D. all
+ANSWER: A
+
+Hãy chỉ ra tên các phần mềm diệt virus trong các lựa chọn sau? (Chọn 4)
+A. Bitdefender
+B. Kaspersky
+C. Nero Burning
+D. Bkav Pro e) Ccleaner
+ANSWER: A
+
+Trong Microsoft Word để ngắt trang ta thực hiện?
+A. View/ Page Break
+B. References/ Captions/ Break
+C. Insert/ Pages/ Page Break
+D. Review/ Create/ Page Break
+ANSWER: A
+
+Để chèn một bảng(Table) vào văn bản ta làm thế nào?
+A. Vào Tab Insert/ Insert Table/ Gõ số hàng số cột
+B. Vào Tab Insert/ Table/ Insert Table/ Gõ số hàng số cột
+C. Vào Tab Home/ Table/ Insert Table/ Gõ số hàng số
+D. Vào Tab View/ Table/ Insert Table/ Gõ số hàng số cột cột
+ANSWER: B
+
+Trong Microsoft Word để chèn header hoặc footer trên trang văn bản, ta thực hiện?
+A. View / Header and Footer
+B. Insert / Header and Footer
+C. Insert / Header and Footer / nhấn nút Header hoặc
+D. Format / Header and Footer Footer
+ANSWER: C
+
+Muốn hiển thị đường biên văn bản ta thực hiện?
+A. Home/Options/Advanced/đánh dấu lựa chọn Show
+B. Insert/Options/Advanced/đánh dấu lựa chọn Show Text Boundaries Text Boundaries
+C. View/Options/Advanced/đánh dấu lựa chọn Show
+D. File/Options/Advanced/đánh dấu lựa chọn Show Text Text Boundaries Boundaries
+ANSWER: D
+
+Để thay đổi hướng chữ trong một ô trong bảng ta làm thế nào?
+A. Chọn ô cần thay đổi hướng chữ/Vào Tab Table
+B. Chọn ô cần thay đổi hướng chữ/Vào Tab Table Tools/ Layout/ Chọn Text Direction Tools/ Design/ Chọn Text Direction
+C. Chọn ô cần thay đổi hướng chữ/Vào Tab Insert/
+D. Chọn ô cần thay đổi hướng chữ/Vào Tab Insert/ Layout/ Text Direction Design/ Chọn Text Direction
+ANSWER: A
+
+Trong chế độ tạo bảng (Table) của phần mềm Microsoft word, để gộp nhiều ô thành một ô, ta thực hiện?
+A. Table Tool/ Split Cells
+B. Table Tool/Layout/ Split Cells
+C. Table Tools/ Merge Cells
+D. Table Tool/Layout/ Merge Cells
+ANSWER: D
+
+Để thay đổi độ rộng của một ô trong bảng ta làm thế nào?
+A. Chọn ô cần thay đổi độ rộng/Vào Table Tools/
+B. Chọn ô cần thay đổi độ rộng/ Table Tools/ Layout/ Design/ Trong nhóm Cell Size chọn Width Trong nhóm Cell Size chọn Width
+C. Chọn ô cần thay đổi độ rộng/Vào Home/ Layout/
+D. Chọn ô cần thay đổi độ rộng/Vào View/ Layout/ Trong nhóm Cell Size chọn Width Trong nhóm Cell Size chọn Width
+ANSWER: B
+
+Muốn thay đổi đường viền cho một ô trong bảng thì ta phải làm như thế nào?
+A. Chọn ô cần thay đổi đường viền/Vào Home/ Layout/
+B. Chọn ô cần thay đổi đường viền/Vào Table Tools/ Chọn Border and Shading/ Chọn kiểu dáng đường Layout/ Chọn Border and Shading/ Chọn kiểu dáng viền cần thay đổi trong mục Style/ Ok đường viền cần thay đổi trong mục Style/ Ok
+C. Chọn ô cần thay đổi đường viền/Vào Table Tools/
+D. Chọn ô cần thay đổi đường viền/Vào Home/ Design/ Design/ Chọn Border and Shading/ Chọn kiểu dáng Chọn Border and Shading/ Chọn kiểu dáng đường đường viền cần thay đổi trong mục Style/ Ok viền cần thay đổi trong mục Style/ Ok
+ANSWER: C
+
+Để chèn được dấu ≥ vào văn bản, ta thực hiện?
+A. Để chèn được dấu ≥ vào văn bản, ta thực hiện?
+B. Insert/ Symbol
+C. Vào thanh Quick Access Toolbar/ Spelling and
+D. Dấu ≥ được tích hợp sẵn trên bàn phím, chỉ cần gõ Grammar
+ANSWER: B
+
+Trong Microsoft Word để thực hiện vẽ các đường thẳng, hình khối, ta thực hiện?
+A. Insert/ Illustrations/ Shapes
+B. View/ Toolbars/ Drawing
+C. View/ Toolbars/ Standard
+D. View / Show/Hide / Ruler
+ANSWER: A
+
+Khi lưu văn bản, ta có thể lưu với các phần mở rộng là?
+A. .doc,.xlsx,.pdf
+B. .docx,.xlsx,.pdf
+C. docx,.xls,.pdf
+D. .doc, .docx,.pdf
+ANSWER: D
+
+Để tạo chỉ số dưới ta thực hiện?
+A. Chọn biểu tượng chỉ số dưới (subscript) trên thanh
+B. Dùng tổ hợp phím Ctrl + = (2) Ribbon (1)
+C. Cách (1), (2), (3) đều đúng
+D. Dùng tổ hợp phím Ctrl +D, chọn subscript (3)
+ANSWER: C
+
+Làm thế nào để thiết lập được khoảng cách dòng văn bản?
+A. Tab Home/ nhómFont/ cửa sổ Paragraph/ Spacing/
+B. Tab Home/ nhóm Paragraph/ cửa sổ Paragraph/ Line Spacing Spacing/ Line Spacing
+C. Tab Home/ nhóm Clipboard/ cửa sổ Paragraph/
+D. Tab Home/ nhóm Clipboard/ cửa sổ Paragraph/ Spacing/ Indentation Spacing/ Line Spacing
+ANSWER: B
+
+Để đánh dấu đề mục, ta thực hiện thao tác?
+A. Tab Home/ nhóm Font/ Numbering
+B. Tab Home/ nhóm Paragraph/ Bullets
+C. Tab Home/ nhóm Font/ Bullets
+D. Tab Home/ nhóm Clipboard/ Bullets
+ANSWER: B
+
+Để đặt mật khẩu cho văn bản ta làm thế nào?
+A. Vào Home/ Info/Chọn Protect Document/ Encrypt with
+B. Vào Insert/ Info/Chọn Protect Document/ Encrypt with Password Password
+C. Vào File/ Info/Chọn Protect Document/ Encrypt with
+D. Vào View/ Info/Chọn Protect Document/ Encrypt with Password Password
+ANSWER: C
+
+Tại D2 có công thức "=B1+C1", khi sao chép sang ô E2 thì E2 có công thức là:
+A. C1+D1
+B. C1+D2
+C. C2+D2
+D. C3+D3
+ANSWER: A
+
+Trong bảng tính Excel, tại ô A2 có sẵn dãy kí tự "1HaNoi2". Nếu sử dụng sao chép công thức để điền dữ liệu đến các cột B2, C2, D2, E2; thì kết quả nhận được tại ô E2 là:
+A. 1HaNoi6
+B. 5HaNoi6
+C. 5HaNoi2
+D. 1HaNoi5
+ANSWER: A
+
+Trong bảng tính Excel, nếu trong một ô tính có các kí hiệu #####, điều đó có nghĩa là gì?
+A. Cột chứa ô đó có độ rộng quá hẹp nên không hiển thị
+B. Hàng chứa ô đó có độ cao quá thấp nên không hiển hết chữ số thị hết chữ số
+C. Công thức nhập sai và Excel thông báo lỗi
+D. Chương trình bảng tính bị nhiễm virus
+ANSWER: A
+
+Kết quả của công thức =COUNT(“a”,”b”,2,3) + COUNTA(“a”,”b”,0,1) là?
+A. 7
+B. 8
+C. 6
+D. 3
+ANSWER: A
+
+Khi viết sai tên hàm trong tính toán, Excel sẽ đưa ra thông báo lỗi nào sau đây?
+A. #NAME?
+B. #N/A
+C. #VALUE
+D. #DIV/0!
+ANSWER: A
+
+Trong Microsoft Excel, khi vẽ biểu đồ bằng công cụ Chart Wizard, thẻ Data Range cho phép làm gì?
+A. Thay đổi vùng dữ liệu vẽ biểu đồ
+B. Gán nhãn cho vùng dữ liệu
+C. Xóa dữ liệu
+D. Thêm 1 vùng dữ liệu
+ANSWER: A
+
+Nếu máy tính được cập nhật ngày giờ chính xác. Giả sử ô E6 có giá trị là 20/11/2011, tại ô G6 gõ công thức: =YEAR(now())-YEAR(E6), kết quả là?
+A. 11
+B. 20
+C. 19
+D. 12
+ANSWER: A
+
+Để giữ cố định hàng được lặp lại qua các trang, ta chọn hàng bên dưới hàng đó và thực hiện:
+A. View\Freeze Panes
+B. Review\Freeze Panes
+C. Data\Freeze Panes
+D. Page Layout\Freeze Panes
+ANSWER: A
+
+Thao tác để di chuyển đến một sheet khác trong cùng một tập tin?
+A. Nhấn chuột lên tên sheet cần di chuyển đến hoặc
+B. Nhấn phím F5 và số thứ tự của các sheet nhấn tổ hợp phím Ctrl + PgUp hoặc Ctrl + PgUp
+C. Nhấn phím F2 và số thứ tự của các sheet
+D. Nhấn phím F3 và số thứ tự của các sheet
+ANSWER: A
+
+Công thức sau: =OR(AND(4>if(D2>7,34,46), D2>5),3>8) trả về kết quả nào sau đây nếu D2 có giá trị là 6
+A. False
+B. 34
+C. 46
+D. True
+ANSWER: A
+
+Cú pháp của hàm HLOOKUP?
+A. =hlookup(lookup_value, table_array, row_index_num,
+B. =hlookup(lookup_value, row_index_num, table_array, [range_lookup]) [range_lookup])
+C. =hlookup(table_array, lookup_value, row_index_num,
+D. =hlookup([range_lookup], lookup_value, table_array, [range_lookup]) row_index_num )
+ANSWER: A
+
+Nếu B2 có giá trị là 10 thì công thức sau: =SUM(125,IF(AND(B2>=7,B2<9),AVERAGE(6,9,5),SUM(30,120,150)),225) sẽ trả về kết quả nào dưới đây.
+A. 650
+B. 225
+C. 125
+D. 350
+ANSWER: A
+
+Giả sử tại ô B5 có công thức = C2+$B$2+C$3. Sau khi sao chép công thức đó từ ô B5 đến ô D8 sẽ có công thức:
+A. = E5+$B$2+E$3
+B. = C5+$B$2+E$3
+C. = C4+$B$2+E$3
+D. = C3+$B$2+E$3
+ANSWER: D
+
+Nếu B2 có giá trị bằng 10 thì công thức sau: =AVERAGE(125,IF(AND(B2>=7,B2<9),AVERAGE(6,9,5),SUM(30,120,150)),25) sẽ trả về kết quả nào dưới đây:
+A. 150
+B. 250
+C. 125
+D. 75
+ANSWER: A
+
+Nếu ô A2 có giá trị là 8 thì công thức sau: =MAX(IF(AND(A2>=5,A2<=10), SUM(MOD(10,3),2,7),AVERAGE(9,10,11)),125,115) sẽ trả về kết quả nào dưới đây
+A. 125
+B. 115
+C. 10
+D. 3
+ANSWER: A
+
+Nếu C3 có giá trị là 15 thì công thức sau: =AVERAGE(IF(AND(C3>5,C3<=9), MOD(20,3),COUNT(20,30,115)),4,IF(3>2,5,6))) sẽ trả về kết quả nào dưới đây:
+A. 4
+B. 5
+C. 6
+D. 3
+ANSWER: A
+
+Nếu C3 có giá trị là 15 thì công thức sau: =SUM(IF(AND(C3>5,C3<=9),MOD(20,3),COUNT(20,30,115)),MAX(573,25,15),IF(3>2,4,6)) sẽ trả về kết quả nào dưới đây:
+A. 580
+B. 575
+C. 574
+D. 585
+ANSWER: A
+
+Nếu B1 có giá trị là 8 thì công thức sau: =AVERAGE(IF(AND(B1>5,B1<=9),MOD(20,3),COUNTA(20,30,115,"Nam","Dung")),MIN(673,575,705),IF(3>2,20,6)) sẽ trả về kết quả nào dưới đây:
+A. 199
+B. 298
+C. 673
+D. 575
+ANSWER: A
+
+Nếu B1 có giá trị là 8 và C3 có giá trị là 25 thì công thức sau: =AVERAGE(IF(AND(B1>5,B1<=9),MOD(20,3),COUNTA(20,30,"Nam","Dung",22)),MIN(673,575,705),IF(C3<INT(20/3),60,620 sẽ trả về kết quả nào dưới đây:
+A. 399
+B. 400
+C. 275
+D. 175
+ANSWER: A
+
+Trong bảng tính MS Excel, hàm nào sau đây cho phép đếm các giá trị thỏa mãn một điều kiện cho trước:
+A. COUNTIF
+B. SUMIF
+C. COUNT
+D. SUM
+ANSWER: A
+
+Nếu C1 có giá trị là 8 và B3 có giá trị là 25 thì công thức sau: =PRODUCT(IF(AND(C1>5,C1<=9),MOD(20,3),COUNT(20,30,"Nam","Dung",22)),MIN(673,575,705),IF(B3>=INT(20/3),67,625 sẽ trả về kết quả nào dưới đây:
+A. 77050
+B. 78450
+C. 67450
+D. 77059
+ANSWER: A
+
+Trong bảng tính MS Excel, để chèn biểu đồ dạng hình cột ta thực hiện:
+A. Insert\Charts\Column
+B. Insert\Charts\Bar
+C. Insert\Charts\Pine
+D. Insert\Charts\Line
+ANSWER: A
+
+Trong Excel, giả sử ô A1 của bảng tính lưu trị ngày 15/10/1970 theo chuẩn Việt Nam. Kết quả hàm =MONTH(A1) là bao nhiêu?
+A. 10
+B. 15
+C. #VALUE
+D. 1970
+ANSWER: A
+
+Trong bảng tính Excel, khi chiều dài dữ liệu kiểu số lớn hơn chiều rộng của ô thì sẽ hiển thị trong ô các kí tự:
+A. #
+B. &
+C. $
+D. *
+ANSWER: A
+
+Trong Excel hàm TODAY() trả về:
+A. Ngày tháng hiện tại của hệ thống
+B. Số ngày trong tháng của biến ngày tháng date
+C. Số năm của biến ngày tháng date
+D. Số tháng trong năm của biến ngày tháng date
+ANSWER: A
+
+Kết quả thi của cậu là:
+A. 10 đỉm không có nhưng
+B. Tiếng mưa rơi tí tách
+C. "Suýt nữa thì anh có thể nói ..."
+D. "Hẹn em kỳ sau"
+ANSWER: C
+
+Cậu có thể Zn ưn chúng tớ bằng cách:
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :))) )
+C. Lời kẹm ưn so ciuuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

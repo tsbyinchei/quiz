@@ -1,0 +1,139 @@
+Địa chỉ thư điện tử có dạng
+A. Tên đường phố # Viết tắt của tên quốc gia
+B. Tên đăng nhập @ Địa chỉ máy chủ thư điện tử
+C. Tên người sử dụng & Tên máy chủ của thư điện tử
+D. Tên đăng nhập .@ Viết tắt của tên quốc gia
+ANSWER: C
+
+Để tìm kiếm thông tin tuyển sinh đại học phenikaa, em sử dụng từ khóa nào sau đây để thu hẹp phạm vi tìm kiếm?
+A. uyển sinh Đại học Phenikaa
+B. “tuyển sinh Phenikaa”
+C. “tuyển sinh Đại học Phenikaa”
+D. “tuyển sinh” + “Đại học Phenikaa”.
+ANSWER: B
+
+Thuật ngữ viết tắt bằng tiếng Anh của mạng diện rộng là gì?
+A. LAN (Local Area Network)
+B. WAN (Wide Area Network)
+C. GAN (Global Area Network)
+D. MAN (Metropolitan Area Network)
+ANSWER: B
+
+Thuật ngữ viết tắt bằng tiếng Anh của mạng toàn cục là gì?
+A. LAN (Local Area Network)
+B. WAN (Wide Area Network)
+C. GAN(Global Area Network)
+D. MAN (Metropolitan Area Network)
+ANSWER: C
+
+Địa chỉ IP nào sau đây không hợp lệ
+A. 192.168.1.1
+B. 192.168.100.1
+C. 192.168.10.123
+D. 192.168.10.360
+ANSWER: D
+
+Chọn phát biểu đúng về tên miền.
+A. Tên miền là tên giao dịch của 1 công ty hay tổ chức
+B. Tất cả các câu trên đều đúng. sử dụng trên Internet .
+C. Công việc chuyển đổi từ tên miền sang địa chỉ IP do
+D. Tên miền là tên gọi nhớ về một địa chỉ IP. máy chủ DNS đảm trách.
+ANSWER: B
+
+Chọn phát biểu đúng về địa chỉ IP
+A. Cả 2 câu đều đúng
+B. Địa chỉ IP bao gồm 32 bit được chia thành 4 nhóm, mỗi nhóm cách nhau bằng dấu chấm (.).
+C. Cả 2 câu đều sai.
+D. Địa chỉ IP dùng để xác định đối tượng nhận và gửi thông tin trên Internet.
+ANSWER: A
+
+Các máy tính được kết nối với nhau trong phạm vi một văn phòng gọi là mạng:
+A. WAN
+B. MAN
+C. LAN
+D. INTERNET
+ANSWER: C
+
+Hai máy tính có thể kết nối trực tiếp với nhau để trao đổi thông tin, mạng kết nối 2 máy tính đó thuộc loại mạng nào?
+A. Mạng MAN
+B. Mạng WAN
+C. Mạng Internet
+D. Mạng LAN
+ANSWER: D
+
+Ipv4 được chia thành mấy lớp?
+A. 5 lớp
+B. 6 lớp
+C. 4 lớp
+D. 3 lớp
+ANSWER: A
+
+Khi đặt mật khẩu cho thư điện tử của mình, nên đặt mật khẩu như thế nào để đảm bảo tính bảo mật?
+A. Mật khẩu là dãy số từ 0 đến 9, và chữ cái
+B. Mật khẩu có ít nhất năm kí tự và có đủ các kí tự như chữ hoa, chữ thường, chữ số
+C. Mật khẩu là ngày sinh của mình
+D. Mật khẩu giống tên của địa chỉ thư
+ANSWER: B
+
+Phát biểu nào sau đây đúng?
+A. Internet chỉ là mạng kết nối các trang thông tin trên
+B. Internet là mạng truyền hình kết nối các thiết bị nghe phạm vi toàn cầu. nhìn trong phạm vi một quốc gia
+C. Internet là mạng kết nối các thiết bị có sử dụng
+D. Internet là một mạng các máy tính liên kết với nhau chung nguồn điện. trên toàn cầu.
+ANSWER: D
+
+Câu nào trong các câu sau là phát biểu chính xác nhất về mạng Internet ?
+A. Là môi trường truyền thông toàn cầu dựa trên kỹ thuật
+B. Là mạng sử dụng chung cho mọi người, có rất nhiều máy tính dữ liệu phong phú
+C. Là mạng của các mạng, có quy mô toàn cầu
+D. Là mạng có quy mô toàn cầu hoạt động dựa trên giao thức TCP/IP
+ANSWER: D
+
+Trang chủ là gì?
+A. Tất cả các câu trên đều đúng.
+B. Là một trang web đầu tiên của Website.
+C. Là địa chỉ của Website.
+D. Là tập hợp các trang web có liên quan đến nhau
+ANSWER: B
+
+Với thư điện tử, phát biểu nào sau đây là sai? (Chọn các phương án đúng) (chọn 2)
+A. Có thể gửi một thư cho nhiều người cùng lúc
+B. Một người có thể gửi thư cho chính mình ở cùng địa chỉ thư điện tử
+C. Địa chỉ Email: tinvanphong@.gmail.com
+D. Hai người có thể có địa chỉ thư điện tử giống hệt nhau
+ANSWER: C
+
+Câu nào sau đây sai?
+A. Giao thức RARP dùng để tìm địa chỉ IP từ địa chỉ vật
+B. Có thể gán nhiều hơn một địa chỉ IP cho một địa chỉ lý vật lý
+C. Địa chỉ vật lý không cố định
+D. Giao thức ARP dùng để tìm địa chỉ vật lý từ địa chỉ IP
+ANSWER: C
+
+Dịch vụ mạng SMTP dùng để:
+A. Gửi thư điện tử
+B. Cấp địa chỉ cho máy trạm
+C. Nhận thư điện tử
+D. Phân giải tên và địa chỉ
+ANSWER: A
+
+IAP là gì?
+A. Tất cả đều dùng.
+B. Là nhà cung cấp thông tin trên Internet.
+C. Là nhà cung cấp dịch vụ Internet.
+D. Là nhà cung cấp cổng truy cập Internet cho các mạng.
+ANSWER: D
+
+Làm thế nào để kết nối Internet?
+A. Người dùng đăng kí với một nhà cung cấp dịch vụ
+B. Wi-Fi Internet (ISP) để được hỗ trợ cài đặt và cấp quyền truy cập Internet
+C. Người dùng đăng kí với một nhà cung cấp dịch vụ
+D. Người dùng đăng kí với một nhà cung cấp dịch vụ Internet để được cấp quyền truy cập Internet Internet để được hỗ trợ cài đặt Internet
+ANSWER: A
+
+Cậu có thể Zn ưn chúng tớ bằng cách
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :)) )
+C. Lời kẹm ưn so ciuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

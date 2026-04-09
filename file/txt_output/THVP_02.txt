@@ -1,0 +1,300 @@
+Trong MS Word, Để đánh số trang cho văn bản thực hiện như thế nào?
+A. Vào Home/ Chọn Page Number
+B. Vào Page Layout/ Chọn Page Number
+C. Vào References/ Chọn Page Number
+D. Vào Insert/ Chọn Page Number
+ANSWER: D
+
+Để chèn một bảng (Table) vào văn bản ta làm thế nào?
+A. Vào Tab Insert/ Insert Table/ Gõ số hàng số cột
+B. Vào Tab View/ Table/ Insert Table/ Gõ số hàng số cột
+C. Vào Tab Insert/ Table/ Insert Table/ Gõ số hàng số cột
+D. Vào Tab Home/ Table/ Insert Table/ Gõ số hàng số cột
+ANSWER: C
+
+Trong soạn thảo MS Word, công dụng của tổ hợp phím Ctrl + O có chức năng gì?
+A. Mở một file mới
+B. Lưu file
+C. Mở một file đã lưu trên máy
+D. Đóng file đang mở
+ANSWER: C
+
+Để chèn được dấu ≥ vào văn bản, ta thực hiện?
+A. Dấu ≥ được tích hợp sẵn trên bàn phím, chỉ cần gõ
+B. Vào thanh Quick Access Toolbar/ Spelling and Grammar
+C. Không có đáp án đúng
+D. Chọn Insert/ Symbol
+ANSWER: D
+
+Trong MS Wordd, hãy cho biết chức năng của tổ hợp phím Ctrl + E?
+A. Căn thẳng lề trên văn bản
+B. Căn thẳng ở giữa văn bản
+C. Căn thẳng lề phải văn bản
+D. Căn thẳng lề trái văn bản
+ANSWER: B
+
+Thanh Zoom hiển thị 100% có nghĩa là:
+A. Văn bản đang được hiển thị ở chế độ Full Screen
+B. Văn bản được hiển thị như khi được in ra giấy Reading
+C. Văn bản đang được hiển thị ở chế độ Website.
+D. Văn bản được phóng to gấp đôi so với ban đầu
+ANSWER: B
+
+Tên văn bản đang làm việc được hiển thị trên thanh công cụ nào?
+A. Thanh trạng thái
+B. Thanh truy cập nhanh
+C. Thanh menu bar
+D. Thanh tiêu đề
+ANSWER: D
+
+Trong MS Word,để chèn được ký hiệu ® ta thực hiện các bước?
+A. Insert/ Picture/ More Symbols/ Webdings
+B. Insert/ Table/ More Symbols/ Wingdings
+C. Insert/ Symbol/ tìm ký hiệu ®
+D. Insert/ Word Art/ More Symbols/ Symbol/ Special Character
+ANSWER: C
+
+Trong MS Word, Chức năng Lower Case có tác dụng?
+A. Viết thường ký tự đầu tiên
+B. Viết thường ký tự đầu tiên và viết hoa các ký tự còn lại
+C. Viết thường toàn bộ đoạn văn được chọn
+D. Viết hoa ký tự đầu tiên và viết thường các ký tự còn lại
+ANSWER: C
+
+Trong MS Word, Để đổ màu cho một ô trong bảng ta thực hiện?
+A. Chọn ô cần đổ màu/Vào Table Tools/ Layout/ Chọn
+B. Chọn ô cần đổ màu/Vào Home/ Design/ Chọn biểu biểu tượng Shading tượng Shading
+C. Chọn ô cần đổ màu/Vào Table Tools/ Design/ Chọn
+D. Chọn ô cần đổ màu/Vào Home/ Layout/ Chọn biểu biểu tượng Shading tượng Shading
+ANSWER: C
+
+Trong MS Word, Để loại bỏ các hiệu ứng điều chỉnh tự động (AutoCorrect) có sẵn trong phần mềm soạn thảo văn bản tiếng Việt ta thức hiện như sau?
+A. Vào File/ Option/ AutoCorrect Option/ Tìm mục cần
+B. Vào Home /Proofing/ AutoCorrect Option/ Tìm mục xóa sau đó ấn Delete/OK cần xóa sau đó ấn Delete/OK
+C. Vào File/ Option/ Proofing/ AutoCorrect Option/ Tìm
+D. Vào File/ Proofing/ AutoCorrect Option/ Tìm mục cần mục cần xóa sau đó ấn Delete/OK xóa sau đó ấn Delete
+ANSWER: C
+
+Tổ hợp phím Ctrl+K có tác dụng gì?
+A. Mở hộp thoại tìm kiếm
+B. Mở hộp thoại Font
+C. Mở hộp thoại tạo các liên kết (Hyperlink)
+D. Mở hộp thoại Paragraph
+ANSWER: C
+
+Để thay đổi độ rộng của một ô trong bảng thực hiện như thế nào?
+A. Chọn ô cần thay đổi độ rộng/Vào Table Tools/ Design/
+B. Chọn ô cần thay đổi độ rộng/ Table Tools/ Layout/ Trong nhóm Cell Size chọn Width Trong nhóm Cell Size chọn Width
+C. Chọn ô cần thay đổi độ rộng/Vào View/ Layout/ Trong
+D. Chọn ô cần thay đổi độ rộng/Vào Home/ Layout/ nhóm Cell Size chọn Width Trong nhóm Cell Size chọn Width
+ANSWER: B
+
+Trong MS Word, thao tác nào sau đây giúp định dạng văn bản thành hai cột như hình dưới?
+A. (Page) Layout > Two Columns
+B. (Page) Layout > Page setup > Columns > Two
+C. Design > Columns > Two
+D. Insert > Columns > Two
+ANSWER: B
+
+Trong soạn thảo Microsoft word, công dụng của tổ hợp phím Ctrl+H là?
+A. Mở hộp thoại Font
+B. Mở hộp thoại Paragraph
+C. Mở hộp thoại tìm kiếm và thay thế văn bản
+D. Mở hộp thoại Tab
+ANSWER: C
+
+Để thay đổi hướng chữ trong một ô trong bảng ta làm thế nào?
+A. Chọn ô cần thay đổi hướng chữ/Vào Tab Table Tools/
+B. Chọn ô cần thay đổi hướng chữ/Vào Tab Insert/ Design/ Chọn Text Direction Layout/ Text Direction
+C. Chọn ô cần thay đổi hướng chữ/Vào Tab Table Tools/
+D. Chọn ô cần thay đổi hướng chữ/Vào Tab Insert/ Layout/ Chọn Text Direction Design/ Chọn Text Direction
+ANSWER: C
+
+Để tạo bảng dữ liệu như trên hình ta cần bảng kích thước như thế nào?
+A. Tất cả đều sai
+B. 5x6
+C. 5x5
+D. 6x5
+ANSWER: C
+
+Để di chuyển đến một trang bất kì trong văn bản ta làm thế nào?
+A. Bấm tổ hợp phím Ctrl+G, trong mục Enter Page
+B. Bấm tổ hợp phím Ctrl+F, trong mục Enter Page Number nhập số trang cần đến. Number nhập số trang cần đến.
+C. Tất cả đều đúng
+D. Bấm tổ hợp phím Ctrl+H, trong mục Enter Page Number nhập số trang cần đến.
+ANSWER: A
+
+Trong MS Word, Chế độ nào cho phép hiển thị màn hình với kích thước hiển thị lớn nhất?
+A. Draft
+B. Outline
+C. Web Layout
+D. Full Screen Reading
+ANSWER: D
+
+Để sắp xếp các cửa sổ văn bản trên màn hình Word theo thứ tự nào đó ta thực hiện như thế nào?
+A. Vào Insert/ Trong nhóm Window chọn kiểu sắp xếp
+B. Vào Home/ Trong nhóm Window chọn kiểu sắp xếp thích hợp thích hợp
+C. Vào Review/ Trong nhóm Window chọn kiểu sắp xếp
+D. Vào View/ Trong nhóm Window chọn kiểu sắp xếp thích hợp thích hợp
+ANSWER: D
+
+Trong chế độ tạo bảng (Table), hãy nêu cách để chia 1 ô thành nhiều ô?
+A. Table Tool/Layout/ Split Cells/nhập số cột số dòng cần
+B. Table Tool/Layout/ Merge Cells chia.
+C. Table Tool/ Split Cells
+D. Table Tools/ Merge Cells
+ANSWER: A
+
+Trong Microsoft Word để tăng khoảng cách giữa các ký tự, ta thực hiện?
+A. Chọn Tab Home/Chọn nhóm Font/Advance/Trong mục
+B. Chọn Tab Insert/Advance/Trong mục By chọn Spacing chọn Expanded Expanded hoặc Condensed
+C. Chọn Tab Home/Chọn nhóm Paragrap/Trong mục
+D. Chọn Tab Home/Advance/Trong mục Spacing chọn Number form chọn Expanded hoặc Condensed Expanded hoặc Condensed
+ANSWER: A
+
+Bảng có kích thước 5x6 có nghĩa là?
+A. Bảng gồm 30 cột
+B. Bảng gồm 5 dòng 6 cột
+C. Bảng gồm 30 dòng
+D. Bảng gồm 5 cột 6 dòng
+ANSWER: B
+
+Khi soạn thảo văn bản trong MS Word, muốn di chuyển từ 1 ô này sang ô kế tiếp về bên phải của một bảng (Table) sử dụng phím nào?
+A. Tab
+B. CapsLock
+C. Ctrl
+D. ESC
+ANSWER: A
+
+Trong soạn thảo Word, muốn chèn các kí tự đặc biệt vào văn bản thực hiện như thế nào?
+A. Chọn menu Insert/ Symbol
+B. Chọn menu View/ Symbol
+C. Chọn menu Format/ Symbol
+D. Chọn menu Tools/ Symbol
+ANSWER: A
+
+Trong hộp thoại Find and Replace/Find, phần Find what dùng để?
+A. Tùy chọn nâng cao tìm kiếm
+B. Đảm bảo tìm kiếm chính xác
+C. Điền từ cần thay thế
+D. Điền từ cần tìm kiếm
+ANSWER: A
+
+Trong MS Word, Muốn hiển thị đường biên văn bản ta thực hiện?
+A. Hierarchy
+B. Cycle
+C. Process
+D. Relationship
+ANSWER: B
+
+Trong MS Word, tùy chọn Collated giúp thiết lập chế độ nào khi đặt lệnh in (print) văn bản?
+A. Chọn Tab Home/Chọn nhóm Paragrap/Trong mục
+B. Chọn Tab Home/Advance/Trong mục Spacing chọn Number form chọn Expanded hoặc Condensed Expanded hoặc Condensed
+C. Chọn Tab Home/Chọn nhóm Font/Advance/Trong mục
+D. Chọn Tab Insert/Advance/Trong mục By chọn Spacing chọn Expanded Expanded hoặc Condensed
+ANSWER: C
+
+Trong Micrsoft Word để bật/tắt thanh thước kẻ trên cửa sổ soạn thảo, ta thực hiện?
+A. Chọn View/ Outline
+B. Chọn File/ Word Option/ Ruler
+C. Chọn Insert / đánh dấu vào mục Ruler
+D. Chọn View/ Show / đánh dấu/bỏ đánh dấu vào mục Ruler
+ANSWER: D
+
+Khi đang soạn thảo văn bản trên Ms-word muốn xác định tổng số trang của văn bản hiện hành ta quan sát ở?
+A. Thanh trạng thái
+B. Thanh tiêu đề
+C. Thanh thước kẻ
+D. Thanh menu
+ANSWER: A
+
+Trong MS Word, tùy chọn Only Print Odd Pages trong mục thiết lập tùy chọn (setting) khi đặt lệnh in (print) có ý nghĩa gì?
+A. Chỉ in các trang không được đánh dấu trong văn bản
+B. Chỉ in các trang lẻ trong văn bản
+C. Chỉ in các trang được đánh dấu trong văn bản
+D. Chỉ in các trang chẵn trong văn bản
+ANSWER: B
+
+Để đặt mật khẩu cho văn bản ta làm thế nào?
+A. Vào View/ Info/Chọn Protect Document/ Encrypt with
+B. Vào File/ Info/Chọn Protect Document/ Encrypt with Password Password
+C. Vào Insert/ Info/Chọn Protect Document/ Encrypt with
+D. Vào Home/ Info/Chọn Protect Document/ Encrypt with Password Password
+ANSWER: B
+
+Trong MS Word, để loại bỏ các đường gạch chân màu đỏ hoặc màu xanh xuất hiện trong văn bản tiếng Việt ta làm như sau?
+A. Vào File/ Proofing/Trong mục When correcting
+B. Vào Home/ Option/Proofing/ Trong mục When spelling and Gramma in Word bỏ tích chọn tất cả các correcting spelling and Gramma in Word bỏ tích chọn lựa chọn tất cả các lựa chọn
+C. Vào File/ Option/Proofing/ Trong mục When correcting
+D. Vào File/ Option/ Trong mục When correcting spelling spelling and Gramma in Word bỏ tích chọn tất cả các and Gramma in Word bỏ tích chọn tất cả các lựa chọn lựa chọn
+ANSWER: C
+
+Trong văn bản dưới đây, chữ cái lớn đầu đoạn văn được tạo với chế độ DropCap nào?
+A. In Margin
+B. Dropped
+C. DropCap
+D. Three lines
+ANSWER: C
+
+Trong MS Word, thao tác nào sau đây giúp chèn sơ đồ như hình dưới vào văn bản?
+A. Insert > Cycle > chọn sơ đồ
+B. Insert > SmartArt > Process > chọn sơ đồ
+C. Insert > SmartArt > Cycle > chọn sơ đồ
+D. Insert > Process > chọn sơ đồ
+ANSWER: C
+
+Để tạo được đường kẻ giữa hai cột trong đoạn văn bản trên trong khi chia cột ta phải thiết lập cho tham số nào?
+A. Tích chọn Spacing trong thẻ Columns
+B. Thay đổi tham số Spacing trong thẻ Columns
+C. Tất cả đều sai
+D. Tích chọn Line between trong thẻ Columns
+ANSWER: D
+
+Trong văn bản dưới đây, hình ảnh con ốc sên được chèn vào văn bản với chế độ nào?
+A. Through
+B. Square
+C. Center
+D. Rectangle
+ANSWER: B
+
+Quan sát bảng mẫu trên hãy cho biết cách thay đổi hướng của dữ liệu hiện thị tại cột thứ hai trong bảng như thế nào?
+A. Chọn menu Layout Table\Cell\Margins
+B. Chọn menu Layout Table\Sort
+C. Chọn menu Layout Table\Text Direction
+D. Tất cả đều đúng
+ANSWER: C
+
+Trong MS Word, thao tác nào cho phép căn chỉnh chữ Word như hình dưới đây?
+A. Home \ Paragraph \ Alignment \ Vertical
+B. Layout \ Alignment \ Text Direction
+C. Layout \ Alignment \ Vertical
+D. Table Design \ Alignment \ Text Direction
+ANSWER: B
+
+Trong MS Word, loại sơ đồ nào được sử dụng trong sơ đồ dưới đây?
+A. Hierarchy
+B. Cycle
+C. Process
+D. Relationship
+ANSWER: B
+
+Trong đoạn văn bản trên hiệu ứng .... được tạo ra bằng định dạng gì?
+A. Tba
+B. Symbol
+C. Tab
+D. Không có đáp án đúng
+ANSWER: C
+
+Học lại?
+A. Yeppp
+B. Yess
+C. Cóa
+D. Kó
+ANSWER: C
+
+Cậu có thể Zn ưn chúng tớ bằng cách
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :)) )
+C. Lời kẹm ưn so ciuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

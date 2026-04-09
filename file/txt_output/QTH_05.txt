@@ -1,0 +1,188 @@
+Khi nào nên thiết kế tổ chức có phạm vi quản lý rộng?
+A. Khi nhà quản trị có năng lực tốt
+B. Khi cấp dưới không có khả năng thực hiện công việc như chỉ dẫn
+C. Khi thông tin lưu chuyển chậm
+D. Khi ra quyết định phi tập trung
+ANSWER: A
+
+Thế nào là nguyên tắc thống nhất mệnh lệnh trong chuỗi mệnh lệnh?
+A. Mỗi người nên chịu trách nhiệm báo cáo với nhiều
+B. Mỗi người chỉ nên chịu trách nhiệm báo cáo với một và người quản trị chỉ một người quản trị trực tiếp duy nhất
+C. Nhiều nhà quản trị quản lý một người là hiệu quả
+D. Mệnh lệnh đưa ra thì không nên thu hồi lại
+ANSWER: B
+
+Phạm vi quản lý rộng hay hẹp tùy thuộc vào yếu tố nào sau đây?
+A. Trình độ của nhân viên
+B. Công việc
+C. Tất cả các đáp án đều đúng
+D. Trình độ của nhà quản trị
+ANSWER: C
+
+Loại quyền hạn nào cho phép nhà quản trị ra quyết định và giám sát trực tiếp đối với cấp dưới?
+A. Trực tuyến
+B. Chức năng
+C. Tham mưu
+D. Cố vấn
+ANSWER: A
+
+Công ty A thành lập ba trung tâm cho khách hàng cá nhân, khách hàng tổ chức và các cơ quan của chính phủ. Cơ cấu tổ chức như vậy được gọi là kiểu tổ chức theo….
+A. Chức năng
+B. Sản phẩm
+C. Quá trình
+D. Khách hàng
+ANSWER: D
+
+Hiệu may quần áo, tiệm bách hóa, tiệm ăn v.v… thuộc mô hình bộ máy tổ chức nào?
+A. Mô hình cấu trúc đơn giản
+B. Mô hình cấu trúc chức năng.
+C. Mô hình cấu trúc phân ngành.
+D. Mô hình hỗn hợp trực tuyến chức năng.
+ANSWER: A
+
+Để trả lời cho câu hỏi một người quản lý bao nhiêu người thì đạt hiệu quả và hiệu suất cao, chúng ta đang nhắc đến yếu tố nào trong thiết kế tổ chức?
+A. Phạm vi quản lý
+B. Chuỗi mệnh lệnh
+C. Phân chia công việc
+D. Thiết kế năng lực cá nhân
+ANSWER: A
+
+Đâu không phải là nhược điểm của chuyên môn hóa công việc?
+A. Tăng năng suất lao động
+B. Làm giảm khả năng phối hợp
+C. Khó có được các nhà quản trị tổng hợp giỏi
+D. Làm giảm khả năng sáng tạo
+ANSWER: A
+
+Nhược điểm “Nhân rộng các chức năng trong từng dòng sản phẩm” là nhược điểm của mô hình nào?
+A. Mô hình cơ cấu tổ chức theo khu vực địa lý
+B. Mô hình cơ cấu tổ chức theo nhóm khách hàng
+C. Mô hình cơ cấu tổ chức theo nhóm sản phẩm
+D. Mô hình cơ cấu tổ chức theo chức năng
+ANSWER: C
+
+Thế nào là cơ cấu tổ chức hiệu quả?
+A. Cơ cấu tổ chức theo chức năng
+B. Cơ cấu tổ chức theo sản phẩm
+C. Cơ cấu tổ chức theo lĩnh vực kinh doanh
+D. Cơ cấu tổ chức phù hợp với chiến lược của tổ chức
+ANSWER: D
+
+Mục tiêu của chức năng tổ chức là gì?
+A. Khai thác tối đa năng suất của máy móc
+B. Nhằm thiết lập ra một hệ thống các vị trí cho mỗi cá nhân và bộ phận sao cho các cá nhân và bộ phận có thể phối hợp với nhau một cách tốt nhất để thực hiện mục tiêu của tổ chức.
+C. Tổ chức phải thích nghi, đáp ứng được với những
+D. Đánh giá được kết quả đầu ra của công việc biến động của bên ngoài.
+ANSWER: B
+
+Một nhà lãnh đạo đưa ra các mệnh lệnh với cấp dưới và yêu cầu các mệnh lệnh này được thực hiện. Đây là ví dụ về:
+A. Nghĩa vụ
+B. Quyền lực
+C. Quyền hạn
+D. Trách nhiệm
+ANSWER: C
+
+Đâu KHÔNG phải là sự khác nhau giữa quyền hạn và quyền lực?
+A. Tính chính thức
+B. Tính hợp pháp
+C. Có thể bị mất đi
+D. Đặc điểm cá nhân
+ANSWER: C
+
+Các hoạt động nào dưới đây KHÔNG thuộc chức năng lập kế hoạch?
+A. Đưa ra các dự kiến công việc thực hiện
+B. Kiểm tra tiến độ công việc của các bộ phận
+C. Thiết lập các mục tiêu
+D. Đưa ra các chiến lược dài hạn
+ANSWER: B
+
+Những hoạt động sau đây là một phần của quá trình thiết kế tổ chức, ngoại trừ:
+A. Quyết định các công việc chuyên môn nên làm thế
+B. Xác định các quy tắc thực hiện cho nhân viên nào
+C. Xác định mức độ quyết định được đưa ra
+D. Xác định mục tiêu cho tổ chức
+ANSWER: D
+
+Nhược điểm của cơ cấu tổ chức theo chức năng là gì?
+A. Vi phạm nguyên tắc thống nhất mệnh lệnh/chỉ huy
+B. Thiếu sự gắn kết giữa các phòng ban chuyên môn
+C. Chế độ trách nhiệm không rõ ràng
+D. Thu hút được nhiều cá nhân có trình độ, kỹ năng và chuyên môn.
+ANSWER: B
+
+Đâu là ưu điểm của mô hình cơ cấu tổ chức theo khu vực địa lý?
+A. Tiết kiệm thời gian và các nguồn lực của tổ chức do
+B. Nâng cao khả năng phát triển chuyên môn trong bộ sự phục vụ sản xuất được thực hiện tại chỗ phận.
+C. Các nhu cầu và vấn đề của khách hàng có thể được
+D. Giúp gia tăng sự chuyên môn hóa giải quyết bởi các chuyên gia.
+ANSWER: A
+
+Thách thức khi tổ chức thiết kế theo xu hướng phạm vi quản lý hẹp là gì?
+A. Nhiều tầng lớp quản lý
+B. Kiểm tra chặt chẽ
+C. Thông tin lưu chuyển nhanh
+D. Ra quyết định phi tập trung
+ANSWER: A
+
+Nguyên tắc thực thi mệnh lệnh KHÔNG bao gồm những đặc điểm nào dưới đây?
+A. Cấp dưới hiểu mệnh lệnh
+B. Cấp dưới có khả năng thực hiện công việc như chỉ dẫn
+C. Mệnh lệnh không trái với niềm tin cá nhân
+D. Một người phải báo cáo với hai nhà quản lý
+ANSWER: D
+
+Sơ đồ cơ cấu tổ chức thể hiện:
+A. Cấp bậc trong tổ chức
+B. Hệ thống thông tin trong tổ chức
+C. Cấu trúc của một tổ chức
+D. Tất cả các đáp án đều đúng
+ANSWER: D
+
+Những cặp khái niệm nào sau đây KHÔNG phải là yếu tố cơ bản của thiết kế tổ chức?
+A. Chuyên môn hóa, phạm vi quản lý
+B. Chuỗi mệnh lệnh, quyền lực trực tiếp
+C. Tập trung hóa, phi tập trung hóa
+D. Bộ phận hóa, chính thức hóa
+ANSWER: B
+
+Hoạt động phân quyền hiệu quả khi nào?
+A. Cho các nhân viên cấp dưới tham gia vào quá trình
+B. Gắn liền quyền hạn với trách nhiệm phân quyền
+C. Chỉ chú trọng đến kết quả
+D. Xây dựng và duy trì hệ thống thông tin đóng giữa cấp trên và cấp dưới
+ANSWER: B
+
+Hiếu, trưởng phòng kinh doanh, yêu cầu nhân viên làm việc nhưng không chắc chắn họ hiểu nhiệm vụ được giao. Hiếu đã vi phạm nguyên tắc nào?
+A. Tập trung dân chủ
+B. Nguyên tắc thống nhất mệnh lệnh
+C. Nguyên tắc thực thi mệnh lệnh
+D. Nguyên tắc giao tiếp cơ bản
+ANSWER: C
+
+Đặc tính tính thích nghi và mức độ linh hoạt cao là của cấu trúc nào?
+A. Hữu cơ
+B. Phi tập trung
+C. Cơ học
+D. Hiện đại
+ANSWER: A
+
+Cấu trúc ma trận và dự án đã phá vỡ nguyên tắc nào sau đây?
+A. Nguyên tắc thực thi mệnh lệnh
+B. Nguyên tắc thống nhất mệnh lệnh
+C. Nguyên tắc thiết kế tổ chức
+D. Nguyên tắc giám sát và kiểm tra
+ANSWER: B
+
+Học lại?
+A. Yeppp
+B. Yesss
+C. Cóa
+D. Kó
+ANSWER: C
+
+Cậu có thể Zn ưn chúng tớ bằng cách:
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :)) )
+C. Lời kẹm ưn so ciuuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

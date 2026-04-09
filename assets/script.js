@@ -34,16 +34,32 @@ class AuthManager {
         return localStorage.getItem('quizToken');
     }
 
+    static getDecodedToken() {
+        const token = this.getToken();
+        if (!token || token.indexOf('.') === -1) {
+            return null;
+        }
+
+        try {
+            const payloadB64 = token.split('.')[0];
+            return JSON.parse(atob(payloadB64));
+        } catch (error) {
+            return null;
+        }
+    }
+
     static getRole() {
-        return localStorage.getItem('quizRole');
+        const decoded = this.getDecodedToken();
+        return decoded ? decoded.role : null;
     }
 
     static getUsername() {
-        return localStorage.getItem('quizUsername');
+        const decoded = this.getDecodedToken();
+        return decoded ? decoded.username : null;
     }
 
     static isAuthenticated() {
-        return !!this.getToken();
+        return !!this.getDecodedToken();
     }
 
     static isAdmin() {
@@ -61,6 +77,11 @@ class AuthManager {
         localStorage.removeItem('quizRole');
         localStorage.removeItem('quizUsername');
         localStorage.removeItem('currentQuizID');
+        if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.removeItem('adminPinVerified');
+            sessionStorage.removeItem('adminPinVerifiedFor');
+            sessionStorage.removeItem('adminPinProof');
+        }
     }
 }
 
@@ -104,7 +125,7 @@ class GradingEngine {
         }
 
         const total = questions.length;
-        const scorePercent = (correct / total) * 100;
+        const scorePercent = (correct / total) * 10;
 
         return {
             score: scorePercent,
@@ -133,7 +154,7 @@ class AikenParser {
         const questions = [];
         const normalized = (content || '').replace(/\r\n/g, '\n').trim();
         const blocks = normalized
-            .split(/\n\s*\n/)
+            .split(/\n\s*\n+/)
             .map(block => block.trim())
             .filter(block => block !== '');
 
@@ -147,47 +168,83 @@ class AikenParser {
         return questions;
     }
 
+    static sanitizeQuestionText(text) {
+        return String(text || '')
+            .replace(/^(?:cau|câu)\s*\d+[\.\:\)]?\s*|^\d+[\.\:\)]?\s*/i, '')
+            .trim();
+    }
+
     static parseBlock(block) {
-        const lines = block.trim().split('\n').filter(l => l.trim());
-        
-        if (lines.length < 6) return null;
+        const lines = (block || '')
+            .split('\n')
+            .map((line) => line.replace(/\s+$/g, ''))
+            .filter((line) => line.trim() !== '');
 
-        // Dòng đầu tiên là câu hỏi
-        const questionText = lines[0].replace(/\?$/, '').trim();
+        if (lines.length < 6) {
+            return null;
+        }
 
-        const options = {};
+        const optionBuffers = { A: [], B: [], C: [], D: [] };
+        const questionBuffer = [];
+        const explanationBuffer = [];
+        let currentOption = '';
         let answerKey = '';
-        let explanation = '';
 
-        // Parse các dòng tiếp theo
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim();
+        for (const rawLine of lines) {
+            const line = rawLine.trim();
 
-            // Kiểm tra định dạng A) B) C) D)
-            if (/^[A-D][\.|\)]\s*/.test(line)) {
-                const key = line[0];
-                options[key] = line.substring(2).trim();
+            const optionMatch = line.match(/^([A-D])[\.)]\s*(.*)$/i);
+            if (optionMatch) {
+                currentOption = optionMatch[1].toUpperCase();
+                const firstText = optionMatch[2].trim();
+                if (firstText) {
+                    optionBuffers[currentOption].push(firstText);
+                }
+                continue;
             }
-            // Kiểm tra ANSWER: X
-            else if (line.startsWith('ANSWER:')) {
-                answerKey = line.replace('ANSWER:', '').trim().toUpperCase();
+
+            const answerMatch = line.match(/^ANSWER\s*:\s*([A-D])\s*$/i);
+            if (answerMatch) {
+                answerKey = answerMatch[1].toUpperCase();
+                currentOption = '';
+                continue;
             }
-            // Kiểm tra EXP: Explanation
-            else if (line.startsWith('EXP:')) {
-                explanation = line.replace('EXP:', '').trim();
+
+            const expMatch = line.match(/^EXP\s*:\s*(.*)$/i);
+            if (expMatch) {
+                currentOption = '';
+                const expText = expMatch[1].trim();
+                if (expText) {
+                    explanationBuffer.push(expText);
+                }
+                continue;
+            }
+
+            if (currentOption) {
+                optionBuffers[currentOption].push(line);
+            } else if (answerKey || explanationBuffer.length > 0) {
+                explanationBuffer.push(line);
+            } else {
+                questionBuffer.push(line);
             }
         }
 
-        // Kiểm tra tính hợp lệ
-        if (Object.keys(options).length === 4 && answerKey && /^[A-D]$/.test(answerKey)) {
+        const questionText = this.sanitizeQuestionText(questionBuffer.join(' ').trim());
+        const optionA = optionBuffers.A.join(' ').trim();
+        const optionB = optionBuffers.B.join(' ').trim();
+        const optionC = optionBuffers.C.join(' ').trim();
+        const optionD = optionBuffers.D.join(' ').trim();
+        const explanation = explanationBuffer.join(' ').trim();
+
+        if (questionText && optionA && optionB && optionC && optionD && /^[A-D]$/.test(answerKey)) {
             return {
                 questionText,
-                optionA: options['A'] || '',
-                optionB: options['B'] || '',
-                optionC: options['C'] || '',
-                optionD: options['D'] || '',
+                optionA,
+                optionB,
+                optionC,
+                optionD,
                 correctAnswer: answerKey,
-                explanation: explanation
+                explanation
             };
         }
 
@@ -203,26 +260,14 @@ class AikenParser {
         const errors = [];
         const normalized = (content || '').replace(/\r\n/g, '\n').trim();
         const blocks = normalized
-            .split(/\n\s*\n/)
+            .split(/\n\s*\n+/)
             .map(block => block.trim())
             .filter(block => block !== '');
 
         blocks.forEach((block, index) => {
-            const lines = block.trim().split('\n').filter(l => l.trim());
-
-            if (lines.length < 6) {
-                errors.push(`Block ${index + 1}: Không đủ dòng (tối thiểu 6 dòng)`);
-                return;
-            }
-
-            const hasAnswer = lines.some(l => l.startsWith('ANSWER:'));
-            if (!hasAnswer) {
-                errors.push(`Block ${index + 1}: Thiếu dòng ANSWER:`);
-            }
-
-            const options = lines.filter(l => /^[A-D][\.|\)]\s*/.test(l.trim()));
-            if (options.length !== 4) {
-                errors.push(`Block ${index + 1}: Phải có đúng 4 lựa chọn (A, B, C, D)`);
+            const parsed = this.parseBlock(block);
+            if (!parsed) {
+                errors.push(`Block ${index + 1}: Sai định dạng Aiken hoặc thiếu dữ liệu bắt buộc.`);
             }
         });
 
@@ -239,11 +284,16 @@ class APIClient {
 
     static async request(action, data = {}) {
         try {
+            const adminPinProof = typeof sessionStorage !== 'undefined'
+                ? sessionStorage.getItem('adminPinProof')
+                : null;
+
             const response = await fetch(this.GAS_URL, {
                 method: 'POST',
                 body: JSON.stringify({
                     action: action,
                     token: AuthManager.getToken(),
+                    adminPinProof: adminPinProof || undefined,
                     ...data
                 })
             });
@@ -298,6 +348,22 @@ class APIClient {
 
     static async updateShowAnswer(quizID, showAnswer) {
         return this.request('updateShowAnswer', { quizID, showAnswer });
+    }
+
+    static async updateShuffle(quizID, shuffle) {
+        return this.request('updateShuffle', { quizID, shuffle });
+    }
+
+    static async updateAntiCheat(quizID, antiCheat) {
+        return this.request('updateAntiCheat', { quizID, antiCheat });
+    }
+
+    static async updateAutoNext(quizID, autoNext) {
+        return this.request('updateAutoNext', { quizID, autoNext });
+    }
+
+    static async updateAllowBack(quizID, allowBack) {
+        return this.request('updateAllowBack', { quizID, allowBack });
     }
 
     static async bulkUpload(quizID, questions) {

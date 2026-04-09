@@ -1,0 +1,412 @@
+Nếu bạn muốn làm cho cửa sổ nhỏ hơn (không kín màn hình), bạn nên sử dụng nút nào?
+A. Maximum
+B. Minimum
+C. Restore down
+D. Close
+ANSWER: C
+
+Một hệ điều hành cho phép tạo nhiều tài khoản người dùng đăng nhập vào hệ thống, được gọi là gì?
+A. Hệ điều hành đa xử lý
+B. Hệ điều hành đa người dùng
+C. Hệ điều hành đa nhiêm
+D. Hệ điều hành đa kết nối
+ANSWER: B
+
+Hệ thống nhớ của máy tính bao gồm những thành phần nào sau đây?
+A. Bộ nhớ trong, Bộ nhớ ngoài
+B. Cache, Bộ nhớ ngoài
+C. Bộ nhớ ngoài, ROM
+D. Đĩa quang, Bộ nhớ trong
+ANSWER: A
+
+Công dụng của phím Print Screen là gì?
+A. in màn hình hiện hành ra máy in
+B. Không có công dụng gì khi sử dụng 1 mình nó.
+C. In văn bản hiện hành ra máy in
+D. Chụp màn hình hiện hành
+ANSWER: D
+
+Có thể hồi phục (restore) các tệp tin bị xoá sau khi nhấn phím Delete bằng cách nào?
+A. Mở Recycle Bin/Nháy chuột phải vào tệp/Restore
+B. Mở Internet Explorer
+C. Mở Recycle Bin/Nháy chuột phải vào tệp/Cut
+D. Mở Documents
+ANSWER: A
+
+Chương trình nào trong các chương trình sau đây giúp diệt Virus?
+A. Microsoft Office
+B. Outlook Express
+C. Kaspersky
+D. Winrar
+ANSWER: C
+
+Thiết bị xuất của máy tính gồm?
+A. Bàn phím, màn hình, chuột
+B. Chuột, màn hình, CPU
+C. Màn hình, máy in.
+D. Bàn phím, màn hình, loa
+ANSWER: C
+
+Để tùy chỉnh kích cỡ biểu tượng trên màn hình nền Desktop, bạn nháy chuột phải vào vùng trống trên màn hình nền Desktop để mở trình đơn chuột phải và sử dụng tùy chọn nào sau đây?
+A. View
+B. Sort by
+C. Refresh
+D. Personalize
+ANSWER: A
+
+Trong hệ thống máy tính, 1Kbyte bằng bao nhiêu byte?
+A. 1024
+B. 1022
+C. 1224
+D. 1122
+ANSWER: A
+
+Trong hệ điều hành Windows, tên tệp nào sau đây là không hợp lệ?
+A. Bai 1.xls
+B. Bai \tap.doc
+C. Ho so.pas
+D. vanban.txt
+ANSWER: B
+
+Hệ điều hành đưa ra thông báo lỗi khi nào?(Chọn 2)
+A. Nhập tên của thư mục có chứa dấu cách
+B. Nhập tên của thư mục mới có dấu gạch chéo
+C. Nhập tên của thư mục mới có dấu chấm
+D. Nhập tên của thư mục mới trùng với tên của thư mục đã có trong cùng một thư mục mẹ
+ANSWER: B
+
+Phần mềm nào sau đây không phải là tên của một loại phần mềm độc hại?
+A. phần mềm gián điệp (spyware)
+B. Sâu máy tính (worm)
+C. Phần mềm quảng cáo (adware)
+D. Phần mềm đóng băng ổ đĩa
+ANSWER: D
+
+Biểu hiện nào sau đây chứng tỏ máy tính của bạn có thể đã nhiễm virus? (Chọn 3)\
+A. Các thông báo bắt đầu xuất hiện ngẫu nhiên trên màn
+B. Bạn được nhắc nhở đổi mật khẩu khi bạn đang cố hình của bạn gắng đăng nhập lần sau
+C. Bây giờ bạn có quyền cài đặt đầy đủ các chương trình
+D. Các thông báo lỗi về việc thiếu các tệp tin hệ thống trong hệ thống xuất hiện như thế nào e) Máy tính dường như chạy chậm hơn bình thường
+ANSWER: C
+
+Lựa chọn nào sau đây không phải là tác hại phổ biến mà virus và phần mềm độc hại gây ra cho máy tính của bạn?
+A. Phá hủy dữ liệu
+B. Ăn cắp thông tin người dùng
+C. Chiếm quyền điều khiển hệ thống
+D. Phá hủy các thiết bị ngoại vi kết nối với máy tính
+ANSWER: D
+
+Trong MS Word, để xóa bảng khỏi văn bản ta thực hiện như thế nào (chọn các đáp án đúng)?
+A. Chọn bảng cần xóa/Table Tool/Vào Layout/ Chọn
+B. Chọn bảng cần xóa/Click chuột phải/ Chọn Delete Delete/ Chọn Delete Table Table
+C. Chọn bảng cần xóa/Vào Home/ Chọn Delete Table
+D. Chọn bảng cần xóa/Vào Insert/ Chọn Delete Table
+ANSWER: A
+
+Trong soạn thảo Microsoft word, công dụng của tổ hợp phím Ctrl+H là?
+A. Mở hộp thoại Font
+B. Mở hộp thoại tìm kiếm và thay thế văn bản
+C. Mở hộp thoại Paragraph
+D. Mở hộp thoại Tab
+ANSWER: B
+
+Trong MS Word, để loại bỏ các đường gạch chân màu đỏ hoặc màu xanh xuất hiện trong văn bản tiếng Việt ta làm như sau?
+A. Vào File/ Option/ Trong mục When correcting spelling
+B. Vào File/ Option/Proofing/ Trong mục When correcting and Gramma in Word bỏ tích chọn tất cả các lựa chọn spelling and Gramma in Word bỏ tích chọn tất cả các lựa chọn
+C. Vào File/ Proofing/Trong mục When correcting spelling
+D. Vào Home/ Option/Proofing/ Trong mục When and Gramma in Word bỏ tích chọn tất cả các lựa chọn correcting spelling and Gramma in Word bỏ tích chọn tất cả các lựa chọn
+ANSWER: B
+
+Trong Microsoft Word để tăng khoảng cách giữa các ký tự, ta thực hiện?
+A. Chọn Tab Home/Advance/Trong mục Spacing chọn
+B. Chọn Tab Home/Chọn nhóm Paragrap/Trong mục Expanded hoặc Condensed Number form chọn Expanded hoặc Condensed
+C. Chọn Tab Home/Chọn nhóm Font/Advance/Trong mục
+D. Chọn Tab Insert/Advance/Trong mục By chọn Spacing chọn Expanded Expanded hoặc Condensed
+ANSWER: C
+
+Để đặt mật khẩu cho văn bản ta làm thế nào?
+A. vào View/ Info/Chọn Protect Document/ Encrypt with
+B. Vào Insert/ Info/Chọn Protect Document/ Encrypt with Password Password
+C. Vào Home/ Info/Chọn Protect Document/ Encrypt with
+D. Vào File/ Info/Chọn Protect Document/ Encrypt with Password Password
+ANSWER: D
+
+Trong MS Word, Để loại bỏ các hiệu ứng điều chỉnh tự động (AutoCorrect) có sẵn trong phần mềm soạn thảo văn bản tiếng Việt ta thức hiện như sau?
+A. Vào File/ Option/ AutoCorrect Option/ Tìm mục cần
+B. Vào File/ Option/ Proofing/ AutoCorrect Option/ Tìm xóa sau đó ấn Delete/OK mục cần xóa sau đó ấn Delete/OK
+C. Vào Home /Proofing/ AutoCorrect Option/ Tìm mục
+D. Vào File/ Proofing/ AutoCorrect Option/ Tìm mục cần cần xóa sau đó ấn Delete/OK xóa sau đó ấn Delete
+ANSWER: B
+
+Trong MS Word, Chế độ nào cho phép hiển thị màn hình với kích thước hiển thị lớn nhất?
+A. Full Screen Reading
+B. Draft
+C. Outline
+D. Web Layout
+ANSWER: A
+
+Trong MS Word, Để tạo đường viền cho trang đầu tiên trong văn bản ta thực hiện?
+A. Mở hộp thoại Border and Shading/ Trong mục Apply
+B. Mở hộp thoại Border and Shading/ Trong mục Apply to chọn Whole Document to chọn This section- First Page Only
+C. Mở hộp thoại Border and Shading/ Trong mục Apply to
+D. Mở hộp thoại Border and Shading/ Trong mục Apply chọn This section to chọn This section- All except first page
+ANSWER: B
+
+Trong MS Word, Để áp dụng Style cho một đoạn văn bản bất kì ta thực hiện như thế nào?
+A. Chọn đoạn văn bản cần áp dụng Style. Vào Tab
+B. Chọn đoạn văn bản cần áp dụng Style. Vào Tab View/ Home/ Trong nhóm Styles/ chọn Style muốn áp dụng Trong nhóm Paragraph/ chọn Style muốn áp dụng
+C. Chọn đoạn văn bản cần áp dụng Style. Vào Tab
+D. Chọn đoạn văn bản cần áp dụng Style. Vào Tab Review/ Trong nhóm Styles/ chọn Style muốn áp dụng Insert/ Trong nhóm Styles/ chọn Style muốn áp dụng
+ANSWER: A
+
+Trong MS Word, Muốn hiển thị đường biên văn bản ta thực hiện?
+A. Chọn Home/Options/Advanced/đánh dấu lựa chọn
+B. Chọn Insert/Options/Advanced/đánh dấu lựa chọn Show Text Boundaries Show Text Boundaries
+C. Chọn View/Options/Advanced/đánh dấu lựa chọn
+D. Chọn File/Options/Advanced/đánh dấu lựa chọn Show Show Text Boundaries Text Boundaries
+ANSWER: D
+
+Muốn tính trung bình của hàng hay cột, ta sử dụng hàm nào sau đây:
+A. Average()
+B. Medium()
+C. TOTAL(SUM)/SUM()
+D. SUM(TOTAL)/TOTAL()
+ANSWER: A
+
+Trong Microsoft Excel, khi vẽ biểu đồ bằng công cụ Chart Wizard, thẻ Data Range cho phép làm gì?
+A. Thay đổi vùng dữ liệu vẽ biểu đồ
+B. Gán nhãn cho vùng dữ liệu
+C. Xóa dữ liệu
+D. Thêm 1 vùng dữ liệu
+ANSWER: A
+
+Biết vùng dữ liệu từ C2:C10 chứa Tên chức vụ, muốn xem có bao nhiêu Kế toán trong vùng dữ liệu ta thực hiện công thức:
+A. =Countif(C2:C10,"Kế toán")
+B. =Countif(C2:C10,Kế toán)
+C. =Countif(C2:C10,Kế toán)
+D. =Countif(C2:C10,'''Kế toán''')
+ANSWER: A
+
+Nếu máy tính được cập nhật ngày giờ chính xác. Giả sử ô E6 có giá trị là 20/11/2011, tại ô G6 gõ công thức '=YEAR(now())-YEAR(E6), kết quả là?
+A. 10
+B. 11
+C. 12
+D. 13
+ANSWER: B
+
+Để giữ cố định hàng được lặp lại qua các trang, ta chọn hàng bên dưới hàng đó và thực hiện:
+A. View\Freeze Panes
+B. Review\Freeze Panes
+C. Data\Freeze Panes
+D. Page Layout\Freeze Panes
+ANSWER: A
+
+Trong bảng tính Excel, điều kiện trong hàm IF được phát biểu dưới dạng một phép so sánh. Khi cần so sánh khác nhau thì sử dụng kí hiệu nào?
+A. <>
+B. ><
+C. #
+D. &
+ANSWER: A
+
+Thao tác để di chuyển đến một sheet khác trong cùng một tập tin?
+A. Nhấn phím F5 và số thứ tự của các sheet
+B. Nhấn chuột lên tên sheet cần di chuyển đến hoặc nhấn tổ hợp phím Ctrl + PgUp hoặc Ctrl + PgUp
+C. Nhấn phím F2 và số thứ tự của các sheet
+D. Nhấn phím F3 và số thứ tự của các sheet
+ANSWER: B
+
+Nếu B2 có giá trị bằng 10 thì công thức sau: =AVERAGE(125,IF(AND(B2>=7,B2<9),AVERAGE(6,9,5),SUM(30,120,150)),25) sẽ trả về kết quả nào dưới đây:
+A. 150
+B. 200
+C. 250
+D. 120
+ANSWER: A
+
+Nếu C3 có giá trị là 15 thì công thức sau: =AVERAGE(IF(AND(C3>5,C3<=9), MOD(20,3),COUNT(20,30,115)),4,IF(3>2,5,6))) sẽ trả về kết quả nào dưới đây:
+A. 3
+B. 4
+C. 5
+D. 6
+ANSWER: B
+
+Cách nào sau đây là cách đặt mật khẩu cho file Excel?
+A. File\Save\Tools\General Options
+B. File\Save\Tools\Web Option
+C. File\Save\Tools\Properties
+D. File\Save\Tools\PassWord
+ANSWER: A
+
+Nếu C3 có giá trị là 15 thì công thức sau: =SUM(IF(AND(C3>5,C3<=9),MOD(20,3),COUNT(20,30,115,"Nam","Dung")),MIN(573,615,705),IF(3>2,20,6)) sẽ trả về kết quả nào dưới đây:
+A. 660
+B. 596
+C. 601
+D. 569
+ANSWER: B
+
+Nếu B1 có giá trị là 8 thì công thức sau: =AVERAGE(IF(AND(B1>5,B1<=9),MOD(20,3),COUNTA(20,30,115,"Nam","Dung")),MIN(673,575,705),IF(3>2,20,6)) sẽ trả về kết quả nào dưới đây:
+A. 222
+B. 256
+C. 199
+D. 189
+ANSWER: C
+
+Trong bảng tính MS Excel, hàm nào sau đây cho phép đếm các giá trị thỏa mãn một điều kiện cho trước:
+A. COUNTIF
+B. SUMIF
+C. COUNT
+D. SUM
+ANSWER: A
+
+Nếu C1 có giá trị là 8 và B3 có giá trị là 25 thì công thức sau: =PRODUCT(IF(AND(C1>5,C1<=9),MOD(20,3),COUNT(20,30,"Nam","Dung",22)),MIN(673,575,705),IF(B3>=INT(20/3),67,625 sẽ trả về kết quả nào dưới đây:
+A. 77050
+B. 78450
+C. 67450
+D. 77059
+ANSWER: A
+
+Trong bảng tính MS Excel, để chèn biểu đồ dạng hình cột ta thực hiện:
+A. Insert\Charts\Column
+B. Insert\Charts\Bar
+C. Insert\Charts\Pine
+D. Insert\Charts\Line
+ANSWER: A
+
+Trong Excel, giả sử ô A1 của bảng tính lưu trị ngày 15/10/1970 theo chuẩn Việt Nam. Kết quả hàm =MONTH(A1) là bao nhiêu?
+A. 10
+B. 15
+C. #VALUE
+D. 1970
+ANSWER: A
+
+Trong bảng tính Excel, khi chiều dài dữ liệu kiểu số lớn hơn chiều rộng của ô thì sẽ hiển thị trong ô các kí tự:
+A. #
+B. ?
+C. *
+D. &
+ANSWER: A
+
+rong Excel hàm TODAY() trả về:
+A. Ngày tháng hiện tại của hệ thống
+B. Số ngày trong tháng của biến ngày tháng date
+C. Số năm của biến ngày tháng date
+D. Số tháng trong năm của biến ngày tháng date
+ANSWER: A
+
+Thay đổi thiết kế của Slide trong Powerpoint, ta thực hiện:
+A. Format - Slide Design...
+B. Tools - Slide Design...
+C. Format - Design Slide ...
+D. Insert - Slide Design...
+ANSWER: A
+
+Để thiết lập thời gian slide tự động chuyển sau 3 giây, bạn sử dụng lựa chọn nào?
+A. View
+B. Transitions
+C. Animations
+D. Cả 3 lựa chọn trên đều sai
+ANSWER: B
+
+Trong PowerPoint để chỉnh sửa giao diện, bố cục của tất cả các trang Slide ta vào View và chọn:
+A. Note Master
+B. Handout Master
+C. Slide Master
+D. Master Slide
+ANSWER: C
+
+Chèn bảng biểu vào slide trong powerpoint ta thực hiện như sau:
+A. Table -> Insert Table
+B. Insert -> Table
+C. Table -> Insert
+D. Format -> Table
+ANSWER: B
+
+Trong PowerPoint đang trình chiếu, muốn dừng trình diễn ta nhấn phím
+A. Esc
+B. Enter
+C. Exit
+D. Close
+ANSWER: A
+
+Sau khi đã chèn một bảng biểu vào slide, muốn chia một ô nào đó thành 2 ô ? (chọn nhiều đáp án)
+A. Kích chuột phải vào ô đó và chọn Split Cells
+B. Chọn ô đó rồi chọn Table -> Split Cells
+C. Chọn Insert-> Table -> Split Cells
+D. Chọn ô đó rồi chọn Table -> Cells
+ANSWER: A
+
+Muốn trình chiếu Slide hiện hành ta sử dụng ? (chọn nhiều đáp án)
+A. Slide Show \ nhóm Start Slide Show \ From Current
+B. Nhấn tổ hợp phím Ctrl + F5 Slide
+C. Nhấn tổ hợp phím Shift + F5
+D. Slide Show \ Start Slide Show \ From Slide Current
+ANSWER: A
+
+Tại một slide dùng tổ hợp phím nào sau đây sẽ xoá slide đó? (chọn nhiều đáp án)
+A. ALT+E+D
+B. ALT+E+C
+C. ALT+F+D
+D. Bấm delete (trên bàn phím)
+ANSWER: A
+
+Xóa tất cả các chú thích trong powerpoint ta thực hiện?
+A. Delete
+B. Delete all Markup on the Current Slide
+C. All delete Markup in this Presentation
+D. Cả 3 lựa chọn trên đều sai
+ANSWER: D
+
+Hiệu ứng nào sau đây cho đối tượng di chuyển theo một đường dẫn? (chọn nhiều đáp án)
+A. Loops
+B. Wipe
+C. Arcs
+D. Line Color
+ANSWER: A
+
+Ý nghĩa cơ bản nhất của mạng máy tính là gì?
+A. Nâng cao độ tin cậy của hệ thống máy tính
+B. Trao đổi và chia sẻ thông tin
+C. Phát triển ứng dụng trên máy tính
+D. Nâng cao chất lượng khai thác thông tin
+ANSWER: B
+
+Thuật ngữ viết tắt bằng tiếng Anh của mạng toàn cục là gì?
+A. LAN (Local Area Network)
+B. MAN (Metropolitan Area Network)
+C. WAN (Wide Area Network)
+D. GAN(Global Area Network)
+ANSWER: D
+
+Mạng Internet là mạng thuộc loại mạng nào?
+A. LAN
+B. MAN
+C. WAN
+D. GAN
+ANSWER: D
+
+Khi sử dụng mạng máy tính ta sẽ được các lợi ích?
+A. Chia sẻ tài nguyên (ổ cứng, cơ sở dữ liệu, máy in, các
+B. Quản lý tập trung phần mềm tiện ích, …)
+C. Tận dụng năng lực xử lý của các máy tính rỗi để làm
+D. Tất cả đều sai các đề án lớn
+ANSWER: A
+
+Tổ chức nào sau đây cung cấp dịch vụ truyền thông Internet?
+A. Lazada
+B. FPT
+C. Viettel
+D. Net Nam
+ANSWER: B
+
+Học lại?
+A. Yeppp
+B. Yesss
+C. Cóa
+D. Kó
+ANSWER: C
+
+Cậu có thể Zn ưn chúng tớ bằng cách
+A. Trà sữa nè
+B. Ngô nướng (trừ cổng trường :)) )
+C. Lời kẹm ưn so ciuu
+D. Chia sẻ tài liệu với chúng tớ
+ANSWER: A

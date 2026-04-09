@@ -73,6 +73,152 @@
             align-items: stretch;
         }
 
+        .admin-management-layout {
+            display: grid;
+            grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+            gap: 1rem;
+            align-items: start;
+            margin-top: 1rem;
+        }
+
+        .admin-subject-panel,
+        .admin-subject-content {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: color-mix(in srgb, var(--surface) 88%, transparent);
+            padding: 1rem;
+        }
+
+        .admin-subject-panel h2,
+        .admin-subject-content h2 {
+            margin: 0 0 0.7rem;
+        }
+
+        .admin-subject-content-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-subject-meta {
+            margin: 0.2rem 0 0;
+            color: var(--text-light);
+        }
+
+        .subject-count-badge {
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+            color: var(--text-light);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.4rem 0.75rem;
+            white-space: nowrap;
+        }
+
+        .bulk-action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .bulk-action-card {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--surface-2) 82%, transparent);
+            padding: 0.9rem;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .bulk-action-card strong {
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .bulk-action-card span {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .bulk-action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        .bulk-action-btn {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--surface) 88%, transparent);
+            color: var(--text);
+            font-weight: 700;
+            padding: 0.48rem 0.85rem;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+        }
+
+        .bulk-action-btn:hover {
+            transform: translateY(-1px);
+            border-color: var(--cyan);
+        }
+
+        .bulk-action-btn.primary {
+            border-color: rgba(34, 211, 238, 0.45);
+            color: var(--cyan);
+            background: color-mix(in srgb, var(--cyan) 12%, var(--surface));
+        }
+
+        .bulk-action-btn.danger {
+            border-color: rgba(248, 113, 113, 0.45);
+            color: #fca5a5;
+            background: color-mix(in srgb, #ef4444 10%, var(--surface));
+        }
+
+        .subject-pill-grid {
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .subject-pill {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--surface-2) 78%, transparent);
+            color: var(--text);
+            text-align: left;
+            font-weight: 700;
+            padding: 0.7rem 0.85rem;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s, background 0.2s;
+        }
+
+        .subject-pill:hover,
+        .subject-pill.is-active {
+            border-color: var(--cyan);
+            background: color-mix(in srgb, var(--cyan) 14%, var(--surface-2));
+            transform: translateY(-1px);
+        }
+
+        .subject-pill small {
+            display: block;
+            margin-top: 0.2rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .admin-management-empty {
+            padding: 1rem;
+            border: 1px dashed var(--line);
+            border-radius: 14px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
         .quiz-manage-card {
             padding: 1rem;
             display: flex;
@@ -151,14 +297,118 @@
             gap: 0.8rem;
         }
 
+        .import-file-row {
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .import-file-row input[type="file"] {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px dashed var(--line);
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--surface-2) 82%, transparent);
+            color: var(--text);
+        }
+
+        .import-file-name {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .admin-pin-overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(7, 10, 20, 0.72);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+        }
+
+        .admin-pin-overlay.is-open {
+            display: flex;
+        }
+
+        .admin-pin-dialog {
+            width: min(460px, 95vw);
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: color-mix(in srgb, var(--surface) 94%, transparent);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28);
+            padding: 1.15rem 1.15rem 1rem;
+        }
+
+        .admin-pin-dialog h3 {
+            margin: 0;
+        }
+
+        .admin-pin-dialog .quiz-dialog-message {
+            margin: 0.75rem 0 1rem;
+            color: var(--text-light);
+        }
+
+        .admin-pin-form {
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .admin-pin-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.7rem;
+        }
+
+        .quiz-dialog-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .quiz-dialog-btn.primary {
+            background: linear-gradient(135deg, #37d4ff, #4f7dff);
+            color: #04121f;
+        }
+
+        .quiz-dialog-btn.ghost {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text);
+        }
+
         @media (max-width: 760px) {
             .quiz-insight-row {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-management-layout {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body class="has-topbar">
+    <div id="adminPinOverlay" class="admin-pin-overlay" aria-hidden="true">
+        <div class="admin-pin-dialog" role="dialog" aria-modal="true" aria-labelledby="adminPinTitle">
+            <h3 id="adminPinTitle">Xác minh Admin</h3>
+            <p class="quiz-dialog-message">Nhập Admin PIN để tiếp tục.</p>
+            <form id="adminPinForm" class="admin-pin-form">
+                <div class="form-group">
+                    <label for="adminPinInput">Admin PIN</label>
+                    <input type="password" id="adminPinInput" class="form-control" autocomplete="off" inputmode="numeric" placeholder="Nhập PIN quản trị" required>
+                </div>
+                <div class="admin-pin-actions">
+                    <button type="button" class="quiz-dialog-btn ghost" id="adminPinCancelBtn">Thoát</button>
+                    <button type="submit" class="quiz-dialog-btn primary">Xác minh</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <header class="site-topbar">
         <div class="site-topbar-inner">
             <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
@@ -196,7 +446,7 @@
                     </div>
                     <div class="stat-card">
                         <p class="stat-label">Điểm Trung Bình</p>
-                        <p class="stat-value" id="avgScore">0%</p>
+                        <p class="stat-value" id="avgScore">0/10</p>
                     </div>
                 </div>
             </section>
@@ -217,8 +467,26 @@
                     <canvas id="attemptChart"></canvas>
                 </div>
 
-                <h2 style="margin-top: 1rem;">Danh sách quản lý</h2>
-                <div id="quizManagement" class="quiz-management"></div>
+                <div class="admin-management-layout">
+                    <aside class="admin-subject-panel">
+                        <h2>Danh Sách Môn</h2>
+                        <p class="admin-subject-meta">Chọn một môn để chỉ hiện quiz của môn đó.</p>
+                        <div id="adminSubjectsList" class="subject-pill-grid"></div>
+                    </aside>
+
+                    <div class="admin-subject-content">
+                        <div class="admin-subject-content-head">
+                            <div>
+                                <h2 id="adminSubjectTitle">Danh Sách Bài Quiz</h2>
+                                <p id="adminSubjectMeta" class="admin-subject-meta">Chưa chọn môn.</p>
+                            </div>
+                            <div id="adminSubjectCount" class="subject-count-badge">0 bài quiz</div>
+                        </div>
+
+                        <div id="adminBulkActions" class="bulk-action-grid"></div>
+                        <div id="quizManagement" class="quiz-management"></div>
+                    </div>
+                </div>
             </section>
 
             <section id="importPanel" class="admin-panel is-hidden">
@@ -229,6 +497,12 @@
                         <select id="quizIDImport" class="form-control">
                             <option value="">-- Chọn bài quiz --</option>
                         </select>
+                    </div>
+
+                    <div class="form-group import-file-row">
+                        <label for="aikenFileInput">Tải file TXT Aiken</label>
+                        <input type="file" id="aikenFileInput" class="form-control" accept=".txt,text/plain" onchange="loadAikenFile(this)">
+                        <p class="help-text" id="aikenFileInfo">Upload file txt sẽ đổ nội dung vào ô bên dưới, nhưng bạn vẫn có thể dán hoặc chỉnh tay.</p>
                     </div>
 
                     <div class="form-group">
@@ -276,18 +550,386 @@ EXP: Giải thích cho câu hỏi"
         let attemptChart;
         let adminView = 'manage';
         let adminQuizzesData = [];
+        let adminSubjects = [];
+        let adminSelectedSubject = sessionStorage.getItem('adminSelectedSubject') || '';
+        let adminPinVerified = sessionStorage.getItem('adminPinVerified') === 'true';
+        let adminPinVerifiedFor = sessionStorage.getItem('adminPinVerifiedFor') || '';
+        let adminPinProof = sessionStorage.getItem('adminPinProof') || '';
+        const adminToggleLocks = new Set();
+
+        function normalizeAdminSubject(subject) {
+            const value = String(subject || '').trim();
+            return value || 'Chưa phân loại';
+        }
+
+        function isEnabled(value, defaultValue = false) {
+            if (value === undefined || value === null || value === '') {
+                return defaultValue;
+            }
+
+            if (typeof value === 'boolean') {
+                return value;
+            }
+
+            const normalized = String(value).trim().toLowerCase();
+            return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'active' || normalized === 'checked';
+        }
+
+        function getQuizSubject(quiz) {
+            return normalizeAdminSubject(quiz && quiz.subject);
+        }
+
+        function getAdminSubjectQuizzes(subject) {
+            return (adminQuizzesData || []).filter((quiz) => getQuizSubject(quiz) === subject);
+        }
+
+        function setAdminToggleBusy(quizID, key, isBusy) {
+            const lockKey = `${quizID}:${key}`;
+            if (isBusy) {
+                adminToggleLocks.add(lockKey);
+            } else {
+                adminToggleLocks.delete(lockKey);
+            }
+        }
+
+        function isAdminToggleBusy(quizID, key) {
+            return adminToggleLocks.has(`${quizID}:${key}`);
+        }
+
+        function updateLocalQuizField(quizID, key, value) {
+            const idx = adminQuizzesData.findIndex((quiz) => quiz && quiz.quizID === quizID);
+            if (idx < 0) {
+                return;
+            }
+
+            adminQuizzesData[idx] = {
+                ...adminQuizzesData[idx],
+                [key]: !!value
+            };
+
+            renderAdminViewForSelectedSubject();
+        }
+
+        function getBulkActionConfig() {
+            return [
+                {
+                    key: 'status',
+                    label: 'Kích Hoạt Bài Thi',
+                    getter: (quiz) => isEnabled(quiz.status, false),
+                    updater: (quizID, value) => applyQuizStatusChange(quizID, value)
+                },
+                {
+                    key: 'showAnswer',
+                    label: 'Chế Độ Luyện Tập (Hiển Thị Đáp Án)',
+                    getter: (quiz) => isEnabled(quiz.showAnswer, false),
+                    updater: (quizID, value) => applyShowAnswerChange(quizID, value)
+                },
+                {
+                    key: 'shuffle',
+                    label: 'Đảo Câu / Đáp Án',
+                    getter: (quiz) => isEnabled(quiz.shuffle, false),
+                    updater: (quizID, value) => applyShuffleChange(quizID, value)
+                },
+                {
+                    key: 'antiCheat',
+                    label: 'Chống gian lận (Tab switch)',
+                    getter: (quiz) => isEnabled(quiz.antiCheat, true),
+                    updater: (quizID, value) => applyAntiCheatChange(quizID, value)
+                },
+                {
+                    key: 'autoNext',
+                    label: 'Tự động chuyển câu',
+                    getter: (quiz) => isEnabled(quiz.autoNext, false),
+                    updater: (quizID, value) => applyAutoNextChange(quizID, value)
+                },
+                {
+                    key: 'allowBack',
+                    label: 'Cho phép quay lại câu trước',
+                    getter: (quiz) => isEnabled(quiz.allowBack, true),
+                    updater: (quizID, value) => applyAllowBackChange(quizID, value)
+                }
+            ];
+        }
+
+        function getAdminBulkState(quizzes, config) {
+            const enabledCount = quizzes.reduce((count, quiz) => count + (config.getter(quiz) ? 1 : 0), 0);
+            return {
+                enabledCount,
+                totalCount: quizzes.length,
+                allEnabled: quizzes.length > 0 && enabledCount === quizzes.length,
+                allDisabled: enabledCount === 0
+            };
+        }
+
+        async function applyAdminBulkSetting(settingKey, desiredValue) {
+            const currentSubject = adminSelectedSubject;
+            const subjectQuizzes = getAdminSubjectQuizzes(currentSubject);
+            const config = getBulkActionConfig().find((item) => item.key === settingKey);
+
+            if (!config || subjectQuizzes.length === 0) {
+                return;
+            }
+
+            const confirmationMessage = desiredValue
+                ? `Bật ${config.label.toLowerCase()} cho ${subjectQuizzes.length} bài quiz của môn ${currentSubject}?`
+                : `Tắt ${config.label.toLowerCase()} cho ${subjectQuizzes.length} bài quiz của môn ${currentSubject}?`;
+
+            if (!confirm(confirmationMessage)) {
+                return;
+            }
+
+            const feedback = document.getElementById('adminBulkFeedback');
+            if (feedback) {
+                feedback.textContent = `Đang cập nhật ${config.label.toLowerCase()}...`;
+            }
+
+            try {
+                const results = await Promise.allSettled(
+                    subjectQuizzes.map((quiz) => config.updater(quiz.quizID, desiredValue))
+                );
+
+                const rejected = results.filter((result) => result.status === 'rejected');
+                if (rejected.length > 0) {
+                    throw new Error(`Có ${rejected.length} bài quiz cập nhật thất bại.`);
+                }
+
+                if (feedback) {
+                    feedback.textContent = `Đã ${desiredValue ? 'bật' : 'tắt'} ${config.label.toLowerCase()} cho ${subjectQuizzes.length} bài quiz.`;
+                }
+
+                await loadAdminData();
+            } catch (error) {
+                console.error(`Bulk update failed (${settingKey}):`, error);
+                if (feedback) {
+                    feedback.textContent = `Không thể cập nhật ${config.label.toLowerCase()}: ${error.message || 'Unknown error'}`;
+                }
+                if (typeof window.showInAppAlert === 'function') {
+                    await window.showInAppAlert(`Không thể cập nhật ${config.label.toLowerCase()}: ${error.message || 'Unknown error'}`);
+                } else {
+                    alert(`Không thể cập nhật ${config.label.toLowerCase()}: ${error.message || 'Unknown error'}`);
+                }
+            }
+        }
+
+        function renderAdminSubjects(quizzes) {
+            const container = document.getElementById('adminSubjectsList');
+            if (!container) {
+                return;
+            }
+
+            const subjectMap = new Map();
+
+            (quizzes || []).forEach((quiz) => {
+                const subject = getQuizSubject(quiz);
+                subjectMap.set(subject, (subjectMap.get(subject) || 0) + 1);
+            });
+
+            adminSubjects = Array.from(subjectMap.keys()).sort((a, b) => a.localeCompare(b, 'vi'));
+
+            if (!adminSelectedSubject || !adminSubjects.includes(adminSelectedSubject)) {
+                adminSelectedSubject = adminSubjects[0] || '';
+            }
+
+            sessionStorage.setItem('adminSelectedSubject', adminSelectedSubject);
+
+            container.innerHTML = '';
+
+            if (adminSubjects.length === 0) {
+                container.innerHTML = '<div class="admin-management-empty">Không có môn nào để quản lý.</div>';
+                return;
+            }
+
+            adminSubjects.forEach((subject) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'subject-pill';
+                button.dataset.subject = subject;
+                button.classList.toggle('is-active', subject === adminSelectedSubject);
+                button.innerHTML = `${subject}<small>${subjectMap.get(subject)} bài quiz</small>`;
+                button.addEventListener('click', () => selectAdminSubject(subject));
+                container.appendChild(button);
+            });
+        }
+
+        function selectAdminSubject(subject) {
+            adminSelectedSubject = normalizeAdminSubject(subject);
+            sessionStorage.setItem('adminSelectedSubject', adminSelectedSubject);
+            renderAdminViewForSelectedSubject();
+        }
+
+        function updateAdminSubjectSelectionUI() {
+            document.querySelectorAll('#adminSubjectsList .subject-pill').forEach((button) => {
+                button.classList.toggle('is-active', normalizeAdminSubject(button.dataset.subject) === adminSelectedSubject);
+            });
+        }
+
+        function renderBulkActions(subject, quizzes) {
+            const container = document.getElementById('adminBulkActions');
+            if (!container) {
+                return;
+            }
+
+            container.innerHTML = '';
+
+            if (!subject) {
+                container.innerHTML = '<div class="admin-management-empty">Chọn một môn để dùng thao tác hàng loạt.</div>';
+                return;
+            }
+
+            if (!quizzes || quizzes.length === 0) {
+                container.innerHTML = '<div class="admin-management-empty">Môn này chưa có quiz.</div>';
+                return;
+            }
+
+            getBulkActionConfig().forEach((config) => {
+                const state = getAdminBulkState(quizzes, config);
+                const card = document.createElement('div');
+                card.className = 'bulk-action-card';
+                card.innerHTML = `
+                    <div>
+                        <strong>${config.label}</strong>
+                        <span>${state.enabledCount}/${state.totalCount} bài quiz đang bật</span>
+                    </div>
+                    <div class="bulk-action-buttons">
+                        <button type="button" class="bulk-action-btn primary" onclick="applyAdminBulkSetting('${config.key}', true)">Bật tất cả</button>
+                        <button type="button" class="bulk-action-btn danger" onclick="applyAdminBulkSetting('${config.key}', false)">Tắt tất cả</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            const feedback = document.createElement('div');
+            feedback.id = 'adminBulkFeedback';
+            feedback.className = 'feedback';
+            feedback.style.marginTop = '0.2rem';
+            container.appendChild(feedback);
+        }
+
+        function renderAdminViewForSelectedSubject() {
+            const selectedSubject = adminSelectedSubject || adminSubjects[0] || '';
+            const quizzes = selectedSubject ? getAdminSubjectQuizzes(selectedSubject) : [];
+            const titleEl = document.getElementById('adminSubjectTitle');
+            const metaEl = document.getElementById('adminSubjectMeta');
+            const countEl = document.getElementById('adminSubjectCount');
+
+            if (titleEl) {
+                titleEl.textContent = selectedSubject ? `Danh Sách Bài Quiz - ${selectedSubject}` : 'Danh Sách Bài Quiz';
+            }
+
+            if (metaEl) {
+                metaEl.textContent = selectedSubject
+                    ? 'Chọn các nút bên dưới để bật/tắt hàng loạt cho toàn bộ quiz của môn này.'
+                    : 'Chưa chọn môn.';
+            }
+
+            if (countEl) {
+                countEl.textContent = `${quizzes.length} bài quiz`;
+            }
+
+            renderBulkActions(selectedSubject, quizzes);
+            renderQuizManagement(quizzes, selectedSubject);
+            renderChartForSubject(selectedSubject, quizzes);
+            updateAdminSubjectSelectionUI();
+        }
+
+        function renderChartForSubject(subject, quizzes) {
+            if (adminView !== 'manage') {
+                return;
+            }
+
+            const chartSource = subject && quizzes && quizzes.length > 0 ? quizzes : adminQuizzesData;
+            drawAttemptChart(chartSource, subject);
+        }
 
         async function initAdmin() {
             // Kiểm tra quyền Admin
-            const token = localStorage.getItem('quizToken');
-            const role = localStorage.getItem('quizRole');
+            const token = AuthManager.getToken();
+            const role = AuthManager.getRole();
 
             if (!token || role !== 'Admin') {
                 window.location.href = 'dashboard.html';
                 return;
             }
 
-            loadAdminData();
+            const currentUsername = AuthManager.getUsername() || '';
+            if (adminPinVerified && adminPinVerifiedFor === currentUsername && adminPinProof) {
+                loadAdminData();
+                return;
+            }
+
+            await requestAdminPin();
+        }
+
+        function openAdminPinOverlay() {
+            const overlay = document.getElementById('adminPinOverlay');
+            const input = document.getElementById('adminPinInput');
+            overlay.classList.add('is-open');
+            overlay.setAttribute('aria-hidden', 'false');
+            setTimeout(() => input.focus(), 0);
+        }
+
+        function closeAdminPinOverlay() {
+            const overlay = document.getElementById('adminPinOverlay');
+            const input = document.getElementById('adminPinInput');
+            overlay.classList.remove('is-open');
+            overlay.setAttribute('aria-hidden', 'true');
+            input.value = '';
+        }
+
+        async function requestAdminPin() {
+            const form = document.getElementById('adminPinForm');
+            const input = document.getElementById('adminPinInput');
+            const cancelBtn = document.getElementById('adminPinCancelBtn');
+
+            openAdminPinOverlay();
+
+            cancelBtn.onclick = () => {
+                AuthManager.clearAuth();
+                sessionStorage.removeItem('adminPinVerified');
+                sessionStorage.removeItem('adminPinVerifiedFor');
+                window.location.href = 'login.html';
+            };
+
+            form.onsubmit = async (event) => {
+                event.preventDefault();
+
+                try {
+                    const pinValue = String(input.value || '').trim();
+                    const pinHash = await sha256(pinValue);
+                    const result = await APIClient.request('verifyAdminPin', { pinHash });
+
+                    if (result && result.success) {
+                        adminPinVerified = true;
+                        adminPinVerifiedFor = AuthManager.getUsername() || '';
+                        adminPinProof = result.adminPinProof || '';
+                        sessionStorage.setItem('adminPinVerified', 'true');
+                        sessionStorage.setItem('adminPinVerifiedFor', adminPinVerifiedFor);
+                        sessionStorage.setItem('adminPinProof', adminPinProof);
+                        closeAdminPinOverlay();
+                        loadAdminData();
+                        return;
+                    }
+
+                    adminPinVerified = false;
+                    adminPinVerifiedFor = '';
+                    adminPinProof = '';
+                    AuthManager.clearAuth();
+                    sessionStorage.removeItem('adminPinVerified');
+                    sessionStorage.removeItem('adminPinVerifiedFor');
+                    sessionStorage.removeItem('adminPinProof');
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    console.error('Admin PIN verification error:', error);
+                    adminPinVerified = false;
+                    adminPinVerifiedFor = '';
+                    adminPinProof = '';
+                    AuthManager.clearAuth();
+                    sessionStorage.removeItem('adminPinVerified');
+                    sessionStorage.removeItem('adminPinVerifiedFor');
+                    sessionStorage.removeItem('adminPinProof');
+                    window.location.href = 'login.html';
+                }
+            };
         }
 
         function switchAdminView(view) {
@@ -299,7 +941,7 @@ EXP: Giải thích cho câu hỏi"
             document.getElementById('importPanel').classList.toggle('is-hidden', view !== 'import');
 
             if (view === 'manage') {
-                ensureManageChart();
+                renderAdminViewForSelectedSubject();
             }
         }
 
@@ -311,14 +953,14 @@ EXP: Giải thích cho câu hỏi"
                 return;
             }
 
-            drawAttemptChart(adminQuizzesData);
+            renderAdminViewForSelectedSubject();
         }
 
         function logoutAdmin() {
-            localStorage.removeItem('quizToken');
-            localStorage.removeItem('quizRole');
-            localStorage.removeItem('quizUsername');
-            localStorage.removeItem('currentQuizID');
+            AuthManager.clearAuth();
+            sessionStorage.removeItem('adminPinVerified');
+            sessionStorage.removeItem('adminPinVerifiedFor');
+            sessionStorage.removeItem('adminPinProof');
             sessionStorage.removeItem('quizSubjectsCache');
             window.location.href = 'login.html';
         }
@@ -334,16 +976,17 @@ EXP: Giải thích cho câu hỏi"
                     document.getElementById('totalAttempts').textContent = result.stats.totalAttempts;
                     document.getElementById('activeUsers').textContent = result.stats.activeUsers;
                     document.getElementById('avgScore').textContent = 
-                        (result.stats.averageScore || 0).toFixed(2) + '%';
+                        (result.stats.averageScore || 0).toFixed(2) + '/10';
 
                     adminQuizzesData = result.quizzes || [];
-                    ensureManageChart();
-
-                    // Render quản lý bài thi
-                    renderQuizManagement(adminQuizzesData);
+                    renderAdminSubjects(adminQuizzesData);
+                    renderAdminViewForSelectedSubject();
 
                     // Load danh sách quiz cho import
                     loadQuizList(adminQuizzesData);
+                } else if (String(result.message || '').toLowerCase().includes('unauthorized') || String(result.message || '').toLowerCase().includes('invalid token')) {
+                    AuthManager.clearAuth();
+                    window.location.href = 'login.html';
                 }
             } catch (error) {
                 console.error('Error loading admin data:', error);
@@ -351,7 +994,7 @@ EXP: Giải thích cho câu hỏi"
         }
 
         // Vẽ biểu đồ
-        function drawAttemptChart(quizzes) {
+        function drawAttemptChart(quizzes, subjectLabel = '') {
             const ctx = document.getElementById('attemptChart').getContext('2d');
 
             const sorted = (quizzes || [])
@@ -397,6 +1040,10 @@ EXP: Giải thích cho câu hỏi"
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
+                        title: {
+                            display: !!subjectLabel,
+                            text: subjectLabel ? `Biểu đồ môn ${subjectLabel}` : ''
+                        },
                         legend: {
                             labels: {
                                 color: '#94a3b8'
@@ -437,22 +1084,30 @@ EXP: Giải thích cho câu hỏi"
         }
 
         // Render quản lý bài thi
-        function renderQuizManagement(quizzes) {
+        function renderQuizManagement(quizzes, subject) {
             const container = document.getElementById('quizManagement');
             container.innerHTML = '';
 
-            const isEnabled = (value) => {
-                if (typeof value === 'boolean') return value;
-                const normalized = String(value || '').trim().toLowerCase();
-                return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'active';
-            };
+            if (!subject) {
+                container.innerHTML = '<div class="admin-management-empty">Chọn một môn ở cột bên trái để xem danh sách quiz.</div>';
+                return;
+            }
+
+            if (!quizzes || quizzes.length === 0) {
+                container.innerHTML = '<div class="admin-management-empty">Môn này chưa có quiz.</div>';
+                return;
+            }
 
             quizzes.forEach(quiz => {
+                const antiCheatEnabled = isEnabled(quiz.antiCheat, true);
+                const autoNextEnabled = isEnabled(quiz.autoNext, false);
+                const allowBackEnabled = isEnabled(quiz.allowBack, true);
+
                 const card = document.createElement('div');
                 card.className = 'quiz-manage-card';
                 card.innerHTML = `
                     <div class="quiz-headline">
-                        <div class="quiz-meta">${quiz.quizID} • ${quiz.subject || 'N/A'}</div>
+                        <div class="quiz-meta">${quiz.quizID} • ${subject}</div>
                         <h4 class="quiz-title">${quiz.title}</h4>
                     </div>
                     <p class="quiz-desc">${quiz.description}</p>
@@ -467,7 +1122,7 @@ EXP: Giải thích cho câu hỏi"
                             <span>Kích Hoạt Bài Thi</span>
                             <input type="checkbox" class="toggle-switch" 
                                 ${isEnabled(quiz.status) ? 'checked' : ''}
-                                onchange="updateQuizStatus('${quiz.quizID}', this.checked)">
+                                onchange="updateQuizStatus('${quiz.quizID}', this.checked, this)">
                             <span class="toggle-slider"></span>
                         </label>
 
@@ -475,7 +1130,39 @@ EXP: Giải thích cho câu hỏi"
                             <span>Chế Độ Luyện Tập (Hiển Thị Đáp Án)</span>
                             <input type="checkbox" class="toggle-switch" 
                                 ${isEnabled(quiz.showAnswer) ? 'checked' : ''}
-                                onchange="updateShowAnswer('${quiz.quizID}', this.checked)">
+                                onchange="updateShowAnswer('${quiz.quizID}', this.checked, this)">
+                            <span class="toggle-slider"></span>
+                        </label>
+
+                        <label class="toggle-label">
+                            <span>Đảo Câu / Đáp Án</span>
+                            <input type="checkbox" class="toggle-switch" 
+                                ${isEnabled(quiz.shuffle) ? 'checked' : ''}
+                                onchange="updateShuffle('${quiz.quizID}', this.checked, this)">
+                            <span class="toggle-slider"></span>
+                        </label>
+
+                        <label class="toggle-label">
+                            <span>Chống gian lận (Tab switch)</span>
+                            <input type="checkbox" class="toggle-switch" 
+                                ${antiCheatEnabled ? 'checked' : ''}
+                                onchange="updateAntiCheat('${quiz.quizID}', this.checked, this)">
+                            <span class="toggle-slider"></span>
+                        </label>
+
+                        <label class="toggle-label">
+                            <span>Tự động chuyển câu</span>
+                            <input type="checkbox" class="toggle-switch" 
+                                ${autoNextEnabled ? 'checked' : ''}
+                                onchange="updateAutoNext('${quiz.quizID}', this.checked, this)">
+                            <span class="toggle-slider"></span>
+                        </label>
+
+                        <label class="toggle-label">
+                            <span>Cho phép quay lại câu trước</span>
+                            <input type="checkbox" class="toggle-switch" 
+                                ${allowBackEnabled ? 'checked' : ''}
+                                onchange="updateAllowBack('${quiz.quizID}', this.checked, this)">
                             <span class="toggle-slider"></span>
                         </label>
                     </div>
@@ -496,21 +1183,236 @@ EXP: Giải thích cho câu hỏi"
             });
         }
 
-        // Cập nhật trạng thái bài thi
-        async function updateQuizStatus(quizID, isActive) {
+        async function loadAikenFile(inputEl) {
+            const feedback = document.getElementById('aikenFileInfo');
+            const textarea = document.getElementById('aikenContent');
+            const file = inputEl && inputEl.files ? inputEl.files[0] : null;
+
+            if (!file) {
+                if (feedback) {
+                    feedback.textContent = 'Chưa tải file nào.';
+                }
+                return;
+            }
+
             try {
-                await APIClient.updateQuizStatus(quizID, isActive ? 'Active' : 'Inactive');
+                const content = await file.text();
+                textarea.value = content;
+                if (feedback) {
+                    feedback.textContent = `Đã nạp ${file.name} (${Math.max(1, Math.round(file.size / 1024))} KB) vào ô nội dung.`;
+                }
+            } catch (error) {
+                console.error('Error loading Aiken file:', error);
+                if (feedback) {
+                    feedback.textContent = 'Không thể đọc file TXT này.';
+                }
+            }
+        }
+
+        async function applyQuizStatusChange(quizID, isActive) {
+            const result = await APIClient.updateQuizStatus(quizID, !!isActive);
+            if (!result || !result.success) {
+                throw new Error((result && result.message) || 'Cập nhật trạng thái thất bại');
+            }
+            return result;
+        }
+
+        async function applyShowAnswerChange(quizID, showAnswer) {
+            const result = await APIClient.updateShowAnswer(quizID, !!showAnswer);
+            if (!result || !result.success) {
+                throw new Error((result && result.message) || 'Cập nhật show answer thất bại');
+            }
+            return result;
+        }
+
+        async function applyShuffleChange(quizID, shuffle) {
+            const result = await APIClient.updateShuffle(quizID, !!shuffle);
+            if (!result || !result.success) {
+                throw new Error((result && result.message) || 'Cập nhật shuffle thất bại');
+            }
+            return result;
+        }
+
+        async function applyAntiCheatChange(quizID, antiCheat) {
+            const result = await APIClient.updateAntiCheat(quizID, antiCheat);
+            if (!result || !result.success) {
+                throw new Error((result && result.message) || 'Cập nhật Anti-Cheat thất bại');
+            }
+            return result;
+        }
+
+        async function applyAutoNextChange(quizID, autoNext) {
+            const result = await APIClient.updateAutoNext(quizID, autoNext);
+            if (!result || !result.success) {
+                throw new Error((result && result.message) || 'Cập nhật Auto-next thất bại');
+            }
+            return result;
+        }
+
+        async function applyAllowBackChange(quizID, allowBack) {
+            const result = await APIClient.updateAllowBack(quizID, allowBack);
+            if (!result || !result.success) {
+                throw new Error((result && result.message) || 'Cập nhật Allow-back thất bại');
+            }
+            return result;
+        }
+
+        // Cập nhật trạng thái bài thi
+        async function updateQuizStatus(quizID, isActive, toggleEl) {
+            if (isAdminToggleBusy(quizID, 'status')) {
+                if (toggleEl) {
+                    toggleEl.checked = !isActive;
+                }
+                return;
+            }
+
+            setAdminToggleBusy(quizID, 'status', true);
+            try {
+                await applyQuizStatusChange(quizID, isActive);
+                updateLocalQuizField(quizID, 'status', isActive);
             } catch (error) {
                 console.error('Error updating quiz status:', error);
+                if (toggleEl) {
+                    toggleEl.checked = !isActive;
+                }
+                if (typeof window.showInAppAlert === 'function') {
+                    await window.showInAppAlert(`Không cập nhật được trạng thái bài thi: ${error.message || 'Unknown error'}`);
+                }
+            } finally {
+                setAdminToggleBusy(quizID, 'status', false);
             }
         }
 
         // Cập nhật chế độ Show Answer
-        async function updateShowAnswer(quizID, showAnswer) {
+        async function updateShowAnswer(quizID, showAnswer, toggleEl) {
+            if (isAdminToggleBusy(quizID, 'showAnswer')) {
+                if (toggleEl) {
+                    toggleEl.checked = !showAnswer;
+                }
+                return;
+            }
+
+            setAdminToggleBusy(quizID, 'showAnswer', true);
             try {
-                await APIClient.updateShowAnswer(quizID, showAnswer ? 'True' : 'False');
+                await applyShowAnswerChange(quizID, showAnswer);
+                updateLocalQuizField(quizID, 'showAnswer', showAnswer);
             } catch (error) {
                 console.error('Error updating show answer:', error);
+                if (toggleEl) {
+                    toggleEl.checked = !showAnswer;
+                }
+                if (typeof window.showInAppAlert === 'function') {
+                    await window.showInAppAlert(`Không cập nhật được chế độ luyện tập: ${error.message || 'Unknown error'}`);
+                }
+            } finally {
+                setAdminToggleBusy(quizID, 'showAnswer', false);
+            }
+        }
+
+        // Cập nhật đảo câu / đáp án
+        async function updateShuffle(quizID, shuffle, toggleEl) {
+            if (isAdminToggleBusy(quizID, 'shuffle')) {
+                if (toggleEl) {
+                    toggleEl.checked = !shuffle;
+                }
+                return;
+            }
+
+            setAdminToggleBusy(quizID, 'shuffle', true);
+            try {
+                await applyShuffleChange(quizID, shuffle);
+                updateLocalQuizField(quizID, 'shuffle', shuffle);
+            } catch (error) {
+                console.error('Error updating shuffle:', error);
+                if (toggleEl) {
+                    toggleEl.checked = !shuffle;
+                }
+                if (typeof window.showInAppAlert === 'function') {
+                    await window.showInAppAlert(`Không cập nhật được chế độ đảo: ${error.message || 'Unknown error'}`);
+                }
+            } finally {
+                setAdminToggleBusy(quizID, 'shuffle', false);
+            }
+        }
+
+        async function updateAntiCheat(quizID, antiCheat, toggleEl) {
+            if (isAdminToggleBusy(quizID, 'antiCheat')) {
+                if (toggleEl) {
+                    toggleEl.checked = !antiCheat;
+                }
+                return;
+            }
+
+            setAdminToggleBusy(quizID, 'antiCheat', true);
+            try {
+                await applyAntiCheatChange(quizID, antiCheat);
+                updateLocalQuizField(quizID, 'antiCheat', antiCheat);
+            } catch (error) {
+                console.error('Error updating anti-cheat:', error);
+                if (toggleEl) {
+                    toggleEl.checked = !antiCheat;
+                }
+                if (typeof window.showInAppAlert === 'function') {
+                    await window.showInAppAlert(`Không cập nhật được Anti-Cheat: ${error.message || 'Unknown error'}`);
+                } else {
+                    alert(`Không cập nhật được Anti-Cheat: ${error.message || 'Unknown error'}`);
+                }
+            } finally {
+                setAdminToggleBusy(quizID, 'antiCheat', false);
+            }
+        }
+
+        async function updateAutoNext(quizID, autoNext, toggleEl) {
+            if (isAdminToggleBusy(quizID, 'autoNext')) {
+                if (toggleEl) {
+                    toggleEl.checked = !autoNext;
+                }
+                return;
+            }
+
+            setAdminToggleBusy(quizID, 'autoNext', true);
+            try {
+                await applyAutoNextChange(quizID, autoNext);
+                updateLocalQuizField(quizID, 'autoNext', autoNext);
+            } catch (error) {
+                console.error('Error updating auto-next:', error);
+                if (toggleEl) {
+                    toggleEl.checked = !autoNext;
+                }
+                if (typeof window.showInAppAlert === 'function') {
+                    await window.showInAppAlert(`Không cập nhật được Auto-next: ${error.message || 'Unknown error'}`);
+                } else {
+                    alert(`Không cập nhật được Auto-next: ${error.message || 'Unknown error'}`);
+                }
+            } finally {
+                setAdminToggleBusy(quizID, 'autoNext', false);
+            }
+        }
+
+        async function updateAllowBack(quizID, allowBack, toggleEl) {
+            if (isAdminToggleBusy(quizID, 'allowBack')) {
+                if (toggleEl) {
+                    toggleEl.checked = !allowBack;
+                }
+                return;
+            }
+
+            setAdminToggleBusy(quizID, 'allowBack', true);
+            try {
+                await applyAllowBackChange(quizID, allowBack);
+                updateLocalQuizField(quizID, 'allowBack', allowBack);
+            } catch (error) {
+                console.error('Error updating allow-back:', error);
+                if (toggleEl) {
+                    toggleEl.checked = !allowBack;
+                }
+                if (typeof window.showInAppAlert === 'function') {
+                    await window.showInAppAlert(`Không cập nhật được Allow-back: ${error.message || 'Unknown error'}`);
+                } else {
+                    alert(`Không cập nhật được Allow-back: ${error.message || 'Unknown error'}`);
+                }
+            } finally {
+                setAdminToggleBusy(quizID, 'allowBack', false);
             }
         }
 
