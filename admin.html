@@ -324,7 +324,7 @@
             align-items: center;
             justify-content: center;
             padding: 1rem;
-            background: rgba(7, 10, 20, 0.72);
+            background: color-mix(in srgb, var(--bg) 72%, transparent);
             backdrop-filter: blur(8px);
             z-index: 10000;
         }
@@ -376,8 +376,13 @@
         }
 
         .quiz-dialog-btn.ghost {
-            background: rgba(255, 255, 255, 0.12);
+            background: color-mix(in srgb, var(--surface-2) 82%, transparent);
             color: var(--text);
+            border: 1px solid var(--line);
+        }
+
+        body.light-theme .admin-pin-overlay {
+            background: rgba(15, 23, 42, 0.32);
         }
 
         @media (max-width: 760px) {
@@ -674,7 +679,9 @@ EXP: Giải thích cho câu hỏi"
                 ? `Bật ${config.label.toLowerCase()} cho ${subjectQuizzes.length} bài quiz của môn ${currentSubject}?`
                 : `Tắt ${config.label.toLowerCase()} cho ${subjectQuizzes.length} bài quiz của môn ${currentSubject}?`;
 
-            if (!confirm(confirmationMessage)) {
+            const confirmed = await window.showInAppConfirm(confirmationMessage, 'Xác nhận thao tác hàng loạt');
+
+            if (!confirmed) {
                 return;
             }
 
@@ -705,8 +712,6 @@ EXP: Giải thích cho câu hỏi"
                 }
                 if (typeof window.showInAppAlert === 'function') {
                     await window.showInAppAlert(`Không thể cập nhật ${config.label.toLowerCase()}: ${error.message || 'Unknown error'}`);
-                } else {
-                    alert(`Không thể cập nhật ${config.label.toLowerCase()}: ${error.message || 'Unknown error'}`);
                 }
             }
         }
@@ -1354,8 +1359,6 @@ EXP: Giải thích cho câu hỏi"
                 }
                 if (typeof window.showInAppAlert === 'function') {
                     await window.showInAppAlert(`Không cập nhật được Anti-Cheat: ${error.message || 'Unknown error'}`);
-                } else {
-                    alert(`Không cập nhật được Anti-Cheat: ${error.message || 'Unknown error'}`);
                 }
             } finally {
                 setAdminToggleBusy(quizID, 'antiCheat', false);
@@ -1381,8 +1384,6 @@ EXP: Giải thích cho câu hỏi"
                 }
                 if (typeof window.showInAppAlert === 'function') {
                     await window.showInAppAlert(`Không cập nhật được Auto-next: ${error.message || 'Unknown error'}`);
-                } else {
-                    alert(`Không cập nhật được Auto-next: ${error.message || 'Unknown error'}`);
                 }
             } finally {
                 setAdminToggleBusy(quizID, 'autoNext', false);
@@ -1408,8 +1409,6 @@ EXP: Giải thích cho câu hỏi"
                 }
                 if (typeof window.showInAppAlert === 'function') {
                     await window.showInAppAlert(`Không cập nhật được Allow-back: ${error.message || 'Unknown error'}`);
-                } else {
-                    alert(`Không cập nhật được Allow-back: ${error.message || 'Unknown error'}`);
                 }
             } finally {
                 setAdminToggleBusy(quizID, 'allowBack', false);
@@ -1443,7 +1442,12 @@ EXP: Giải thích cho câu hỏi"
                 return;
             }
 
-            if (!confirm(`Bạn sắp nhập ${questions.length} câu hỏi vào quiz ${quizID}. Xác nhận tiếp tục?`)) {
+            const proceedImport = await window.showInAppConfirm(
+                `Bạn sắp nhập ${questions.length} câu hỏi vào quiz ${quizID}. Xác nhận tiếp tục?`,
+                'Xác nhận import'
+            );
+
+            if (!proceedImport) {
                 return;
             }
 
