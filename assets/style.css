@@ -1089,13 +1089,36 @@ button.password-peek:hover:not(:disabled) {
     }
 
     .quiz-navigation {
-        flex-direction: column;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: color-mix(in srgb, var(--surface) 90%, transparent);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--line);
+        padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+        z-index: 1000;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.5rem;
     }
 
     .btn-prev,
     .btn-next,
     .btn-submit {
-        width: 100%;
+        width: auto;
+        flex: 1;
+        padding: 0.6rem 0.2rem;
+        font-size: 0.85rem;
+    }
+
+    .quiz-content {
+        padding-bottom: 5rem;
+    }
+
+    .question-indicator {
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -1110,5 +1133,22 @@ button.password-peek:hover:not(:disabled) {
         width: 100%;
         text-align: center;
         justify-content: center;
+    }
+}
+
+@media print {
+    body {
+        display: none !important;
+    }
+
+    html::after {
+        content: "Quiz Lab: Khong duoc phep in hoac luu tru bai thi!";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-size: 2rem;
+        font-weight: bold;
+        color: red;
     }
 }
