@@ -21,6 +21,148 @@ class AntiCheat {
         this.lastViolationAt = 0;
         this.violationCooldownMs = 1200;
         this._tabVisibilityHandler = null;
+        this._dialogOverlay = null;
+        this._dialogMessage = null;
+        this._dialogOkButton = null;
+    }
+
+    ensureCheatDialog() {
+        if (!document.getElementById('antiCheatDialogStyle')) {
+            const style = document.createElement('style');
+            style.id = 'antiCheatDialogStyle';
+            style.textContent = `
+                .anti-cheat-dialog-overlay {
+                    position: fixed;
+                    inset: 0;
+                    background: rgba(7, 10, 20, 0.64);
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10001;
+                    padding: 1rem;
+                }
+
+                .anti-cheat-dialog-overlay.is-open {
+                    display: flex;
+                }
+
+                .anti-cheat-dialog {
+                    width: min(520px, 95vw);
+                    border-radius: 18px;
+                    border: 1px solid color-mix(in srgb, var(--line, rgba(255, 255, 255, 0.18)) 60%, rgba(255, 255, 255, 0.12));
+                    background: color-mix(in srgb, var(--surface, rgba(10, 28, 48, 0.9)) 94%, transparent);
+                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28);
+                    padding: 1.2rem 1.2rem 1rem;
+                    color: var(--text, #eef3ff);
+                }
+
+                .anti-cheat-dialog-title {
+                    margin: 0;
+                    font-size: 1.05rem;
+                    font-weight: 700;
+                }
+
+                .anti-cheat-dialog-message {
+                    margin: 0.85rem 0 1.15rem;
+                    white-space: pre-line;
+                    line-height: 1.5;
+                    color: var(--text-light, rgba(236, 244, 255, 0.92));
+                }
+
+                .anti-cheat-dialog-actions {
+                    display: flex;
+                    justify-content: flex-end;
+                }
+
+                .anti-cheat-dialog-btn {
+                    border: none;
+                    border-radius: 10px;
+                    padding: 0.6rem 1rem;
+                    cursor: pointer;
+                    font-weight: 600;
+                    background: linear-gradient(135deg, #37d4ff, #4f7dff);
+                    color: #04121f;
+                }
+
+                body.light-theme .anti-cheat-dialog-overlay {
+                    background: rgba(15, 23, 42, 0.32);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        if (this._dialogOverlay && this._dialogOverlay.isConnected) {
+            return;
+        }
+
+        const overlay = document.createElement('div');
+        overlay.className = 'anti-cheat-dialog-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
+
+        const dialog = document.createElement('div');
+        dialog.className = 'anti-cheat-dialog';
+        dialog.setAttribute('role', 'dialog');
+        dialog.setAttribute('aria-modal', 'true');
+        dialog.setAttribute('aria-labelledby', 'antiCheatDialogTitle');
+
+        const title = document.createElement('h3');
+        title.id = 'antiCheatDialogTitle';
+        title.className = 'anti-cheat-dialog-title';
+        title.textContent = 'Thông báo';
+
+        const message = document.createElement('p');
+        message.className = 'anti-cheat-dialog-message';
+
+        const actions = document.createElement('div');
+        actions.className = 'anti-cheat-dialog-actions';
+
+        const okButton = document.createElement('button');
+        okButton.type = 'button';
+        okButton.className = 'anti-cheat-dialog-btn';
+        okButton.textContent = 'OK';
+
+        actions.appendChild(okButton);
+        dialog.appendChild(title);
+        dialog.appendChild(message);
+        dialog.appendChild(actions);
+        overlay.appendChild(dialog);
+
+        (document.body || document.documentElement).appendChild(overlay);
+
+        this._dialogOverlay = overlay;
+        this._dialogMessage = message;
+        this._dialogOkButton = okButton;
+    }
+
+    openCheatDialog(message) {
+        this.ensureCheatDialog();
+
+        return new Promise((resolve) => {
+            const closeDialog = () => {
+                this._dialogOverlay.classList.remove('is-open');
+                this._dialogOverlay.setAttribute('aria-hidden', 'true');
+                resolve(true);
+            };
+
+            const onEscape = (event) => {
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    document.removeEventListener('keydown', onEscape, true);
+                    closeDialog();
+                }
+            };
+
+            this._dialogMessage.textContent = message;
+            this._dialogOkButton.onclick = () => {
+                document.removeEventListener('keydown', onEscape, true);
+                closeDialog();
+            };
+
+            this._dialogOverlay.classList.add('is-open');
+            this._dialogOverlay.setAttribute('aria-hidden', 'false');
+            document.addEventListener('keydown', onEscape, true);
+            this._dialogOkButton.focus();
+        });
     }
 
     /**
@@ -209,10 +351,13 @@ class AntiCheat {
 
         try {
             if (typeof window.showInAppAlert === 'function') {
-                await window.showInAppAlert(message);
+                await window.showInAppAlert(message, 'Cảnh báo Anti-Cheat');
             } else {
-                alert(message);
+                await this.openCheatDialog(message);
             }
+        } catch (error) {
+            console.error('Error showing anti-cheat dialog:', error);
+            alert(message);
         } finally {
             this.isDialogOpen = false;
         }
