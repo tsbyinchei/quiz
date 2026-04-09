@@ -483,6 +483,119 @@ class Utils {
 }
 
 /**
+ * ==================== GLOBAL IN-APP DIALOG ====================
+ * Đồng bộ alert/confirm theo theme cho toàn bộ hệ thống quiz
+ */
+
+let inAppDialogState_ = null;
+
+function ensureInAppDialog_() {
+    if (inAppDialogState_ && inAppDialogState_.overlay && inAppDialogState_.overlay.isConnected) {
+        return inAppDialogState_;
+    }
+
+    const overlay = document.createElement('div');
+    overlay.id = 'globalQuizDialogOverlay';
+    overlay.className = 'quiz-dialog-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+
+    const dialog = document.createElement('div');
+    dialog.className = 'quiz-dialog';
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-labelledby', 'globalQuizDialogTitle');
+
+    const titleNode = document.createElement('h3');
+    titleNode.id = 'globalQuizDialogTitle';
+    titleNode.className = 'quiz-dialog-title';
+    titleNode.textContent = 'Thông báo';
+
+    const messageNode = document.createElement('p');
+    messageNode.className = 'quiz-dialog-message';
+
+    const actionsNode = document.createElement('div');
+    actionsNode.className = 'quiz-dialog-actions';
+
+    dialog.appendChild(titleNode);
+    dialog.appendChild(messageNode);
+    dialog.appendChild(actionsNode);
+    overlay.appendChild(dialog);
+    (document.body || document.documentElement).appendChild(overlay);
+
+    inAppDialogState_ = {
+        overlay,
+        titleNode,
+        messageNode,
+        actionsNode
+    };
+
+    return inAppDialogState_;
+}
+
+function openInAppDialog_({ title = 'Thông báo', message = '', type = 'alert' }) {
+    const { overlay, titleNode, messageNode, actionsNode } = ensureInAppDialog_();
+
+    titleNode.textContent = title;
+    messageNode.textContent = String(message || '');
+    actionsNode.innerHTML = '';
+
+    return new Promise((resolve) => {
+        const close = (result) => {
+            overlay.classList.remove('is-open');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.removeEventListener('keydown', onEscape, true);
+            resolve(result);
+        };
+
+        const onEscape = (event) => {
+            if (event.key !== 'Escape') {
+                return;
+            }
+            event.preventDefault();
+            close(type === 'confirm' ? false : true);
+        };
+
+        if (type === 'confirm') {
+            const cancelBtn = document.createElement('button');
+            cancelBtn.type = 'button';
+            cancelBtn.className = 'quiz-dialog-btn ghost';
+            cancelBtn.textContent = 'Hủy';
+            cancelBtn.onclick = () => close(false);
+
+            const okBtn = document.createElement('button');
+            okBtn.type = 'button';
+            okBtn.className = 'quiz-dialog-btn primary';
+            okBtn.textContent = 'Đồng ý';
+            okBtn.onclick = () => close(true);
+
+            actionsNode.appendChild(cancelBtn);
+            actionsNode.appendChild(okBtn);
+            okBtn.focus();
+        } else {
+            const okBtn = document.createElement('button');
+            okBtn.type = 'button';
+            okBtn.className = 'quiz-dialog-btn primary';
+            okBtn.textContent = 'OK';
+            okBtn.onclick = () => close(true);
+            actionsNode.appendChild(okBtn);
+            okBtn.focus();
+        }
+
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.addEventListener('keydown', onEscape, true);
+    });
+}
+
+window.showInAppAlert = function(message, title = 'Thông báo') {
+    return openInAppDialog_({ title, message, type: 'alert' });
+};
+
+window.showInAppConfirm = function(message, title = 'Xác nhận') {
+    return openInAppDialog_({ title, message, type: 'confirm' });
+};
+
+/**
  * ==================== EXPORT MODULES ====================
  */
 
