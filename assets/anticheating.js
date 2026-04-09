@@ -54,7 +54,8 @@ class AntiCheat {
             const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
             const ctrlKey = isMac ? e.metaKey : e.ctrlKey;
 
-            if (e.key === 'F12' || 
+            if (e.key === 'PrintScreen' ||
+                e.key === 'F12' || 
                 (ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
                 (ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) ||
                 (ctrlKey && (e.key === 'U' || e.key === 'u')) ||
