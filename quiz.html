@@ -9,69 +9,6 @@
     <title>Quiz Player - Quiz Lab</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/style.css">
-    <style>
-        .quiz-dialog-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(7, 10, 20, 0.64);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            padding: 1rem;
-        }
-
-        .quiz-dialog-overlay.is-open {
-            display: flex;
-        }
-
-        .quiz-dialog {
-            width: min(520px, 95vw);
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            background: linear-gradient(155deg, rgba(8, 13, 33, 0.95), rgba(10, 28, 48, 0.9));
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
-            padding: 1.2rem 1.2rem 1rem;
-            color: #eef3ff;
-        }
-
-        .quiz-dialog-title {
-            margin: 0;
-            font-size: 1.05rem;
-            font-weight: 700;
-        }
-
-        .quiz-dialog-message {
-            margin: 0.85rem 0 1.15rem;
-            white-space: pre-line;
-            line-height: 1.5;
-            color: rgba(236, 244, 255, 0.92);
-        }
-
-        .quiz-dialog-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.7rem;
-        }
-
-        .quiz-dialog-btn {
-            border: none;
-            border-radius: 10px;
-            padding: 0.6rem 1rem;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .quiz-dialog-btn.primary {
-            background: linear-gradient(135deg, #37d4ff, #4f7dff);
-            color: #04121f;
-        }
-
-        .quiz-dialog-btn.ghost {
-            background: rgba(255, 255, 255, 0.14);
-            color: #f4f7ff;
-        }
-    </style>
 </head>
 <body class="has-topbar">
     <header class="site-topbar">
@@ -146,14 +83,6 @@
         </div>
     </footer>
 
-    <div id="quizDialogOverlay" class="quiz-dialog-overlay" aria-hidden="true">
-        <div class="quiz-dialog" role="dialog" aria-modal="true" aria-labelledby="quizDialogTitle">
-            <h3 id="quizDialogTitle" class="quiz-dialog-title">Thông báo</h3>
-            <p id="quizDialogMessage" class="quiz-dialog-message"></p>
-            <div class="quiz-dialog-actions" id="quizDialogActions"></div>
-        </div>
-    </div>
-
     <!-- Anticheating Module -->
     <script src="assets/anticheating.js"></script>
     <!-- Swiper JS -->
@@ -187,57 +116,6 @@
             // Remove legacy Aiken-style prefixes to avoid duplicated labels like "A. A. ..."
             return String(value || '').replace(/^[A-D][\.)]\s*/i, '').trim();
         }
-
-        function openInAppDialog({ title = 'Thông báo', message = '', type = 'alert' }) {
-            const overlay = document.getElementById('quizDialogOverlay');
-            const titleNode = document.getElementById('quizDialogTitle');
-            const messageNode = document.getElementById('quizDialogMessage');
-            const actionsNode = document.getElementById('quizDialogActions');
-
-            titleNode.textContent = title;
-            messageNode.textContent = message;
-            actionsNode.innerHTML = '';
-
-            return new Promise((resolve) => {
-                const close = (result) => {
-                    overlay.classList.remove('is-open');
-                    overlay.setAttribute('aria-hidden', 'true');
-                    resolve(result);
-                };
-
-                if (type === 'confirm') {
-                    const cancelBtn = document.createElement('button');
-                    cancelBtn.className = 'quiz-dialog-btn ghost';
-                    cancelBtn.textContent = 'Hủy';
-                    cancelBtn.onclick = () => close(false);
-
-                    const okBtn = document.createElement('button');
-                    okBtn.className = 'quiz-dialog-btn primary';
-                    okBtn.textContent = 'Đồng ý';
-                    okBtn.onclick = () => close(true);
-
-                    actionsNode.appendChild(cancelBtn);
-                    actionsNode.appendChild(okBtn);
-                } else {
-                    const okBtn = document.createElement('button');
-                    okBtn.className = 'quiz-dialog-btn primary';
-                    okBtn.textContent = 'OK';
-                    okBtn.onclick = () => close(true);
-                    actionsNode.appendChild(okBtn);
-                }
-
-                overlay.classList.add('is-open');
-                overlay.setAttribute('aria-hidden', 'false');
-            });
-        }
-
-        window.showInAppAlert = function(message, title = 'Thông báo') {
-            return openInAppDialog({ title, message, type: 'alert' });
-        };
-
-        window.showInAppConfirm = function(message, title = 'Xác nhận') {
-            return openInAppDialog({ title, message, type: 'confirm' });
-        };
 
         function updateMusicUI() {
             const icon = document.getElementById('musicIcon');
