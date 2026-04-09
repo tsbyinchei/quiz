@@ -100,8 +100,6 @@ quiz/
 |-- README.md
 |-- SETUP_GUIDE.md
 |-- FILE_STRUCTURE.md
-|-- ANTICHEATING_SUMMARY.md
-|-- ANTICHEATING_INTEGRATION.md
 `-- assets/
     |-- style.css
     |-- script.js
