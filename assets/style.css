@@ -970,25 +970,75 @@ body.quiz-no-back .btn-prev {
     border-color: color-mix(in srgb, var(--cyan) 68%, transparent);
 }
 
-body.light-theme .quiz-dialog {
-    background: linear-gradient(155deg, #ffffff, #f0f4f8);
-    border-color: rgba(8, 145, 178, 0.2);
-    color: #1e293b;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+.quiz-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 10, 20, 0.64);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
 }
 
-body.light-theme .quiz-dialog-message {
-    color: #475569;
+.quiz-dialog-overlay.is-open {
+    display: flex;
 }
 
-body.light-theme .quiz-dialog-btn.ghost {
-    background: rgba(0, 0, 0, 0.05);
-    color: #64748b;
+.quiz-dialog {
+    width: min(520px, 95vw);
+    border-radius: 18px;
+    border: 1px solid color-mix(in srgb, var(--line) 60%, rgba(255, 255, 255, 0.12));
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28);
+    padding: 1.2rem 1.2rem 1rem;
+    color: var(--text);
 }
 
-body.light-theme .quiz-dialog-btn.ghost:hover {
-    background: rgba(0, 0, 0, 0.08);
-    color: #0f172a;
+.quiz-dialog-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.quiz-dialog-message {
+    margin: 0.85rem 0 1.15rem;
+    white-space: pre-line;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+.quiz-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.7rem;
+}
+
+.quiz-dialog-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.quiz-dialog-btn.primary {
+    background: linear-gradient(135deg, #37d4ff, #4f7dff);
+    color: #04121f;
+}
+
+.quiz-dialog-btn.ghost {
+    background: color-mix(in srgb, var(--surface-2) 82%, transparent);
+    color: var(--text);
+    border: 1px solid var(--line);
+}
+
+.quiz-dialog-btn.ghost:hover {
+    background: color-mix(in srgb, var(--surface-2) 62%, transparent);
+}
+
+body.light-theme .quiz-dialog-overlay {
+    background: rgba(15, 23, 42, 0.32);
 }
 
 /* Admin switches */
