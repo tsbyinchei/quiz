@@ -16,7 +16,7 @@
             <nav class="site-nav">
                 <a href="index.html">Trang chủ</a>
                 <a href="login.html">Đăng nhập</a>
-                <a href="dashboard.html">Dashboard</a>
+                <a href="register.html">Đăng ký</a>
             </nav>
             <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
         </div>
@@ -52,12 +52,7 @@
                                 placeholder="Nhập mật khẩu"
                                 required
                             >
-                            <button type="button" id="peekPasswordBtn" class="password-peek" aria-label="Nhấn giữ để hiện mật khẩu" title="Nhấn giữ để hiện mật khẩu">
-                                <svg class="password-peek-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
-                                    <circle cx="12" cy="12" r="3.2"></circle>
-                                </svg>
-                            </button>
+                            <button type="button" id="peekPasswordBtn" class="password-peek" aria-label="Hiện/ẩn mật khẩu">Hiện</button>
                         </div>
                     </div>
 
@@ -66,12 +61,18 @@
 
                 <div id="errorMessage" class="error-message"></div>
                 <button type="button" id="unlockLoginBtn" class="btn-unlock-login hidden">Đăng Xuất Tài Khoản Hiện Tại</button>
-                <div id="loadingSpinner" class="spinner hidden"></div>
 
-                <p class="back-link">
-                    <a href="index.html">← Quay lại trang chủ</a>
+                <p class="back-link" style="margin-top:0.35rem;">
+                    Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
                 </p>
             </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+        <div class="loading-modal" role="status" aria-live="polite">
+            <div class="spinner" aria-hidden="true"></div>
+            <p>Đang xác thực thông tin...</p>
         </div>
     </div>
 
@@ -80,13 +81,13 @@
             <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
             <nav class="footer-nav" aria-label="Footer navigation">
                 <a href="index.html">Trang chủ</a>
-                <a href="../privacy.html">Privacy Policy</a>
-                <a href="../index.html">tsbyin.dev</a>
+                <a href="https://tsbyin.dev/privacy.html">Privacy Policy</a>
+                <a href="https://tsbyin.dev">tsbyin.dev</a>
             </nav>
         </div>
     </footer>
 
-    <script src="assets/anticheating.js"></script>
+    
     <script src="assets/script.js"></script>
     <script>
         function redirectIfAuthenticated() {
@@ -106,7 +107,9 @@
                 return;
             }
 
-            antiCheat.enable(false);
+            if (window.antiCheat && typeof window.antiCheat.enable === 'function') {
+                window.antiCheat.enable(false);
+            }
 
             const passwordInput = document.getElementById('password');
             const peekButton = document.getElementById('peekPasswordBtn');
@@ -141,40 +144,69 @@
                 setLoginLocked(false);
             });
 
-            const revealPassword = () => {
-                passwordInput.type = 'text';
-                peekButton.classList.add('is-active');
-            };
+            let isPasswordVisible = false;
 
-            const hidePassword = () => {
-                passwordInput.type = 'password';
-                peekButton.classList.remove('is-active');
-            };
-
-            // Tránh click/focus mặc định gây rung layout trên một số trình duyệt.
-            peekButton.addEventListener('click', (event) => {
+            const togglePassword = (event) => {
                 event.preventDefault();
-            });
-
-            peekButton.addEventListener('pointerdown', (event) => {
-                event.preventDefault();
-                if (peekButton.setPointerCapture && event.pointerId !== undefined) {
-                    peekButton.setPointerCapture(event.pointerId);
+                isPasswordVisible = !isPasswordVisible;
+                if (isPasswordVisible) {
+                    passwordInput.type = 'text';
+                    peekButton.classList.add('is-active');
+                    peekButton.textContent = 'Ẩn';
+                } else {
+                    passwordInput.type = 'password';
+                    peekButton.classList.remove('is-active');
+                    peekButton.textContent = 'Hiện';
                 }
-                revealPassword();
-            });
+            };
 
-            ['pointerup', 'pointerleave', 'pointercancel', 'blur'].forEach((eventName) => {
-                peekButton.addEventListener(eventName, hidePassword);
-            });
+            peekButton.addEventListener('click', togglePassword);
+        });
 
-            peekButton.addEventListener('touchstart', (event) => {
-                event.preventDefault();
-                revealPassword();
-            }, { passive: false });
+        let countdownInterval;
+        function startRateLimitCountdown(blockedUntil) {
+            const loginBtn = document.querySelector('#loginForm .btn-login');
+            const errorDiv = document.getElementById('errorMessage');
+            
+            clearInterval(countdownInterval);
+            
+            const updateTimer = () => {
+                const now = Date.now();
+                const remaining = blockedUntil - now;
+                
+                if (remaining <= 0) {
+                    clearInterval(countdownInterval);
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Đăng Nhập';
+                    if (errorDiv.textContent.includes('tạm thời bị khóa')) {
+                        errorDiv.textContent = '';
+                    }
+                    localStorage.removeItem('loginBlockedUntil');
+                    return;
+                }
+                
+                loginBtn.disabled = true;
+                const minutes = Math.floor(remaining / 60000);
+                const seconds = Math.floor((remaining % 60000) / 1000);
+                loginBtn.textContent = `Thử lại sau ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            
+            localStorage.setItem('loginBlockedUntil', blockedUntil);
+            updateTimer();
+            countdownInterval = setInterval(updateTimer, 1000);
+        }
 
-            peekButton.addEventListener('touchend', hidePassword);
-            peekButton.addEventListener('touchcancel', hidePassword);
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedBlockedUntil = localStorage.getItem('loginBlockedUntil');
+            if (savedBlockedUntil && Number(savedBlockedUntil) > Date.now()) {
+                startRateLimitCountdown(Number(savedBlockedUntil));
+                const errorDiv = document.getElementById('errorMessage');
+                if (!errorDiv.textContent) {
+                    errorDiv.textContent = 'Tài khoản của bạn đang bị khóa tạm thời. Vui lòng đợi hết thời gian.';
+                }
+            } else {
+                localStorage.removeItem('loginBlockedUntil');
+            }
         });
 
         // Login form handler
@@ -189,18 +221,26 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorDiv = document.getElementById('errorMessage');
-            const spinner = document.getElementById('loadingSpinner');
+            const loadingOverlay = document.getElementById('loadingOverlay');
 
             errorDiv.textContent = '';
-            spinner.classList.remove('hidden');
+            loadingOverlay.classList.add('is-visible');
+            loadingOverlay.setAttribute('aria-hidden', 'false');
 
             try {
-                const passwordHash = await sha256(password);
+                const [passwordHash, passwordHashLegacy] = await Promise.all([
+                    hashPasswordWithSalt(password),
+                    sha256(password)
+                ]);
 
-                const result = await APIClient.login(username, passwordHash);
+                const result = await APIClient.request('login', {
+                    username,
+                    passwordHash,
+                    passwordHashLegacy
+                });
 
                 if (result.success) {
-                    AuthManager.setAuth(result.token, result.role, result.username);
+                    AuthManager.setAuth(result.token, result.role, result.username, result.fullName || '');
                     sessionStorage.removeItem('adminPinVerified');
                     sessionStorage.removeItem('adminPinVerifiedFor');
                     sessionStorage.removeItem('adminPinProof');
@@ -209,12 +249,16 @@
                     window.location.href = result.role === 'Admin' ? 'admin.html' : 'dashboard.html';
                 } else {
                     errorDiv.textContent = result.message || 'Đăng nhập thất bại!';
+                    if (result.blockedUntil || (result.message && result.message.toLowerCase().includes('tạm thời bị khóa'))) {
+                        startRateLimitCountdown(result.blockedUntil || (Date.now() + 5 * 60 * 1000));
+                    }
                 }
             } catch (error) {
                 console.error('Login error:', error);
                 errorDiv.textContent = 'Lỗi kết nối. Vui lòng thử lại!';
             } finally {
-                spinner.classList.add('hidden');
+                loadingOverlay.classList.remove('is-visible');
+                loadingOverlay.setAttribute('aria-hidden', 'true');
             }
         });
     </script>
