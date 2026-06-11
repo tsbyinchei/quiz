@@ -1,0 +1,1051 @@
+let swiper;
+let quizData = {};
+let displayQuestions = [];
+let userAnswers = {};
+let timerInterval;
+let timeRemaining = 0;
+let isSubmitting = false;
+let allowBackNavigation = true;
+let autoNextEnabled = false;
+let autoNextTimer = null;
+let questionLocks = {};
+let optionOrderByQuestion = {};
+let correctOptionKeyByQuestion = {};
+let correctOptionInFlightByQuestion = {};
+let imageViewerEventsBound = false;
+let currentQuizID = String(localStorage.getItem('currentQuizID') || '');
+const imageViewerOverlay = document.getElementById('imageViewerOverlay');
+const imageViewerImg = document.getElementById('imageViewerImg');
+const imageViewerCaption = document.getElementById('imageViewerCaption');
+
+function shuffleArray(items) {
+    const arr = [...items];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        ;[arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function normalizeOptionText(value) {
+    // Remove legacy Aiken-style prefixes to avoid duplicated labels like "A. A. ..."
+    return String(value || '').replace(/^[A-D][\.)]\s*/i, '').trim();
+}
+
+function resolveAntiCheatModes(quizInfo) {
+    const info = quizInfo || {};
+    const legacyAntiCheatEnabled = !(info.antiCheat === false);
+    const hasExplicitTabMode = Object.prototype.hasOwnProperty.call(info, 'antiCheatTabSwitch');
+    const hasExplicitFullscreenMode = Object.prototype.hasOwnProperty.call(info, 'antiCheatFullscreen');
+
+    const tabSwitch = hasExplicitTabMode ? !!info.antiCheatTabSwitch : legacyAntiCheatEnabled;
+    const fullscreen = hasExplicitFullscreenMode ? !!info.antiCheatFullscreen : legacyAntiCheatEnabled;
+
+    return {
+        tabSwitch,
+        fullscreen
+    };
+}
+
+function isPracticeModeEnabled(quizInfo) {
+    const info = quizInfo || {};
+    return !!(info.showAnswer || info.revealCorrectOnWrong);
+}
+
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function isSafeImageSrc(src) {
+    const raw = String(src || '').trim();
+    if (!raw) {
+        return false;
+    }
+
+    const lower = raw.toLowerCase();
+    if (lower.startsWith('javascript:') || lower.startsWith('data:')) {
+        return false;
+    }
+
+    return /^(https?:\/\/|\.\/|\.\.\/|\/|assets\/)/i.test(raw);
+}
+
+// Allow only a small subset of tags for Aiken rich text (mainly <img> and line breaks).
+function sanitizeAikenRichText(input, { allowImage = true } = {}) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(String(input || ''), 'text/html');
+
+    const allowedTextTags = new Set(['BR', 'B', 'STRONG', 'I', 'EM', 'U', 'CODE']);
+
+    const walk = (node) => {
+        const children = Array.from(node.childNodes);
+
+        for (const child of children) {
+            if (child.nodeType === Node.TEXT_NODE) {
+                continue;
+            }
+
+            if (child.nodeType !== Node.ELEMENT_NODE) {
+                child.remove();
+                continue;
+            }
+
+            const tag = child.tagName.toUpperCase();
+
+            if (tag === 'IMG' && allowImage) {
+                const src = child.getAttribute('src') || '';
+                if (!isSafeImageSrc(src)) {
+                    child.remove();
+                    continue;
+                }
+
+                const alt = (child.getAttribute('alt') || child.getAttribute('title') || 'Ảnh minh họa').trim();
+                const trigger = document.createElement('button');
+                trigger.type = 'button';
+                trigger.className = 'quiz-image-button';
+                trigger.setAttribute('data-image-src', src);
+                trigger.setAttribute('data-image-alt', alt);
+                trigger.textContent = 'Xem ảnh';
+                child.replaceWith(trigger);
+                continue;
+            }
+
+            if (allowedTextTags.has(tag)) {
+                Array.from(child.attributes || []).forEach((attr) => {
+                    child.removeAttribute(attr.name);
+                });
+                walk(child);
+                continue;
+            }
+
+            // Replace unsupported tags with their plain text content.
+            const textNode = document.createTextNode(child.textContent || '');
+            child.replaceWith(textNode);
+        }
+    };
+
+    walk(doc.body);
+    const serializeSafe = (node) => {
+        if (node.nodeType === 3) return node.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        if (node.nodeType === 1) {
+            const tag = node.tagName.toLowerCase();
+            const attrs = Array.from(node.attributes).map(a => `${a.name}="${a.value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`).join(' ');
+            const children = Array.from(node.childNodes).map(serializeSafe).join('');
+            const selfClosing = ['img', 'br', 'hr', 'input'].includes(tag);
+            return `<${tag}${attrs ? ' ' + attrs : ''}${selfClosing ? '/>' : `>${children}</${tag}>`}`;
+        }
+        return '';
+    };
+    return Array.from(doc.body.childNodes).map(serializeSafe).join('');
+}
+
+function openImageViewer(src, alt = 'Ảnh minh họa') {
+    if (!imageViewerOverlay || !imageViewerImg || !isSafeImageSrc(src)) {
+        return;
+    }
+
+    imageViewerLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+    imageViewerImg.src = src;
+    imageViewerImg.alt = alt || 'Ảnh minh họa';
+    if (imageViewerCaption) {
+        imageViewerCaption.textContent = alt || '';
+    }
+
+    document.body.style.overflow = 'hidden';
+    imageViewerOverlay.classList.add('is-open');
+    imageViewerOverlay.setAttribute('aria-hidden', 'false');
+
+    const closeButton = imageViewerOverlay.querySelector('.quiz-image-viewer-close');
+    if (closeButton && typeof closeButton.focus === 'function') {
+        closeButton.focus();
+    }
+}
+
+function closeImageViewer() {
+    if (!imageViewerOverlay || !imageViewerImg) {
+        return;
+    }
+
+    imageViewerOverlay.classList.remove('is-open');
+    imageViewerOverlay.setAttribute('aria-hidden', 'true');
+    imageViewerImg.src = '';
+    document.body.style.overflow = '';
+
+    if (imageViewerLastFocus && typeof imageViewerLastFocus.focus === 'function') {
+        imageViewerLastFocus.focus();
+    }
+    imageViewerLastFocus = null;
+}
+
+function bindImageViewerEvents() {
+    if (imageViewerEventsBound) {
+        return;
+    }
+
+    document.addEventListener('click', (event) => {
+        const imageTrigger = event.target.closest('.quiz-image-button');
+        if (imageTrigger) {
+            const src = imageTrigger.getAttribute('data-image-src') || '';
+            const alt = imageTrigger.getAttribute('data-image-alt') || 'Ảnh minh họa';
+            openImageViewer(src, alt);
+            return;
+        }
+
+        if (imageViewerOverlay && event.target === imageViewerOverlay) {
+            closeImageViewer();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && imageViewerOverlay && imageViewerOverlay.classList.contains('is-open')) {
+            closeImageViewer();
+            event.stopPropagation();
+        }
+    });
+
+    const indicatorRoot = document.getElementById('questionIndicator');
+    if (indicatorRoot) {
+        indicatorRoot.addEventListener('keydown', (event) => {
+            const target = event.target.closest('.indicator');
+            if (!target) {
+                return;
+            }
+
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                const index = Number(target.getAttribute('data-index'));
+                if (!Number.isNaN(index)) {
+                    goToQuestion(index);
+                }
+            }
+        });
+    }
+
+    imageViewerEventsBound = true;
+}
+
+bindImageViewerEvents();
+
+
+async function initQuiz() {
+    sessionStorage.removeItem('quizResult');
+
+    // Kiểm tra authentication
+    const token = AuthManager.getToken();
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const quizID = localStorage.getItem('currentQuizID');
+    if (!quizID) {
+        window.location.href = 'dashboard.html';
+        return;
+    }
+
+    // Load quiz data từ GAS
+    await loadQuizData(quizID, token);
+}
+
+// Load dữ liệu bài quiz
+async function loadQuizData(quizID, token) {
+    try {
+        const result = await APIClient.getQuizData(quizID);
+
+        if (result.success) {
+            quizData = result;
+            currentQuizID = String(quizID || '');
+            correctOptionKeyByQuestion = {};
+            correctOptionInFlightByQuestion = {};
+            optionOrderByQuestion = {};
+            const antiCheatModes = resolveAntiCheatModes(quizData.quizInfo);
+            const shouldEnableAntiCheat = antiCheatModes.tabSwitch || antiCheatModes.fullscreen;
+            autoNextEnabled = !!(quizData.quizInfo && quizData.quizInfo.autoNext);
+            allowBackNavigation = !(quizData.quizInfo && quizData.quizInfo.allowBack === false);
+            document.body.classList.toggle('quiz-no-back', !allowBackNavigation);
+
+            if (typeof antiCheat !== 'undefined') {
+                antiCheat.enable(true, antiCheatModes);
+                if (antiCheatModes.tabSwitch && antiCheatModes.fullscreen) {
+                    console.log('Anti-Cheat: ENABLED (TAB + FULLSCREEN)');
+                } else if (antiCheatModes.tabSwitch) {
+                    console.log('Anti-Cheat: ENABLED (TAB ONLY)');
+                } else if (antiCheatModes.fullscreen) {
+                    console.log('Anti-Cheat: ENABLED (FULLSCREEN ONLY)');
+                } else {
+                    console.log('Anti-Cheat: ENABLED (BASIC MODE - No Tab/Fullscreen Monitoring)');
+                }
+            }
+
+            document.getElementById('quizTitle').textContent = result.quizInfo.title;
+            displayQuestions = Array.isArray(result.questions) ? [...result.questions] : [];
+            if (quizData.quizInfo && quizData.quizInfo.shuffle) {
+                displayQuestions = shuffleArray(displayQuestions);
+            }
+
+            document.getElementById('totalQuestions').textContent = displayQuestions.length;
+            document.getElementById('btnQuestionList').style.display = 'inline-flex';
+
+            renderQuestions(displayQuestions);
+            warmupPracticeCorrectOptions_();
+            startTimer(result.quizInfo.timeLimit);
+            initSwiper();
+            updateQuestionIndicator();
+            // Show fullscreen prompt only when fullscreen monitoring is enabled.
+            if (antiCheatModes.fullscreen) {
+                showFullscreenButton();
+            }
+        } else {
+            await showInAppAlert(result.message || 'Không thể tải dữ liệu bài quiz');
+            window.location.href = 'dashboard.html';
+        }
+    } catch (error) {
+        console.error('Error loading quiz:', error);
+        await showInAppAlert('Lỗi khi tải bài quiz');
+        window.location.href = 'dashboard.html';
+    }
+}
+
+// Render các câu hỏi
+function renderQuestions(questions) {
+    const container = document.getElementById('questionContainer');
+    container.replaceChildren();
+    const isGridMode = localStorage.getItem('quizGridMode') === 'true';
+
+    questions.forEach((question, index) => {
+        const isFirst = index === 0;
+        const isLast = index === questions.length - 1;
+        const shouldShuffleOptions = !!(quizData.quizInfo && quizData.quizInfo.shuffle);
+        const shouldShowOptionPrefix = !shouldShuffleOptions;
+        const optionList = [
+            { key: 'A', text: normalizeOptionText(question.A) },
+            { key: 'B', text: normalizeOptionText(question.B) },
+            { key: 'C', text: normalizeOptionText(question.C) },
+            { key: 'D', text: normalizeOptionText(question.D) }
+        ];
+        const renderedOptions = shouldShuffleOptions ? shuffleArray(optionList) : optionList;
+        optionOrderByQuestion[String(question.questionID).trim()] = renderedOptions.map((option) => option.key);
+        const questionHtml = sanitizeAikenRichText(question.questionText || '', { allowImage: true });
+        const encodedQuestionID = encodeURIComponent(String(question.questionID || ''));
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        insertHtmlSafe(slide, `
+                    <div class="question-card">
+                            <h3>Câu ${index + 1}: ${questionHtml}</h3>
+                            <div class="answers ${isGridMode ? 'grid-mode' : ''}">
+                            ${renderedOptions.map((option) => `
+                                <label class="answer-option">
+                                    <input type="radio" name="q${question.questionID}" value="${option.key}" 
+                                        class="quiz-radio-input" data-question-id="${encodedQuestionID}" data-option-key="${option.key}">
+                                    <span class="answer-status-badge" aria-hidden="true"></span>
+                                    <span class="option-text">${shouldShowOptionPrefix ? `<span class="option-prefix">${option.key}.</span> ` : ''}${sanitizeAikenRichText(option.text, { allowImage: true })}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                        <div class="quiz-navigation">
+                            <button class="btn-prev" class="btn-prev quiz-btn-prev"${(isFirst || !allowBackNavigation) ? 'disabled' : ''}>
+                                ← Câu Trước
+                            </button>
+                            <button class="btn-report" style="border: 1px solid #fca5a5; color: #ef4444; background: transparent; padding: 10px 20px; border-radius: 8px; cursor: pointer;" class="btn-report quiz-btn-report" data-question-id="${encodedQuestionID}">🚩 Báo lỗi</button>
+                            ${isLast
+                ? '<button class="btn-submit" class="btn-submit quiz-btn-submit">Nộp Bài</button>'
+                : '<button class="btn-next" class="btn-next quiz-btn-next">Câu Tiếp →</button>'}
+                        </div>
+                        <div class="feedback" id="feedback-${question.questionID}" style="display:none;"></div>
+                        ${isPracticeModeEnabled(quizData.quizInfo) ? `
+                            <div class="explanation" id="exp-${question.questionID}"></div>
+                        ` : ''}
+
+
+                    </div>
+                `);
+        container.appendChild(slide);
+
+        // Dynamically attach event listeners to avoid inline handlers (SAST fix)
+        const radioInputs = slide.querySelectorAll('.quiz-radio-input');
+        radioInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                const qId = decodeURIComponent(e.target.dataset.questionId);
+                const optKey = e.target.dataset.optionKey;
+                selectAnswer(qId, optKey);
+            });
+        });
+
+        const prevBtn = slide.querySelector('.quiz-btn-prev');
+        if (prevBtn) prevBtn.addEventListener('click', prevQuestion);
+
+        const nextBtn = slide.querySelector('.quiz-btn-next');
+        if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
+
+        const submitBtn = slide.querySelector('.quiz-btn-submit');
+        if (submitBtn) submitBtn.addEventListener('click', () => submitQuiz());
+
+        const reportBtn = slide.querySelector('.quiz-btn-report');
+        if (reportBtn) {
+            reportBtn.addEventListener('click', (e) => {
+                const qId = decodeURIComponent(e.target.dataset.questionId);
+                openReportModal(qId);
+            });
+        }
+    });
+}
+
+// Request Fullscreen khi bắt đầu quiz
+async function requestFullscreenMode() {
+    const fullscreenTarget = document.documentElement;
+    if (!fullscreenTarget) {
+        return;
+    }
+
+    const isCurrentlyFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    if (isCurrentlyFullscreen) {
+        hideFullscreenPrompt();
+        if (typeof antiCheat !== 'undefined' && antiCheat.monitorFullscreenEnabled) {
+            antiCheat.monitorFullscreen();
+        }
+        return;
+    }
+
+    try {
+        const requestFS =
+            fullscreenTarget.requestFullscreen ||
+            fullscreenTarget.webkitRequestFullscreen ||
+            fullscreenTarget.mozRequestFullScreen ||
+            fullscreenTarget.msRequestFullscreen;
+
+        if (requestFS) {
+            const btn = document.getElementById('fullscreenButton');
+            if (btn) btn.disabled = true;
+
+            await requestFS.call(fullscreenTarget);
+            console.log('📺 Fullscreen mode activated');
+
+            hideFullscreenPrompt();
+
+            if (typeof antiCheat !== 'undefined' && antiCheat.monitorFullscreenEnabled) {
+                antiCheat.monitorFullscreen();
+            }
+
+            if (btn) btn.disabled = false;
+        } else {
+            console.warn('Fullscreen API not supported');
+            hideFullscreenPrompt(); // Tránh vòng lặp vô hạn
+        }
+    } catch (error) {
+        console.warn('Fullscreen request failed:', error);
+        const btn = document.getElementById('fullscreenButton');
+        if (btn) btn.disabled = false;
+
+        const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+        if (isFS) {
+            hideFullscreenPrompt();
+        } else {
+            showFullscreenButton();
+        }
+    }
+}
+
+// Functions for Report Error Modal
+function openReportModal(questionID) {
+    const modal = document.getElementById('reportErrorOverlay');
+    if (!modal) return;
+    document.getElementById('reportQuestionID').value = questionID;
+    document.getElementById('reportErrorType').value = '';
+    document.getElementById('reportErrorDetails').value = '';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeReportModal() {
+    const modal = document.getElementById('reportErrorOverlay');
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+}
+
+async function submitQuestionReport(event) {
+    event.preventDefault();
+    const token = AuthManager.getToken();
+    if (!token) return;
+
+    const questionID = document.getElementById('reportQuestionID').value;
+    const errorType = document.getElementById('reportErrorType').value;
+    const details = document.getElementById('reportErrorDetails').value;
+    const btnSubmit = document.getElementById('btnSubmitReport');
+
+    if (!errorType) {
+        await showInAppAlert('Vui lòng chọn loại lỗi');
+        return;
+    }
+
+    try {
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = 'Đang gửi...';
+
+        const response = await APIClient.request('reportQuestionError', {
+            quizID: currentQuizID,
+            questionID: questionID,
+            errorType: errorType,
+            details: details
+        });
+
+        if (response.success) {
+            await showInAppAlert('Cảm ơn bạn đã báo cáo. Chúng tôi sẽ kiểm tra lại câu hỏi này!');
+            closeReportModal();
+        } else {
+            await showInAppAlert('Lỗi: ' + response.message);
+        }
+    } catch (error) {
+        console.error(error);
+        await showInAppAlert('Có lỗi xảy ra khi gửi báo cáo');
+    } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Gửi báo cáo';
+    }
+}
+
+// Hiển thị nút fullscreen khi user từ chối hoặc không hỗ trợ
+function showFullscreenButton() {
+    const fsPrompt = document.getElementById('fullscreenPrompt');
+    if (fsPrompt) {
+        fsPrompt.style.display = '';
+        fsPrompt.classList.add('is-open');
+        fsPrompt.setAttribute('aria-hidden', 'false');
+    }
+}
+
+// Ẩn prompt fullscreen
+function hideFullscreenPrompt() {
+    const fsPrompt = document.getElementById('fullscreenPrompt');
+    if (fsPrompt) {
+        fsPrompt.classList.remove('is-open');
+        fsPrompt.style.display = '';
+        fsPrompt.setAttribute('aria-hidden', 'true');
+    }
+}
+
+// Init Swiper
+function initSwiper() {
+    swiper = new Swiper('.mySwiper', {
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        autoHeight: true,
+        observer: true,
+        observeParents: true,
+        allowTouchMove: false,
+        on: {
+            slideChange: function () {
+                updateQuestionIndicator();
+            }
+        }
+    });
+}
+
+async function resolveCorrectOptionKey(questionID) {
+    const questionKey = String(questionID);
+    const cacheKey = `${currentQuizID}_${questionKey}`;
+    if (correctOptionKeyByQuestion[cacheKey]) {
+        return correctOptionKeyByQuestion[cacheKey];
+    }
+
+    if (correctOptionInFlightByQuestion[cacheKey]) {
+        return correctOptionInFlightByQuestion[cacheKey];
+    }
+
+    const question = quizData.questions.find((item) => String(item.questionID) === questionKey);
+    if (!question) {
+        return null;
+    }
+
+    const localCorrectOption = String(question.correctOption || '').trim().toUpperCase();
+    if (/^[A-D]$/.test(localCorrectOption)) {
+        correctOptionKeyByQuestion[cacheKey] = localCorrectOption;
+        return localCorrectOption;
+    }
+
+    const requestPromise = (async () => {
+        try {
+            const result = await APIClient.resolveCorrectOption(currentQuizID, questionKey);
+            const resolvedKey = result && result.success ? String(result.correctOption || '').toUpperCase() : '';
+            if (/^[A-D]$/.test(resolvedKey)) {
+                correctOptionKeyByQuestion[cacheKey] = resolvedKey;
+                return resolvedKey;
+            }
+        } catch (error) {
+            return null;
+        } finally {
+            delete correctOptionInFlightByQuestion[cacheKey];
+        }
+        return null;
+    })();
+
+    correctOptionInFlightByQuestion[cacheKey] = requestPromise;
+
+    return requestPromise;
+}
+
+function warmupPracticeCorrectOptions_() {
+    if (!isPracticeModeEnabled(quizData.quizInfo) || !Array.isArray(displayQuestions) || displayQuestions.length === 0) {
+        return;
+    }
+
+    const questionIDs = displayQuestions
+        .map((item) => String(item && item.questionID ? item.questionID : '').trim())
+        .filter(Boolean);
+
+    if (!questionIDs.length) {
+        return;
+    }
+
+    let cursor = 0;
+    const batchSize = 4;
+
+    const pump = () => {
+        const batch = questionIDs.slice(cursor, cursor + batchSize);
+        cursor += batch.length;
+
+        batch.forEach((questionID) => {
+            prefetchCorrectOption_(questionID);
+        });
+
+        if (cursor < questionIDs.length) {
+            setTimeout(pump, 120);
+        }
+    };
+
+    pump();
+}
+
+function prefetchCorrectOption_(questionID) {
+    const questionKey = String(questionID || '').trim();
+    if (!questionKey) {
+        return;
+    }
+
+    resolveCorrectOptionKey(questionKey).catch(() => {
+        // Prefetch best-effort only.
+    });
+}
+
+// Chọn câu trả lời
+async function selectAnswer(questionID, answer) {
+    const questionKey = String(questionID);
+    const selectedValue = String(answer).toUpperCase();
+    const practiceModeEnabled = isPracticeModeEnabled(quizData.quizInfo);
+    const revealCorrectOnWrong = !!(quizData.quizInfo && quizData.quizInfo.revealCorrectOnWrong);
+
+    // Mode showAnswer: mỗi câu chỉ cho chọn 1 lần.
+    if (practiceModeEnabled && questionLocks[questionKey]) {
+        return;
+    }
+
+    const radios = document.querySelectorAll(`input[name="q${questionKey}"]`);
+    radios.forEach((radio) => {
+        const isSelected = radio.value === selectedValue;
+        radio.checked = isSelected;
+        const optionLabel = radio.closest('.answer-option');
+        if (optionLabel) {
+            const statusBadge = optionLabel.querySelector('.answer-status-badge');
+            optionLabel.classList.toggle('is-selected', radio.checked);
+            optionLabel.classList.remove('is-correct', 'is-wrong');
+            if (statusBadge) {
+                statusBadge.textContent = '';
+            }
+        }
+    });
+
+    userAnswers[questionID] = answer;
+
+    if (autoNextTimer) {
+        clearTimeout(autoNextTimer);
+        autoNextTimer = null;
+    }
+
+    updateQuestionIndicator();
+
+    if (!practiceModeEnabled) {
+        if (autoNextEnabled && swiper && swiper.activeIndex < displayQuestions.length - 1) {
+            autoNextTimer = setTimeout(() => {
+                nextQuestion();
+                autoNextTimer = null;
+            }, 800);
+        }
+        return;
+    }
+
+    // Khóa ngay để tránh spam click/race khi đang chờ API resolve.
+    questionLocks[questionKey] = true;
+    radios.forEach((radio) => {
+        radio.disabled = true;
+    });
+
+    const feedbackDiv = document.getElementById(`feedback-${questionID}`);
+    const question = quizData.questions.find((q) => String(q.questionID) === questionKey);
+    const hasLocalCorrectOption = !!(question && /^[A-D]$/.test(String(question.correctOption || '').trim().toUpperCase()));
+    if (feedbackDiv) {
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.className = 'feedback';
+        feedbackDiv.textContent = hasLocalCorrectOption
+            ? 'Đang cập nhật kết quả...'
+            : 'Đang kiểm tra đáp án...';
+    }
+
+    const correctValue = await resolveCorrectOptionKey(questionID);
+
+    if (!/^[A-D]$/.test(String(correctValue || '').toUpperCase())) {
+        questionLocks[questionKey] = false;
+        radios.forEach((radio) => {
+            radio.disabled = false;
+        });
+
+        if (feedbackDiv) {
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.className = 'feedback warning';
+            feedbackDiv.textContent = 'Không thể kiểm tra đáp án lúc này. Vui lòng chọn lại.';
+        }
+
+        return;
+    }
+
+    // Nếu bật chế độ luyện tập (Show_Answer = TRUE), hiển thị kết quả ngay
+    if (practiceModeEnabled) {
+        const isCorrect = selectedValue === correctValue;
+
+        radios.forEach((radio) => {
+            const isSelected = radio.value === selectedValue;
+            const isCorrectOption = radio.value === correctValue;
+            const shouldShowCorrect = (selectedValue === correctValue || revealCorrectOnWrong) && isCorrectOption;
+            const shouldShowWrong = isSelected && !isCorrectOption;
+            const optionLabel = radio.closest('.answer-option');
+            if (optionLabel) {
+                const statusBadge = optionLabel.querySelector('.answer-status-badge');
+                optionLabel.classList.toggle('is-correct', shouldShowCorrect);
+                optionLabel.classList.toggle('is-wrong', shouldShowWrong);
+                if (statusBadge) {
+                    statusBadge.textContent = shouldShowCorrect ? '✓' : (shouldShowWrong ? '✕' : '');
+                }
+            }
+        });
+
+        if (feedbackDiv) {
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedbackDiv.textContent = isCorrect ? '✓ Đúng!' : '✗ Sai!';
+        }
+
+
+    }
+
+    if (autoNextEnabled && swiper && swiper.activeIndex < displayQuestions.length - 1) {
+        autoNextTimer = setTimeout(() => {
+            nextQuestion();
+            autoNextTimer = null;
+        }, 800);
+    }
+}
+
+// Cập nhật chỉ báo câu hỏi
+function updateQuestionIndicator() {
+    const currentIndex = swiper.activeIndex + 1;
+    document.getElementById('currentQuestion').textContent = currentIndex;
+
+    if (isPracticeModeEnabled(quizData.quizInfo) && displayQuestions.length > 0) {
+        const currentQuestion = displayQuestions[swiper.activeIndex];
+        const nextQuestion = displayQuestions[swiper.activeIndex + 1];
+        if (currentQuestion && currentQuestion.questionID) {
+            prefetchCorrectOption_(currentQuestion.questionID);
+        }
+        if (nextQuestion && nextQuestion.questionID) {
+            prefetchCorrectOption_(nextQuestion.questionID);
+        }
+    }
+
+    const progressPercent = displayQuestions.length > 0
+        ? (currentIndex / displayQuestions.length) * 100
+        : 0;
+    document.getElementById('progressFill').style.width = progressPercent + '%';
+
+    // Cập nhật chỉ báo câu hỏi đã làm
+    const indicatorDiv = document.getElementById('questionGridBody');
+    if (!indicatorDiv) return;
+    let html = '';
+    for (let i = 0; i < displayQuestions.length; i++) {
+        const qID = displayQuestions[i].questionID;
+        const answered = userAnswers[qID] ? 'answered' : '';
+        const active = i === swiper.activeIndex ? 'active' : '';
+        const disabled = !allowBackNavigation ? 'is-disabled' : '';
+        const clickHandler = allowBackNavigation ? `data-action="goto" data-question-index="${i}"` : '';
+        html += `<span class="indicator ${answered} ${active} ${disabled}" ${clickHandler}></span>`;
+    }
+    indicatorDiv.replaceChildren();
+    insertHtmlSafe(indicatorDiv, html);
+}
+
+// Điều hướng
+function prevQuestion() {
+    if (!allowBackNavigation) {
+        return;
+    }
+
+    if (swiper.activeIndex > 0) {
+        swiper.slidePrev();
+    }
+}
+
+function nextQuestion() {
+    if (swiper.activeIndex < displayQuestions.length - 1) {
+        swiper.slideNext();
+    }
+}
+
+function goToQuestion(index) {
+    if (!allowBackNavigation) {
+        return;
+    }
+    swiper.slideTo(index);
+}
+
+function goToQuestionAndClose(index) {
+    goToQuestion(index);
+    closeQuestionListModal();
+}
+
+function openQuestionListModal() {
+    document.getElementById('questionListOverlay').classList.add('is-open');
+    document.getElementById('questionListOverlay').setAttribute('aria-hidden', 'false');
+}
+
+function closeQuestionListModal() {
+    document.getElementById('questionListOverlay').classList.remove('is-open');
+    document.getElementById('questionListOverlay').setAttribute('aria-hidden', 'true');
+}
+
+function closeQuestionListOnBackdrop(event) {
+    if (event.target && event.target.id === 'questionListOverlay') {
+        closeQuestionListModal();
+    }
+}
+
+function updateTimerPresentation_(remainingSeconds) {
+    const timerWrap = document.getElementById('timer');
+    const timerValueNode = document.getElementById('timerValue');
+    const timerProgressNode = document.getElementById('timerProgress');
+
+    const safeRemaining = Math.max(0, Number(remainingSeconds || 0));
+    const mins = Math.floor(safeRemaining / 60);
+    const secs = safeRemaining % 60;
+    const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+    if (timerValueNode) {
+        timerValueNode.textContent = formatted;
+    }
+
+    if (timerWrap && timerProgressNode) {
+        const total = Number(quizData?.quizInfo?.timeLimit || 0) * 60;
+        if (total > 0) {
+            const pct = (safeRemaining / total) * 100;
+            timerProgressNode.style.width = pct + '%';
+
+            if (safeRemaining <= 60) {
+                timerWrap.classList.add('danger');
+            } else if (safeRemaining <= 300) {
+                timerWrap.classList.add('warning');
+                timerWrap.classList.remove('danger');
+            } else {
+                timerWrap.classList.remove('warning', 'danger');
+            }
+        }
+    }
+}
+
+function startTimer(minutes) {
+    if (!minutes || isNaN(minutes) || minutes <= 0) {
+        const timerWrap = document.getElementById('timer');
+        if (timerWrap) timerWrap.style.display = 'none';
+        return;
+    }
+
+    timeRemaining = minutes * 60;
+    updateTimerPresentation_(timeRemaining);
+
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    }
+
+    timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerPresentation_(timeRemaining);
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            submitQuiz(false, true);
+        }
+    }, 1000);
+}
+
+// Ná»™p bÃ i
+async function submitQuiz(isForced = false, skipConfirm = false) {
+    if (isSubmitting) {
+        return;
+    }
+
+    isSubmitting = true;
+    clearInterval(timerInterval);
+    if (autoNextTimer) {
+        clearTimeout(autoNextTimer);
+        autoNextTimer = null;
+    }
+
+    try {
+        if (!skipConfirm) {
+            antiCheat.isDialogOpen = true;
+            const confirmed = await showInAppConfirm('Bạn có chắc muốn nộp bài?');
+            antiCheat.isDialogOpen = false;
+
+            if (!confirmed) {
+                startTimer(Math.ceil(timeRemaining / 60));
+                isSubmitting = false;
+                return;
+            }
+        }
+
+        // TÃ­nh Ä‘iá»ƒm do server quyáº¿t Ä‘á»‹nh, client chá»‰ gá»­i Ä‘Ã¡p Ã¡n.
+        const totalQuestions = displayQuestions.length;
+        const scoreOutOf10 = 0;
+
+        // Gá»­i káº¿t quáº£ lÃªn GAS
+        const username = localStorage.getItem('quizUsername');
+        const quizID = localStorage.getItem('currentQuizID');
+
+        // Show loading
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const loadingText = document.getElementById('loadingText');
+        if (loadingOverlay) {
+            loadingText.textContent = 'Đang nộp bài...';
+            loadingOverlay.classList.add('is-visible');
+            loadingOverlay.setAttribute('aria-hidden', 'false');
+        }
+
+        const answersForSubmit = isForced ? {} : userAnswers;
+        const result = await APIClient.submitScore(username, quizID, scoreOutOf10, answersForSubmit);
+
+        // Hide loading
+        if (loadingOverlay) {
+            loadingOverlay.classList.remove('is-visible');
+            loadingOverlay.setAttribute('aria-hidden', 'true');
+        }
+
+        if (!result.success) {
+            await showInAppAlert(result.message || 'Lỗi khi nộp bài. Vui lòng thử lại!');
+            isSubmitting = false;
+            return;
+        }
+
+        const finalScore = typeof result.score === 'number' ? result.score : scoreOutOf10;
+        const finalCorrect = typeof result.correctCount === 'number' ? result.correctCount : 0;
+        const finalTotal = typeof result.totalQuestions === 'number' ? result.totalQuestions : totalQuestions;
+
+        // LÆ°u káº¿t quáº£ vÃ o sessionStorage Ä‘á»ƒ hiá»ƒn thá»‹ á»Ÿ trang káº¿t quáº£
+        sessionStorage.setItem('quizResult', JSON.stringify({
+            score: finalScore,
+            correct: finalCorrect,
+            total: finalTotal,
+            reviewItems: result.reviewItems || result.correctAnswers || [],
+            explanations: result.explanations || [],
+            quizMode: {
+                showDetailedResult: !!(quizData.quizInfo && quizData.quizInfo.showDetailedResult),
+                shuffle: !!(quizData.quizInfo && quizData.quizInfo.shuffle),
+                questionOrder: displayQuestions.map((question) => String(question.questionID || '')),
+                optionOrderByQuestion
+            }
+        }));
+
+        // Redirect tá»›i trang káº¿t quáº£
+        window.location.href = 'result.html';
+    } catch (error) {
+        console.error('Error submitting quiz:', error);
+        await showInAppAlert('Lỗi khi nộp bài. Vui lòng thử lại!');
+        isSubmitting = false;
+    }
+}
+
+// XÃ¡c nháº­n thoÃ¡t tá»›i trang báº¥t ká»³
+async function confirmExitTo(targetUrl = 'dashboard.html') {
+    if (isSubmitting) {
+        return;
+    }
+
+    antiCheat.isDialogOpen = true;
+    const shouldExit = await showInAppConfirm('Bạn chưa hoàn thành quiz. Bạn có chắc muốn thoát?');
+    antiCheat.isDialogOpen = false;
+
+    if (shouldExit) {
+        if (autoNextTimer) {
+            clearTimeout(autoNextTimer);
+            autoNextTimer = null;
+        }
+        window.location.href = targetUrl;
+    }
+}
+
+// Backward-compatible alias cho cÃ¡c chá»— cÅ©
+async function confirmExit() {
+    return confirmExitTo('dashboard.html');
+}
+
+// Khá»Ÿi cháº¡y
+function bindQuizControls() {
+    const submitQuizBtn = document.getElementById('submitQuizBtn');
+    if (submitQuizBtn) {
+        submitQuizBtn.addEventListener('click', () => submitQuiz());
+    }
+
+    const backToDashboardBtn = document.getElementById('backToDashboardBtn');
+    if (backToDashboardBtn) {
+        backToDashboardBtn.addEventListener('click', () => confirmExitTo('dashboard.html'));
+    }
+
+    const fullscreenButton = document.getElementById('fullscreenButton');
+    if (fullscreenButton) {
+        fullscreenButton.addEventListener('click', requestFullscreenMode);
+    }
+
+    const closeImageViewerBtn = document.getElementById('closeImageViewerBtn');
+    if (closeImageViewerBtn) {
+        closeImageViewerBtn.addEventListener('click', closeImageViewer);
+    }
+
+    document.querySelectorAll('[data-confirm-exit]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            const targetUrl = link.getAttribute('data-confirm-exit');
+            if (!targetUrl) {
+                return;
+            }
+
+            event.preventDefault();
+            confirmExitTo(targetUrl);
+        });
+    });
+}
+
+bindQuizControls();
+initQuiz();
+
+Object.assign(window, {
+    confirmExitTo,
+    submitQuiz,
+    requestFullscreenMode,
+    closeImageViewer,
+    openImageViewer
+});
+
+
+
