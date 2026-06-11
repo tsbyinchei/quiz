@@ -15,15 +15,40 @@ class AntiCheat {
         this.cheatCount = 0;
         this.maxCheatAttempts = 3;
         this.isQuizMode = false;
+        this.monitorTabSwitchEnabled = false;
+        this.monitorFullscreenEnabled = false;
         this.quizStartTime = null;
-        this.isDialogOpen = false;
+        this.isDialogOpen = false; 
+        this.isAntiCheatDialogOpen = false; 
         this.isPunishing = false;
         this.lastViolationAt = 0;
         this.violationCooldownMs = 1200;
         this._tabVisibilityHandler = null;
+        this._fullscreenHandler = null;
         this._dialogOverlay = null;
         this._dialogMessage = null;
         this._dialogOkButton = null;
+        this._keyboardHandler = null;
+        this._contextMenuHandler = null;
+        this._mouseDownHandler = null;
+        this._mouseUpHandler = null;
+        this._copyHandler = null;
+        this._cutHandler = null;
+        this._pasteHandler = null;
+        this._selectStartHandler = null;
+        this._multiClickBlockHandler = null;
+        this._selectionStyleElement = null;
+    }
+
+    getDialogHostElement() {
+        return (
+            document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement ||
+            document.body ||
+            document.documentElement
+        );
     }
 
     ensureCheatDialog() {
@@ -49,11 +74,12 @@ class AntiCheat {
                 .anti-cheat-dialog {
                     width: min(520px, 95vw);
                     border-radius: 18px;
-                    border: 1px solid color-mix(in srgb, var(--line, rgba(255, 255, 255, 0.18)) 60%, rgba(255, 255, 255, 0.12));
-                    background: color-mix(in srgb, var(--surface, rgba(10, 28, 48, 0.9)) 94%, transparent);
-                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28);
+                    border: 1px solid rgba(248, 113, 113, 0.5);
+                    background: color-mix(in srgb, #ef4444 6%, var(--surface, rgba(10, 28, 48, 0.9)));
+                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28), 0 0 40px rgba(239, 68, 68, 0.15);
                     padding: 1.2rem 1.2rem 1rem;
                     color: var(--text, #eef3ff);
+                    font-family: inherit;
                 }
 
                 .anti-cheat-dialog-title {
@@ -79,19 +105,36 @@ class AntiCheat {
                     border-radius: 10px;
                     padding: 0.6rem 1rem;
                     cursor: pointer;
-                    font-weight: 600;
-                    background: linear-gradient(135deg, #37d4ff, #4f7dff);
-                    color: #04121f;
+                    font-weight: 700;
+                    font-family: inherit;
+                    background: linear-gradient(135deg, #f87171, #ef4444);
+                    color: #fff;
                 }
 
                 body.light-theme .anti-cheat-dialog-overlay {
                     background: rgba(15, 23, 42, 0.32);
                 }
+
+                .anti-cheat-blur {
+                    filter: blur(10px) grayscale(100%);
+                    pointer-events: none;
+                    user-select: none;
+                }
             `;
             document.head.appendChild(style);
         }
 
+        if (this._blurHandler) {
+            window.removeEventListener('blur', this._blurHandler);
+            window.removeEventListener('focus', this._focusHandler);
+        }
+        document.body.classList.remove('anti-cheat-blur');
+        
         if (this._dialogOverlay && this._dialogOverlay.isConnected) {
+            const host = this.getDialogHostElement();
+            if (host && this._dialogOverlay.parentElement !== host) {
+                host.appendChild(this._dialogOverlay);
+            }
             return;
         }
 
@@ -127,7 +170,7 @@ class AntiCheat {
         dialog.appendChild(actions);
         overlay.appendChild(dialog);
 
-        (document.body || document.documentElement).appendChild(overlay);
+        this.getDialogHostElement().appendChild(overlay);
 
         this._dialogOverlay = overlay;
         this._dialogMessage = message;
@@ -166,107 +209,189 @@ class AntiCheat {
     }
 
     /**
-     * Khởi động Anti-Cheat cho trang login/quiz
-     * @param {boolean} isQuiz - true nếu là trang quiz.html
+     * Khởi động Anti-Cheat cho trang login/quiz.
+     *
+     * Backward compatibility:
+     * - enable(true, true)  => bật tab + fullscreen
+     * - enable(true, false) => chỉ chặn keyboard/mouse/copy (không monitor tab/fullscreen)
+     *
+     * New mode:
+     * - enable(true, { tabSwitch: true|false, fullscreen: true|false })
      */
-    enable(isQuiz = false) {
+    enable(isQuiz = false, strictModeOrOptions = true) {
         this.disable();
 
         this.enabled = true;
         this.isQuizMode = isQuiz;
         this.cheatCount = 0;
 
+        let tabSwitch = false;
+        let fullscreen = false;
+
+        if (typeof strictModeOrOptions === 'object' && strictModeOrOptions !== null) {
+            tabSwitch = !!strictModeOrOptions.tabSwitch;
+            fullscreen = !!strictModeOrOptions.fullscreen;
+        } else {
+            const strictMode = !!strictModeOrOptions;
+            tabSwitch = !!(isQuiz && strictMode);
+            fullscreen = !!(isQuiz && strictMode);
+        }
+
+        this.monitorTabSwitchEnabled = !!(isQuiz && tabSwitch);
+        this.monitorFullscreenEnabled = !!(isQuiz && fullscreen);
+
+        // Luôn chặn DevTools, clipboard, mouse interactions, text selection
         this.blockKeyboardShortcuts();
         this.blockMouseInteractions();
         this.blockTextSelection();
+        this.monitorWindowFocus();
         
-        if (isQuiz) {
+        if (this.monitorTabSwitchEnabled) {
             this.monitorTabVisibility();
             this.quizStartTime = Date.now();
         }
 
-        console.log('🛡️ Anti-Cheat Module Activated');
+        if (this.monitorFullscreenEnabled) {
+            this.monitorFullscreen();
+        }
+
+        let mode = 'BASIC (DevTools/Clipboard Only)';
+        if (this.monitorTabSwitchEnabled && this.monitorFullscreenEnabled) {
+            mode = 'STRICT (Tab + Fullscreen Monitoring)';
+        } else if (this.monitorTabSwitchEnabled) {
+            mode = 'TAB ONLY (Tab Monitoring)';
+        } else if (this.monitorFullscreenEnabled) {
+            mode = 'FULLSCREEN ONLY (Fullscreen Monitoring)';
+        }
+
+        console.log(`🛡️ Anti-Cheat Module Activated - ${mode}`);
     }
 
     /**
      * 1. Chặn Phím tắt & Trình duyệt
      */
     blockKeyboardShortcuts() {
-        document.addEventListener('keydown', (e) => {
+        if (this._keyboardHandler) {
+            document.removeEventListener('keydown', this._keyboardHandler);
+        }
+
+        this._keyboardHandler = (e) => {
             const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
             const ctrlKey = isMac ? e.metaKey : e.ctrlKey;
+            const key = e.key.toLowerCase(); // Chuyển về chữ thường để so sánh chuẩn xác
 
-            if (e.key === 'PrintScreen' ||
-                e.key === 'F12' || 
-                (ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
-                (ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) ||
-                (ctrlKey && (e.key === 'U' || e.key === 'u')) ||
-                (ctrlKey && (e.key === 'S' || e.key === 's')) ||
-                (ctrlKey && (e.key === 'P' || e.key === 'p')) ||
-                (ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 'v' || e.key === 'V'))) {
-                
+            // Phân rã logic để dễ bảo trì và tối ưu hiệu suất đọc
+            const isPrintScreen = key === 'printscreen' || key === 'os'; 
+            const isF12 = key === 'f12';
+            const isDevTools = ctrlKey && e.shiftKey && (key === 'i' || key === 'j');
+            const isBrowserShortcuts = ctrlKey && !e.shiftKey && ['u', 's', 'p', 'c', 'x', 'v'].includes(key);
+            
+            // Bắt sự kiện chụp màn hình OS (Chỉ hiện cảnh báo, không thể chặn OS chụp ảnh)
+            const isWinSnip = e.metaKey && e.shiftKey && key === 's'; // Win + Shift + S
+            const isMacSnip = isMac && e.metaKey && e.shiftKey && ['3', '4', '5'].includes(key); // Cmd + Shift + 3/4/5
+
+            if (isPrintScreen || isF12 || isDevTools || isBrowserShortcuts || isWinSnip || isMacSnip) {
                 e.preventDefault();
                 this.triggerCheatWarning();
                 return false;
             }
-        });
+        };
+
+        document.addEventListener('keydown', this._keyboardHandler);
+    }
+
+    /**
+     * Chống chụp màn hình bằng cách làm mờ giao diện khi mất focus
+     */
+    monitorWindowFocus() {
+        if (this._blurHandler) {
+            window.removeEventListener('blur', this._blurHandler);
+            window.removeEventListener('focus', this._focusHandler);
+        }
+
+        this._blurHandler = () => {
+            if (!this.enabled || !this.isQuizMode) return;
+            // Làm mờ toàn bộ body để chống Sniping Tool / Screenshot shortcuts
+            document.body.classList.add('anti-cheat-blur');
+        };
+
+        this._focusHandler = () => {
+            if (!this.enabled || !this.isQuizMode) return;
+            document.body.classList.remove('anti-cheat-blur');
+        };
+
+        window.addEventListener('blur', this._blurHandler);
+        window.addEventListener('focus', this._focusHandler);
     }
 
     /**
      * 2. Chặn Tương tác Chuột & Sao chép
      */
     blockMouseInteractions() {
-        document.addEventListener('contextmenu', (e) => {
+        this._contextMenuHandler = (e) => {
             e.preventDefault();
             this.triggerCheatWarning();
             return false;
-        });
+        };
 
-        document.addEventListener('mousedown', (e) => {
+        this._mouseDownHandler = (e) => {
             if (e.button === 2) {
                 e.preventDefault();
                 this.triggerCheatWarning();
                 return false;
             }
-        });
+        };
 
-        document.addEventListener('mouseup', (e) => {
+        this._mouseUpHandler = (e) => {
             if (e.button === 2) {
                 e.preventDefault();
                 return false;
             }
-        });
+        };
 
-        document.addEventListener('copy', (e) => {
+        this._copyHandler = (e) => {
             e.preventDefault();
             this.triggerCheatWarning();
             return false;
-        });
+        };
 
-        document.addEventListener('cut', (e) => {
+        this._cutHandler = (e) => {
             e.preventDefault();
             this.triggerCheatWarning();
             return false;
-        });
+        };
 
-        document.addEventListener('paste', (e) => {
+        this._pasteHandler = (e) => {
             e.preventDefault();
             this.triggerCheatWarning();
             return false;
-        });
+        };
+
+        document.addEventListener('contextmenu', this._contextMenuHandler);
+        document.addEventListener('mousedown', this._mouseDownHandler);
+        document.addEventListener('mouseup', this._mouseUpHandler);
+        document.addEventListener('copy', this._copyHandler);
+        document.addEventListener('cut', this._cutHandler);
+        document.addEventListener('paste', this._pasteHandler);
     }
 
     /**
      * 3. Chặn Text Selection & Bôi đen
      */
     blockTextSelection() {
-        document.addEventListener('selectstart', (e) => {
+        this._selectStartHandler = (e) => {
             e.preventDefault();
             return false;
-        });
+        };
 
-        const style = document.createElement('style');
-        style.textContent = `
+        document.addEventListener('selectstart', this._selectStartHandler);
+
+        if (this._selectionStyleElement && this._selectionStyleElement.isConnected) {
+            this._selectionStyleElement.remove();
+        }
+
+        this._selectionStyleElement = document.createElement('style');
+        this._selectionStyleElement.textContent = `
             body, body * {
                 -webkit-user-select: none !important;
                 user-select: none !important;
@@ -277,13 +402,67 @@ class AntiCheat {
                 user-select: text !important;
             }
         `;
-        document.head.appendChild(style);
+        document.head.appendChild(this._selectionStyleElement);
 
-        document.addEventListener('mousedown', (e) => {
+        this._multiClickBlockHandler = (e) => {
             if (e.detail > 1) {
                 e.preventDefault();
             }
-        });
+        };
+
+        document.addEventListener('mousedown', this._multiClickBlockHandler);
+    }
+
+    removeProtectionListeners() {
+        if (this._keyboardHandler) {
+            document.removeEventListener('keydown', this._keyboardHandler);
+            this._keyboardHandler = null;
+        }
+
+        if (this._contextMenuHandler) {
+            document.removeEventListener('contextmenu', this._contextMenuHandler);
+            this._contextMenuHandler = null;
+        }
+
+        if (this._mouseDownHandler) {
+            document.removeEventListener('mousedown', this._mouseDownHandler);
+            this._mouseDownHandler = null;
+        }
+
+        if (this._mouseUpHandler) {
+            document.removeEventListener('mouseup', this._mouseUpHandler);
+            this._mouseUpHandler = null;
+        }
+
+        if (this._copyHandler) {
+            document.removeEventListener('copy', this._copyHandler);
+            this._copyHandler = null;
+        }
+
+        if (this._cutHandler) {
+            document.removeEventListener('cut', this._cutHandler);
+            this._cutHandler = null;
+        }
+
+        if (this._pasteHandler) {
+            document.removeEventListener('paste', this._pasteHandler);
+            this._pasteHandler = null;
+        }
+
+        if (this._selectStartHandler) {
+            document.removeEventListener('selectstart', this._selectStartHandler);
+            this._selectStartHandler = null;
+        }
+
+        if (this._multiClickBlockHandler) {
+            document.removeEventListener('mousedown', this._multiClickBlockHandler);
+            this._multiClickBlockHandler = null;
+        }
+
+        if (this._selectionStyleElement && this._selectionStyleElement.isConnected) {
+            this._selectionStyleElement.remove();
+        }
+        this._selectionStyleElement = null;
     }
 
     /**
@@ -291,7 +470,7 @@ class AntiCheat {
      */
     monitorTabVisibility() {
         this._tabVisibilityHandler = () => {
-            if (!this.enabled || !this.isQuizMode || this.isDialogOpen) {
+            if (!this.enabled || !this.isQuizMode || this.isAntiCheatDialogOpen) {
                 return;
             }
 
@@ -310,10 +489,74 @@ class AntiCheat {
     }
 
     /**
+     * 5. Giám sát Fullscreen (Fullscreen API)
+     */
+    monitorFullscreen() {
+        if (this._fullscreenHandler) {
+            document.removeEventListener('fullscreenchange', this._fullscreenHandler);
+            document.removeEventListener('webkitfullscreenchange', this._fullscreenHandler);
+            document.removeEventListener('mozfullscreenchange', this._fullscreenHandler);
+            document.removeEventListener('MSFullscreenChange', this._fullscreenHandler);
+        }
+
+        this._fullscreenHandler = () => {
+            if (!this.enabled || !this.isQuizMode) {
+                return;
+            }
+
+            // Check if not in fullscreen (user exited fullscreen)
+            const isCurrentlyFullscreen = !!(document.fullscreenElement || 
+                                             document.webkitFullscreenElement || 
+                                             document.mozFullScreenElement || 
+                                             document.msFullscreenElement);
+
+            if (!isCurrentlyFullscreen && this.isQuizMode) {
+                const now = Date.now();
+                if (now - this.lastViolationAt < this.violationCooldownMs) {
+                    return;
+                }
+                this.lastViolationAt = now;
+                this.handleFullscreenExit();
+            }
+        };
+
+        document.addEventListener('fullscreenchange', this._fullscreenHandler);
+        document.addEventListener('webkitfullscreenchange', this._fullscreenHandler);
+        document.addEventListener('mozfullscreenchange', this._fullscreenHandler);
+        document.addEventListener('MSFullscreenChange', this._fullscreenHandler);
+    }
+
+    /**
+     * Xử lý khi user thoát fullscreen
+     */
+    async handleFullscreenExit() {
+        if (!this.enabled || !this.isQuizMode || !this.monitorFullscreenEnabled || this.isAntiCheatDialogOpen) {
+            return;
+        }
+
+        this.cheatCount++;
+        
+        if (this.cheatCount < this.maxCheatAttempts) {
+            await this.showCheatAlert(
+                `⚠️ Cảnh báo!\n\nBạn đã thoát chế độ toàn màn hình.\n\nVi phạm lần ${this.cheatCount}/${this.maxCheatAttempts}.\n\nNếu tiếp tục sẽ bị khóa bài thi!`
+            );
+            
+            // Show fullscreen prompt to user to re-enter
+            if (typeof showFullscreenButton !== 'undefined') {
+                showFullscreenButton();
+            }
+        } else {
+            await this.executePunishment();
+        }
+
+        this.logCheatViolation('fullscreen_exit');
+    }
+
+    /**
      * Xử lý khi user chuyển tab
      */
     async handleTabSwitch() {
-        if (!this.enabled || !this.isQuizMode || this.isDialogOpen) {
+        if (!this.enabled || !this.isQuizMode || !this.monitorTabSwitchEnabled || this.isAntiCheatDialogOpen) {
             return;
         }
 
@@ -334,32 +577,28 @@ class AntiCheat {
      * Cảnh báo gian lận
      */
     triggerCheatWarning() {
-        if (this.isDialogOpen) {
+        if (this.isAntiCheatDialogOpen) {
             return;
         }
 
-        this.showCheatAlert(
-            '🚫 Hành động này bị cấm!\n\nVui lòng không cố gắng sử dụng DevTools hoặc copy dữ liệu.'
-        );
+        // this.showCheatAlert(
+        //     '🚫 Hành động này bị cấm!\n\nVui lòng không cố gắng sử dụng DevTools, right-click hoặc copy dữ liệu.'
+        // );
     }
 
     /**
      * Hiển thị alert cảnh báo
      */
     async showCheatAlert(message) {
-        this.isDialogOpen = true;
+        this.isAntiCheatDialogOpen = true;
 
         try {
-            if (typeof window.showInAppAlert === 'function') {
-                await window.showInAppAlert(message, 'Cảnh báo Anti-Cheat');
-            } else {
-                await this.openCheatDialog(message);
-            }
+            await this.openCheatDialog(message);
         } catch (error) {
             console.error('Error showing anti-cheat dialog:', error);
             alert(message);
         } finally {
-            this.isDialogOpen = false;
+            this.isAntiCheatDialogOpen = false;
         }
     }
 
@@ -412,7 +651,11 @@ class AntiCheat {
                     method: 'POST',
                     body: JSON.stringify({
                         action: 'logCheatViolation',
-                        token: localStorage.getItem('quizToken'),
+                        token: (typeof AuthManager !== 'undefined' && AuthManager.getToken)
+                            ? AuthManager.getToken()
+                            : (typeof sessionStorage !== 'undefined'
+                                ? sessionStorage.getItem('quizToken')
+                                : localStorage.getItem('quizToken')),
                         ...logData
                     })
                 });
@@ -425,14 +668,27 @@ class AntiCheat {
     }
 
     disable() {
+        this.removeProtectionListeners();
+
         if (this._tabVisibilityHandler) {
             document.removeEventListener('visibilitychange', this._tabVisibilityHandler);
             window.removeEventListener('blur', this._tabVisibilityHandler);
             this._tabVisibilityHandler = null;
         }
 
+        if (this._fullscreenHandler) {
+            document.removeEventListener('fullscreenchange', this._fullscreenHandler);
+            document.removeEventListener('webkitfullscreenchange', this._fullscreenHandler);
+            document.removeEventListener('mozfullscreenchange', this._fullscreenHandler);
+            document.removeEventListener('MSFullscreenChange', this._fullscreenHandler);
+            this._fullscreenHandler = null;
+        }
+
         this.enabled = false;
         this.isQuizMode = false;
+        this.monitorTabSwitchEnabled = false;
+        this.monitorFullscreenEnabled = false;
+        this.isAntiCheatDialogOpen = false;
         this.isDialogOpen = false;
         this.isPunishing = false;
         console.log('🔓 Anti-Cheat Module Disabled');
