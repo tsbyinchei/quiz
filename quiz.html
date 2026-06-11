@@ -3,47 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Làm bài Quiz Lab">
+    <meta name="description" content="Làm bài Quiz">
     <meta name="theme-color" content="#0a0e27">
     <link rel="icon" type="image/x-icon" href="icon.ico">
     <title>Quiz Player - Quiz Lab</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css?v=21">
 </head>
-<body class="has-topbar">
+<body class="has-topbar quiz-player-page">
     <header class="site-topbar">
         <div class="site-topbar-inner">
-            <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
+            <a href="javascript:void(0)" class="site-brand" onclick="confirmExitTo('index.html')"><span>Quiz Lab</span></a>
             <nav class="site-nav">
-                <a href="index.html">Trang chủ</a>
-                <a href="javascript:void(0)" onclick="confirmExit()">Dashboard</a>
+                <a href="javascript:void(0)" onclick="confirmExitTo('index.html')">Trang chủ</a>
+                <a href="javascript:void(0)" onclick="confirmExitTo('dashboard.html')">Dashboard</a>
                 <a href="javascript:void(0)" onclick="submitQuiz()">Kết quả</a>
             </nav>
             <div class="site-topbar-actions">
                 <button type="button" class="theme-toggle" data-theme-toggle>🌙</button>
-                <button type="button" class="theme-toggle" onclick="toggleMusic()" title="Bật/Tắt nhạc" id="musicBtn">
-                    <span id="musicIcon">🎵</span>
-                </button>
+
             </div>
         </div>
     </header>
 
-    <audio id="bgMusic" loop preload="auto">
-        <source src="assets/bg-music.mp3" type="audio/mpeg">
-    </audio>
 
     <div class="container">
         <div class="quiz-page">
             <!-- Header -->
             <header class="quiz-header glassmorphism">
                 <div class="quiz-header-left">
-                    <button class="btn-back" onclick="confirmExit()">← Quay Lại</button>
+                    <button class="btn-back" onclick="confirmExitTo('dashboard.html')">← Quay Lại</button>
                     <h2 id="quizTitle">Bài Quiz</h2>
                 </div>
                 <div class="quiz-header-right">
+                    <button class="btn-question-list" id="btnQuestionList" onclick="openQuestionListModal()" style="display:none">
+                        Câu hỏi
+                    </button>
                     <div class="timer" id="timer">
-                        <span class="timer-label">⏱️ Thời gian:</span>
-                        <span class="timer-value" id="timerValue">00:00</span>
+                        <div class="timer-head">
+                            <span class="timer-label">⏱️ Thời gian:</span>
+                            <span class="timer-value" id="timerValue">00:00</span>
+                        </div>
+                        <div class="timer-progress-track" aria-hidden="true">
+                            <div class="timer-progress-fill" id="timerProgress" style="width:100%"></div>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -66,30 +69,94 @@
                     </div>
                 </div>
 
-                <!-- Question Indicator -->
-                <div class="question-indicator" id="questionIndicator"></div>
+                <!-- Question Indicator (Deleted) -->
             </main>
         </div>
     </div>
 
-    <footer class="site-footer">
-        <div class="site-footer-inner">
-            <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
-            <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="index.html">Trang chủ</a>
-                <a href="../../privacy.html">Privacy Policy</a>
-                <a href="../../index.html">tsbyin.dev</a>
-            </nav>
+    <!-- Question List Modal -->
+    <div id="questionListOverlay" class="quiz-dialog-overlay" aria-hidden="true" onclick="closeQuestionListOnBackdrop(event)">
+        <div class="quiz-dialog question-grid-modal" role="dialog" aria-modal="true" aria-labelledby="questionListTitle">
+            <h3 id="questionListTitle" class="quiz-dialog-title" style="margin-bottom:0.5rem; border-bottom: 1px solid var(--line); padding-bottom: 0.8rem;">Danh sách câu hỏi</h3>
+            <div class="question-grid-body" id="questionGridBody">
+                <!-- Question buttons injected here -->
+            </div>
+            <div class="quiz-dialog-actions" style="padding-top: 1rem; border-top: 1px solid var(--line);">
+                <button type="button" class="quiz-dialog-btn ghost" onclick="closeQuestionListModal()">Đóng</button>
+            </div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Fullscreen Prompt (hidden by default) -->
+    <div id="fullscreenPrompt" class="fullscreen-prompt-overlay" aria-hidden="true">
+        <div class="fullscreen-prompt-modal" role="dialog" aria-modal="true" aria-labelledby="fullscreenPromptTitle">
+            <h3 id="fullscreenPromptTitle" class="fullscreen-prompt-title">Yêu Cầu Toàn Màn Hình</h3>
+            <p class="fullscreen-prompt-message">Vui lòng bấm nút dưới để vào chế độ toàn màn hình để làm bài thi.</p>
+            <button id="fullscreenButton" type="button" class="fullscreen-prompt-btn" onclick="requestFullscreenMode()">📺 Vào Toàn Màn Hình</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+        <div class="loading-modal" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <p id="loadingText">Đang xử lý...</p>
+        </div>
+    </div>
+
+    <!-- Image Viewer -->
+    <div id="imageViewerOverlay" class="quiz-image-viewer-overlay" aria-hidden="true">
+        <div class="quiz-image-viewer" role="dialog" aria-modal="true" aria-labelledby="imageViewerTitle">
+            <div class="quiz-image-viewer-head">
+                <h3 id="imageViewerTitle">Xem ảnh</h3>
+                <button type="button" class="quiz-image-viewer-close" onclick="closeImageViewer()" aria-label="Đóng ảnh">✕</button>
+            </div>
+            <div class="quiz-image-viewer-body">
+                <img id="imageViewerImg" src="" alt="Ảnh minh họa" />
+            </div>
+            <p id="imageViewerCaption" class="quiz-image-viewer-caption"></p>
+        </div>
+    </div>
+
+    <!-- Report Error Modal -->
+    <div id="reportErrorOverlay" class="report-error-overlay" aria-hidden="true">
+        <div class="report-error-modal" role="dialog" aria-modal="true">
+            <h3 class="report-error-title">🚩 Báo lỗi câu hỏi</h3>
+            <p class="report-error-message">Phát hiện lỗi ở câu hỏi này? Hãy cho chúng tôi biết để cải thiện nhé!</p>
+            <form id="reportErrorForm" onsubmit="submitQuestionReport(event)">
+                <input type="hidden" id="reportQuestionID" value="">
+                
+                <label for="reportErrorType" class="report-label">Loại lỗi:</label>
+                <select id="reportErrorType" class="report-select" required>
+                    <option value="" disabled selected>-- Chọn loại lỗi --</option>
+                    <option value="Sai đáp án">Sai đáp án</option>
+                    <option value="Lỗi chính tả">Lỗi chính tả</option>
+                    <option value="Nội dung không rõ ràng">Nội dung không rõ ràng</option>
+                    <option value="Lỗi hiển thị hình ảnh">Lỗi hiển thị hình ảnh</option>
+                    <option value="Trùng câu hỏi">Trùng câu hỏi</option>
+                    <option value="Khác">Khác</option>
+                </select>
+
+                <label for="reportErrorDetails" class="report-label">Mô tả thêm (Tùy chọn):</label>
+                <textarea id="reportErrorDetails" class="report-textarea" rows="3" placeholder="Nhập thêm chi tiết về lỗi..."></textarea>
+
+                <div class="report-error-actions">
+                    <button type="button" class="btn-cancel" onclick="closeReportModal()">Hủy</button>
+                    <button type="submit" class="btn-submit-report" id="btnSubmitReport">Gửi báo cáo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 
     <!-- Anticheating Module -->
     <script src="assets/anticheating.js"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="assets/script.js"></script>
+    <script src="assets/script.js?v=20"></script>
     <script>
-        let swiper;
+let swiper;
         let quizData = {};
         let displayQuestions = [];
         let userAnswers = {};
@@ -99,15 +166,21 @@
         let allowBackNavigation = true;
         let autoNextEnabled = false;
         let autoNextTimer = null;
-        let isMusicEnabled = localStorage.getItem('musicEnabled') !== 'false';
-        const bgMusic = document.getElementById('bgMusic');
-        let musicInteractionHandler = null;
+        let questionLocks = {};
+        let optionOrderByQuestion = {};
+        let correctOptionKeyByQuestion = {};
+        let correctOptionInFlightByQuestion = {};
+        let imageViewerEventsBound = false;
+        let currentQuizID = String(localStorage.getItem('currentQuizID') || '');
+        const imageViewerOverlay = document.getElementById('imageViewerOverlay');
+        const imageViewerImg = document.getElementById('imageViewerImg');
+        const imageViewerCaption = document.getElementById('imageViewerCaption');
 
         function shuffleArray(items) {
             const arr = [...items];
             for (let i = arr.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
+                ;[arr[i], arr[j]] = [arr[j], arr[i]];
             }
             return arr;
         }
@@ -117,73 +190,204 @@
             return String(value || '').replace(/^[A-D][\.)]\s*/i, '').trim();
         }
 
-        function updateMusicUI() {
-            const icon = document.getElementById('musicIcon');
-            const musicBtn = document.getElementById('musicBtn');
+        function resolveAntiCheatModes(quizInfo) {
+            const info = quizInfo || {};
+            const legacyAntiCheatEnabled = !(info.antiCheat === false);
+            const hasExplicitTabMode = Object.prototype.hasOwnProperty.call(info, 'antiCheatTabSwitch');
+            const hasExplicitFullscreenMode = Object.prototype.hasOwnProperty.call(info, 'antiCheatFullscreen');
 
-            if (icon) {
-                icon.textContent = isMusicEnabled ? '🎵' : '🔇';
-            }
+            const tabSwitch = hasExplicitTabMode ? !!info.antiCheatTabSwitch : legacyAntiCheatEnabled;
+            const fullscreen = hasExplicitFullscreenMode ? !!info.antiCheatFullscreen : legacyAntiCheatEnabled;
 
-            if (musicBtn) {
-                musicBtn.classList.toggle('music-off', !isMusicEnabled);
-                musicBtn.style.opacity = isMusicEnabled ? '1' : '0.5';
-            }
+            return {
+                tabSwitch,
+                fullscreen
+            };
         }
 
-        function stopMusic() {
-            if (!bgMusic) {
+        function isPracticeModeEnabled(quizInfo) {
+            const info = quizInfo || {};
+            return !!(info.showAnswer || info.revealCorrectOnWrong);
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function isSafeImageSrc(src) {
+            const raw = String(src || '').trim();
+            if (!raw) {
+                return false;
+            }
+
+            const lower = raw.toLowerCase();
+            if (lower.startsWith('javascript:') || lower.startsWith('data:')) {
+                return false;
+            }
+
+            return /^(https?:\/\/|\.\/|\.\.\/|\/|assets\/)/i.test(raw);
+        }
+
+        // Allow only a small subset of tags for Aiken rich text (mainly <img> and line breaks).
+        function sanitizeAikenRichText(input, { allowImage = true } = {}) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(String(input || ''), 'text/html');
+
+            const allowedTextTags = new Set(['BR', 'B', 'STRONG', 'I', 'EM', 'U', 'CODE']);
+
+            const walk = (node) => {
+                const children = Array.from(node.childNodes);
+
+                for (const child of children) {
+                    if (child.nodeType === Node.TEXT_NODE) {
+                        continue;
+                    }
+
+                    if (child.nodeType !== Node.ELEMENT_NODE) {
+                        child.remove();
+                        continue;
+                    }
+
+                    const tag = child.tagName.toUpperCase();
+
+                    if (tag === 'IMG' && allowImage) {
+                        const src = child.getAttribute('src') || '';
+                        if (!isSafeImageSrc(src)) {
+                            child.remove();
+                            continue;
+                        }
+
+                        const alt = (child.getAttribute('alt') || child.getAttribute('title') || 'Ảnh minh họa').trim();
+                        const trigger = document.createElement('button');
+                        trigger.type = 'button';
+                        trigger.className = 'quiz-image-button';
+                        trigger.setAttribute('data-image-src', src);
+                        trigger.setAttribute('data-image-alt', alt);
+                        trigger.textContent = 'Xem ảnh';
+                        child.replaceWith(trigger);
+                        continue;
+                    }
+
+                    if (allowedTextTags.has(tag)) {
+                        Array.from(child.attributes || []).forEach((attr) => {
+                            child.removeAttribute(attr.name);
+                        });
+                        walk(child);
+                        continue;
+                    }
+
+                    // Replace unsupported tags with their plain text content.
+                    const textNode = document.createTextNode(child.textContent || '');
+                    child.replaceWith(textNode);
+                }
+            };
+
+            walk(doc.body);
+                        const serializeSafe = (node) => {
+                if (node.nodeType === 3) return node.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+                if (node.nodeType === 1) {
+                    const tag = node.tagName.toLowerCase();
+                    const attrs = Array.from(node.attributes).map(a => `${a.name}="${a.value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`).join(' ');
+                    const children = Array.from(node.childNodes).map(serializeSafe).join('');
+                    const selfClosing = ['img', 'br', 'hr', 'input'].includes(tag);
+                    return `<${tag}${attrs ? ' ' + attrs : ''}${selfClosing ? '/>' : `>${children}</${tag}>`}`;
+                }
+                return '';
+            };
+            return Array.from(doc.body.childNodes).map(serializeSafe).join('');
+        }
+
+        function openImageViewer(src, alt = 'Ảnh minh họa') {
+            if (!imageViewerOverlay || !imageViewerImg || !isSafeImageSrc(src)) {
                 return;
             }
 
-            bgMusic.pause();
-            bgMusic.currentTime = 0;
-        }
+            imageViewerLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
-        function playMusic() {
-            if (!bgMusic || !isMusicEnabled) {
-                return Promise.resolve();
+            imageViewerImg.src = src;
+            imageViewerImg.alt = alt || 'Ảnh minh họa';
+            if (imageViewerCaption) {
+                imageViewerCaption.textContent = alt || '';
             }
 
-            bgMusic.volume = 0.3;
-            return bgMusic.play();
+            document.body.style.overflow = 'hidden';
+            imageViewerOverlay.classList.add('is-open');
+            imageViewerOverlay.setAttribute('aria-hidden', 'false');
+
+            const closeButton = imageViewerOverlay.querySelector('.quiz-image-viewer-close');
+            if (closeButton && typeof closeButton.focus === 'function') {
+                closeButton.focus();
+            }
         }
 
-        function bindFirstMusicInteraction() {
-            if (!isMusicEnabled || musicInteractionHandler) {
+        function closeImageViewer() {
+            if (!imageViewerOverlay || !imageViewerImg) {
                 return;
             }
 
-            musicInteractionHandler = (event) => {
-                if (event && event.target && event.target.closest && event.target.closest('#musicBtn')) {
+            imageViewerOverlay.classList.remove('is-open');
+            imageViewerOverlay.setAttribute('aria-hidden', 'true');
+            imageViewerImg.src = '';
+            document.body.style.overflow = '';
+
+            if (imageViewerLastFocus && typeof imageViewerLastFocus.focus === 'function') {
+                imageViewerLastFocus.focus();
+            }
+            imageViewerLastFocus = null;
+        }
+
+        function bindImageViewerEvents() {
+            if (imageViewerEventsBound) {
+                return;
+            }
+
+            document.addEventListener('click', (event) => {
+                const imageTrigger = event.target.closest('.quiz-image-button');
+                if (imageTrigger) {
+                    const src = imageTrigger.getAttribute('data-image-src') || '';
+                    const alt = imageTrigger.getAttribute('data-image-alt') || 'Ảnh minh họa';
+                    openImageViewer(src, alt);
                     return;
                 }
 
-                playMusic().catch(() => {
-                    console.log('Chờ tương tác để phát nhạc');
+                if (imageViewerOverlay && event.target === imageViewerOverlay) {
+                    closeImageViewer();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && imageViewerOverlay && imageViewerOverlay.classList.contains('is-open')) {
+                    closeImageViewer();
+                    event.stopPropagation();
+                }
+            });
+
+            const gridBody = document.getElementById('questionGridBody');
+            if (gridBody) {
+                gridBody.addEventListener('click', (event) => {
+                    const target = event.target.closest('.question-grid-item');
+                    if (!target) return;
+                    
+                    const index = Number(target.getAttribute('data-question-index'));
+                    if (!Number.isNaN(index)) {
+                        goToQuestionAndClose(index);
+                    }
                 });
-            };
-
-            document.addEventListener('pointerdown', musicInteractionHandler, { once: true, capture: true });
-        }
-
-        function toggleMusic() {
-            isMusicEnabled = !isMusicEnabled;
-            localStorage.setItem('musicEnabled', String(isMusicEnabled));
-            updateMusicUI();
-
-            if (isMusicEnabled) {
-                bindFirstMusicInteraction();
-                playMusic().catch(() => {
-                    console.log('Cần tương tác để phát nhạc');
-                });
-            } else {
-                stopMusic();
             }
+
+            imageViewerEventsBound = true;
         }
+
+        bindImageViewerEvents();
+
 
         async function initQuiz() {
-            sessionStorage.clear();
+            sessionStorage.removeItem('quizResult');
 
             // Kiểm tra authentication
             const token = AuthManager.getToken();
@@ -209,18 +413,26 @@
 
                 if (result.success) {
                     quizData = result;
-                    const shouldEnableAntiCheat = !(quizData.quizInfo && quizData.quizInfo.antiCheat === false);
+                    currentQuizID = String(quizID || '');
+                    correctOptionKeyByQuestion = {};
+                    correctOptionInFlightByQuestion = {};
+                    optionOrderByQuestion = {};
+                    const antiCheatModes = resolveAntiCheatModes(quizData.quizInfo);
+                    const shouldEnableAntiCheat = antiCheatModes.tabSwitch || antiCheatModes.fullscreen;
                     autoNextEnabled = !!(quizData.quizInfo && quizData.quizInfo.autoNext);
                     allowBackNavigation = !(quizData.quizInfo && quizData.quizInfo.allowBack === false);
                     document.body.classList.toggle('quiz-no-back', !allowBackNavigation);
 
                     if (typeof antiCheat !== 'undefined') {
-                        if (shouldEnableAntiCheat) {
-                            antiCheat.enable(true);
-                            console.log('Anti-Cheat: ENABLED');
+                        antiCheat.enable(true, antiCheatModes);
+                        if (antiCheatModes.tabSwitch && antiCheatModes.fullscreen) {
+                            console.log('Anti-Cheat: ENABLED (TAB + FULLSCREEN)');
+                        } else if (antiCheatModes.tabSwitch) {
+                            console.log('Anti-Cheat: ENABLED (TAB ONLY)');
+                        } else if (antiCheatModes.fullscreen) {
+                            console.log('Anti-Cheat: ENABLED (FULLSCREEN ONLY)');
                         } else {
-                            antiCheat.disable();
-                            console.log('Anti-Cheat: DISABLED');
+                            console.log('Anti-Cheat: ENABLED (BASIC MODE - No Tab/Fullscreen Monitoring)');
                         }
                     }
 
@@ -231,13 +443,17 @@
                     }
 
                     document.getElementById('totalQuestions').textContent = displayQuestions.length;
+                    document.getElementById('btnQuestionList').style.display = 'inline-flex';
 
                     renderQuestions(displayQuestions);
+                    warmupPracticeCorrectOptions_();
                     startTimer(result.quizInfo.timeLimit);
                     initSwiper();
                     updateQuestionIndicator();
-                    updateMusicUI();
-                    bindFirstMusicInteraction();
+                    // Show fullscreen prompt only when fullscreen monitoring is enabled.
+                    if (antiCheatModes.fullscreen) {
+                        showFullscreenButton();
+                    }
                 } else {
                     await showInAppAlert(result.message || 'Không thể tải dữ liệu bài quiz');
                     window.location.href = 'dashboard.html';
@@ -252,7 +468,7 @@
         // Render các câu hỏi
         function renderQuestions(questions) {
             const container = document.getElementById('questionContainer');
-            container.innerHTML = '';
+            container.replaceChildren();
             const isGridMode = localStorage.getItem('quizGridMode') === 'true';
 
             questions.forEach((question, index) => {
@@ -267,36 +483,203 @@
                     { key: 'D', text: normalizeOptionText(question.D) }
                 ];
                 const renderedOptions = shouldShuffleOptions ? shuffleArray(optionList) : optionList;
+                optionOrderByQuestion[String(question.questionID).trim()] = renderedOptions.map((option) => option.key);
+                const questionHtml = sanitizeAikenRichText(question.questionText || '', { allowImage: true });
+                const encodedQuestionID = encodeURIComponent(String(question.questionID || ''));
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
-                slide.innerHTML = `
+                insertHtmlSafe(slide, `
                     <div class="question-card">
-                        <h3>Câu ${index + 1}: ${question.questionText}</h3>
-                        <div class="answers ${isGridMode ? 'grid-mode' : ''}">
+                            <h3>Câu ${index + 1}: ${questionHtml}</h3>
+                            <div class="answers ${isGridMode ? 'grid-mode' : ''}">
                             ${renderedOptions.map((option) => `
                                 <label class="answer-option">
                                     <input type="radio" name="q${question.questionID}" value="${option.key}" 
-                                        onchange="selectAnswer('${question.questionID}', '${option.key}')">
-                                    <span class="option-text">${shouldShowOptionPrefix ? `${option.key}. ` : ''}${option.text}</span>
+                                        class="quiz-radio-input" data-question-id="${encodedQuestionID}" data-option-key="${option.key}">
+                                    <span class="answer-status-badge" aria-hidden="true"></span>
+                                    <span class="option-text">${shouldShowOptionPrefix ? `<span class="option-prefix">${option.key}.</span> ` : ''}${sanitizeAikenRichText(option.text, { allowImage: true })}</span>
                                 </label>
                             `).join('')}
                         </div>
-                        <div class="quiz-navigation">
-                            <button class="btn-prev" onclick="prevQuestion()" ${(isFirst || !allowBackNavigation) ? 'disabled' : ''}>
-                                ← Câu Trước
-                            </button>
-                            ${isLast
-                                ? '<button class="btn-submit" onclick="submitQuiz()">Nộp Bài</button>'
-                                : '<button class="btn-next" onclick="nextQuestion()">Câu Tiếp →</button>'}
-                        </div>
-                        <div class="feedback" id="feedback-${question.questionID}" style="display:none;"></div>
-                        ${quizData.quizInfo.showAnswer ? `
+                        ${isPracticeModeEnabled(quizData.quizInfo) ? `
                             <div class="explanation" id="exp-${question.questionID}"></div>
                         ` : ''}
+                        <div class="quiz-navigation">
+                            <button class="btn-prev quiz-btn-prev"${(isFirst || !allowBackNavigation) ? 'disabled' : ''}>
+                                &larr; Câu Trước
+                            </button>
+                            <button type="button" class="btn-report-error quiz-btn-report" data-question-id="${encodedQuestionID}">&#128681; Báo lỗi</button>
+                            ${isLast
+                                ? '<button class="btn-submit quiz-btn-submit">Nộp Bài</button>'
+                                : '<button class="btn-next quiz-btn-next">Câu Tiếp &rarr;</button>'}
+                        </div>
+
+
                     </div>
-                `;
+                `);
                 container.appendChild(slide);
+
+            // Dynamically attach event listeners to avoid inline handlers (SAST fix)
+            const radioInputs = slide.querySelectorAll('.quiz-radio-input');
+            radioInputs.forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const qId = decodeURIComponent(e.target.dataset.questionId);
+                    const optKey = e.target.dataset.optionKey;
+                    selectAnswer(qId, optKey);
+                });
             });
+
+            const prevBtn = slide.querySelector('.quiz-btn-prev');
+            if (prevBtn) prevBtn.addEventListener('click', prevQuestion);
+
+            const nextBtn = slide.querySelector('.quiz-btn-next');
+            if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
+
+            const submitBtn = slide.querySelector('.quiz-btn-submit');
+            if (submitBtn) submitBtn.addEventListener('click', () => submitQuiz());
+
+            const reportBtn = slide.querySelector('.quiz-btn-report');
+            if (reportBtn) {
+                reportBtn.addEventListener('click', (e) => {
+                    const qId = decodeURIComponent(e.target.dataset.questionId);
+                    openReportModal(qId);
+                });
+            }
+            });
+        }
+
+        // Request Fullscreen khi bắt đầu quiz
+        async function requestFullscreenMode() {
+            const fullscreenTarget = document.documentElement;
+            if (!fullscreenTarget) {
+                return;
+            }
+
+            const isCurrentlyFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+            if (isCurrentlyFullscreen) {
+                hideFullscreenPrompt();
+                if (typeof antiCheat !== 'undefined' && antiCheat.monitorFullscreenEnabled) {
+                    antiCheat.monitorFullscreen();
+                }
+                return;
+            }
+
+            try {
+                const requestFS = 
+                    fullscreenTarget.requestFullscreen ||
+                    fullscreenTarget.webkitRequestFullscreen ||
+                    fullscreenTarget.mozRequestFullScreen ||
+                    fullscreenTarget.msRequestFullscreen;
+
+                if (requestFS) {
+                    const btn = document.getElementById('fullscreenButton');
+                    if (btn) btn.disabled = true;
+
+                    await requestFS.call(fullscreenTarget);
+                    console.log('📺 Fullscreen mode activated');
+                    
+                    hideFullscreenPrompt();
+                    
+                    if (typeof antiCheat !== 'undefined' && antiCheat.monitorFullscreenEnabled) {
+                        antiCheat.monitorFullscreen();
+                    }
+
+                    if (btn) btn.disabled = false;
+                } else {
+                    console.warn('Fullscreen API not supported');
+                    hideFullscreenPrompt(); // Tránh vòng lặp vô hạn nếu trình duyệt không hỗ trợ
+                }
+            } catch (error) {
+                console.warn('Fullscreen request failed:', error);
+                const btn = document.getElementById('fullscreenButton');
+                if (btn) btn.disabled = false;
+
+                const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+                if (isFS) {
+                    hideFullscreenPrompt();
+                } else {
+                    showFullscreenButton();
+                }
+            }
+        }
+
+        // Functions for Report Error Modal
+        function openReportModal(questionID) {
+            const modal = document.getElementById('reportErrorOverlay');
+            if (!modal) return;
+            document.getElementById('reportQuestionID').value = questionID;
+            document.getElementById('reportErrorType').value = '';
+            document.getElementById('reportErrorDetails').value = '';
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeReportModal() {
+            const modal = document.getElementById('reportErrorOverlay');
+            if (!modal) return;
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        async function submitQuestionReport(event) {
+            event.preventDefault();
+            const token = AuthManager.getToken();
+            if (!token) return;
+
+            const questionID = document.getElementById('reportQuestionID').value;
+            const errorType = document.getElementById('reportErrorType').value;
+            const details = document.getElementById('reportErrorDetails').value;
+            const btnSubmit = document.getElementById('btnSubmitReport');
+
+            if (!errorType) {
+                await showInAppAlert('Vui lòng chọn loại lỗi');
+                return;
+            }
+
+            try {
+                btnSubmit.disabled = true;
+                btnSubmit.textContent = 'Đang gửi...';
+
+                const response = await APIClient.request('reportQuestionError', {
+                    quizID: currentQuizID,
+                    questionID: questionID,
+                    errorType: errorType,
+                    details: details
+                });
+
+                if (response.success) {
+                    await showInAppAlert('Cảm ơn bạn đã báo cáo. Chúng tôi sẽ kiểm tra lại câu hỏi này!');
+                    closeReportModal();
+                } else {
+                    await showInAppAlert('Lỗi: ' + response.message);
+                }
+            } catch (error) {
+                console.error(error);
+                await showInAppAlert('Có lỗi xảy ra khi gửi báo cáo');
+            } finally {
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = 'Gửi báo cáo';
+            }
+        }
+
+        // Hiển thị nút fullscreen khi user từ chối hoặc không hỗ trợ
+        function showFullscreenButton() {
+            const fsPrompt = document.getElementById('fullscreenPrompt');
+            if (fsPrompt) {
+                fsPrompt.style.display = '';
+                fsPrompt.classList.add('is-open');
+                fsPrompt.setAttribute('aria-hidden', 'false');
+            }
+        }
+
+        // Ẩn prompt fullscreen
+        function hideFullscreenPrompt() {
+            const fsPrompt = document.getElementById('fullscreenPrompt');
+            if (fsPrompt) {
+                fsPrompt.classList.remove('is-open');
+                fsPrompt.style.display = '';
+                fsPrompt.setAttribute('aria-hidden', 'true');
+            }
         }
 
         // Init Swiper
@@ -318,8 +701,119 @@
             });
         }
 
+        async function resolveCorrectOptionKey(questionID) {
+            const questionKey = String(questionID);
+            const cacheKey = `${currentQuizID}_${questionKey}`;
+            if (correctOptionKeyByQuestion[cacheKey]) {
+                return correctOptionKeyByQuestion[cacheKey];
+            }
+
+            if (correctOptionInFlightByQuestion[cacheKey]) {
+                return correctOptionInFlightByQuestion[cacheKey];
+            }
+
+            const question = quizData.questions.find((item) => String(item.questionID) === questionKey);
+            if (!question) {
+                return null;
+            }
+
+            const localCorrectOption = String(question.correctOption || '').trim().toUpperCase();
+            if (/^[A-D]$/.test(localCorrectOption)) {
+                correctOptionKeyByQuestion[cacheKey] = localCorrectOption;
+                return localCorrectOption;
+            }
+
+            const requestPromise = (async () => {
+                try {
+                    const result = await APIClient.resolveCorrectOption(currentQuizID, questionKey);
+                    const resolvedKey = result && result.success ? String(result.correctOption || '').toUpperCase() : '';
+                    if (/^[A-D]$/.test(resolvedKey)) {
+                        correctOptionKeyByQuestion[cacheKey] = resolvedKey;
+                        return resolvedKey;
+                    }
+                } catch (error) {
+                    return null;
+                } finally {
+                    delete correctOptionInFlightByQuestion[cacheKey];
+                }
+                return null;
+            })();
+
+            correctOptionInFlightByQuestion[cacheKey] = requestPromise;
+
+            return requestPromise;
+        }
+
+        function warmupPracticeCorrectOptions_() {
+            if (!isPracticeModeEnabled(quizData.quizInfo) || !Array.isArray(displayQuestions) || displayQuestions.length === 0) {
+                return;
+            }
+
+            const questionIDs = displayQuestions
+                .map((item) => String(item && item.questionID ? item.questionID : '').trim())
+                .filter(Boolean);
+
+            if (!questionIDs.length) {
+                return;
+            }
+
+            let cursor = 0;
+            const batchSize = 4;
+
+            const pump = () => {
+                const batch = questionIDs.slice(cursor, cursor + batchSize);
+                cursor += batch.length;
+
+                batch.forEach((questionID) => {
+                    prefetchCorrectOption_(questionID);
+                });
+
+                if (cursor < questionIDs.length) {
+                    setTimeout(pump, 120);
+                }
+            };
+
+            pump();
+        }
+
+        function prefetchCorrectOption_(questionID) {
+            const questionKey = String(questionID || '').trim();
+            if (!questionKey) {
+                return;
+            }
+
+            resolveCorrectOptionKey(questionKey).catch(() => {
+                // Prefetch best-effort only.
+            });
+        }
+
         // Chọn câu trả lời
         async function selectAnswer(questionID, answer) {
+            const questionKey = String(questionID);
+            const selectedValue = String(answer).toUpperCase();
+            const practiceModeEnabled = isPracticeModeEnabled(quizData.quizInfo);
+            const revealCorrectOnWrong = !!(quizData.quizInfo && quizData.quizInfo.revealCorrectOnWrong);
+
+            // Mode showAnswer: mỗi câu chỉ cho chọn 1 lần.
+            if (practiceModeEnabled && questionLocks[questionKey]) {
+                return;
+            }
+
+            const radios = document.querySelectorAll(`input[name="q${questionKey}"]`);
+            radios.forEach((radio) => {
+                const isSelected = radio.value === selectedValue;
+                radio.checked = isSelected;
+                const optionLabel = radio.closest('.answer-option');
+                if (optionLabel) {
+                    const statusBadge = optionLabel.querySelector('.answer-status-badge');
+                    optionLabel.classList.toggle('is-selected', radio.checked);
+                    optionLabel.classList.remove('is-correct', 'is-wrong');
+                    if (statusBadge) {
+                        statusBadge.textContent = '';
+                    }
+                }
+            });
+
             userAnswers[questionID] = answer;
 
             if (autoNextTimer) {
@@ -327,31 +821,59 @@
                 autoNextTimer = null;
             }
 
-            // Nếu bật chế độ luyện tập (Show_Answer = TRUE), hiển thị kết quả ngay
-            if (quizData.quizInfo.showAnswer) {
-                const radios = document.querySelectorAll(`input[name="q${questionID}"]`);
-                radios.forEach((radio) => {
-                    radio.disabled = true;
-                });
+            updateQuestionIndicator();
 
-                const question = quizData.questions.find(q => q.questionID === questionID);
-                const userHash = await sha256(questionID + answer + 'TsByinChei');
-                const isCorrect = userHash === question.answerHash;
-
-                const feedbackDiv = document.getElementById(`feedback-${questionID}`);
-                feedbackDiv.style.display = 'block';
-                feedbackDiv.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
-                feedbackDiv.textContent = isCorrect ? '✓ Đúng!' : '✗ Sai!';
-
-                // Hiển thị giải thích
-                const expDiv = document.getElementById(`exp-${questionID}`);
-                if (expDiv) {
-                    expDiv.textContent = '💡 ' + question.explanation;
-                    expDiv.style.display = 'block';
+            if (!practiceModeEnabled) {
+                if (autoNextEnabled && swiper && swiper.activeIndex < displayQuestions.length - 1) {
+                    autoNextTimer = setTimeout(() => {
+                        nextQuestion();
+                        autoNextTimer = null;
+                    }, 800);
                 }
+                return;
             }
 
-            updateQuestionIndicator();
+            // Khóa ngay để tránh spam click/race khi đang chờ API resolve.
+            questionLocks[questionKey] = true;
+            radios.forEach((radio) => {
+                radio.disabled = true;
+            });
+
+            const question = quizData.questions.find((q) => String(q.questionID) === questionKey);
+            const hasLocalCorrectOption = !!(question && /^[A-D]$/.test(String(question.correctOption || '').trim().toUpperCase()));
+            const correctValue = await resolveCorrectOptionKey(questionID);
+
+            if (!/^[A-D]$/.test(String(correctValue || '').toUpperCase())) {
+                questionLocks[questionKey] = false;
+                radios.forEach((radio) => {
+                    radio.disabled = false;
+                });
+
+                return;
+            }
+
+            // Nếu bật chế độ luyện tập (Show_Answer = TRUE), hiển thị kết quả ngay
+            if (practiceModeEnabled) {
+                const isCorrect = selectedValue === correctValue;
+
+                radios.forEach((radio) => {
+                    const isSelected = radio.value === selectedValue;
+                    const isCorrectOption = radio.value === correctValue;
+                    const shouldShowCorrect = (selectedValue === correctValue || revealCorrectOnWrong) && isCorrectOption;
+                    const shouldShowWrong = isSelected && !isCorrectOption;
+                    const optionLabel = radio.closest('.answer-option');
+                    if (optionLabel) {
+                        const statusBadge = optionLabel.querySelector('.answer-status-badge');
+                        optionLabel.classList.toggle('is-correct', shouldShowCorrect);
+                        optionLabel.classList.toggle('is-wrong', shouldShowWrong);
+                        if (statusBadge) {
+                            statusBadge.textContent = shouldShowCorrect ? '✓' : (shouldShowWrong ? '✕' : '');
+                        }
+                    }
+                });
+
+
+            }
 
             if (autoNextEnabled && swiper && swiper.activeIndex < displayQuestions.length - 1) {
                 autoNextTimer = setTimeout(() => {
@@ -366,23 +888,36 @@
             const currentIndex = swiper.activeIndex + 1;
             document.getElementById('currentQuestion').textContent = currentIndex;
 
+            if (isPracticeModeEnabled(quizData.quizInfo) && displayQuestions.length > 0) {
+                const currentQuestion = displayQuestions[swiper.activeIndex];
+                const nextQuestion = displayQuestions[swiper.activeIndex + 1];
+                if (currentQuestion && currentQuestion.questionID) {
+                    prefetchCorrectOption_(currentQuestion.questionID);
+                }
+                if (nextQuestion && nextQuestion.questionID) {
+                    prefetchCorrectOption_(nextQuestion.questionID);
+                }
+            }
+
             const progressPercent = displayQuestions.length > 0
                 ? (currentIndex / displayQuestions.length) * 100
                 : 0;
             document.getElementById('progressFill').style.width = progressPercent + '%';
 
             // Cập nhật chỉ báo câu hỏi đã làm
-            const indicatorDiv = document.getElementById('questionIndicator');
+            const indicatorDiv = document.getElementById('questionGridBody');
+            if (!indicatorDiv) return;
             let html = '';
             for (let i = 0; i < displayQuestions.length; i++) {
                 const qID = displayQuestions[i].questionID;
                 const answered = userAnswers[qID] ? 'answered' : '';
                 const active = i === swiper.activeIndex ? 'active' : '';
                 const disabled = !allowBackNavigation ? 'is-disabled' : '';
-                const clickHandler = allowBackNavigation ? `onclick="goToQuestion(${i})"` : '';
-                html += `<span class="indicator ${answered} ${active} ${disabled}" ${clickHandler}></span>`;
+                const clickHandler = allowBackNavigation ? `data-action="goto" data-question-index="${i}"` : '';
+                html += `<button type="button" class="question-grid-item ${answered} ${active} ${disabled}" ${clickHandler}>Câu ${i + 1}</button>`;
             }
-            indicatorDiv.innerHTML = html;
+            indicatorDiv.replaceChildren();
+            insertHtmlSafe(indicatorDiv, html);
         }
 
         // Điều hướng
@@ -406,21 +941,79 @@
             if (!allowBackNavigation) {
                 return;
             }
-
             swiper.slideTo(index);
         }
 
-        // Timer
+        function goToQuestionAndClose(index) {
+            goToQuestion(index);
+            closeQuestionListModal();
+        }
+
+        function openQuestionListModal() {
+            document.getElementById('questionListOverlay').classList.add('is-open');
+            document.getElementById('questionListOverlay').setAttribute('aria-hidden', 'false');
+        }
+
+        function closeQuestionListModal() {
+            document.getElementById('questionListOverlay').classList.remove('is-open');
+            document.getElementById('questionListOverlay').setAttribute('aria-hidden', 'true');
+        }
+
+        function closeQuestionListOnBackdrop(event) {
+            if (event.target && event.target.id === 'questionListOverlay') {
+                closeQuestionListModal();
+            }
+        }
+
+        function updateTimerPresentation_(remainingSeconds) {
+            const timerWrap = document.getElementById('timer');
+            const timerValueNode = document.getElementById('timerValue');
+            const timerProgressNode = document.getElementById('timerProgress');
+
+            const safeRemaining = Math.max(0, Number(remainingSeconds || 0));
+            const mins = Math.floor(safeRemaining / 60);
+            const secs = safeRemaining % 60;
+            const formatted =`${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            if (timerValueNode) {
+                timerValueNode.textContent = formatted;
+            }
+
+            if (timerWrap && timerProgressNode) {
+                const total = Number(quizData?.quizInfo?.timeLimit || 0) * 60;
+                if (total > 0) {
+                    const pct = (safeRemaining / total) * 100;
+                    timerProgressNode.style.width = pct + '%';
+
+                    if (safeRemaining <= 60) {
+                        timerWrap.classList.add('danger');
+                    } else if (safeRemaining <= 300) {
+                        timerWrap.classList.add('warning');
+                        timerWrap.classList.remove('danger');
+                    } else {
+                        timerWrap.classList.remove('warning', 'danger');
+                    }
+                }
+            }
+        }
+
         function startTimer(minutes) {
+            if (!minutes || isNaN(minutes) || minutes <= 0) {
+                const timerWrap = document.getElementById('timer');
+                if (timerWrap) timerWrap.style.display = 'none';
+                return;
+            }
+
             timeRemaining = minutes * 60;
-            
+            updateTimerPresentation_(timeRemaining);
+
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+
             timerInterval = setInterval(() => {
                 timeRemaining--;
-
-                const mins = Math.floor(timeRemaining / 60);
-                const secs = timeRemaining % 60;
-                document.getElementById('timerValue').textContent = 
-                    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                updateTimerPresentation_(timeRemaining);
 
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
@@ -429,7 +1022,7 @@
             }, 1000);
         }
 
-        // Nộp bài
+        // Ná»™p bÃ i
         async function submitQuiz(isForced = false, skipConfirm = false) {
             if (isSubmitting) {
                 return;
@@ -455,31 +1048,31 @@
                     }
                 }
 
-                // Tính điểm
-                let score = 0;
-                let totalQuestions = displayQuestions.length;
+                // TÃ­nh Ä‘iá»ƒm do server quyáº¿t Ä‘á»‹nh, client chá»‰ gá»­i Ä‘Ã¡p Ã¡n.
+                const totalQuestions = displayQuestions.length;
+                const scoreOutOf10 = 0;
 
-                if (!isForced) {
-                    for (const question of displayQuestions) {
-                        const userAnswer = userAnswers[question.questionID];
-                        if (userAnswer) {
-                            const userHash = await sha256(question.questionID + userAnswer + 'TsByinChei');
-                            if (userHash === question.answerHash) {
-                                score++;
-                            }
-                        }
-                    }
-                } else {
-                    score = 0;
-                }
-
-                const scoreOutOf10 = totalQuestions > 0 ? (score / totalQuestions) * 10 : 0;
-
-                // Gửi kết quả lên GAS
+                // Gá»­i káº¿t quáº£ lÃªn GAS
                 const username = localStorage.getItem('quizUsername');
                 const quizID = localStorage.getItem('currentQuizID');
 
-                const result = await APIClient.submitScore(username, quizID, scoreOutOf10, userAnswers);
+                // Show loading
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                const loadingText = document.getElementById('loadingText');
+                if (loadingOverlay) {
+                    loadingText.textContent = 'Đang nộp bài...';
+                    loadingOverlay.classList.add('is-visible');
+                    loadingOverlay.setAttribute('aria-hidden', 'false');
+                }
+
+                const answersForSubmit = isForced ? {} : userAnswers;
+                const result = await APIClient.submitScore(username, quizID, scoreOutOf10, answersForSubmit);
+
+                // Hide loading
+                if (loadingOverlay) {
+                    loadingOverlay.classList.remove('is-visible');
+                    loadingOverlay.setAttribute('aria-hidden', 'true');
+                }
 
                 if (!result.success) {
                     await showInAppAlert(result.message || 'Lỗi khi nộp bài. Vui lòng thử lại!');
@@ -488,10 +1081,10 @@
                 }
 
                 const finalScore = typeof result.score === 'number' ? result.score : scoreOutOf10;
-                const finalCorrect = typeof result.correctCount === 'number' ? result.correctCount : score;
+                const finalCorrect = typeof result.correctCount === 'number' ? result.correctCount : 0;
                 const finalTotal = typeof result.totalQuestions === 'number' ? result.totalQuestions : totalQuestions;
 
-                // Lưu kết quả vào sessionStorage để hiển thị ở trang kết quả
+                // LÆ°u káº¿t quáº£ vÃ o sessionStorage Ä‘á»ƒ hiá»ƒn thá»‹ á»Ÿ trang káº¿t quáº£
                 sessionStorage.setItem('quizResult', JSON.stringify({
                     score: finalScore,
                     correct: finalCorrect,
@@ -499,12 +1092,12 @@
                     reviewItems: result.reviewItems || result.correctAnswers || [],
                     explanations: result.explanations || [],
                     quizMode: {
+                        showDetailedResult: !!(quizData.quizInfo && quizData.quizInfo.showDetailedResult),
                         shuffle: !!(quizData.quizInfo && quizData.quizInfo.shuffle),
-                        questionOrder: displayQuestions.map((question) => String(question.questionID || ''))
+                        questionOrder: displayQuestions.map((question) => String(question.questionID || '')),
+                        optionOrderByQuestion
                     }
                 }));
-
-                stopMusic();
 
                 // Redirect tới trang kết quả
                 window.location.href = 'result.html';
@@ -515,14 +1108,14 @@
             }
         }
 
-        // Xác nhận thoát
-        async function confirmExit() {
+        // XÃ¡c nháº­n thoÃ¡t tá»›i trang báº¥t ká»³
+        async function confirmExitTo(targetUrl = 'dashboard.html') {
             if (isSubmitting) {
                 return;
             }
 
             antiCheat.isDialogOpen = true;
-            const shouldExit = await showInAppConfirm('Bạn chưa nộp bài. Quay lại bây giờ?');
+            const shouldExit = await showInAppConfirm('Bạn chưa hoàn thành quiz. Bạn có chắc muốn thoát?');
             antiCheat.isDialogOpen = false;
 
             if (shouldExit) {
@@ -530,16 +1123,64 @@
                     clearTimeout(autoNextTimer);
                     autoNextTimer = null;
                 }
-                stopMusic();
-                window.location.href = 'dashboard.html';
+                window.location.href = targetUrl;
             }
         }
 
-        window.addEventListener('pagehide', stopMusic);
-        window.addEventListener('beforeunload', stopMusic);
+        // Backward-compatible alias cho các chỗ cũ
+        async function confirmExit() {
+            return confirmExitTo('dashboard.html');
+        }
 
         // Khởi chạy
+        function bindQuizControls() {
+            const submitQuizBtn = document.getElementById('submitQuizBtn');
+            if (submitQuizBtn) {
+                submitQuizBtn.addEventListener('click', () => submitQuiz());
+            }
+
+            const backToDashboardBtn = document.getElementById('backToDashboardBtn');
+            if (backToDashboardBtn) {
+                backToDashboardBtn.addEventListener('click', () => confirmExitTo('dashboard.html'));
+            }
+
+            const fullscreenButton = document.getElementById('fullscreenButton');
+            if (fullscreenButton) {
+                fullscreenButton.addEventListener('click', requestFullscreenMode);
+            }
+
+            const closeImageViewerBtn = document.getElementById('closeImageViewerBtn');
+            if (closeImageViewerBtn) {
+                closeImageViewerBtn.addEventListener('click', closeImageViewer);
+            }
+
+            document.querySelectorAll('[data-confirm-exit]').forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const targetUrl = link.getAttribute('data-confirm-exit');
+                    if (!targetUrl) {
+                        return;
+                    }
+
+                    event.preventDefault();
+                    confirmExitTo(targetUrl);
+                });
+            });
+        }
+
+        bindQuizControls();
         initQuiz();
-    </script>
+
+Object.assign(window, {
+    confirmExitTo,
+    submitQuiz,
+    requestFullscreenMode,
+    closeImageViewer,
+    openImageViewer
+});
+
+
+
+
+</script>
 </body>
 </html>
