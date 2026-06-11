@@ -9,8 +9,6 @@
  * - Aiken Format Parser
  */
 
-const SECRET_KEY = 'TsByinChei';
-
 /**
  * ==================== SHA-256 HASHING ====================
  * Sử dụng Web Crypto API cho hashing đáp án
@@ -25,12 +23,26 @@ async function sha256(message) {
     return hashHex;
 }
 
+const QUIZ_PASSWORD_SALT = 'TsByinChei';
+
+async function hashPasswordWithSalt(password) {
+    return sha256(`${String(password || '')}${QUIZ_PASSWORD_SALT}`);
+}
+
 /**
  * ==================== AUTHENTICATION ====================
  */
 
 class AuthManager {
     static getToken() {
+        const sessionToken = typeof sessionStorage !== 'undefined'
+            ? sessionStorage.getItem('quizToken')
+            : null;
+
+        if (sessionToken) {
+            return sessionToken;
+        }
+
         return localStorage.getItem('quizToken');
     }
 
@@ -58,6 +70,10 @@ class AuthManager {
         return decoded ? decoded.username : null;
     }
 
+    static getFullName() {
+        return localStorage.getItem('quizFullName') || '';
+    }
+
     static isAuthenticated() {
         return !!this.getDecodedToken();
     }
@@ -66,16 +82,24 @@ class AuthManager {
         return this.getRole() === 'Admin';
     }
 
-    static setAuth(token, role, username) {
+    static setAuth(token, role, username, fullName = '') {
+        if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.setItem('quizToken', token);
+        }
         localStorage.setItem('quizToken', token);
         localStorage.setItem('quizRole', role);
         localStorage.setItem('quizUsername', username);
+        localStorage.setItem('quizFullName', String(fullName || ''));
     }
 
     static clearAuth() {
+        if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.removeItem('quizToken');
+        }
         localStorage.removeItem('quizToken');
         localStorage.removeItem('quizRole');
         localStorage.removeItem('quizUsername');
+        localStorage.removeItem('quizFullName');
         localStorage.removeItem('currentQuizID');
         if (typeof sessionStorage !== 'undefined') {
             sessionStorage.removeItem('adminPinVerified');
@@ -83,7 +107,48 @@ class AuthManager {
             sessionStorage.removeItem('adminPinProof');
         }
     }
+
+    static syncSessionTokenFromLocal() {
+        if (typeof sessionStorage === 'undefined') {
+            return;
+        }
+
+        const localToken = localStorage.getItem('quizToken');
+        if (localToken) {
+            sessionStorage.setItem('quizToken', localToken);
+            return;
+        }
+
+        sessionStorage.removeItem('quizToken');
+    }
+
+    static initStorageSync() {
+        this.syncSessionTokenFromLocal();
+
+        if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') {
+            return;
+        }
+
+        window.addEventListener('storage', (event) => {
+            if (event.key !== 'quizToken') {
+                return;
+            }
+
+            if (typeof sessionStorage !== 'undefined') {
+                if (event.newValue) {
+                    sessionStorage.setItem('quizToken', event.newValue);
+                } else {
+                    sessionStorage.removeItem('quizToken');
+                    sessionStorage.removeItem('adminPinVerified');
+                    sessionStorage.removeItem('adminPinVerifiedFor');
+                    sessionStorage.removeItem('adminPinProof');
+                }
+            }
+        });
+    }
 }
+
+AuthManager.initStorageSync();
 
 /**
  * ==================== QUIZ GRADING LOGIC ====================
@@ -98,9 +163,13 @@ class GradingEngine {
      * @param {string} answerHash - Hash từ server
      * @returns {Promise<boolean>} True nếu đúng
      */
-    static async validateAnswer(questionID, userAnswer, answerHash) {
-        const computedHash = await sha256(questionID + userAnswer + SECRET_KEY);
-        return computedHash === answerHash;
+    static async validateAnswer(quizID, questionID, userAnswer) {
+        if (!quizID || !questionID || !userAnswer) {
+            return false;
+        }
+
+        const result = await APIClient.verifyAnswer(quizID, questionID, userAnswer);
+        return !!(result && result.success && result.correct);
     }
 
     /**
@@ -109,16 +178,17 @@ class GradingEngine {
      * @param {Object} userAnswers - Đáp án của user
      * @returns {Promise<Object>} {score, correct, total}
      */
-    static async calculateScore(questions, userAnswers) {
+    static async calculateScore(quizID, questions, userAnswers) {
         let correct = 0;
 
         for (const question of questions) {
-            const userAnswer = userAnswers[question.questionID];
+            const qId = question.questionID;
+            const userAnswer = Object.prototype.hasOwnProperty.call(userAnswers, qId) ? userAnswers[qId] : undefined;
             if (userAnswer) {
                 const isCorrect = await this.validateAnswer(
+                    quizID,
                     question.questionID,
-                    userAnswer,
-                    question.answerHash
+                    userAnswer
                 );
                 if (isCorrect) correct++;
             }
@@ -280,7 +350,7 @@ class AikenParser {
  */
 
 class APIClient {
-    static GAS_URL = 'https://script.google.com/macros/s/AKfycbwFuUIJGsZ1y4voIjdhUR471Ocw63mpq0ZChEmtHJmHOnkERryTxU6GrUkLQh433CBs/exec';
+    static GAS_URL = 'https://script.google.com/macros/s/AKfycbzkUtgCgw5rkOXJcA8NNhZ5K4YorPkoQhO_29oftC4cVxlfVLSttAIACCXV0F3tnHPO/exec';
 
     static async request(action, data = {}) {
         try {
@@ -297,6 +367,9 @@ class APIClient {
                     ...data
                 })
             });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
             return await response.json();
         } catch (error) {
@@ -309,12 +382,32 @@ class APIClient {
         return this.request('login', { username, passwordHash });
     }
 
+    static async registerUser(payload) {
+        return this.request('registerUser', payload || {});
+    }
+
+    static async getAccountInfo() {
+        return this.request('getAccountInfo');
+    }
+
+    static async getDashboardStats(username) {
+        return this.request('getDashboardStats', { username });
+    }
+
+    static async changePassword(oldPasswordHash, newPasswordHash, oldPasswordHashLegacy) {
+        return this.request('changePassword', {
+            oldPasswordHash,
+            newPasswordHash,
+            oldPasswordHashLegacy: oldPasswordHashLegacy || ''
+        });
+    }
+
     static async getSubjects() {
         return this.request('getSubjects');
     }
 
-    static async getDashboardInit(username) {
-        return this.request('getDashboardInit', { username });
+    static async getDashboardInit(username, forceRefresh = false) {
+        return this.request('getDashboardInit', { username, forceRefresh });
     }
 
     static async getQuizzesBySubject(subject) {
@@ -323,6 +416,14 @@ class APIClient {
 
     static async getQuizData(quizID) {
         return this.request('getQuizData', { quizID });
+    }
+
+    static async verifyAnswer(quizID, questionID, userAnswer) {
+        return this.request('verifyAnswer', { quizID, questionID, userAnswer });
+    }
+
+    static async resolveCorrectOption(quizID, questionID) {
+        return this.request('resolveCorrectOption', { quizID, questionID });
     }
 
     static async submitScore(username, quizID, score, userAnswers) {
@@ -338,8 +439,16 @@ class APIClient {
         return this.request('getUserStats', { username });
     }
 
-    static async getAdminData() {
-        return this.request('getAdminData');
+    static async getAdminData(forceRefresh = false) {
+        return this.request('getAdminData', { forceRefresh });
+    }
+
+    static async getReferralCodes() {
+        return this.request('getReferralCodes');
+    }
+
+    static async generateReferralCodes(count = 10) {
+        return this.request('generateReferralCodes', { count });
     }
 
     static async updateQuizStatus(quizID, status) {
@@ -350,6 +459,10 @@ class APIClient {
         return this.request('updateShowAnswer', { quizID, showAnswer });
     }
 
+    static async updateRevealCorrectOnWrong(quizID, revealCorrectOnWrong) {
+        return this.request('updateRevealCorrectOnWrong', { quizID, revealCorrectOnWrong });
+    }
+
     static async updateShuffle(quizID, shuffle) {
         return this.request('updateShuffle', { quizID, shuffle });
     }
@@ -358,12 +471,24 @@ class APIClient {
         return this.request('updateAntiCheat', { quizID, antiCheat });
     }
 
+    static async updateAntiCheatTabSwitch(quizID, antiCheatTabSwitch) {
+        return this.request('updateAntiCheatTabSwitch', { quizID, antiCheatTabSwitch });
+    }
+
+    static async updateAntiCheatFullscreen(quizID, antiCheatFullscreen) {
+        return this.request('updateAntiCheatFullscreen', { quizID, antiCheatFullscreen });
+    }
+
     static async updateAutoNext(quizID, autoNext) {
         return this.request('updateAutoNext', { quizID, autoNext });
     }
 
     static async updateAllowBack(quizID, allowBack) {
         return this.request('updateAllowBack', { quizID, allowBack });
+    }
+
+    static async batchUpdateQuizSettings(changes) {
+        return this.request('batchUpdateQuizSettings', { changes });
     }
 
     static async bulkUpload(quizID, questions) {
@@ -468,7 +593,7 @@ class Utils {
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
         toast.textContent = message;
-        
+
         document.body.appendChild(toast);
 
         setTimeout(() => {
@@ -489,14 +614,30 @@ class Utils {
 
 let inAppDialogState_ = null;
 
+function getDialogHostElement_() {
+    return (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement ||
+        document.body ||
+        document.documentElement
+    );
+}
+
 function ensureInAppDialog_() {
     if (inAppDialogState_ && inAppDialogState_.overlay && inAppDialogState_.overlay.isConnected) {
+        const host = getDialogHostElement_();
+        if (host && inAppDialogState_.overlay.parentElement !== host) {
+            host.appendChild(inAppDialogState_.overlay);
+        }
         return inAppDialogState_;
     }
 
     const overlay = document.createElement('div');
     overlay.id = 'globalQuizDialogOverlay';
     overlay.className = 'quiz-dialog-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
     overlay.setAttribute('aria-hidden', 'true');
 
     const dialog = document.createElement('div');
@@ -520,7 +661,9 @@ function ensureInAppDialog_() {
     dialog.appendChild(messageNode);
     dialog.appendChild(actionsNode);
     overlay.appendChild(dialog);
-    (document.body || document.documentElement).appendChild(overlay);
+
+    const host = getDialogHostElement_();
+    host.appendChild(overlay);
 
     inAppDialogState_ = {
         overlay,
@@ -587,11 +730,18 @@ function openInAppDialog_({ title = 'Thông báo', message = '', type = 'alert' 
     });
 }
 
-window.showInAppAlert = function(message, title = 'Thông báo') {
-    return openInAppDialog_({ title, message, type: 'alert' });
+window.showInAppAlert = function (message, title = 'Thông báo') {
+    console.error('[Quiz Lab Alert] ' + title + ': ' + message);
+    try {
+        return openInAppDialog_({ title, message, type: 'alert' });
+    } catch (e) {
+        console.error('Failed to show in-app alert, falling back to window.alert:', e);
+        alert(title + ':\n' + message);
+        return Promise.resolve(true);
+    }
 };
 
-window.showInAppConfirm = function(message, title = 'Xác nhận') {
+window.showInAppConfirm = function (message, title = 'Xác nhận') {
     return openInAppDialog_({ title, message, type: 'confirm' });
 };
 
@@ -599,9 +749,14 @@ window.showInAppConfirm = function(message, title = 'Xác nhận') {
  * ==================== EXPORT MODULES ====================
  */
 
-// Các hàm chính được tách riêng để dễ dùng
+window.insertHtmlSafe = function (element, htmlString) {
+    if (element) {
+        element.innerHTML = htmlString;
+    }
+};
 
 window.sha256 = sha256;
+window.hashPasswordWithSalt = hashPasswordWithSalt;
 window.GradingEngine = GradingEngine;
 window.AikenParser = AikenParser;
 window.APIClient = APIClient;
@@ -613,9 +768,9 @@ function updateThemeToggleIcons_() {
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
     document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-        button.textContent = isLight ? '☀️' : '🌙';
+        button.textContent = isLight ? '🌙' : '☀️';
         button.setAttribute('aria-label', isLight ? 'Đổi sang Dark Mode' : 'Đổi sang Light Mode');
-        button.setAttribute('title', isLight ? 'Light Mode' : 'Dark Mode');
+        button.setAttribute('title', isLight ? 'Dark Mode' : 'Light Mode');
     });
 
     if (themeColorMeta) {
