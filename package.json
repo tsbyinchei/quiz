@@ -1,0 +1,16 @@
+{
+  "name": "quiz-lab-build",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:quiz": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-production.ps1",
+    "clean:dist": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-production.ps1 -Clean"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "javascript-obfuscator": "^4.1.1",
+    "terser": "^5.39.2"
+  }
+}
