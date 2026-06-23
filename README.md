@@ -1,312 +1,154 @@
-# QUIZ LAB - Online Quiz System
+<div align="center">
+  <h1>✨ Quiz Lab ✨</h1>
+  <p><strong>Hệ thống thi trắc nghiệm trực tuyến linh hoạt, bảo mật & mạnh mẽ</strong></p>
 
-Developer: TsByin
-Stack: Vanilla JS + Google Apps Script + Google Sheets
-Status: User/Admin core flow running
+  <p>
+    <a href="#"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" /></a>
+    <a href="#"><img src="https://img.shields.io/badge/Google_Apps_Script-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Apps Script" /></a>
+    <a href="#"><img src="https://img.shields.io/badge/Google_Sheets-34A853?style=for-the-badge&logo=google-sheets&logoColor=white" alt="Google Sheets" /></a>
+  </p>
+</div>
 
-## 1) Tổng quan
+---
 
-Quiz Lab là hệ thống thi trắc nghiệm online gồm 2 vai trò:
+## 📖 Giới thiệu
 
-- User: đăng ký (có mã giới thiệu), đăng nhập, làm bài, xem kết quả/review.
-- Admin: quản lý quiz, import câu hỏi Aiken, quản lý mã giới thiệu, theo dõi thống kê.
+**Quiz Lab** là một hệ thống thi trắc nghiệm trực tuyến toàn diện, bao gồm đầy đủ luồng nghiệp vụ dành cho Người dùng (Thí sinh) và Quản trị viên (Admin). 
 
-## 2) Tính năng hiện có
+Dự án được xây dựng với kiến trúc **Serverless** sử dụng Google Apps Script làm Backend và Google Sheets làm Database, mang lại khả năng triển khai miễn phí, dễ bảo trì và mở rộng. Giao diện frontend thuần (Vanilla JS) được tối ưu hóa siêu nhẹ, tích hợp chế độ bảo mật Anti-Cheat khắt khe.
 
-### 2.1 User
+---
 
-- Đăng ký 5 trường: Họ tên, Username, Mật khẩu, Nhập lại mật khẩu, Mã giới thiệu.
-- Kiểm tra referral code server-side, chỉ tạo tài khoản khi mã ở trạng thái Active.
-- Đăng nhập bằng password hash SHA-256 (frontend gửi hash, backend so hash), hỗ trợ đăng nhập bằng **Username hoặc Email**.
-- Tính năng nhắc nhở cập nhật Email bằng popup cảnh báo ở Dashboard (cho phép "Để sau" hoặc "Không nhắc lại").
-- Cập nhật thông tin cá nhân (Họ tên, Username, Email) thông qua trang Thông tin người dùng (`info.html`).
-- Dashboard theo môn học, danh sách bài theo môn, có thống kê người dùng.
-- Mỗi quiz trên dashboard hiển thị thêm số câu hỏi và lượt làm của riêng user.
-- Làm bài bằng Swiper, có timer/progress/chỉ báo câu hỏi.
-- Nộp bài chấm điểm ở backend, trả về review chi tiết từng câu.
-- Trang kết quả hiển thị score, số câu đúng/tổng, và phần giải thích.
+## 🌟 Tính năng Đột phá
 
-### 2.2 Admin
+### 1. 🎓 Trải nghiệm Người dùng (User)
+- **Đăng nhập & Đăng ký linh hoạt**: Hỗ trợ đăng ký bằng mã giới thiệu. Đăng nhập bằng Password Hash (SHA-256) an toàn thông qua Username hoặc Email.
+- **Quản lý Hồ sơ**: Tính năng nhắc nhở bổ sung Email bằng popup *Glassmorphism* hiện đại. Quản lý thông tin cá nhân trực tiếp.
+- **Dashboard Thống kê**: Phân loại bài thi theo môn học, hiển thị chi tiết tiến độ, số câu hỏi, điểm số trung bình/cao nhất và lượt làm bài.
+- **Làm bài thông minh**: Giao diện làm bài mượt mà với Swiper, đồng hồ đếm ngược, thanh tiến trình và chỉ báo trạng thái câu hỏi. Nộp bài chấm điểm trực tiếp tại backend và trả về review chi tiết (giải thích câu sai).
 
-- Bắt buộc role Admin + xác thực Admin PIN (endpoint verifyAdminPin).
-- Quản lý quiz theo môn, toggle từng bài:
-  - Status
-  - Show Answer
-  - Shuffle
-  - Anti-Cheat (Tab switch)
-  - Anti-Cheat (Fullscreen)
-  - Auto Next
-  - Allow Back
-- Bulk toggle theo môn qua batchUpdateQuizSettings.
-- Tab "Quản Lý Chức Năng" cho phép bật/tắt 7 mode trên toàn bộ quiz cùng lúc, và vẫn đi theo luồng chờ lưu thay đổi.
-- Import câu hỏi hàng loạt theo Aiken format.
-- Quản lý mã giới thiệu:
-  - Lấy danh sách mã
-  - Tạo mã mới (mặc định 10, tối đa 100/lần)
-  - Định dạng mã: REF-XXXXXXXX
-- Admin mobile có layout riêng: subject picker dạng dropdown, tab quản lý tối ưu cho màn hình nhỏ, và nút Back to top.
+### 2. 🛡️ Quản trị Hệ thống (Admin)
+- **Kiểm soát Truy cập**: Chế độ bảo mật kép bằng Role Admin và xác thực bằng Mã PIN (Admin PIN).
+- **Quản lý Bài thi & Chức năng**:
+  - Giao diện Admin chia Tab hiện đại. Tích hợp Tab "Quản Lý Chức Năng" cho phép thao tác bật/tắt (Toggle) 7 chế độ cùng lúc trên toàn hệ thống (Anti-Cheat, Shuffle, Show Answer, Auto Next, v.v.).
+  - Quản lý trạng thái từng bài thi riêng lẻ.
+- **Import Câu hỏi Hàng loạt**: Nạp bộ câu hỏi siêu tốc qua định dạng **Aiken** (chấp nhận cả upload `.txt` hoặc paste trực tiếp).
+- **Quản lý Mã Giới thiệu (Referral)**: Tạo nhanh từ 10 đến 100 mã kích hoạt định dạng `REF-XXXXXXXX`.
 
-### 2.3 Security + Anti-cheat
+### 3. 🚨 Hệ thống Anti-Cheat Đa tầng
+- **Server-side Scoring**: Việc chấm điểm hoàn toàn thực hiện tại Backend, tuyệt đối không tin tưởng dữ liệu từ Client.
+- **Ngăn chặn Gian lận Cơ bản**: Chặn phím tắt DevTools (F12), Right-click, Copy/Cut/Paste, Text Selection.
+- **Kiểm soát Môi trường Thi**:
+  - **Tab Switch & Fullscreen Monitor**: Theo dõi khi người dùng chuyển Tab/Cửa sổ hoặc thoát khỏi chế độ Toàn màn hình.
+  - Hỗ trợ nhiều cấp độ giám sát: Basic (chỉ chặn copy), Tab-only, Fullscreen-only, hoặc Strict (cả 2).
+- **Trừng phạt tự động**: Vi phạm sẽ kích hoạt thời gian chờ (Cooldown 1200ms). Quá 3 lần vi phạm sẽ **Tự động nộp bài và nhận điểm 0**. Ghi log vi phạm chi tiết về Server.
 
-- Token HMAC-SHA256 có sessionId và expiry.
-- Server-side scoring (không tin điểm từ client).
-- Anti-cheat module:
-  - Luôn chặn DevTools shortcut, right-click, copy/cut/paste, select text.
-  - Tab + Fullscreen mode: monitor tab/focus + fullscreen exit.
-  - Tab-only mode: chỉ monitor tab/focus.
-  - Fullscreen-only mode: chỉ monitor fullscreen exit.
-  - BASIC mode: không monitor tab/focus/fullscreen, nhưng vẫn chặn DevTools/clipboard/mouse.
-  - Vi phạm có cooldown 1200ms, tối đa 3 lần sẽ auto-submit điểm 0.
-  - Có log vi phạm lên backend (action logCheatViolation).
+---
 
-### 2.4 Fullscreen hiện tại
+## 🛠️ Kiến trúc & Công nghệ
 
-- Không auto fullscreen khi vào quiz.
-- Khi quiz bật antiCheatFullscreen, giao diện hiện prompt với nút "Vào Toàn Màn Hình".
-- Nếu user đã vào fullscreen rồi thoát ra, anti-cheat ghi nhận vi phạm fullscreen_exit.
-- Nếu antiCheatTabSwitch và antiCheatFullscreen cùng tắt, hệ thống chạy anti-cheat BASIC (không monitor tab/fullscreen).
+**Frontend (Client)**
+<p align="left">
+  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white" alt="Swiper" />
+</p>
+- Kiến trúc Vanilla JS (siêu nhẹ, không framework cồng kềnh).
+- Styling hiện đại: CSS Variables, Glassmorphism, Dark Theme, Responsive Mobile-first.
 
-### 2.5 Loading overlay hiện tại
+**Backend & Database**
+<p align="left">
+  <img src="https://img.shields.io/badge/Google_Apps_Script-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Apps Script" />
+  <img src="https://img.shields.io/badge/Google_Sheets-34A853?style=for-the-badge&logo=google-sheets&logoColor=white" alt="Google Sheets" />
+</p>
+- Serverless API được host hoàn toàn trên Google Apps Script (Miễn phí, không lo downtime server).
+- Database là Google Sheets, cho phép Admin dễ dàng thao tác, kiểm tra dữ liệu trực tiếp khi cần.
+- **Hệ thống Caching CacheService**: Tối ưu tốc độ tải với thời gian lưu đệm thông minh (Snapshot 300s, Init 90s, User Stats 120s).
 
-- register.html: "Đang xác thực mã giới thiệu..."
-- login.html: "Đang xác thực thông tin..."
-- quiz.html: "Đang nộp bài..."
-- admin.html: "Đang xác thực PIN..." (khi verify Admin PIN)
+---
 
-## 3) API actions backend
+## 🚀 Hướng dẫn Cài đặt & Triển khai
 
-- login
-- registerUser
-- getSubjects
-- getDashboardInit
-- getQuizzesBySubject
-- getQuizData
-- submitScore
-- getUserStats
-- getAdminData
-- getReferralCodes
-- generateReferralCodes
-- verifyAdminPin
-- updateQuizStatus
-- updateShowAnswer
-- updateShuffle
-- updateAntiCheat
-- updateAntiCheatTabSwitch
-- updateAntiCheatFullscreen
-- updateAutoNext
-- updateAllowBack
-- batchUpdateQuizSettings
-- bulkUpload
-- logCheatViolation
+Xem chi tiết từng bước tại `SETUP_GUIDE.md`. Tóm tắt cơ bản:
 
-Ghi chú dữ liệu trả về:
+1. **Chuẩn bị Database**: Tạo một Google Sheet có đúng 5 trang tính (Sheets): `Users`, `ReferralCodes`, `Quiz_List`, `Questions`, `Attempt_Logs` với các Cột tương ứng.
+2. **Deploy Backend**: 
+   - Đẩy toàn bộ thư mục `gs/` lên Google Apps Script bằng công cụ `clasp` hoặc dán code tay.
+   - Lưu ý: KHÔNG đưa các file chứa khóa bí mật (`gs/Config.js`, `gs/.clasp.json`) lên Public Repository.
+   - Deploy dưới dạng Web App (Execute as: Me, Access: Anyone).
+3. **Kết nối Frontend**: Lấy URL của Web App vừa Deploy dán vào hằng số `APIClient.GAS_URL` trong file `assets/script.js`.
+4. **Build Frontend (Tùy chọn)**: 
+   - Cài đặt `npm install`.
+   - Chạy `npm run build:quiz` để tối ưu (minify, obfuscate) mã nguồn vào thư mục `dist/`.
 
-- `getDashboardInit`: trả về `subjects`, `quizzesBySubject`, `stats`; mỗi quiz trong dashboard có thêm `questionCount` và `userAttempts`.
-- `getAdminData`: trả về `stats` và danh sách `quizzes`; mỗi quiz có `questionCount` và `attempts`.
+---
 
-## 4) Google Sheets schema
+## 📚 Google Sheets Schema (Cấu trúc DB)
 
-### Users
+<details>
+<summary>1. Users</summary>
 
-Khuyến nghị header:
+- `Username` | `Password_Hash` | `Role` | `FullName` | `AdminPinHash` | `CreatedAt` | `Email`
+</details>
 
-- Username
-- Password_Hash
-- Role
-- FullName
-- AdminPinHash
-- CreatedAt
+<details>
+<summary>2. ReferralCodes</summary>
 
-Ghi chú:
+- `Code` | `Status` (Active/Used) | `UsedBy` | `UsedAt`
+</details>
 
-- Backend có fallback header detection, nhưng nên giữ đúng tên để ổn định.
+<details>
+<summary>3. Quiz_List</summary>
 
-### ReferralCodes
+- `QuizID` | `Subject` | `Title` | `Description` | `TimeLimit` | `Status` | `Show_Answer` | `Shuffle` | `AntiCheatTabSwitch` | `AntiCheatFullscreen` | `AutoNext` | `AllowBack`
+</details>
 
-- Code
-- Status (Active/Used)
-- UsedBy
-- UsedAt
+<details>
+<summary>4. Questions</summary>
 
-### Quiz_List
+- `QuestionID` | `QuizID` | `QuestionText` | `A` | `B` | `C` | `D` | `CorrectAnswer` | `Explanation`
+</details>
 
-- QuizID
-- Subject
-- Title
-- Description
-- TimeLimit
-- Status
-- Show_Answer
-- Shuffle
-- AntiCheat
-- AntiCheatTabSwitch
-- AntiCheatFullscreen
-- AutoNext
-- AllowBack
+<details>
+<summary>5. Attempt_Logs</summary>
 
-Ghi chú:
+- `LogID` | `Username` | `QuizID` | `Score` (hoặc CHEAT) | `User_Answers` | `Timestamp`
+</details>
 
-- `questionCount` không lưu trực tiếp trong sheet này mà được backend đếm từ sheet Questions.
-- `attempts` trên Admin là tổng lượt làm của tất cả user, còn `userAttempts` ở dashboard là số lần của user hiện tại.
-- `AntiCheat` được giữ để tương thích dữ liệu cũ; giá trị thực tế theo mode mới là `AntiCheatTabSwitch` và `AntiCheatFullscreen`.
+---
 
-### Questions
+## 💡 Hướng dẫn Định dạng AIKEN Import
 
-- QuestionID
-- QuizID
-- QuestionText
-- A
-- B
-- C
-- D
-- CorrectAnswer
-- Explanation
-
-### Attempt_Logs
-
-- LogID
-- Username
-- QuizID
-- Score (hoặc CHEAT)
-- User_Answers (hoặc log payload JSON)
-- Timestamp
-
-## 5) Caching hiện tại (backend)
-
-- Quiz snapshot: 300s
-- Dashboard init: 90s
-- User stats: 120s
-- Admin data: 300s
-- Session/Admin PIN proof: cache 21600s
-
-Nút refresh ở phần Thống Kê Tổng Quan trong admin chỉ gọi lại `getAdminData()` và render lại view hiện tại.
-
-## 6) Build
-
-Trong package.json:
-
-- npm run build:quiz
-- npm run clean:dist
-
-Dev dependencies:
-
-- terser
-- html-minifier-terser
-- clean-css
-- javascript-obfuscator
-
-## 7) Setup nhanh
-
-Xem chi tiết ở SETUP_GUIDE.md.
-
-Tối thiểu cần làm:
-
-1. Tạo đúng 5 sheet: Users, ReferralCodes, Quiz_List, Questions, Attempt_Logs.
-2. Deploy Quiz_Lab_Backend.gs thành Web App.
-3. Cập nhật APIClient.GAS_URL trong assets/script.js.
-4. Chuẩn bị tài khoản Admin có AdminPinHash để vào admin.html.
-
----------------------------------------------------------------------
-
-## 7) AIKEN IMPORT FORMAT
-
-```
+Dễ dàng nhập liệu hàng trăm câu hỏi bằng định dạng Aiken chuẩn quốc tế:
+```text
 Question text?
 A) Option A
 B) Option B
 C) Option C
 D) Option D
 ANSWER: B
-EXP: Explanation
+EXP: Dòng giải thích thêm cho câu hỏi (tùy chọn)
 ```
+*(Chấp nhận cả format `A)` hoặc `A.`)*
 
-Chấp nhận cả định dạng:
+---
 
-- `A)` `B)` `C)` `D)`
-- `A.` `B.` `C.` `D.`
+## 👨‍💻 Tác giả
 
-Ngoài dán trực tiếp, phần admin import còn hỗ trợ nạp file `.txt` vào ô nội dung rồi kiểm tra / chỉnh tay trước khi nhập.
+<p align="center">
+  <a href="https://tsbyin.dev">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=8A2BE2&center=true&vCenter=true&width=600&lines=Hi+there,+I'm+Chei!+%F0%9F%91%8B;IT+Specialist+%7C+Systems+Administrator;Self-hosted+Homelab+%7C+Microservices;Biomedical+Engineering+%40+Phenikaa" alt="Typing SVG" />
+  </a>
+</p>
 
----------------------------------------------------------------------
+<p align="center">
+  <a href="https://tsbyin.dev"><img src="https://img.shields.io/badge/Portfolio-tsbyin.dev-8A2BE2?style=flat-square&logo=google-chrome&logoColor=white" /></a>
+  <a href="https://tsbyin.dev/CV_NguyenVanTuanSy.pdf"><img src="https://img.shields.io/badge/CV-Download-22c55e?style=flat-square&logo=adobeacrobatreader&logoColor=white" /></a>
+  <a href="mailto:chei@tsbyin.dev"><img src="https://img.shields.io/badge/Email-chei@tsbyin.dev-0ea5e9?style=flat-square&logo=gmail&logoColor=white" /></a>
+  <a href="https://s.tsbyin.dev/linkedin"><img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin&logoColor=white" /></a>
+</p>
 
-## 8) ANTI-CHEAT NOTES
-
-Cơ chế hiện tại tập trung vào quiz page:
-
-- Chặn thao tác copy/inspect cơ bản.
-- Theo dõi tab switch/focus loss.
-- Cảnh báo theo lần vi phạm.
-- Auto-submit mode khi vượt ngưỡng.
-
-Các fix quan trọng đã áp dụng:
-
-- Event conflict blur + visibilitychange.
-- Popup loop do browser alert/confirm.
-- Dialog lock + cooldown + anti-repeat punishment.
-- Chuyển sang in-app modal để giữ UX ổn định.
-
----------------------------------------------------------------------
-
-## 9) KNOWN OPERATION RULES
-
-- Sau mỗi thay đổi backend, cần deploy lại GAS.
-- Nếu dashboard không có stats ngay:
-  - Hệ thống có fallback về API cũ (`getSubjects` + `getUserStats`).
-- Nếu score/review không đúng:
-  - Kiểm tra cột `CorrectAnswer` có A/B/C/D hợp lệ.
-  - Kiểm tra dữ liệu Question/QuizID khớp nhau.
-
----------------------------------------------------------------------
-
-## 10) TROUBLESHOOTING
-
-### Invalid token
-
-- Kiểm tra GAS deployment URL đúng.
-- Kiểm tra Web App access là `Anyone`.
-- Kiểm tra token đã hết hạn chưa.
-
-### Quiz không hiện ở dashboard
-
-- Kiểm tra `Status` quiz = `Active`.
-- Kiểm tra `Subject` có dữ liệu.
-
-### Nộp bài ra điểm sai
-
-- Kiểm tra `CorrectAnswer`.
-- Kiểm tra backend đã deploy bản mới.
-
-### Admin chart/trạng thái bất thường
-
-- Kiểm tra logs có giá trị score hợp lệ.
-- Kiểm tra dữ liệu quiz/question có đầy đủ.
-
-### Anti-cheat trigger sai
-
-- Đảm bảo đang dùng bản code mới có modal nội bộ.
-- Refresh trình duyệt để clear stale JS.
-
----------------------------------------------------------------------
-
-## 11) CHANGE SUMMARY (RECENT)
-
-- Redesign dashboard/result/admin UI.
-- Dashboard hiển thị thêm `questionCount` và `userAttempts`.
-- Admin có tab Quản Lý Chức Năng để điều khiển 6 mode trên toàn hệ thống.
-- Tách view admin theo nút.
-- Server-side scoring và review payload đầy đủ.
-- Fix cột đáp án khi bulk upload.
-- Tối ưu dashboard init và admin aggregation.
-- Đồng bộ header/footer style theo tsbyin.dev.
-- **Hỗ trợ đăng nhập bằng Email và quản lý Profile:**
-  - Login bằng Username hoặc Email.
-  - Cảnh báo người dùng cập nhật Email bằng popup (Glassmorphism) tại trang Dashboard.
-  - Cập nhật thông tin Profile trực tiếp trên frontend và lưu vào server.
-
----------------------------------------------------------------------
-
-## 12) LICENSE
-
-Personal project for learning and internal deployment.
-
-For production/public use, review legal and privacy requirements before collecting user activity data.
+Dự án được phát triển và duy trì bởi **TsByin** như một công cụ hỗ trợ cho các tổ chức giáo dục quy mô nhỏ.
+- 🔒 **Bản quyền:** 2026 © TsByin. All rights reserved.
+- 📜 **License:** Personal project for learning and internal deployment.
