@@ -54,11 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const fullName = String(account.fullName || '').trim() || '(Chưa cập nhật)';
             const username = String(account.username || '').trim() || '(Không xác định)';
+            const email = String(account.email || '').trim() || '(Chưa cập nhật Email)';
             const totalAttempts = Number(stats.totalAttempts || 0);
 
             if (elFullName) elFullName.textContent = fullName;
             if (elUsername) elUsername.textContent = '@' + username;
+            if (document.getElementById('infoEmail')) document.getElementById('infoEmail').textContent = email;
             if (elTotalAttempts) elTotalAttempts.textContent = Number.isFinite(totalAttempts) ? String(totalAttempts) : '0';
+
+            currentAccountInfo = account;
 
             // Avatar initial — last word's first character (Vietnamese name convention)
             if (elAvatar && fullName && fullName !== '(Chưa cập nhật)') {
@@ -71,5 +75,82 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    fetchInfo();
+    let currentAccountInfo = null;
+
+    // Edit Modal Logic
+    const btnEditInfo = document.getElementById('btnEditInfo');
+    const editInfoModal = document.getElementById('editInfoModal');
+    const editInfoForm = document.getElementById('editInfoForm');
+    const confirmSavePopup = document.getElementById('confirmSavePopup');
+    const editInfoError = document.getElementById('editInfoError');
+
+    if (btnEditInfo) {
+        btnEditInfo.addEventListener('click', () => {
+            if (!currentAccountInfo) return;
+            document.getElementById('editFullName').value = currentAccountInfo.fullName || '';
+            document.getElementById('editUsername').value = currentAccountInfo.username || '';
+            document.getElementById('editEmail').value = currentAccountInfo.email || '';
+            editInfoError.textContent = '';
+            editInfoModal.classList.remove('hidden');
+        });
+    }
+
+    if (document.getElementById('btnCancelEdit')) {
+        document.getElementById('btnCancelEdit').addEventListener('click', () => {
+            editInfoModal.classList.add('hidden');
+        });
+    }
+
+    if (document.getElementById('btnSaveEdit')) {
+        document.getElementById('btnSaveEdit').addEventListener('click', () => {
+            if (!editInfoForm.checkValidity()) {
+                editInfoForm.reportValidity();
+                return;
+            }
+            editInfoModal.classList.add('hidden');
+            confirmSavePopup.classList.remove('hidden');
+        });
+    }
+
+    if (document.getElementById('btnCancelConfirm')) {
+        document.getElementById('btnCancelConfirm').addEventListener('click', () => {
+            confirmSavePopup.classList.add('hidden');
+            editInfoModal.classList.remove('hidden');
+        });
+    }
+
+    if (document.getElementById('btnConfirmSave')) {
+        document.getElementById('btnConfirmSave').addEventListener('click', async () => {
+            const newFullName = document.getElementById('editFullName').value;
+            const newUsername = document.getElementById('editUsername').value;
+            const newEmail = document.getElementById('editEmail').value;
+            
+            confirmSavePopup.classList.add('hidden');
+            setFeedback('Đang cập nhật...', false);
+
+            try {
+                const result = await APIClient.updateUserInfo(newFullName, newUsername, newEmail);
+                if (result.success) {
+                    if (result.token) {
+                        AuthManager.setAuth(result.token, result.account.role, result.account.username, result.account.fullName);
+                    }
+                    setFeedback('Cập nhật thông tin thành công!', false);
+                    fetchInfo();
+                } else {
+                    setFeedback(result.message || 'Cập nhật thất bại.', true);
+                }
+            } catch (error) {
+                setFeedback('Lỗi kết nối.', true);
+            }
+        });
+    }
+
+    fetchInfo().then(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('action') === 'updateEmail' && btnEditInfo) {
+            btnEditInfo.click();
+            // clean up url
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    });
 });
