@@ -11,23 +11,48 @@ quiz/
 |-- admin.html
 |-- dashboard.html
 |-- FILE_STRUCTURE.md
+|-- forgot.html
 |-- hash.html
 |-- icon.ico
 |-- index.html
+|-- info.html
 |-- login.html
 |-- package.json
 |-- package-lock.json
+|-- password.html
 |-- quiz.html
-|-- Quiz_Lab_Backend.gs
 |-- README.md
 |-- register.html
 |-- result.html
 |-- SETUP_GUIDE.md
+|-- split.cjs
 |-- assets/
 |   |-- anticheating.js
 |   |-- script.js
-|   `-- style.css
-|-- file/
+|   |-- style.css
+|   |-- admin.css
+|   |-- dashboard.css
+|   |-- result.css
+|   |-- pages/
+|       |-- admin.js
+|       |-- dashboard.js
+|       |-- forgot.js
+|       |-- info.js
+|       |-- login.js
+|       |-- password.js
+|       |-- quiz.js
+|       |-- register.js
+|       `-- result.js
+|-- gs/
+|   |-- Admin.js
+|   |-- Auth.js
+|   |-- Cache.js
+|   |-- Config.js
+|   |-- doPost.js
+|   |-- Grading.js
+|   |-- Quiz.js
+|   |-- Report.js
+|   `-- Utils.js
 `-- tools/
 ```
 
@@ -35,15 +60,16 @@ quiz/
 
 - index.html: landing page.
 - register.html: đăng ký user bằng referral code.
-- login.html: đăng nhập user/admin.
-- dashboard.html: chọn môn, chọn quiz, xem stats cá nhân, hiển thị số câu hỏi và lượt làm theo từng quiz.
-- quiz.html: làm bài, timer, submit, fullscreen prompt, loading overlay submit.
+- login.html: đăng nhập user/admin bằng Username hoặc Email.
+- forgot.html: khôi phục mật khẩu.
+- info.html: xem và cập nhật thông tin cá nhân.
+- dashboard.html: chọn môn, chọn quiz, xem stats cá nhân, cảnh báo cập nhật Email.
+- quiz.html: làm bài, timer, submit, fullscreen prompt.
 - result.html: hiển thị điểm + review.
-- admin.html: panel admin (quản lý quiz/import/quản lý mã/quản lý chức năng toàn cục), verify Admin PIN.
-- assets/script.js: sha256, AuthManager, AikenParser, APIClient, tiện ích dùng chung.
-- assets/anticheating.js: anti-cheat module (tab/fullscreen configurable mode).
-- assets/style.css: toàn bộ style shared.
-- Quiz_Lab_Backend.gs: router doPost + toàn bộ xử lý backend.
+- admin.html: panel admin (quản lý quiz/mã/chức năng toàn cục).
+- assets/script.js: APIClient và các tiện ích dùng chung.
+- assets/pages/: chứa file Javascript chuyên biệt cho từng trang (login, dashboard, admin, v.v.).
+- gs/: thư mục chứa toàn bộ mã nguồn Backend (Apps Script), chia thành nhiều modules (Auth.js, Quiz.js, Admin.js...).
 
 ## Luồng phụ thuộc trang
 
