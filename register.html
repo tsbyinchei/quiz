@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <noscript><meta http-equiv="refresh" content="0; url=nojs.html"></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Đăng ký tài khoản Quiz Lab">
@@ -34,6 +35,11 @@
                     <div class="form-group">
                         <label for="fullName">Họ và tên</label>
                         <input type="text" id="fullName" name="fullName" placeholder="Nhập họ và tên" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email để khôi phục mật khẩu" required>
                     </div>
 
                     <div class="form-group">
@@ -102,7 +108,7 @@
             }
         });
 
-        const clipboardAllowedFieldIds = ['fullName', 'username', 'referralCode'];
+        const clipboardAllowedFieldIds = ['fullName', 'email', 'username', 'referralCode'];
         clipboardAllowedFieldIds.forEach((id) => {
             const input = document.getElementById(id);
             if (!input) {
@@ -175,6 +181,7 @@
             event.preventDefault();
 
             const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
@@ -187,7 +194,7 @@
             successDiv.style.display = 'none';
             successDiv.textContent = '';
 
-            if (!fullName || !username || !password || !confirmPassword || !referralCode) {
+            if (!fullName || !email || !username || !password || !confirmPassword || !referralCode) {
                 errorDiv.textContent = 'Vui lòng nhập đầy đủ thông tin.';
                 return;
             }
@@ -218,6 +225,7 @@
                     : await sha256(`${password}TsByinChei`);
                 const result = await APIClient.registerUser({
                     fullName,
+                    email,
                     username,
                     passwordHash,
                     referralCode
