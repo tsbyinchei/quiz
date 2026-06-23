@@ -402,6 +402,18 @@ class APIClient {
         });
     }
 
+    static async requestPasswordReset(username, email) {
+        return this.request('requestPasswordReset', { username, email });
+    }
+
+    static async confirmPasswordReset(username, otp, newPasswordHash) {
+        return this.request('confirmPasswordReset', { username, otp, newPasswordHash });
+    }
+
+    static async resetPasswordViaReferral(username, referralCode, newPasswordHash) {
+        return this.request('resetPasswordViaReferral', { username, referralCode, newPasswordHash });
+    }
+
     static async getSubjects() {
         return this.request('getSubjects');
     }
@@ -426,17 +438,22 @@ class APIClient {
         return this.request('resolveCorrectOption', { quizID, questionID });
     }
 
-    static async submitScore(username, quizID, score, userAnswers) {
+    static async submitScore(username, quizID, score, userAnswers, violationLogs = []) {
         return this.request('submitScore', {
             username,
             quizID,
             score,
-            userAnswers: JSON.stringify(userAnswers)
+            userAnswers: JSON.stringify(userAnswers),
+            violationLogs: JSON.stringify(violationLogs)
         });
     }
 
     static async getUserStats(username) {
         return this.request('getUserStats', { username });
+    }
+
+    static async updateUserInfo(fullName, username, email) {
+        return this.request('updateUserInfo', { fullName, username, email });
     }
 
     static async getAdminData(forceRefresh = false) {
