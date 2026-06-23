@@ -1,4 +1,4 @@
-﻿# QUIZ LAB - Online Quiz System
+# QUIZ LAB - Online Quiz System
 
 Developer: TsByin
 Stack: Vanilla JS + Google Apps Script + Google Sheets
@@ -17,7 +17,9 @@ Quiz Lab là hệ thống thi trắc nghiệm online gồm 2 vai trò:
 
 - Đăng ký 5 trường: Họ tên, Username, Mật khẩu, Nhập lại mật khẩu, Mã giới thiệu.
 - Kiểm tra referral code server-side, chỉ tạo tài khoản khi mã ở trạng thái Active.
-- Đăng nhập bằng password hash SHA-256 (frontend gửi hash, backend so hash).
+- Đăng nhập bằng password hash SHA-256 (frontend gửi hash, backend so hash), hỗ trợ đăng nhập bằng **Username hoặc Email**.
+- Tính năng nhắc nhở cập nhật Email bằng popup cảnh báo ở Dashboard (cho phép "Để sau" hoặc "Không nhắc lại").
+- Cập nhật thông tin cá nhân (Họ tên, Username, Email) thông qua trang Thông tin người dùng (`info.html`).
 - Dashboard theo môn học, danh sách bài theo môn, có thống kê người dùng.
 - Mỗi quiz trên dashboard hiển thị thêm số câu hỏi và lượt làm của riêng user.
 - Làm bài bằng Swiper, có timer/progress/chỉ báo câu hỏi.
@@ -296,6 +298,10 @@ Các fix quan trọng đã áp dụng:
 - Fix cột đáp án khi bulk upload.
 - Tối ưu dashboard init và admin aggregation.
 - Đồng bộ header/footer style theo tsbyin.dev.
+- **Hỗ trợ đăng nhập bằng Email và quản lý Profile:**
+  - Login bằng Username hoặc Email.
+  - Cảnh báo người dùng cập nhật Email bằng popup (Glassmorphism) tại trang Dashboard.
+  - Cập nhật thông tin Profile trực tiếp trên frontend và lưu vào server.
 
 ---------------------------------------------------------------------
 
