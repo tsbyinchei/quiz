@@ -1,4 +1,4 @@
-﻿# QUIZ LAB - Setup Guide
+# QUIZ LAB - Setup Guide
 
 Tài liệu setup theo trạng thái code hiện tại trong thư mục quiz.
 
@@ -22,6 +22,7 @@ Header khuyến nghị:
 - FullName
 - AdminPinHash
 - CreatedAt
+- Email
 
 Ghi chú:
 
@@ -92,14 +93,16 @@ Header:
 
 ## 2) Deploy backend (Google Apps Script)
 
-1. Mở file Google Sheet.
-2. Extensions > Apps Script.
-3. Dán nội dung Quiz_Lab_Backend.gs.
-4. Nếu là standalone script, điền SPREADSHEET_ID.
-5. Deploy > New deployment > Web app:
-   - Execute as: bạn
+Dự án hiện tại đã chia code backend thành các file nhỏ trong thư mục `gs/`.
+
+1. Khuyến nghị sử dụng công cụ `clasp`:
+   - Chạy lệnh `clasp login` để đăng nhập.
+   - Tạo file `.clasp.json` (nếu chưa có) và trỏ `scriptId` tới project của bạn.
+   - Chạy lệnh `clasp push` để đẩy toàn bộ code trong thư mục `gs/` lên Google Apps Script.
+2. Deploy > New deployment > Web app:
+   - Execute as: Me
    - Who has access: Anyone
-6. Lưu URL Web App.
+3. Lưu URL Web App để cập nhật frontend.
 
 ## 3) Cấu hình frontend
 
