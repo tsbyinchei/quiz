@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <noscript><meta http-equiv="refresh" content="0; url=nojs.html"></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Dashboard - Chọn môn học và bài kiểm tra.">
@@ -122,6 +123,39 @@
         </main>
     </div>
 
+    <!-- No Email Warning Popup -->
+    <div id="noEmailPopup" class="modal hidden" aria-hidden="true" style="z-index: 9999;">
+        <div class="modal-content glassmorphism" style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+            <h2 style="font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--cyan);">Chưa cập nhật Email</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Tài khoản của bạn chưa liên kết Email. Bạn có muốn cập nhật ngay để bảo vệ tài khoản và có thể khôi phục mật khẩu khi cần không?
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+                <button type="button" id="btnUpdateEmailNow" class="btn-login" style="padding: 0.8rem; font-size: 1rem;">Cập nhật ngay</button>
+                <div style="display: flex; gap: 0.6rem;">
+                    <button type="button" id="btnRemindLater" class="btn-secondary" style="flex: 1; padding: 0.8rem; background: var(--surface-2); border: none; color: var(--text); border-radius: 8px; font-weight: 600; cursor: pointer;">Để sau</button>
+                    <button type="button" id="btnDontRemind" class="btn-secondary" style="flex: 1; padding: 0.8rem; background: transparent; border: 1px solid var(--line); color: var(--text-muted); border-radius: 8px; font-weight: 600; cursor: pointer;">Không nhắc lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Ignore Popup -->
+    <div id="confirmIgnorePopup" class="modal hidden" aria-hidden="true" style="z-index: 10000;">
+        <div class="modal-content glassmorphism" style="text-align: center; border-color: rgba(239, 68, 68, 0.3);">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🚨</div>
+            <h2 style="font-size: 1.4rem; margin-bottom: 0.8rem; color: #ef4444;">Xác nhận không nhắc lại</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Việc không cập nhật Email có thể khiến bạn <strong style="color: #ef4444;">MẤT TÀI KHOẢN VĨNH VIỄN</strong> nếu quên mật khẩu. Bạn vẫn chắc chắn muốn bỏ qua chứ?
+            </p>
+            <div style="display: flex; gap: 0.6rem;">
+                <button type="button" id="btnCancelIgnore" class="btn-login" style="flex: 1; padding: 0.8rem;">Quay lại</button>
+                <button type="button" id="btnConfirmIgnore" class="btn-secondary" style="flex: 1; padding: 0.8rem; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; border-radius: 8px; font-weight: 600; cursor: pointer;">Vẫn bỏ qua</button>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/script.js"></script>
     <script>
         let selectedSubject = '';
@@ -217,6 +251,51 @@
             }
 
             await refreshDashboardInit(username);
+
+            // Kiểm tra xem có cần cảnh báo thiếu Email không
+            try {
+                const accountResult = await APIClient.getAccountInfo();
+                if (accountResult && accountResult.success && accountResult.account) {
+                    const hasEmail = !!accountResult.account.email;
+                    const ignoreWarning = localStorage.getItem('quiz_ignore_email_warning') === 'true';
+                    const role = AuthManager.getRole();
+
+                    if (!hasEmail && !ignoreWarning && role !== 'Admin') {
+                        // Hiển thị popup
+                        const noEmailPopup = document.getElementById('noEmailPopup');
+                        const confirmIgnorePopup = document.getElementById('confirmIgnorePopup');
+                        
+                        if (noEmailPopup && confirmIgnorePopup) {
+                            document.getElementById('btnUpdateEmailNow').onclick = () => {
+                                window.location.href = 'info.html?action=updateEmail';
+                            };
+                            
+                            document.getElementById('btnRemindLater').onclick = () => {
+                                noEmailPopup.classList.add('hidden');
+                            };
+
+                            document.getElementById('btnDontRemind').onclick = () => {
+                                noEmailPopup.classList.add('hidden');
+                                confirmIgnorePopup.classList.remove('hidden');
+                            };
+
+                            document.getElementById('btnCancelIgnore').onclick = () => {
+                                confirmIgnorePopup.classList.add('hidden');
+                                noEmailPopup.classList.remove('hidden');
+                            };
+
+                            document.getElementById('btnConfirmIgnore').onclick = () => {
+                                localStorage.setItem('quiz_ignore_email_warning', 'true');
+                                confirmIgnorePopup.classList.add('hidden');
+                            };
+
+                            noEmailPopup.classList.remove('hidden');
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to fetch account info for email warning", err);
+            }
         }
 
         async function refreshDashboardInit(username, forceRefresh = false) {
