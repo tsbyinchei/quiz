@@ -8,7 +8,7 @@
  * - Giám sát chuyển tab với Page Visibility API
  * - Xử phạt tự động nếu cheat >= 3 lần
  */
-
+(() => {
 class AntiCheat {
     constructor() {
         this.enabled = false;
@@ -19,15 +19,13 @@ class AntiCheat {
         this.monitorFullscreenEnabled = false;
         this.quizStartTime = null;
         this.isDialogOpen = false; 
-        this.isAntiCheatDialogOpen = false; 
         this.isPunishing = false;
         this.lastViolationAt = 0;
         this.violationCooldownMs = 1200;
+        this.violationLogs = []; // Chứa mảng log vi phạm thay vì gửi trực tiếp
+        
         this._tabVisibilityHandler = null;
         this._fullscreenHandler = null;
-        this._dialogOverlay = null;
-        this._dialogMessage = null;
-        this._dialogOkButton = null;
         this._keyboardHandler = null;
         this._contextMenuHandler = null;
         this._mouseDownHandler = null;
@@ -40,172 +38,86 @@ class AntiCheat {
         this._selectionStyleElement = null;
     }
 
-    getDialogHostElement() {
-        return (
-            document.fullscreenElement ||
-            document.webkitFullscreenElement ||
-            document.mozFullScreenElement ||
-            document.msFullscreenElement ||
-            document.body ||
-            document.documentElement
-        );
-    }
-
-    ensureCheatDialog() {
+    ensureCheatStyle() {
         if (!document.getElementById('antiCheatDialogStyle')) {
             const style = document.createElement('style');
             style.id = 'antiCheatDialogStyle';
             style.textContent = `
-                .anti-cheat-dialog-overlay {
-                    position: fixed;
-                    inset: 0;
-                    background: rgba(7, 10, 20, 0.64);
-                    display: none;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 10001;
-                    padding: 1rem;
-                }
-
-                .anti-cheat-dialog-overlay.is-open {
-                    display: flex;
-                }
-
-                .anti-cheat-dialog {
-                    width: min(520px, 95vw);
-                    border-radius: 18px;
-                    border: 1px solid rgba(248, 113, 113, 0.5);
-                    background: color-mix(in srgb, #ef4444 6%, var(--surface, rgba(10, 28, 48, 0.9)));
-                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28), 0 0 40px rgba(239, 68, 68, 0.15);
-                    padding: 1.2rem 1.2rem 1rem;
-                    color: var(--text, #eef3ff);
-                    font-family: inherit;
-                }
-
-                .anti-cheat-dialog-title {
-                    margin: 0;
-                    font-size: 1.05rem;
-                    font-weight: 700;
-                }
-
-                .anti-cheat-dialog-message {
-                    margin: 0.85rem 0 1.15rem;
-                    white-space: pre-line;
-                    line-height: 1.5;
-                    color: var(--text-light, rgba(236, 244, 255, 0.92));
-                }
-
-                .anti-cheat-dialog-actions {
-                    display: flex;
-                    justify-content: flex-end;
-                }
-
-                .anti-cheat-dialog-btn {
-                    border: none;
-                    border-radius: 10px;
-                    padding: 0.6rem 1rem;
-                    cursor: pointer;
-                    font-weight: 700;
-                    font-family: inherit;
-                    background: linear-gradient(135deg, #f87171, #ef4444);
-                    color: #fff;
-                }
-
-                body.light-theme .anti-cheat-dialog-overlay {
-                    background: rgba(15, 23, 42, 0.32);
-                }
-
                 .anti-cheat-blur {
                     filter: blur(10px) grayscale(100%);
                     pointer-events: none;
                     user-select: none;
                 }
+                .anti-cheat-toast {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 999999;
+                    background: linear-gradient(135deg, #ef4444, #dc2626);
+                    color: #fff;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+                    font-family: inherit;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    border-left: 4px solid #7f1d1d;
+                    animation: slideInToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                }
+                @keyframes slideInToast {
+                    from { opacity: 0; transform: translateY(-20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes fadeOutToast {
+                    from { opacity: 1; transform: translateX(0); }
+                    to { opacity: 0; transform: translateX(20px); }
+                }
             `;
             document.head.appendChild(style);
         }
-
-        if (this._blurHandler) {
-            window.removeEventListener('blur', this._blurHandler);
-            window.removeEventListener('focus', this._focusHandler);
-        }
-        document.body.classList.remove('anti-cheat-blur');
-        
-        if (this._dialogOverlay && this._dialogOverlay.isConnected) {
-            const host = this.getDialogHostElement();
-            if (host && this._dialogOverlay.parentElement !== host) {
-                host.appendChild(this._dialogOverlay);
-            }
-            return;
-        }
-
-        const overlay = document.createElement('div');
-        overlay.className = 'anti-cheat-dialog-overlay';
-        overlay.setAttribute('aria-hidden', 'true');
-
-        const dialog = document.createElement('div');
-        dialog.className = 'anti-cheat-dialog';
-        dialog.setAttribute('role', 'dialog');
-        dialog.setAttribute('aria-modal', 'true');
-        dialog.setAttribute('aria-labelledby', 'antiCheatDialogTitle');
-
-        const title = document.createElement('h3');
-        title.id = 'antiCheatDialogTitle';
-        title.className = 'anti-cheat-dialog-title';
-        title.textContent = 'Thông báo';
-
-        const message = document.createElement('p');
-        message.className = 'anti-cheat-dialog-message';
-
-        const actions = document.createElement('div');
-        actions.className = 'anti-cheat-dialog-actions';
-
-        const okButton = document.createElement('button');
-        okButton.type = 'button';
-        okButton.className = 'anti-cheat-dialog-btn';
-        okButton.textContent = 'OK';
-
-        actions.appendChild(okButton);
-        dialog.appendChild(title);
-        dialog.appendChild(message);
-        dialog.appendChild(actions);
-        overlay.appendChild(dialog);
-
-        this.getDialogHostElement().appendChild(overlay);
-
-        this._dialogOverlay = overlay;
-        this._dialogMessage = message;
-        this._dialogOkButton = okButton;
     }
 
-    openCheatDialog(message) {
-        this.ensureCheatDialog();
+    showToastViolation(message) {
+        this.ensureCheatStyle();
+        
+        let container = document.getElementById('antiCheatToastContainer');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'antiCheatToastContainer';
+            container.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 999999;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                pointer-events: none;
+            `;
+            document.body.appendChild(container);
+        }
 
-        return new Promise((resolve) => {
-            const closeDialog = () => {
-                this._dialogOverlay.classList.remove('is-open');
-                this._dialogOverlay.setAttribute('aria-hidden', 'true');
-                resolve(true);
-            };
+        const toast = document.createElement('div');
+        toast.className = 'anti-cheat-toast';
+        toast.style.position = 'static'; // Bỏ fixed tĩnh để thả vào Flex Container
+        toast.style.pointerEvents = 'auto';
+        toast.textContent = message;
+        
+        container.appendChild(toast);
 
-            const onEscape = (event) => {
-                if (event.key === 'Escape') {
-                    event.preventDefault();
-                    document.removeEventListener('keydown', onEscape, true);
-                    closeDialog();
+        setTimeout(() => {
+            toast.style.animation = 'fadeOutToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
                 }
-            };
-
-            this._dialogMessage.textContent = message;
-            this._dialogOkButton.onclick = () => {
-                document.removeEventListener('keydown', onEscape, true);
-                closeDialog();
-            };
-
-            this._dialogOverlay.classList.add('is-open');
-            this._dialogOverlay.setAttribute('aria-hidden', 'false');
-            document.addEventListener('keydown', onEscape, true);
-            this._dialogOkButton.focus();
-        });
+                if (container.childElementCount === 0) {
+                    if (container.parentNode) {
+                        container.parentNode.removeChild(container);
+                    }
+                }
+            }, 300);
+        }, 3500);
     }
 
     /**
@@ -391,6 +303,7 @@ class AntiCheat {
         }
 
         this._selectionStyleElement = document.createElement('style');
+        this._selectionStyleElement.id = 'antiCheatSelectionBlocker';
         this._selectionStyleElement.textContent = `
             body, body * {
                 -webkit-user-select: none !important;
@@ -470,7 +383,7 @@ class AntiCheat {
      */
     monitorTabVisibility() {
         this._tabVisibilityHandler = () => {
-            if (!this.enabled || !this.isQuizMode || this.isAntiCheatDialogOpen) {
+            if (!this.enabled || !this.isQuizMode) {
                 return;
             }
 
@@ -530,7 +443,7 @@ class AntiCheat {
      * Xử lý khi user thoát fullscreen
      */
     async handleFullscreenExit() {
-        if (!this.enabled || !this.isQuizMode || !this.monitorFullscreenEnabled || this.isAntiCheatDialogOpen) {
+        if (!this.enabled || !this.isQuizMode || !this.monitorFullscreenEnabled) {
             return;
         }
 
@@ -556,7 +469,7 @@ class AntiCheat {
      * Xử lý khi user chuyển tab
      */
     async handleTabSwitch() {
-        if (!this.enabled || !this.isQuizMode || !this.monitorTabSwitchEnabled || this.isAntiCheatDialogOpen) {
+        if (!this.enabled || !this.isQuizMode || !this.monitorTabSwitchEnabled) {
             return;
         }
 
@@ -577,55 +490,41 @@ class AntiCheat {
      * Cảnh báo gian lận
      */
     triggerCheatWarning() {
-        if (this.isAntiCheatDialogOpen) {
-            return;
-        }
-
-        // this.showCheatAlert(
-        //     '🚫 Hành động này bị cấm!\n\nVui lòng không cố gắng sử dụng DevTools, right-click hoặc copy dữ liệu.'
-        // );
+        // Disabled by default to avoid spam
     }
 
     /**
      * Hiển thị alert cảnh báo
      */
-    async showCheatAlert(message) {
-        this.isAntiCheatDialogOpen = true;
-
-        try {
-            await this.openCheatDialog(message);
-        } catch (error) {
-            console.error('Error showing anti-cheat dialog:', error);
-            alert(message);
-        } finally {
-            this.isAntiCheatDialogOpen = false;
-        }
+    showCheatAlert(message) {
+        this.showToastViolation(message);
     }
 
     /**
      * Xử phạt: Tự động nộp bài với điểm 0
      */
-    async executePunishment() {
+    executePunishment() {
         if (!this.isQuizMode || this.isPunishing) return;
 
         this.isPunishing = true;
         this.enabled = false;
 
-        await this.showCheatAlert('❌ Vi phạm quy tắc kiểm tra 3 lần!\n\nBài thi sẽ tự động nộp với điểm 0.');
+        this.showToastViolation('❌ Vi phạm quy tắc kiểm tra 3 lần!\nBài thi sẽ tự động nộp với điểm 0.');
 
-        if (typeof submitQuiz === 'function') {
-            submitQuiz(true, true);
+        if (typeof window.submitQuiz === 'function') {
+            window.submitQuiz(true, true);
         } else {
+            console.error("Critical: window.submitQuiz is not defined. Force redirecting.");
             window.location.href = 'dashboard.html';
         }
 
-        this.logCheatViolation('auto_submit_punishment');
+        // Đã bỏ dòng logCheatViolation('auto_submit_punishment') để tránh trùng lặp log
     }
 
     /**
      * Ghi log vi phạm lên Backend (GAS)
      */
-    async logCheatViolation(violationType) {
+    logCheatViolation(violationType) {
         const username = localStorage.getItem('quizUsername');
         const quizID = localStorage.getItem('currentQuizID');
         const timestamp = new Date().toISOString();
@@ -639,35 +538,18 @@ class AntiCheat {
             userAgent: navigator.userAgent
         };
 
-        try {
-            if (typeof APIClient !== 'undefined' && typeof APIClient.logCheatViolation === 'function') {
-                await APIClient.logCheatViolation(logData);
-            } else {
-                if (typeof APIClient === 'undefined' || !APIClient.GAS_URL) {
-                    return;
-                }
-
-                await fetch(APIClient.GAS_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        action: 'logCheatViolation',
-                        token: (typeof AuthManager !== 'undefined' && AuthManager.getToken)
-                            ? AuthManager.getToken()
-                            : (typeof sessionStorage !== 'undefined'
-                                ? sessionStorage.getItem('quizToken')
-                                : localStorage.getItem('quizToken')),
-                        ...logData
-                    })
-                });
-            }
-
-            console.log('📝 Cheat violation logged:', violationType);
-        } catch (error) {
-            console.error('Error logging cheat violation:', error);
-        }
+        // Ghi nhận log vào mảng cục bộ thay vì spam network
+        this.violationLogs.push(logData);
+        console.log('📝 Cheat violation recorded locally:', violationType);
     }
 
     disable() {
+        // [Vulnerability Fix] - Không cho phép vô hiệu hóa từ Console khi đang thi
+        if (this.isQuizMode) {
+            console.warn('🔒 Action blocked: Cannot disable Anti-Cheat while in Quiz Mode.');
+            return;
+        }
+
         this.removeProtectionListeners();
 
         if (this._tabVisibilityHandler) {
@@ -693,7 +575,100 @@ class AntiCheat {
         this.isPunishing = false;
         console.log('🔓 Anti-Cheat Module Disabled');
     }
-}
+    }
 
-// Global instance
-window.antiCheat = new AntiCheat();
+    const instance = new AntiCheat();
+
+    // 1. Facade Pattern & Object.freeze
+    const antiCheatFacade = {
+        enable: (isQuiz, options) => {
+            instance.ensureCheatStyle();
+            instance.enable(isQuiz, options);
+        },
+        disable: () => instance.disable(),
+        monitorFullscreen: () => {
+            if (instance.enabled && instance.monitorFullscreenEnabled) {
+                instance.monitorFullscreen();
+            }
+        },
+        setDialogOpen: (val) => { instance.isDialogOpen = !!val; },
+        getViolationLogs: () => [...instance.violationLogs], // Trả về bản sao của mảng log
+        get monitorFullscreenEnabled() { return instance.monitorFullscreenEnabled; },
+        get isDialogOpen() { return instance.isDialogOpen; }
+    };
+
+    Object.freeze(antiCheatFacade);
+    window.antiCheat = antiCheatFacade;
+
+    // 2. MutationObserver
+    const observer = new MutationObserver((mutations) => {
+        if (!instance.enabled) return;
+        for (let mutation of mutations) {
+            if (mutation.type === 'childList') {
+                mutation.removedNodes.forEach(node => {
+                    if (node.nodeType === 1 && (
+                        node.id === 'antiCheatDialogStyle' || 
+                        node.id === 'antiCheatSelectionBlocker' ||
+                        node.classList.contains('anti-cheat-dialog-overlay') || 
+                        node.classList.contains('anti-cheat-blur'))) {
+                        console.error('Security Violation: Core AntiCheat element removed.');
+                        window.location.reload();
+                    }
+                });
+            }
+            if (mutation.type === 'attributes' && mutation.target.classList) {
+                if (mutation.target.classList.contains('anti-cheat-blur')) {
+                    const style = mutation.target.getAttribute('style') || '';
+                    if (style.replace(/\s+/g, '').includes('filter:none') || style.replace(/\s+/g, '').includes('display:none')) {
+                        console.error('Security Violation: AntiCheat style bypassed.');
+                        window.location.reload();
+                    }
+                }
+            }
+        }
+    });
+    
+    // Đảm bảo DOM đã sẵn sàng trước khi observe toàn bộ Document
+    if (document.documentElement) {
+        observer.observe(document.documentElement, { 
+            childList: true, 
+            subtree: true, 
+            attributes: true, 
+            attributeFilter: ['style', 'class'] 
+        });
+    }
+
+    // 3. Debugger Trap & CSSOM Observer
+    setInterval(() => {
+        if (!instance.enabled || !instance.isQuizMode) return;
+        
+        // Kiểm tra CSSOM: Thẻ style chặn bôi đen có bị hacker disable không?
+        const blockStyle = document.getElementById('antiCheatSelectionBlocker');
+        if (blockStyle && blockStyle.sheet && blockStyle.sheet.disabled) {
+            console.error('Security Violation: Selection Blocker CSSOM disabled.');
+            window.location.reload();
+        }
+
+        const start = performance.now();
+        
+        // Trap DevTools
+        (function() { debugger; })(); 
+        
+        const end = performance.now();
+        
+        if (end - start > 1000) {
+            console.warn("DevTools detected via Timing Analysis!");
+            instance.cheatCount++;
+            
+            if (instance.cheatCount >= instance.maxCheatAttempts) {
+                instance.executePunishment();
+            } else {
+                instance.showCheatAlert(
+                    `⚠️ Cảnh báo!\n\nPhát hiện công cụ dành cho nhà phát triển (DevTools).\n\nVi phạm lần ${instance.cheatCount}/${instance.maxCheatAttempts}.\n\nNếu tiếp tục sẽ bị khóa bài thi!`
+                );
+            }
+            instance.logCheatViolation('devtools_timing_analysis');
+        }
+    }, 2000);
+
+})();
