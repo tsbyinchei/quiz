@@ -88,24 +88,18 @@ function bindSessionGuard() {
 }
 
 function bindLoginSubmit() {
-    const loginForm = document.getElementById('loginForm');
-    const errorDiv = document.getElementById('errorMessage');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-
-    if (!loginForm || !errorDiv || !loadingOverlay) {
-        return;
-    }
-
-    loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
 
         if (AuthManager.isAuthenticated() && AuthManager.getUsername()) {
-            errorDiv.textContent = 'Bạn đang đăng nhập tài khoản khác. Vui lòng đăng xuất trước khi đăng nhập lại.';
+            document.getElementById('errorMessage').textContent = 'Bạn đang đăng nhập tài khoản khác. Vui lòng đăng xuất trước khi đăng nhập lại.';
             return;
         }
 
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('errorMessage');
+        const loadingOverlay = document.getElementById('loadingOverlay');
 
         errorDiv.textContent = '';
         loadingOverlay.classList.add('is-visible');
@@ -128,10 +122,13 @@ function bindLoginSubmit() {
                 sessionStorage.removeItem('adminPinVerified');
                 sessionStorage.removeItem('adminPinVerifiedFor');
                 sessionStorage.removeItem('adminPinProof');
-
+                
                 window.location.href = result.role === 'Admin' ? 'admin.html' : 'dashboard.html';
             } else {
                 errorDiv.textContent = result.message || 'Đăng nhập thất bại!';
+                if (result.blockedUntil || (result.message && result.message.toLowerCase().includes('tạm thời bị khóa'))) {
+                    startRateLimitCountdown(result.blockedUntil || (Date.now() + 5 * 60 * 1000));
+                }
             }
         } catch (error) {
             console.error('Login error:', error);
