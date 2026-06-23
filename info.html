@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <noscript><meta http-equiv="refresh" content="0; url=nojs.html"></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Thông tin tài khoản Quiz Lab">
@@ -26,11 +27,15 @@
         <main class="info-page">
 
             <!-- User identity section -->
-            <section class="info-identity">
+            <section class="info-identity" style="position: relative;">
+                <button type="button" id="btnEditInfo" class="icon-btn" style="position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; color: var(--cyan); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600;" aria-label="Sửa thông tin">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg> Sửa
+                </button>
                 <div class="info-avatar" id="infoAvatarInitials">?</div>
                 <div class="info-identity-text">
                     <h1 id="infoFullName" class="info-name">—</h1>
                     <span class="info-role" id="infoUsername">—</span>
+                    <span class="info-role" id="infoEmail" style="opacity: 0.7; font-size: 0.9rem; margin-top: 0.2rem; display: block;">—</span>
                 </div>
             </section>
 
@@ -78,6 +83,47 @@
 
             <div id="infoFeedback" class="feedback"></div>
         </main>
+    </div>
+
+    <!-- Edit Info Modal -->
+    <div id="editInfoModal" class="modal hidden" aria-hidden="true" style="z-index: 9999;">
+        <div class="modal-content glassmorphism" style="max-width: 450px; text-align: left; padding: 2rem;">
+            <h2 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--cyan); text-align: center;">Cập nhật thông tin</h2>
+            <form id="editInfoForm">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="editFullName" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Họ và Tên</label>
+                    <input type="text" id="editFullName" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--line); background: rgba(0,0,0,0.2); color: var(--text);" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="editUsername" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Tên Đăng Nhập</label>
+                    <input type="text" id="editUsername" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--line); background: rgba(0,0,0,0.2); color: var(--text);" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="editEmail" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email</label>
+                    <input type="email" id="editEmail" placeholder="Nhập địa chỉ email" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--line); background: rgba(0,0,0,0.2); color: var(--text);">
+                </div>
+                <div id="editInfoError" style="color: #ef4444; margin-bottom: 1rem; text-align: center; font-size: 0.9rem;"></div>
+                <div style="display: flex; gap: 0.6rem;">
+                    <button type="button" id="btnCancelEdit" class="btn-secondary" style="flex: 1; padding: 0.8rem; background: transparent; border: 1px solid var(--line); color: var(--text-muted); border-radius: 8px; font-weight: 600; cursor: pointer;">Hủy</button>
+                    <button type="button" id="btnSaveEdit" class="btn-login" style="flex: 1; padding: 0.8rem; background: var(--cyan); color: var(--bg); border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Save Popup -->
+    <div id="confirmSavePopup" class="modal hidden" aria-hidden="true" style="z-index: 10000;">
+        <div class="modal-content glassmorphism" style="max-width: 400px; text-align: center; padding: 2rem;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">❓</div>
+            <h2 style="font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--text);">Xác nhận thay đổi</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Bạn có chắc chắn muốn lưu các thông tin này lên hệ thống không?
+            </p>
+            <div style="display: flex; gap: 0.6rem;">
+                <button type="button" id="btnCancelConfirm" class="btn-secondary" style="flex: 1; padding: 0.8rem; background: transparent; border: 1px solid var(--line); color: var(--text-muted); border-radius: 8px; font-weight: 600; cursor: pointer;">Quay lại</button>
+                <button type="button" id="btnConfirmSave" class="btn-login" style="flex: 1; padding: 0.8rem;">Đồng ý</button>
+            </div>
+        </div>
     </div>
 
     <footer class="site-footer">
