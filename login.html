@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <noscript><meta http-equiv="refresh" content="0; url=nojs.html"></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Đăng nhập Quiz Lab">
@@ -32,18 +33,21 @@
 
                 <form id="loginForm" class="login-form">
                     <div class="form-group">
-                        <label for="username">Tên Đăng Nhập</label>
+                        <label for="username">Tên Đăng Nhập / Email</label>
                         <input 
                             type="text" 
                             id="username" 
                             name="username" 
-                            placeholder="Nhập tên đăng nhập"
+                            placeholder="Nhập tên đăng nhập hoặc email"
                             required
                         >
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mật Khẩu</label>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                            <label for="password" style="margin-bottom: 0;">Mật Khẩu</label>
+                            <a href="forgot.html" class="forgot-link" style="font-size: 0.85rem; color: var(--text-light); transition: color var(--transition);">Quên mật khẩu?</a>
+                        </div>
                         <div class="password-field-wrap">
                             <input 
                                 type="password" 
