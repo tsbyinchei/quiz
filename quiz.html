@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <noscript><meta http-equiv="refresh" content="0; url=nojs.html"></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Làm bài Quiz">
@@ -1022,7 +1023,8 @@ let swiper;
             }, 1000);
         }
 
-        // Ná»™p bÃ i
+        // Nộp bài
+        window.submitQuiz = submitQuiz;
         async function submitQuiz(isForced = false, skipConfirm = false) {
             if (isSubmitting) {
                 return;
@@ -1037,9 +1039,9 @@ let swiper;
             
             try {
                 if (!skipConfirm) {
-                    antiCheat.isDialogOpen = true;
+                    antiCheat.setDialogOpen(true);
                     const confirmed = await showInAppConfirm('Bạn có chắc muốn nộp bài?');
-                    antiCheat.isDialogOpen = false;
+                    antiCheat.setDialogOpen(false);
 
                     if (!confirmed) {
                         startTimer(Math.ceil(timeRemaining / 60));
@@ -1066,7 +1068,10 @@ let swiper;
                 }
 
                 const answersForSubmit = isForced ? {} : userAnswers;
-                const result = await APIClient.submitScore(username, quizID, scoreOutOf10, answersForSubmit);
+                const violationLogs = (typeof antiCheat !== 'undefined' && typeof antiCheat.getViolationLogs === 'function') 
+                    ? antiCheat.getViolationLogs() 
+                    : [];
+                const result = await APIClient.submitScore(username, quizID, scoreOutOf10, answersForSubmit, violationLogs);
 
                 // Hide loading
                 if (loadingOverlay) {
@@ -1114,9 +1119,9 @@ let swiper;
                 return;
             }
 
-            antiCheat.isDialogOpen = true;
+            antiCheat.setDialogOpen(true);
             const shouldExit = await showInAppConfirm('Bạn chưa hoàn thành quiz. Bạn có chắc muốn thoát?');
-            antiCheat.isDialogOpen = false;
+            antiCheat.setDialogOpen(false);
 
             if (shouldExit) {
                 if (autoNextTimer) {
