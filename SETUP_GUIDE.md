@@ -110,17 +110,21 @@ Sửa API URL tại assets/script.js:
 
 - APIClient.GAS_URL = 'YOUR_DEPLOYMENT_URL'
 
-## 4) Tạo hash cho tài khoản
+## 4) Tạo hash cho tài khoản (Thiết lập thủ công)
 
-Trong browser console:
+Mở trang web (ví dụ `index.html`), mở browser console (F12) và chạy lệnh:
 
-- await sha256('user_password')
-- await sha256('admin_pin_value')
+- `await sha256('user_password')`
+- `await sha256('admin_pin_value')`
 
-Điền vào Users:
+Điền vào sheet Users:
 
-- Password_Hash: hash mật khẩu user/admin
-- AdminPinHash: chỉ cần cho tài khoản Admin dùng admin.html
+- Password_Hash: hash mật khẩu user/admin (sẽ tự động được Backend nâng cấp lên mã hóa Salt an toàn ở lần đăng nhập đầu tiên).
+- AdminPinHash: hash mã PIN của Admin (bắt buộc để truy cập `admin.html`).
+
+*Lưu ý: 
+- Bạn bắt buộc phải cấu hình thuộc tính `SALT` trong Script Properties của Google Apps Script (tại mục Project Settings) để hệ thống Backend có thể băm mật khẩu bảo mật.
+- Sau khi đã thiết lập thành công tài khoản Admin đầu tiên, bạn có thể sử dụng trực tiếp công cụ **🔑 Tạo Hash** bên trong trang `admin.html` để tạo nhanh mã hash cho các tài khoản hoặc mã PIN khác thay vì dùng Console.*
 
 ## 5) Quy trình test nhanh
 
