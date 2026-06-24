@@ -779,10 +779,10 @@ function updateQuestionIndicator() {
     let html = '';
     for (let i = 0; i < displayQuestions.length; i++) {
         const qID = displayQuestions[i].questionID;
-        const answered = userAnswers[qID] ? 'answered' : '';
-        const active = i === swiper.activeIndex ? 'active' : '';
+        const answered = userAnswers.hasOwnProperty(String(qID)) ? 'is-answered' : '';
+        const active = (i === swiper.activeIndex) ? 'is-active' : '';
         const disabled = !allowBackNavigation ? 'is-disabled' : '';
-        const clickHandler = allowBackNavigation ? `data-action="goto" data-question-index="${i}"` : '';
+        const clickHandler = allowBackNavigation ? `data-action="goto" data-index="${i}" data-question-index="${i}"` : '';
         html += `<span class="indicator ${answered} ${active} ${disabled}" ${clickHandler}></span>`;
     }
     indicatorDiv.replaceChildren();
@@ -917,9 +917,8 @@ async function submitQuiz(isForced = false, skipConfirm = false) {
             }
         }
 
-        // TÃ­nh Ä‘iá»ƒm do server quyáº¿t Ä‘á»‹nh, client chá»‰ gá»­i Ä‘Ã¡p Ã¡n.
+        // Tính điểm do server quyết định, client chỉ gửi đáp án.
         const totalQuestions = displayQuestions.length;
-        const scoreOutOf10 = 0;
 
         // Gá»­i káº¿t quáº£ lÃªn GAS
         const username = localStorage.getItem('quizUsername');
@@ -935,7 +934,10 @@ async function submitQuiz(isForced = false, skipConfirm = false) {
         }
 
         const answersForSubmit = isForced ? {} : userAnswers;
-        const result = await APIClient.submitScore(username, quizID, scoreOutOf10, answersForSubmit);
+        const violationLogs = (typeof antiCheat !== 'undefined' && typeof antiCheat.getViolationLogs === 'function') 
+            ? antiCheat.getViolationLogs() 
+            : [];
+        const result = await APIClient.submitScore(username, quizID, answersForSubmit, violationLogs);
 
         // Hide loading
         if (loadingOverlay) {
@@ -949,11 +951,16 @@ async function submitQuiz(isForced = false, skipConfirm = false) {
             return;
         }
 
-        const finalScore = typeof result.score === 'number' ? result.score : scoreOutOf10;
+        const finalScore = typeof result.score === 'number' ? result.score : 0;
         const finalCorrect = typeof result.correctCount === 'number' ? result.correctCount : 0;
         const finalTotal = typeof result.totalQuestions === 'number' ? result.totalQuestions : totalQuestions;
 
-        // LÆ°u káº¿t quáº£ vÃ o sessionStorage Ä‘á»ƒ hiá»ƒn thá»‹ á»Ÿ trang káº¿t quáº£
+        // Cleanup anti-cheat state on successful submission
+        if (typeof antiCheat !== 'undefined' && typeof antiCheat.clearState === 'function') {
+            antiCheat.clearState();
+        }
+
+        // Lưu kết quả vào sessionStorage để hiển thị ở trang kết quả
         sessionStorage.setItem('quizResult', JSON.stringify({
             score: finalScore,
             correct: finalCorrect,
@@ -1043,6 +1050,7 @@ Object.assign(window, {
     confirmExitTo,
     submitQuiz,
     requestFullscreenMode,
+    showFullscreenButton,
     closeImageViewer,
     openImageViewer
 });
