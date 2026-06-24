@@ -103,14 +103,10 @@ function bindRegisterSubmit() {
         }
 
         try {
-            const passwordHash = typeof hashPasswordWithSalt === 'function'
-                ? await hashPasswordWithSalt(password)
-                : await sha256(`${password}${QUIZ_PASSWORD_SALT || 'TsByinChei'}`);
-
             const result = await APIClient.registerUser({
                 fullName,
                 username,
-                passwordHash,
+                password,
                 referralCode
             });
 
