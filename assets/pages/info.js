@@ -122,14 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('btnConfirmSave')) {
         document.getElementById('btnConfirmSave').addEventListener('click', async () => {
             const newFullName = document.getElementById('editFullName').value;
-            const newUsername = document.getElementById('editUsername').value;
             const newEmail = document.getElementById('editEmail').value;
             
             confirmSavePopup.classList.add('hidden');
             setFeedback('Đang cập nhật...', false);
 
             try {
-                const result = await APIClient.updateUserInfo(newFullName, newUsername, newEmail);
+                const result = await APIClient.updateUserInfo(newFullName, newEmail);
                 if (result.success) {
                     if (result.token) {
                         AuthManager.setAuth(result.token, result.account.role, result.account.username, result.account.fullName);
