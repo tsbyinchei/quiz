@@ -1050,9 +1050,8 @@ let swiper;
                     }
                 }
 
-                // TÃ­nh Ä‘iá»ƒm do server quyáº¿t Ä‘á»‹nh, client chá»‰ gá»­i Ä‘Ã¡p Ã¡n.
+                // Tính điểm do server quyết định, client chỉ gửi đáp án.
                 const totalQuestions = displayQuestions.length;
-                const scoreOutOf10 = 0;
 
                 // Gá»­i káº¿t quáº£ lÃªn GAS
                 const username = localStorage.getItem('quizUsername');
@@ -1071,7 +1070,7 @@ let swiper;
                 const violationLogs = (typeof antiCheat !== 'undefined' && typeof antiCheat.getViolationLogs === 'function') 
                     ? antiCheat.getViolationLogs() 
                     : [];
-                const result = await APIClient.submitScore(username, quizID, scoreOutOf10, answersForSubmit, violationLogs);
+                const result = await APIClient.submitScore(username, quizID, answersForSubmit, violationLogs);
 
                 // Hide loading
                 if (loadingOverlay) {
@@ -1085,7 +1084,7 @@ let swiper;
                     return;
                 }
 
-                const finalScore = typeof result.score === 'number' ? result.score : scoreOutOf10;
+                const finalScore = typeof result.score === 'number' ? result.score : 0;
                 const finalCorrect = typeof result.correctCount === 'number' ? result.correctCount : 0;
                 const finalTotal = typeof result.totalQuestions === 'number' ? result.totalQuestions : totalQuestions;
 
