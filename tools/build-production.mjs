@@ -1,4 +1,4 @@
-﻿import { promises as fs } from 'node:fs';
+import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import CleanCSS from 'clean-css';
@@ -15,36 +15,7 @@ const OUTPUT_DIR = path.resolve(SOURCE_DIR, 'dist');
 const SKIP_DIRS = new Set(['dist', 'node_modules', '.git']);
 
 const DEPLOY_FILE_ALLOWLIST = new Set([
-  'index.html',
-  'login.html',
-  'dashboard.html',
-  'quiz.html',
-  'result.html',
-  'admin.html',
-  'hash.html',
-  'info.html',
-  'password.html',
-  'register.html',
-  'assets/style.css',
-  'assets/script.js',
-  'assets/anticheating.js',
   'icon.ico'
-]);
-
-const OBFUSCATE_JS_FILES = new Set([
-  'assets/anticheating.js',
-  'assets/script.js'
-]);
-
-const OBFUSCATE_INLINE_HTML_FILES = new Set([
-  'admin.html',
-  'quiz.html',
-  'info.html',
-  'password.html',
-  'register.html',
-  'dashboard.html',
-  'result.html',
-  'login.html'
 ]);
 
 const TERSER_OPTIONS = {
@@ -136,7 +107,7 @@ function obfuscateJs(code, options = OBFUSCATION_OPTIONS) {
 }
 
 async function transformInlineScripts(html, relPath) {
-  if (!OBFUSCATE_INLINE_HTML_FILES.has(relPath)) {
+  if (!relPath.endsWith('.html')) {
     return html;
   }
 
@@ -171,7 +142,10 @@ async function transformInlineScripts(html, relPath) {
 }
 
 async function processFile(relPath) {
-  if (!DEPLOY_FILE_ALLOWLIST.has(relPath)) {
+  const isRootHtml = !relPath.includes('/') && relPath.endsWith('.html');
+  const isAssets = relPath.startsWith('assets/');
+  const isAllowed = DEPLOY_FILE_ALLOWLIST.has(relPath) || isAssets || isRootHtml;
+  if (!isAllowed) {
     return false;
   }
 
@@ -185,7 +159,8 @@ async function processFile(relPath) {
   if (ext === '.js') {
     const original = await fs.readFile(srcPath, 'utf8');
     const minified = await minifyJs(original);
-    const processed = OBFUSCATE_JS_FILES.has(relPath)
+    const shouldObfuscate = relPath.startsWith('assets/');
+    const processed = shouldObfuscate
       ? obfuscateJs(minified)
       : minified;
     await fs.writeFile(outPath, processed, 'utf8');
@@ -252,8 +227,8 @@ async function main() {
   }
 
   console.log(`Build completed. Processed ${processedCount} files into: ${OUTPUT_DIR}`);
-  console.log(`Obfuscated JS files: ${Array.from(OBFUSCATE_JS_FILES).join(', ')}`);
-  console.log(`Obfuscated inline scripts in: ${Array.from(OBFUSCATE_INLINE_HTML_FILES).join(', ')}`);
+  console.log(`Dynamic HTML files (Inline scripts obfuscated): ALL ROOT HTML`);
+  console.log(`Dynamic JS files (Obfuscated): ALL ASSETS JS`);
 }
 
 main().catch((error) => {
