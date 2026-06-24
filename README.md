@@ -22,7 +22,7 @@ Dự án được xây dựng với kiến trúc **Serverless** sử dụng Goog
 ## 🌟 Tính năng Đột phá
 
 ### 1. 🎓 Trải nghiệm Người dùng (User)
-- **Đăng nhập & Đăng ký linh hoạt**: Hỗ trợ đăng ký bằng mã giới thiệu. Đăng nhập bằng Password Hash (SHA-256) an toàn thông qua Username hoặc Email.
+- **Đăng nhập & Đăng ký linh hoạt**: Hỗ trợ đăng ký bằng mã giới thiệu. Đăng nhập an toàn: Mật khẩu được băm (hash) SHA-256 kèm Salt chặt chẽ tại Backend.
 - **Quản lý Hồ sơ**: Tính năng nhắc nhở bổ sung Email bằng popup *Glassmorphism* hiện đại. Quản lý thông tin cá nhân trực tiếp.
 - **Dashboard Thống kê**: Phân loại bài thi theo môn học, hiển thị chi tiết tiến độ, số câu hỏi, điểm số trung bình/cao nhất và lượt làm bài.
 - **Làm bài thông minh**: Giao diện làm bài mượt mà với Swiper, đồng hồ đếm ngược, thanh tiến trình và chỉ báo trạng thái câu hỏi. Nộp bài chấm điểm trực tiếp tại backend và trả về review chi tiết (giải thích câu sai).
@@ -80,7 +80,7 @@ Xem chi tiết từng bước tại `SETUP_GUIDE.md`. Tóm tắt cơ bản:
 3. **Kết nối Frontend**: Lấy URL của Web App vừa Deploy dán vào hằng số `APIClient.GAS_URL` trong file `assets/script.js`.
 4. **Build Frontend (Tùy chọn)**: 
    - Cài đặt `npm install`.
-   - Chạy `npm run build:quiz` để tối ưu (minify, obfuscate) mã nguồn vào thư mục `dist/`.
+   - Chạy `npm run build` hoặc sử dụng script PowerShell `tools/build-production.ps1` để tự động dọn dẹp, tối ưu (minify), làm rối mã nguồn (obfuscate), và xuất ra thư mục `dist/`. Mã nguồn chưa làm rối nên được lưu trữ ở thư mục `Backup/`.
 
 ---
 
