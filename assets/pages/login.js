@@ -106,15 +106,9 @@ function bindLoginSubmit() {
         loadingOverlay.setAttribute('aria-hidden', 'false');
 
         try {
-            const [passwordHash, passwordHashLegacy] = await Promise.all([
-                hashPasswordWithSalt(password),
-                sha256(password)
-            ]);
-
             const result = await APIClient.request('login', {
                 username,
-                passwordHash,
-                passwordHashLegacy
+                password
             });
 
             if (result.success) {
