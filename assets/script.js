@@ -23,12 +23,6 @@ async function sha256(message) {
     return hashHex;
 }
 
-const QUIZ_PASSWORD_SALT = 'TsByinChei';
-
-async function hashPasswordWithSalt(password) {
-    return sha256(`${String(password || '')}${QUIZ_PASSWORD_SALT}`);
-}
-
 /**
  * ==================== AUTHENTICATION ====================
  */
@@ -378,8 +372,8 @@ class APIClient {
         }
     }
 
-    static async login(username, passwordHash) {
-        return this.request('login', { username, passwordHash });
+    static async login(username, password) {
+        return this.request('login', { username, password });
     }
 
     static async registerUser(payload) {
@@ -394,11 +388,10 @@ class APIClient {
         return this.request('getDashboardStats', { username });
     }
 
-    static async changePassword(oldPasswordHash, newPasswordHash, oldPasswordHashLegacy) {
+    static async changePassword(oldPassword, newPassword) {
         return this.request('changePassword', {
-            oldPasswordHash,
-            newPasswordHash,
-            oldPasswordHashLegacy: oldPasswordHashLegacy || ''
+            oldPassword,
+            newPassword
         });
     }
 
@@ -406,12 +399,12 @@ class APIClient {
         return this.request('requestPasswordReset', { username, email });
     }
 
-    static async confirmPasswordReset(username, otp, newPasswordHash) {
-        return this.request('confirmPasswordReset', { username, otp, newPasswordHash });
+    static async confirmPasswordReset(username, otp, newPassword) {
+        return this.request('confirmPasswordReset', { username, otp, newPassword });
     }
 
-    static async resetPasswordViaReferral(username, referralCode, newPasswordHash) {
-        return this.request('resetPasswordViaReferral', { username, referralCode, newPasswordHash });
+    static async resetPasswordViaReferral(username, referralCode, newPassword) {
+        return this.request('resetPasswordViaReferral', { username, referralCode, newPassword });
     }
 
     static async getSubjects() {
@@ -438,11 +431,10 @@ class APIClient {
         return this.request('resolveCorrectOption', { quizID, questionID });
     }
 
-    static async submitScore(username, quizID, score, userAnswers, violationLogs = []) {
+    static async submitScore(username, quizID, userAnswers, violationLogs = []) {
         return this.request('submitScore', {
             username,
             quizID,
-            score,
             userAnswers: JSON.stringify(userAnswers),
             violationLogs: JSON.stringify(violationLogs)
         });
@@ -452,8 +444,8 @@ class APIClient {
         return this.request('getUserStats', { username });
     }
 
-    static async updateUserInfo(fullName, username, email) {
-        return this.request('updateUserInfo', { fullName, username, email });
+    static async updateUserInfo(fullName, email) {
+        return this.request('updateUserInfo', { fullName, email });
     }
 
     static async getAdminData(forceRefresh = false) {
@@ -773,7 +765,6 @@ window.insertHtmlSafe = function (element, htmlString) {
 };
 
 window.sha256 = sha256;
-window.hashPasswordWithSalt = hashPasswordWithSalt;
 window.GradingEngine = GradingEngine;
 window.AikenParser = AikenParser;
 window.APIClient = APIClient;
