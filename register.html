@@ -220,14 +220,11 @@
             }
 
             try {
-                const passwordHash = typeof hashPasswordWithSalt === 'function'
-                    ? await hashPasswordWithSalt(password)
-                    : await sha256(`${password}TsByinChei`);
                 const result = await APIClient.registerUser({
                     fullName,
                     email,
                     username,
-                    passwordHash,
+                    password,
                     referralCode
                 });
 
