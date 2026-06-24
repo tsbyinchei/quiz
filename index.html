@@ -11,6 +11,61 @@
     <link rel="stylesheet" href="assets/style.css?v=21">
 </head>
 <body class="has-topbar">
+    <style>
+        #maintenance {
+            position: fixed; inset: 0; z-index: 999999;
+            background: rgba(5, 8, 17, 0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #f1f5f9; text-align: center;
+        }
+        #maintenance .maintenance-card {
+            padding: 3.5rem 2.5rem; max-width: 580px; width: 90%;
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: m-float 6s ease-in-out infinite;
+        }
+        @keyframes m-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        #maintenance .status-pill {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 6px 16px; border-radius: 20px;
+            background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2);
+            color: #f59e0b; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+            margin-bottom: 1.5rem;
+        }
+        #maintenance .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; animation: m-pulse 2s infinite; }
+        @keyframes m-pulse { 0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } }
+        #maintenance h1 {
+            font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; font-size: 2.4rem; font-weight: 700; margin-bottom: 1rem;
+            background: linear-gradient(90deg,#0ea5e9 0%,#818cf8 55%,#6366f1 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2;
+        }
+        #maintenance p { color: #94a3b8; font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.6; }
+        #maintenance .progress-bar {
+            width: 100%; height: 4px; background: rgba(26, 34, 52, 0.6); border-radius: 4px; overflow: hidden; position: relative;
+        }
+        #maintenance .progress-bar::after {
+            content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 30%;
+            background: linear-gradient(135deg,#0ea5e9 0%,#6366f1 100%); border-radius: 4px;
+            animation: m-loading 2s ease-in-out infinite alternate;
+        }
+        @keyframes m-loading { 0% { width: 10%; left: 0; } 100% { width: 40%; left: 60%; } }
+        @media (max-width: 480px) {
+            #maintenance h1 { font-size: 1.8rem; }
+            #maintenance .maintenance-card { padding: 2.5rem 1.5rem; }
+        }
+    </style>
+    <div id="maintenance">
+        <div class="maintenance-card">
+            <div class="status-pill"><div class="status-dot"></div>System Upgrade</div>
+            <h1>Đang Nâng Cấp Hệ Thống</h1>
+            <p>Quiz Lab hiện đang tạm dừng để triển khai bản cập nhật kiến trúc bảo mật. Vui lòng quay lại sau ít phút.</p>
+            <div class="progress-bar"></div>
+        </div>
+    </div> -->
     <header class="site-topbar">
         <div class="site-topbar-inner">
             <a href="index.html" class="site-brand"><span>Quiz Lab</span></a>
