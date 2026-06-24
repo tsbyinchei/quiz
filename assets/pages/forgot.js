@@ -186,8 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading('Đang xác nhận mã OTP và đổi mật khẩu...');
 
         try {
-            const newPasswordHash = await hashPasswordWithSalt(newPassword);
-            const result = await APIClient.confirmPasswordReset(currentUsername, otp, newPasswordHash);
+            const result = await APIClient.confirmPasswordReset(currentUsername, otp, newPassword);
             hideLoading();
 
             if (result.success) {
@@ -239,8 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading('Đang xác minh mã giới thiệu và đổi mật khẩu...');
 
         try {
-            const newPasswordHash = await hashPasswordWithSalt(newPassword);
-            const result = await APIClient.resetPasswordViaReferral(username, referralCode, newPasswordHash);
+            const result = await APIClient.resetPasswordViaReferral(username, referralCode, newPassword);
             hideLoading();
 
             if (result.success) {
