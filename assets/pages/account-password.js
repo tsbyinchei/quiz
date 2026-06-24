@@ -61,13 +61,7 @@ async function handlePasswordSubmit(event) {
     }
 
     try {
-        const [oldPasswordHash, oldPasswordHashLegacy, newPasswordHash] = await Promise.all([
-            hashPasswordWithSalt(currentPassword),
-            sha256(currentPassword),
-            hashPasswordWithSalt(newPassword)
-        ]);
-
-        const result = await APIClient.changePassword(oldPasswordHash, newPasswordHash, oldPasswordHashLegacy);
+        const result = await APIClient.changePassword(currentPassword, newPassword);
         if (!result || !result.success) {
             setFeedback((result && result.message) || 'Không thể đổi mật khẩu.', 'incorrect');
             return;
