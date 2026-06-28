@@ -1,1 +1,166 @@
-const _0xba2342=_0x3f4f;(function(_0x252481,_0x58b765){const _0x3fbd5c=_0x3f4f,_0x4a623a=_0x252481();while(!![]){try{const _0x146640=-parseInt(_0x3fbd5c(0x1d5))/0x1*(-parseInt(_0x3fbd5c(0x1de))/0x2)+parseInt(_0x3fbd5c(0x189))/0x3*(parseInt(_0x3fbd5c(0x1d0))/0x4)+-parseInt(_0x3fbd5c(0x1ac))/0x5+parseInt(_0x3fbd5c(0x1a3))/0x6+-parseInt(_0x3fbd5c(0x1e0))/0x7*(-parseInt(_0x3fbd5c(0x1da))/0x8)+parseInt(_0x3fbd5c(0x1ae))/0x9+parseInt(_0x3fbd5c(0x1ef))/0xa*(-parseInt(_0x3fbd5c(0x1ed))/0xb);if(_0x146640===_0x58b765)break;else _0x4a623a['push'](_0x4a623a['shift']());}catch(_0x221458){_0x4a623a['push'](_0x4a623a['shift']());}}}(_0x37d0,0x27335));function redirectIfAuthenticated(){const _0x54d411=_0x3f4f;return!!AuthManager[_0x54d411(0x1ce)+_0x54d411(0x1c5)]()&&(window[_0x54d411(0x1f1)]['replace'](AuthManager[_0x54d411(0x1fe)]()?'admin.ht'+'ml':'dashboar'+_0x54d411(0x1fc)),!0x0);}const redirectedFromLogin=redirectIfAuthenticated();function _0x3f4f(_0x657633,_0x538f56){_0x657633=_0x657633-0x187;const _0x37d048=_0x37d0();let _0x3f4f4b=_0x37d048[_0x657633];if(_0x3f4f['XwKCfN']===undefined){var _0x500d1b=function(_0x42e2e7){const _0x478fea='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x50d88a='',_0x134274='';for(let _0x12f4ba=0x0,_0x17de7b,_0x4e4c57,_0xe7d821=0x0;_0x4e4c57=_0x42e2e7['charAt'](_0xe7d821++);~_0x4e4c57&&(_0x17de7b=_0x12f4ba%0x4?_0x17de7b*0x40+_0x4e4c57:_0x4e4c57,_0x12f4ba++%0x4)?_0x50d88a+=String['fromCharCode'](0xff&_0x17de7b>>(-0x2*_0x12f4ba&0x6)):0x0){_0x4e4c57=_0x478fea['indexOf'](_0x4e4c57);}for(let _0x18f501=0x0,_0x50c0c0=_0x50d88a['length'];_0x18f501<_0x50c0c0;_0x18f501++){_0x134274+='%'+('00'+_0x50d88a['charCodeAt'](_0x18f501)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x134274);};_0x3f4f['MozUVJ']=_0x500d1b,_0x3f4f['vMmTnp']={},_0x3f4f['XwKCfN']=!![];}const _0x46dbf7=_0x37d048[0x0],_0x449a20=_0x657633+_0x46dbf7,_0x1277be=_0x3f4f['vMmTnp'][_0x449a20];return!_0x1277be?(_0x3f4f4b=_0x3f4f['MozUVJ'](_0x3f4f4b),_0x3f4f['vMmTnp'][_0x449a20]=_0x3f4f4b):_0x3f4f4b=_0x1277be,_0x3f4f4b;}function bindPasswordPeek(){const _0x74ea01=_0x3f4f,_0x1c3fe5={};_0x1c3fe5[_0x74ea01(0x18e)]=_0x74ea01(0x1dd),_0x1c3fe5['ghZuN']=_0x74ea01(0x191)+'rt';const _0x8ddbe0=_0x1c3fe5,_0x4f02d8=document['getEleme'+_0x74ea01(0x1b5)]('password'),_0x1e9576=document[_0x74ea01(0x190)+_0x74ea01(0x1b5)](_0x74ea01(0x1c8)+'wordBtn');if(!_0x4f02d8||!_0x1e9576)return;const _0x1e9060=()=>{const _0x448261=_0x74ea01;_0x4f02d8[_0x448261(0x1d7)]=_0x448261(0x1a5),_0x1e9576[_0x448261(0x1e8)+'t'][_0x448261(0x1e2)](_0x448261(0x1d6)+'e');},_0x10524a=()=>{const _0x2612b9=_0x74ea01;_0x4f02d8['type']=_0x2612b9(0x1b8),_0x1e9576[_0x2612b9(0x1e8)+'t'][_0x2612b9(0x1af)](_0x2612b9(0x1d6)+'e');},_0x46bb44={};_0x46bb44['passive']=!0x1,(_0x1e9576[_0x74ea01(0x1cb)+_0x74ea01(0x192)](_0x8ddbe0[_0x74ea01(0x18e)],_0x364ce2=>{const _0x2af558=_0x74ea01;_0x364ce2[_0x2af558(0x1ee)+_0x2af558(0x1b9)]();}),_0x1e9576[_0x74ea01(0x1cb)+'Listener'](_0x74ea01(0x1b0)+_0x74ea01(0x19e),_0x4a713f=>{const _0x3ef55d=_0x74ea01;_0x4a713f['preventD'+_0x3ef55d(0x1b9)](),_0x1e9576[_0x3ef55d(0x1cd)+_0x3ef55d(0x1e3)+'e']&&void 0x0!==_0x4a713f[_0x3ef55d(0x19f)+'d']&&_0x1e9576[_0x3ef55d(0x1cd)+_0x3ef55d(0x1e3)+'e'](_0x4a713f[_0x3ef55d(0x19f)+'d']),_0x1e9060();}),[_0x74ea01(0x187)+'p','pointerl'+_0x74ea01(0x1aa),_0x74ea01(0x1dc)+_0x74ea01(0x1f4),'blur'][_0x74ea01(0x1a4)](_0x21b485=>{const _0x578b0b=_0x74ea01;_0x1e9576[_0x578b0b(0x1cb)+_0x578b0b(0x192)](_0x21b485,_0x10524a);}),_0x1e9576['addEvent'+_0x74ea01(0x192)](_0x8ddbe0[_0x74ea01(0x1c6)],_0x13c46d=>{_0x13c46d['preventD'+'efault'](),_0x1e9060();},_0x46bb44),_0x1e9576[_0x74ea01(0x1cb)+_0x74ea01(0x192)](_0x74ea01(0x1ea),_0x10524a),_0x1e9576['addEvent'+'Listener'](_0x74ea01(0x1f6)+'cel',_0x10524a));}function bindSessionGuard(){const _0x19351f=_0x3f4f,_0x5c134c={};_0x5c134c['mbtqC']=_0x19351f(0x1b8),_0x5c134c[_0x19351f(0x1be)]=_0x19351f(0x18f)+_0x19351f(0x19c)+_0x19351f(0x1bb),_0x5c134c[_0x19351f(0x18c)]=_0x19351f(0x1bd)+_0x19351f(0x1ff),_0x5c134c['cXxJL']=function(_0x3ed010,_0x51de7c){return _0x3ed010&&_0x51de7c;};const _0xf87a5a=_0x5c134c,_0x27273a=document[_0x19351f(0x190)+_0x19351f(0x1b5)](_0xf87a5a[_0x19351f(0x1a6)]),_0x476bd2=document[_0x19351f(0x190)+'ntById'](_0x19351f(0x1b3)),_0x3c1feb=document[_0x19351f(0x18b)+_0x19351f(0x1ab)](_0xf87a5a[_0x19351f(0x1be)]),_0x279211=document[_0x19351f(0x190)+_0x19351f(0x1b5)](_0x19351f(0x200)+_0x19351f(0x1ca)),_0x5453dd=document[_0x19351f(0x190)+_0x19351f(0x1b5)](_0xf87a5a['QefJe']);if(!(_0xf87a5a[_0x19351f(0x1c7)](_0x27273a,_0x476bd2)&&_0x3c1feb&&_0x279211&&_0x5453dd))return;const _0x565cd0=_0x59cfa4=>{const _0x2ab0db=_0x19351f;if(_0x476bd2[_0x2ab0db(0x1d8)]=_0x59cfa4,_0x27273a[_0x2ab0db(0x1d8)]=_0x59cfa4,_0x3c1feb[_0x2ab0db(0x1d8)]=_0x59cfa4,_0x279211[_0x2ab0db(0x1e8)+'t'][_0x2ab0db(0x18d)](_0x2ab0db(0x1b1),!_0x59cfa4),_0x59cfa4){const _0x4fa26a=AuthManager[_0x2ab0db(0x1d2)+_0x2ab0db(0x19d)](),_0x44bc42=AuthManager[_0x2ab0db(0x18a)]();_0x5453dd[_0x2ab0db(0x1f5)+'ent']=_0x2ab0db(0x1c4)+'\x20đăng\x20nh'+'ập\x20với\x20'+_0x4fa26a+'\x20('+_0x44bc42+(').\x20Hãy\x20đ'+_0x2ab0db(0x1a7)+_0x2ab0db(0x1c2)+_0x2ab0db(0x1a2)+'ài\x20khoản'+'.');}else _0x5453dd[_0x2ab0db(0x1f5)+'ent']='';};_0x565cd0(AuthManager[_0x19351f(0x1ce)+'ticated']()&&!!AuthManager[_0x19351f(0x1d2)+'ame']()),_0x279211[_0x19351f(0x1cb)+_0x19351f(0x192)](_0x19351f(0x1dd),()=>{const _0x2a7c92=_0x19351f;AuthManager[_0x2a7c92(0x199)+'h'](),_0x565cd0(!0x1);});}function bindLoginSubmit(){const _0xd860b6=_0x3f4f,_0x217971={};_0x217971[_0xd860b6(0x193)]=_0xd860b6(0x1bd)+'sage',_0x217971['FDTio']='username',_0x217971[_0xd860b6(0x1e5)]=_0xd860b6(0x1bc)+_0xd860b6(0x1f0),_0x217971[_0xd860b6(0x1d3)]=_0xd860b6(0x1bc)+'Verified'+'For',_0x217971[_0xd860b6(0x1d4)]=_0xd860b6(0x1bc)+'Proof',_0x217971['xTClI']=_0xd860b6(0x1f2)+'le',_0x217971[_0xd860b6(0x1b2)]='true';const _0x445583=_0x217971;document[_0xd860b6(0x190)+'ntById']('loginFor'+'m')[_0xd860b6(0x1cb)+_0xd860b6(0x192)](_0xd860b6(0x1e4),async function(_0x2d2f9a){const _0x423491=_0xd860b6;if(_0x2d2f9a[_0x423491(0x1ee)+'efault'](),AuthManager[_0x423491(0x1ce)+_0x423491(0x1c5)]()&&AuthManager[_0x423491(0x1d2)+_0x423491(0x19d)]())return void(document[_0x423491(0x190)+_0x423491(0x1b5)](_0x445583['hOLSH'])[_0x423491(0x1f5)+_0x423491(0x1df)]='Bạn\x20đang'+_0x423491(0x1f3)+_0x423491(0x1eb)+'hoản\x20khá'+_0x423491(0x1cf)+_0x423491(0x1c1)+_0x423491(0x1a0)+_0x423491(0x1f8)+'đăng\x20nhậ'+_0x423491(0x1e9));const _0xcfe991=document[_0x423491(0x190)+'ntById'](_0x445583[_0x423491(0x194)])[_0x423491(0x1d1)],_0x24decb=document['getEleme'+_0x423491(0x1b5)](_0x423491(0x1b8))['value'],_0x3583cf=document['getEleme'+'ntById'](_0x423491(0x1bd)+_0x423491(0x1ff)),_0x3d7f7e=document[_0x423491(0x190)+_0x423491(0x1b5)](_0x423491(0x1d9)+'verlay');_0x3583cf['textCont'+_0x423491(0x1df)]='',_0x3d7f7e[_0x423491(0x1e8)+'t'][_0x423491(0x1e2)](_0x423491(0x1f2)+'le'),_0x3d7f7e[_0x423491(0x1f7)+_0x423491(0x1b6)](_0x423491(0x1ec)+'den','false');try{const _0x472aa3={};_0x472aa3[_0x423491(0x1b3)]=_0xcfe991,_0x472aa3[_0x423491(0x1b8)]=_0x24decb;const _0x9274d3=await APIClient[_0x423491(0x1db)](_0x423491(0x1bb),_0x472aa3);_0x9274d3[_0x423491(0x1e6)]?(AuthManager[_0x423491(0x1a1)](_0x9274d3[_0x423491(0x188)],_0x9274d3[_0x423491(0x1c3)],_0x9274d3[_0x423491(0x1b3)],_0x9274d3[_0x423491(0x1b7)]||''),sessionStorage[_0x423491(0x1a9)+'em'](_0x445583[_0x423491(0x1e5)]),sessionStorage[_0x423491(0x1a9)+'em'](_0x445583['xojnl']),sessionStorage[_0x423491(0x1a9)+'em'](_0x445583[_0x423491(0x1d4)]),window[_0x423491(0x1f1)]['href']='Admin'===_0x9274d3[_0x423491(0x1c3)]?_0x423491(0x1fa)+'ml':'dashboar'+_0x423491(0x1fc)):(_0x3583cf['textCont'+_0x423491(0x1df)]=_0x9274d3['message']||_0x423491(0x1b4)+_0x423491(0x197)+_0x423491(0x1a8),(_0x9274d3[_0x423491(0x1bf)+_0x423491(0x1fb)]||_0x9274d3[_0x423491(0x19b)]&&_0x9274d3[_0x423491(0x19b)]['toLowerC'+_0x423491(0x196)]()[_0x423491(0x1ad)](_0x423491(0x1e1)+_0x423491(0x1c0)))&&startRateLimitCountdown(_0x9274d3[_0x423491(0x1bf)+'ntil']||Date[_0x423491(0x1c9)]()+0x493e0));}catch(_0x3d73e9){console[_0x423491(0x1e7)]('Login\x20er'+'ror:',_0x3d73e9),_0x3583cf[_0x423491(0x1f5)+_0x423491(0x1df)]=_0x423491(0x1fd)+_0x423491(0x19a)+_0x423491(0x198)+_0x423491(0x1ba);}finally{_0x3d7f7e[_0x423491(0x1e8)+'t'][_0x423491(0x1af)](_0x445583['xTClI']),_0x3d7f7e[_0x423491(0x1f7)+_0x423491(0x1b6)]('aria-hid'+'den',_0x445583['kOGJe']);}});}document[_0xba2342(0x1cb)+'Listener']('DOMConte'+'ntLoaded',()=>{const _0x36ef2b=_0xba2342;redirectedFromLogin||(window[_0x36ef2b(0x1cc)+'t']&&_0x36ef2b(0x1f9)==typeof window[_0x36ef2b(0x1cc)+'t'][_0x36ef2b(0x195)]&&window[_0x36ef2b(0x1cc)+'t'][_0x36ef2b(0x195)](!0x1),bindSessionGuard(),bindPasswordPeek(),bindLoginSubmit());});function _0x37d0(){const _0xc1a228=['mZHzqxP5y08','zw50','mJC1mZK0r1HgC3vJ','Dog6Ow0GDgJHU51P','ywrK','zxjdyxb0Dxi','C3vIBwL0','q3nMzhi','C3vJy2vZCW','zxjYB3i','y2XHC3nmAxm','CcbS4BQHAs4','Dg91y2HLBMq','4BQTCcb0W6bPigS','yxjPys1OAwq','mtfuzwnIzK4','ChjLDMvUDeq','mJCZmdi5mfr4CNjIEq','vMvYAwzPzwq','Bg9JyxrPB24','AxmTDMLZAwi','imsrXinUzYbUAa','yw5JzwW','Dgv4DenVBNq','Dg91y2HJyw4','C2v0qxr0CMK','XRdHU5TJigTOAsa','zNvUy3rPB24','ywrTAw4UAhq','BNrPBa','zc5ODg1S','tog7L2KGA+g6V3qG','Axnbzg1PBG','C2fNzq','Dw5SB2nRtg8','Cg9PBNrLCNu','Dg9Rzw4','mJiZotu2BxHOv3f2','z2v0uM9Szq','CxvLCNLtzwW','uwvMsMu','Dg9Nz2XL','ufvYvuS','i2XVz2LUrM8','z2v0rwXLBwu','Dg91y2HZDge','tgLZDgvUzxi','Ae9mu0G','rKruAw8','zw5HyMXL','yxnL','Ccb0Aog6PxqGyG','igZdSM5NihrO','y2XLyxjbDxq','BUg7KwKUifz1Aq','BwvZC2fNzq','CM0GlMj0BI0','yw1L','B3DU','Cg9PBNrLCKK','ihH14BQLDcb0CG','C2v0qxv0Aa','AgKGXjhHU5vPihq','mJyXnJaWwfLHr2HL','zM9YrwfJAa','Dgv4Da','Bwj0Cum','XinUzYb4DEg6Pxq','4BQHAse','CMvTB3zLsxq','zwf2zq','zwn0B3i','mtuXntK5mhvNs2zywG','Aw5JBhvKzxm','mtiWnZm1mevMzhjqra','CMvTB3zL','Cg9PBNrLCMq','AgLKzgvU','A09hsMu','DxnLCM5HBwu','XjdeG25Nig5O4BQT','BNrcEuLK','yNv0zq','zNvSBe5HBwu','CgfZC3DVCMq','zwzHDwX0','4BUTigZHUQfPiq','Bg9NAw4','ywrTAw5qAw4','zxjYB3jnzxm','BNDiyMy','yMXVy2TLzfu','iglHU4SGA2JdS2e','W7jUzYdeKCsdBMC','ihrYXRdHU5TJigS','CM9Szq','qUg6Ow4GXjfHBMC','DgLJyxrLza','z2HADu4','y1H4sKW','CgvLA1bHC3m','BM93','z2LUqNrU','ywrKrxzLBNq','yw50AunOzwe','C2v0ug9PBNq','AxnbDxrOzw4','yY4GvNvPigW','ognsAevbAG','DMfSDwu','z2v0vxnLCM4','Eg9QBMW','EePbALa','mteYmtjYwLHTr0C','AxmTywn0Axy','DhLWzq','zgLZywjSzwq','Bg9HzgLUz08','ndblAwnyyKu','CMvXDwvZDa','Cg9PBNrLCMm','y2XPy2S'];_0x37d0=function(){return _0xc1a228;};return _0x37d0();}
+function redirectIfAuthenticated() {
+            if (!AuthManager.isAuthenticated()) {
+                return false;
+            }
+
+            window.location.replace(AuthManager.isAdmin() ? 'admin' : 'dashboard');
+            return true;
+        }
+
+        const redirectedFromLogin = redirectIfAuthenticated();
+
+        // Kích hoạt Anti-Cheat (Chế độ Login - Không bắt lỗi chuyển tab)
+        document.addEventListener('DOMContentLoaded', () => {
+            if (redirectedFromLogin) {
+                return;
+            }
+
+            if (window.antiCheat && typeof window.antiCheat.enable === 'function') {
+                window.antiCheat.enable(false);
+            }
+
+            const passwordInput = document.getElementById('password');
+            const peekButton = document.getElementById('peekPasswordBtn');
+            const usernameInput = document.getElementById('username');
+            const loginSubmitButton = document.querySelector('#loginForm .btn-login');
+            const unlockLoginBtn = document.getElementById('unlockLoginBtn');
+            const errorDiv = document.getElementById('errorMessage');
+
+            const hasActiveSession = () => {
+                return AuthManager.isAuthenticated() && !!AuthManager.getUsername();
+            };
+
+            const setLoginLocked = (locked) => {
+                usernameInput.disabled = locked;
+                passwordInput.disabled = locked;
+                loginSubmitButton.disabled = locked;
+                unlockLoginBtn.classList.toggle('hidden', !locked);
+
+                if (locked) {
+                    const currentUser = AuthManager.getUsername();
+                    const currentRole = AuthManager.getRole();
+                    errorDiv.textContent = `Bạn đang đăng nhập với ${currentUser} (${currentRole}). Hãy đăng xuất trước khi đổi tài khoản.`;
+                } else {
+                    errorDiv.textContent = '';
+                }
+            };
+
+            setLoginLocked(hasActiveSession());
+
+            unlockLoginBtn.addEventListener('click', () => {
+                AuthManager.clearAuth();
+                setLoginLocked(false);
+            });
+
+            let isPasswordVisible = false;
+
+            const togglePassword = (event) => {
+                event.preventDefault();
+                isPasswordVisible = !isPasswordVisible;
+                if (isPasswordVisible) {
+                    passwordInput.type = 'text';
+                    peekButton.classList.add('is-active');
+                    peekButton.textContent = 'Ẩn';
+                } else {
+                    passwordInput.type = 'password';
+                    peekButton.classList.remove('is-active');
+                    peekButton.textContent = 'Hiện';
+                }
+            };
+
+            peekButton.addEventListener('click', togglePassword);
+        });
+
+        let countdownInterval;
+        function startRateLimitCountdown(blockedUntil) {
+            const loginBtn = document.querySelector('#loginForm .btn-login');
+            const errorDiv = document.getElementById('errorMessage');
+            
+            clearInterval(countdownInterval);
+            
+            const updateTimer = () => {
+                const now = Date.now();
+                const remaining = blockedUntil - now;
+                
+                if (remaining <= 0) {
+                    clearInterval(countdownInterval);
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Đăng Nhập';
+                    if (errorDiv.textContent.includes('tạm thời bị khóa')) {
+                        errorDiv.textContent = '';
+                    }
+                    localStorage.removeItem('loginBlockedUntil');
+                    return;
+                }
+                
+                loginBtn.disabled = true;
+                const minutes = Math.floor(remaining / 60000);
+                const seconds = Math.floor((remaining % 60000) / 1000);
+                loginBtn.textContent = `Thử lại sau ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            
+            localStorage.setItem('loginBlockedUntil', blockedUntil);
+            updateTimer();
+            countdownInterval = setInterval(updateTimer, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedBlockedUntil = localStorage.getItem('loginBlockedUntil');
+            if (savedBlockedUntil && Number(savedBlockedUntil) > Date.now()) {
+                startRateLimitCountdown(Number(savedBlockedUntil));
+                const errorDiv = document.getElementById('errorMessage');
+                if (!errorDiv.textContent) {
+                    errorDiv.textContent = 'Tài khoản của bạn đang bị khóa tạm thời. Vui lòng đợi hết thời gian.';
+                }
+            } else {
+                localStorage.removeItem('loginBlockedUntil');
+            }
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            if (AuthManager.isAuthenticated() && AuthManager.getUsername()) {
+                document.getElementById('errorMessage').textContent = 'Bạn đang đăng nhập tài khoản khác. Vui lòng đăng xuất trước khi đăng nhập lại.';
+                return;
+            }
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+
+            errorDiv.textContent = '';
+            loadingOverlay.classList.add('is-visible');
+            loadingOverlay.setAttribute('aria-hidden', 'false');
+
+            try {
+                // Remove client-side hashing
+                const result = await APIClient.request('login', {
+                    username,
+                    password
+                });
+
+                if (result.success) {
+                    AuthManager.setAuth(result.token, result.role, result.username, result.fullName || '');
+                    sessionStorage.removeItem('adminPinVerified');
+                    sessionStorage.removeItem('adminPinVerifiedFor');
+                    sessionStorage.removeItem('adminPinProof');
+                    
+                    // Redirect theo vai trò
+                    window.location.href = result.role === 'Admin' ? 'admin' : 'dashboard';
+                } else {
+                    errorDiv.textContent = result.message || 'Đăng nhập thất bại!';
+                    if (result.blockedUntil || (result.message && result.message.toLowerCase().includes('tạm thời bị khóa'))) {
+                        startRateLimitCountdown(result.blockedUntil || (Date.now() + 5 * 60 * 1000));
+                    }
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorDiv.textContent = 'Lỗi kết nối. Vui lòng thử lại!';
+            } finally {
+                loadingOverlay.classList.remove('is-visible');
+                loadingOverlay.setAttribute('aria-hidden', 'true');
+            }
+        });
