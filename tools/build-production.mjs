@@ -23,7 +23,8 @@ const TERSER_OPTIONS = {
   compress: {
     passes: 2,
     keep_fargs: false,
-    pure_getters: true
+    pure_getters: true,
+    drop_debugger: false
   },
   mangle: true,
   format: {
