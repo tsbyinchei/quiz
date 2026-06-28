@@ -1,4 +1,4 @@
-# Quiz Lab - File Structure
+# TsByin Exam - File Structure
 
 ## Project path trong workspace
 
@@ -8,12 +8,11 @@
 
 ```text
 quiz/
-|-- Backup/
-|-- dist/
 |-- admin.html
 |-- dashboard.html
 |-- FILE_STRUCTURE.md
 |-- forgot.html
+|-- hash.html
 |-- icon.ico
 |-- index.html
 |-- info.html
@@ -55,8 +54,7 @@ quiz/
 |   |-- Report.js
 |   `-- Utils.js
 `-- tools/
-    |-- build-production.mjs
-    `-- build-production.ps1
+```
 
 ## Vai trò từng file chính
 
@@ -72,9 +70,6 @@ quiz/
 - assets/script.js: APIClient và các tiện ích dùng chung.
 - assets/pages/: chứa file Javascript chuyên biệt cho từng trang (login, dashboard, admin, v.v.).
 - gs/: thư mục chứa toàn bộ mã nguồn Backend (Apps Script), chia thành nhiều modules (Auth.js, Quiz.js, Admin.js...).
-- Backup/: thư mục chứa mã nguồn gốc chưa bị làm rối (obfuscate).
-- dist/: thư mục chứa file đã được tối ưu và làm rối để deploy.
-- tools/build-production.*: script dùng để minify CSS/HTML và obfuscate mã JavaScript nhằm bảo vệ logic client-side.
 
 ## Luồng phụ thuộc trang
 
@@ -132,6 +127,7 @@ quiz/
 - batchUpdateQuizSettings
 - bulkUpload
 - logCheatViolation
+- reportQuestionError
 
 ## Cache backend (đang dùng)
 
