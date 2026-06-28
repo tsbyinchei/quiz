@@ -1,1 +1,107 @@
-<!DOCTYPE html><html lang="vi"><head><noscript><meta http-equiv="refresh" content="0; url=nojs.html"></noscript><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Kết quả bài kiểm tra - Xem điểm số chi tiết."><meta name="theme-color" content="#0a0e27"><link rel="icon" type="image/x-icon" href="icon.ico"><title>Kết Quả - Quiz Lab</title><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/result.css"></head><body class="has-topbar"><header class="site-topbar"><div class="site-topbar-inner"><a href="index.html" class="site-brand"><span>Quiz Lab</span></a><nav class="site-nav"><a href="index.html">Trang chủ</a> <a href="dashboard.html">Dashboard</a></nav><div class="site-topbar-actions"><button type="button" class="theme-toggle" data-theme-toggle>🌙</button></div></div></header><div class="container"><div class="result-shell"><section class="result-hero"><div class="result-headline"><h1 id="resultTitle">Kết Quả Bài Thi</h1><p>Bạn có thể xem lại toàn bộ đáp án chi tiết ngay bên dưới.</p><div class="result-metrics"><div class="metric-box"><div class="metric-label">Câu Đúng</div><div class="metric-value" id="correctCount">0</div></div><div class="metric-box"><div class="metric-label">Câu Sai</div><div class="metric-value" id="incorrectCount">0</div></div><div class="metric-box"><div class="metric-label">Điểm Số</div><div class="metric-value" id="ratioValue">0/0</div></div></div><div id="resultMessage" class="result-message"></div><div class="result-actions"><button class="btn-restart" onclick="restartQuiz()">🔄 Làm Lại Bài</button> <button class="btn-back-dashboard" onclick='window.location.href="dashboard.html"'>📊 Về Dashboard</button></div></div><aside class="score-tile" id="scoreCircle"><div class="score-big" id="scoreValue">0/0</div><div class="score-mini">Số câu đúng</div><div class="progress-track"><div class="progress-bar-inner" id="scoreProgressBar"></div></div></aside></section><section class="review-wrap"><h2>Chi Tiết Câu Hỏi</h2><div id="reviewList" class="review-list"></div></section></div></div><div id="imageViewerOverlay" class="quiz-image-viewer-overlay" aria-hidden="true"><div class="quiz-image-viewer" role="dialog" aria-modal="true" aria-labelledby="imageViewerTitle"><div class="quiz-image-viewer-head"><h3 id="imageViewerTitle">Xem ảnh</h3><button type="button" class="quiz-image-viewer-close" onclick="closeImageViewer()" aria-label="Đóng ảnh">✕</button></div><div class="quiz-image-viewer-body"><img id="imageViewerImg" src="" alt="Ảnh minh họa"/></div><p id="imageViewerCaption" class="quiz-image-viewer-caption"></p></div></div><footer class="site-footer"><div class="site-footer-inner"><p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan)">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan)">Tuấn Sỹ</a></p><nav class="footer-nav" aria-label="Footer navigation"><a href="index.html">Trang chủ</a> <a href="https://tsbyin.dev/privacy.html">Privacy Policy</a> <a href="https://tsbyin.dev">tsbyin.dev</a></nav></div></footer><script src="assets/script.js?v=20"></script><script src="assets/pages/result.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <noscript><meta http-equiv="refresh" content="0; url=nojs"></noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kết quả bài kiểm tra - Xem điểm số chi tiết.">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>Kết Quả - TsByin Exam</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/result.css">
+    <script src="assets/maintenance.js?v=3"></script>
+</head>
+<body class="has-topbar">
+    <header class="site-topbar">
+        <div class="site-topbar-inner">
+            <a href="index" class="site-brand"><span>TsByin Exam</span></a>
+            <nav class="site-nav">
+                <a href="index">Trang chủ</a>
+                <a href="dashboard">Dashboard</a>
+            </nav>
+            <div class="site-topbar-actions">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="result-shell">
+            <section class="result-hero">
+                <div class="hero-titles">
+                    <h1 id="resultTitle">Kết Quả Bài Thi</h1>
+                    <p>Bạn có thể xem lại toàn bộ đáp án chi tiết ngay bên dưới.</p>
+                </div>
+
+                <aside class="score-tile" id="scoreCircle">
+                    <div class="score-big" id="scoreValue">0/0</div>
+                    <div class="score-mini">Số câu đúng</div>
+                    <div class="progress-track">
+                        <div class="progress-bar-inner" id="scoreProgressBar"></div>
+                    </div>
+                </aside>
+
+                <div class="hero-details">
+                    <div class="result-metrics">
+                        <div class="metric-box">
+                            <div class="metric-label">Câu Đúng</div>
+                            <div class="metric-value" id="correctCount">0</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Câu Sai</div>
+                            <div class="metric-value" id="incorrectCount">0</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Điểm Số</div>
+                            <div class="metric-value" id="ratioValue">0/0</div>
+                        </div>
+                    </div>
+
+                    <div id="resultMessage" class="result-message"></div>
+
+                    <div class="result-actions">
+                        <button class="btn-restart" onclick="restartQuiz()">
+                            🔄 Làm Lại Bài
+                        </button>
+                        <button class="btn-back-dashboard" onclick="window.location.href='dashboard'">
+                            📊 Về Dashboard
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="review-wrap">
+                <h2>Chi Tiết Câu Hỏi</h2>
+                <div id="reviewList" class="review-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <div id="imageViewerOverlay" class="quiz-image-viewer-overlay" aria-hidden="true">
+        <div class="quiz-image-viewer" role="dialog" aria-modal="true" aria-labelledby="imageViewerTitle">
+            <div class="quiz-image-viewer-head">
+                <h3 id="imageViewerTitle">Xem ảnh</h3>
+                <button type="button" class="quiz-image-viewer-close" onclick="closeImageViewer()" aria-label="Đóng ảnh">✕</button>
+            </div>
+            <div class="quiz-image-viewer-body">
+                <img id="imageViewerImg" src="" alt="Ảnh minh họa" />
+            </div>
+            <p id="imageViewerCaption" class="quiz-image-viewer-caption"></p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>© 2026 <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">tsbyin.dev</a> · <span data-vi>Thiết kế &amp; phát triển bởi</span><span data-en>Designed &amp; built by</span> <a href="https://tsbyin.dev" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan);">Tuấn Sỹ</a></p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index">Trang chủ</a>
+                <a href="https://tsbyin.dev/privacy.html">Privacy Policy</a>
+                <a href="https://tsbyin.dev">tsbyin.dev</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="assets/script.js?v=20"></script>
+    <script src="assets/pages/result.js"></script>
+</body>
+</html>
