@@ -1,1 +1,88 @@
-const _0x2a7b37=_0x2144;function _0x2144(_0x4a7af4,_0x34ad0b){_0x4a7af4=_0x4a7af4-0xd2;const _0x5862c7=_0x5862();let _0x214437=_0x5862c7[_0x4a7af4];if(_0x2144['Zflufe']===undefined){var _0x4c48eb=function(_0xc01fc){const _0x422062='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x42de94='',_0x23e17c='';for(let _0x347a33=0x0,_0x582b5c,_0x50b017,_0x11e8b2=0x0;_0x50b017=_0xc01fc['charAt'](_0x11e8b2++);~_0x50b017&&(_0x582b5c=_0x347a33%0x4?_0x582b5c*0x40+_0x50b017:_0x50b017,_0x347a33++%0x4)?_0x42de94+=String['fromCharCode'](0xff&_0x582b5c>>(-0x2*_0x347a33&0x6)):0x0){_0x50b017=_0x422062['indexOf'](_0x50b017);}for(let _0x1744d3=0x0,_0x2063b4=_0x42de94['length'];_0x1744d3<_0x2063b4;_0x1744d3++){_0x23e17c+='%'+('00'+_0x42de94['charCodeAt'](_0x1744d3)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x23e17c);};_0x2144['lZPQHU']=_0x4c48eb,_0x2144['wuvreX']={},_0x2144['Zflufe']=!![];}const _0x3a0bee=_0x5862c7[0x0],_0x915dbc=_0x4a7af4+_0x3a0bee,_0x1e5d70=_0x2144['wuvreX'][_0x915dbc];return!_0x1e5d70?(_0x214437=_0x2144['lZPQHU'](_0x214437),_0x2144['wuvreX'][_0x915dbc]=_0x214437):_0x214437=_0x1e5d70,_0x214437;}function _0x5862(){const _0x420ff5=['XjdHU5vPig3HUQ10ia','vNvPigZdSM5N','DMfSDwu','Dg9Nz2XL','ywrTAw4UAhq','yxnZD29Yza','XjhHU5vPig3HUQ10ia','mtCYoda4tuDwq2zI','AxnbDxrOzw4','C3n3B3jK','BMJHUQv0idyGAW','CMvZzxq','zgfZAgjVyxi','lNbHC3n3B3i','Bg9JyxrPB24','AhjLzG','EsdeKEg7PYb0Amo0','y2XHC3nmAxm','re9nq29UDgu','Aw5JB3jYzwm','AsbJW7mGW610ia','y2XHC3noyw0','zw50','mZaYmdm2n2zOzg9irq','z2v0rwXLBwu','y2XPy2S','ig3HU5TPig5O4BQT','CcbS4BQHAsbRAa','zc1WzwvR','W70GDog7Ss4','C3vIBwL0','y29UzMLYBva','y29YCMvJDa','Dgv4DenVBNq','BNrmB2fKzwq','mtfhEevwsgS','zc1MAwvSzc0','y2XVC2vZDa','CgfZC3DVCMq','AgNHU4DUihtHUQfP','A2JHUQL1lG','ChjLDMvUDeq','BgvUz3rO','ig5O4BQTCcdeKEg6PW','s2JdTg5NihrO','A2JHUQL1ihrOW6a','ywrKrxzLBNq','mJq2ntq4odHVALvKrMK','mtvhtxr0B24','DhLWzq','rMvLzgjHy2S','mZaZodi3nhjXzgreBW','Dgv4Da','B3jK','wgnUzuK','BMGGy8o0BMCU','zwn0B3i','BwvZC2fNzq','BMCGDgLUlG','mZi1odrRDuDwy0e','mJyYogviz0f2Cq','BMv3ugfZC3C','rM9YBq','mZmXn1r2ugTMBW','ig3HU5TPihbO4BQJ','Bg9NAw4UAhq','Aw5WDxq','DgLJyxrLza','BNrcEuLK','mte2mJKZotbSqxzpuhG','DcbRAog6QxuU','zMvLzgjHy2S','y2HHBMDLuge','tEg6RxqGA2JHUQL1','yNrUqMfJAW','BUg7KwKGA2HPia','tog7L2KGA+g6V3qG','DM9UqLm','CxvLCNLtzwW','zM9YrwfJAa','ndu2t092u1Dw','AsbRAmoHyYbT','W7rUzYbRAog7M3a','ntfZEMvNzwO','tgLZDgvUzxi','DuriCwG','Axnbzg1PBG'];_0x5862=function(){return _0x420ff5;};return _0x5862();}(function(_0xb03212,_0x169cab){const _0x37f618=_0x2144,_0x4db72c=_0xb03212();while(!![]){try{const _0x14a659=parseInt(_0x37f618(0xd7))/0x1*(-parseInt(_0x37f618(0xe8))/0x2)+parseInt(_0x37f618(0xeb))/0x3*(parseInt(_0x37f618(0xf6))/0x4)+-parseInt(_0x37f618(0x11f))/0x5*(parseInt(_0x37f618(0x122))/0x6)+parseInt(_0x37f618(0x106))/0x7+parseInt(_0x37f618(0xd3))/0x8*(parseInt(_0x37f618(0xd4))/0x9)+-parseInt(_0x37f618(0xdd))/0xa*(parseInt(_0x37f618(0x112))/0xb)+parseInt(_0x37f618(0x11e))/0xc;if(_0x14a659===_0x169cab)break;else _0x4db72c['push'](_0x4db72c['shift']());}catch(_0x39abbd){_0x4db72c['push'](_0x4db72c['shift']());}}}(_0x5862,0xed2bd),document[_0x2a7b37(0x11d)+_0x2a7b37(0xec)](_0x2a7b37(0x101)+_0x2a7b37(0x111),()=>{const _0x196e07=_0x2a7b37,_0x5db5cd={'vonBS':_0x196e07(0xe1)+_0x196e07(0xd8)+_0x196e07(0x103)+_0x196e07(0xf9)+_0x196e07(0x10c),'uDHqh':function(_0x2e9ede,_0x399685){return _0x2e9ede!==_0x399685;},'lDPZt':function(_0x4edfd5,_0x40200c,_0x3859ea){return _0x4edfd5(_0x40200c,_0x3859ea);},'btVnt':function(_0x1efa21,_0x513bfe,_0x3a1b14){return _0x1efa21(_0x513bfe,_0x3a1b14);},'FiKhg':'incorrec'+'t','XcneI':_0x196e07(0xf0)+_0x196e07(0x11a)+_0x196e07(0xff)+_0x196e07(0xd2)};if(!AuthManager||!AuthManager[_0x196e07(0xf7)+_0x196e07(0xdb)]())return void(window[_0x196e07(0xfd)][_0x196e07(0xfe)]=_0x196e07(0xd9)+'ml');const _0x2949b9=document[_0x196e07(0x107)+'ntById']('password'+_0x196e07(0xd6)),_0x529552=document[_0x196e07(0x107)+_0x196e07(0xdc)]('password'+_0x196e07(0x121)),_0x3a6493=document[_0x196e07(0x107)+_0x196e07(0xdc)](_0x196e07(0xe2));function _0x534d62(_0x1d1962,_0x1837fa){const _0x4f0d8e=_0x196e07;_0x529552&&(_0x529552[_0x4f0d8e(0x104)+'e']=(_0x4f0d8e(0xdf)+'\x20'+(_0x1837fa||''))['trim'](),_0x529552[_0x4f0d8e(0x110)+_0x4f0d8e(0x105)]=_0x1d1962||'');}_0x3a6493&&_0x3a6493[_0x196e07(0x11d)+_0x196e07(0xec)](_0x196e07(0x108),()=>{const _0xd15220=_0x196e07;window[_0xd15220(0xfd)][_0xd15220(0xfe)]=AuthManager[_0xd15220(0xee)]()?_0xd15220(0xf3)+'ml':_0xd15220(0xfb)+'d.html';}),document[_0x196e07(0xe6)+'ectorAll'](_0x196e07(0xfc)+_0x196e07(0x10b))[_0x196e07(0xe7)](_0x76dd8=>{const _0x5cec11=_0x196e07;_0x76dd8[_0x5cec11(0x11d)+_0x5cec11(0xec)](_0x5cec11(0x108),_0x23f594=>{const _0xf2fbf2=_0x5cec11;_0x23f594[_0xf2fbf2(0x118)+'efault']();const _0x1ec8f3=_0x76dd8[_0xf2fbf2(0x114)](_0xf2fbf2(0xfc)+_0xf2fbf2(0x113)+'wrap');if(!_0x1ec8f3)return;const _0x4ecc25=_0x1ec8f3[_0xf2fbf2(0xe6)+_0xf2fbf2(0x127)](_0xf2fbf2(0xda));if(!_0x4ecc25)return;const _0xe2bcd8=_0xf2fbf2(0x123)===_0x4ecc25['type'];_0x4ecc25[_0xf2fbf2(0x120)]=_0xe2bcd8?_0xf2fbf2(0x115):_0xf2fbf2(0x123),_0x76dd8['textCont'+_0xf2fbf2(0x105)]=_0xe2bcd8?'Hiện':'Ẩn',_0x76dd8[_0xf2fbf2(0x100)+'t'][_0xf2fbf2(0xf2)]('is-activ'+'e',!_0xe2bcd8);});}),_0x2949b9&&_0x2949b9['addEvent'+_0x196e07(0xec)](_0x196e07(0x10d),async _0x39270c=>{const _0x4b3671=_0x196e07;_0x39270c[_0x4b3671(0x118)+'efault']();const _0x407f0a=document[_0x4b3671(0x107)+'ntById']('currentP'+_0x4b3671(0xf4))[_0x4b3671(0xf1)],_0x2c078b=document[_0x4b3671(0x107)+'ntById'](_0x4b3671(0xd5)+_0x4b3671(0x124))[_0x4b3671(0xf1)],_0x52280b=document[_0x4b3671(0x107)+_0x4b3671(0xdc)](_0x4b3671(0x10e)+'assword')['value'];if(_0x534d62(''),_0x407f0a&&_0x2c078b&&_0x52280b){if(_0x2c078b[_0x4b3671(0x119)]<0x6)_0x534d62(_0x5db5cd[_0x4b3671(0xe5)],'incorrec'+'t');else{if(_0x2c078b===_0x52280b){if(_0x5db5cd[_0x4b3671(0xed)](_0x2c078b,_0x407f0a))try{const _0x43bd6c=await APIClient[_0x4b3671(0xe0)+_0x4b3671(0xf8)](_0x407f0a,_0x2c078b);if(!_0x43bd6c||!_0x43bd6c['success'])return void _0x534d62(_0x43bd6c&&_0x43bd6c[_0x4b3671(0x128)]||_0x4b3671(0x11b)+'ể\x20đổi\x20mậ'+_0x4b3671(0xde),_0x4b3671(0x102)+'t');_0x534d62(_0x4b3671(0xef)+_0x4b3671(0x11c)+_0x4b3671(0x126),_0x4b3671(0x10f)),_0x2949b9[_0x4b3671(0xfa)]();}catch(_0x48958f){_0x5db5cd['lDPZt'](_0x534d62,_0x4b3671(0xe4)+_0x4b3671(0xe3)+_0x4b3671(0xf5)+_0x4b3671(0x117),'incorrec'+'t');}else _0x5db5cd['btVnt'](_0x534d62,_0x4b3671(0xe1)+'\x20mới\x20phả'+_0x4b3671(0xe9)+'ật\x20khẩu\x20'+_0x4b3671(0x116)+'.',_0x5db5cd['FiKhg']);}else _0x534d62('Mật\x20khẩu'+_0x4b3671(0x109)+_0x4b3671(0x10a)+_0x4b3671(0xea)+'.',_0x4b3671(0x102)+'t');}}else _0x534d62(_0x5db5cd[_0x4b3671(0x125)],'incorrec'+'t');});}));
+// assets/pages/password.js — Logic for password
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (!AuthManager || !AuthManager.isAuthenticated()) {
+        window.location.href = 'login';
+        return;
+    }
+
+    const form = document.getElementById('passwordForm');
+    const elFeedback = document.getElementById('passwordFeedback');
+    const btnBack = document.getElementById('btnBack');
+
+    // Back button
+    if (btnBack) {
+        btnBack.addEventListener('click', () => {
+            window.location.href = AuthManager.isAdmin() ? 'admin' : 'dashboard';
+        });
+    }
+
+    // Toggle password visibility
+    const peekButtons = document.querySelectorAll('.password-peek');
+    peekButtons.forEach((peekBtn) => {
+        peekBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const wrap = peekBtn.closest('.password-field-wrap');
+            if (!wrap) return;
+            const input = wrap.querySelector('input');
+            if (!input) return;
+
+            const isVisible = input.type === 'text';
+            input.type = isVisible ? 'password' : 'text';
+            peekBtn.textContent = isVisible ? 'Hiện' : 'Ẩn';
+            peekBtn.classList.toggle('is-active', !isVisible);
+        });
+    });
+
+    function setFeedback(msg, type) {
+        if (!elFeedback) return;
+        elFeedback.className = ('feedback ' + (type || '')).trim();
+        elFeedback.textContent = msg || '';
+    }
+
+    // Form submit
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            setFeedback('');
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                setFeedback('Vui lòng nhập đầy đủ thông tin.', 'incorrect');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                setFeedback('Mật khẩu mới phải có ít nhất 6 ký tự.', 'incorrect');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                setFeedback('Mật khẩu mới nhập lại không khớp.', 'incorrect');
+                return;
+            }
+
+            if (newPassword === currentPassword) {
+                setFeedback('Mật khẩu mới phải khác mật khẩu hiện tại.', 'incorrect');
+                return;
+            }
+
+            try {
+                const result = await APIClient.changePassword(currentPassword, newPassword);
+                if (!result || !result.success) {
+                    setFeedback((result && result.message) || 'Không thể đổi mật khẩu.', 'incorrect');
+                    return;
+                }
+
+                setFeedback('Đổi mật khẩu thành công.', 'correct');
+                form.reset();
+            } catch (err) {
+                setFeedback('Lỗi kết nối khi đổi mật khẩu.', 'incorrect');
+            }
+        });
+    }
+});
