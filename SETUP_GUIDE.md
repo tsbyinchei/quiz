@@ -1,16 +1,17 @@
-# QUIZ LAB - Setup Guide
+# TSBYIN EXAM - Setup Guide
 
 Tài liệu setup theo trạng thái code hiện tại trong thư mục quiz.
 
 ## 1) Chuẩn bị Google Sheets
 
-Tạo đúng 5 sheet:
+Tạo đúng 6 sheet:
 
 - Users
 - ReferralCodes
 - Quiz_List
 - Questions
 - Attempt_Logs
+- Report_Logs
 
 ### 1.1 Users
 
@@ -91,6 +92,17 @@ Header:
 - User_Answers
 - Timestamp
 
+### 1.6 Report_Logs
+
+Header:
+
+- Username
+- QuizID
+- QuestionID
+- ErrorType
+- Details
+- Timestamp
+
 ## 2) Deploy backend (Google Apps Script)
 
 Dự án hiện tại đã chia code backend thành các file nhỏ trong thư mục `gs/`.
@@ -110,21 +122,26 @@ Sửa API URL tại assets/script.js:
 
 - APIClient.GAS_URL = 'YOUR_DEPLOYMENT_URL'
 
-## 4) Tạo hash cho tài khoản (Thiết lập thủ công)
+### 3.1 Cấu hình Telegram Bot (Tính năng Báo lỗi)
+Để nhận thông báo lỗi câu hỏi từ thí sinh qua Telegram:
+1. Tạo Bot Telegram qua BotFather và lấy `TELEGRAM_API_TOKEN`.
+2. Lấy `TELEGRAM_CHAT_ID` (của bạn hoặc group).
+3. Vào Apps Script > Project Settings > Script properties, thêm 2 biến:
+   - `TELEGRAM_API_TOKEN`
+   - `TELEGRAM_CHAT_ID`
+4. Mở file `gs/Report.js` trong Apps Script Editor, chọn hàm `testTelegramAuth()` và bấm **Run** để cấp quyền kết nối URL Fetch ngoài (rất quan trọng, nếu không sẽ bị chặn).
 
-Mở trang web (ví dụ `index.html`), mở browser console (F12) và chạy lệnh:
+## 4) Tạo hash cho tài khoản
 
-- `await sha256('user_password')`
-- `await sha256('admin_pin_value')`
+Trong browser console:
 
-Điền vào sheet Users:
+- await sha256('user_password')
+- await sha256('admin_pin_value')
 
-- Password_Hash: hash mật khẩu user/admin (sẽ tự động được Backend nâng cấp lên mã hóa Salt an toàn ở lần đăng nhập đầu tiên).
-- AdminPinHash: hash mã PIN của Admin (bắt buộc để truy cập `admin.html`).
+Điền vào Users:
 
-*Lưu ý: 
-- Bạn bắt buộc phải cấu hình thuộc tính `SALT` trong Script Properties của Google Apps Script (tại mục Project Settings) để hệ thống Backend có thể băm mật khẩu bảo mật.
-- Sau khi đã thiết lập thành công tài khoản Admin đầu tiên, bạn có thể sử dụng trực tiếp công cụ **🔑 Tạo Hash** bên trong trang `admin.html` để tạo nhanh mã hash cho các tài khoản hoặc mã PIN khác thay vì dùng Console.*
+- Password_Hash: hash mật khẩu user/admin
+- AdminPinHash: chỉ cần cho tài khoản Admin dùng admin.html
 
 ## 5) Quy trình test nhanh
 
@@ -187,7 +204,7 @@ Parser hỗ trợ A) hoặc A.
 
 - GAS đã deploy bản mới nhất.
 - APIClient.GAS_URL đúng.
-- Đủ 5 sheet + đúng header.
+- Đủ 6 sheet + đúng header.
 - Tài khoản Admin có AdminPinHash hợp lệ.
 - Đăng ký user bằng referral code chạy đúng.
 - Admin verify PIN, quản lý mã và tạo mã chạy đúng.
@@ -216,7 +233,7 @@ Ghi chú tương thích:
 
 ### 9.3 Helper rotate trong backend
 
-- Hàm `rotateJwtSecret_(newSecret)` có sẵn trong Quiz_Lab_Backend.gs.
+- Hàm `rotateJwtSecret_(newSecret)` có sẵn trong TsByin_Exam_Backend.gs.
 - Hàm này tự:
    - chuyển current thành previous,
    - set current mới,
