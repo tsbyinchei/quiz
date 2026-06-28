@@ -1,1 +1,755 @@
-function _0x37e6(){const _0x4e80f9=['nZCYnJaYvurjrfrq','zxiTC2vSzwm','Aog6Ow0GBMDOAq','BwvUDa','C3rHDgLJ','icaGqgTLEwy','y3jLyxrLrwW','yxqTyMX1CG','B25FCMvSB2e','zM9JDxm','zMfKzu91Dfq','Dw5PC2HTzw4','icb6lwLUzgu','XjhHU4TUAcbSW6bT','mhb4oWOGica','C2vjBNrLCMe','yMX1CIGXmha','wM1utgS','zwjRAxqTDxm','x2jLzM9Yzvu','CUg7NwKGDhjHBG','x21PC21HDgm','ig5VBMuGiwK','zNvUy3rPB24','q2HLyxqGC3q','CUg7NwKGBCoGBIa','rMj5rMy','C3rHCNrLza','x2nVBNrLEhq','qxr0zw1WDhm','zxPPzxiOmc4','qvbjq2XPzw4','lcaJzgmYnJi','y2GH','D1jXCNe','AwrLsw5uB2e','y2HHCKnVzgu','AxrPB246igy','C2f2zvn0yxq','sgjmzKC','Bw91C2v1Ca','DcaHAw1WB3i','zxiTBgvMDdO','CMvTB3zLze4','ignSzwfYzwq','8j+uKIbby3rPB24','u2vJDxjPDhK','C0LUDgvYDMe','Dxm6idHWEdS','tgvHDMvqCM8','icaGicaG','C2zVCM06ihq','BM93','zgXLCG','EWOGicaGica','zw5HyMXL','CgfYC2u','icaGihbVAw4','zwqGsLnptIa','tvngDwXSC2m','DMLVBgf0Aw8','q0Tusxe','8j+uKYbbzhzHBMm','W6PTihrY4BUnBMC','igldOgKGka','y2HPBgrmAxm','BgvUz3rO','C3vIBwL0uxu','Aw5JBhvKzxm','DgHVW6f0ihrV','zgLZy29UBMu','B3rLy3rPB24','BgL0Eq','icaGicaGica','igjSB2nRzwq','XjhHU5LUzYbU4BUzCa','BKnVB2XKB3C','icaGicaUyw4','AxHLzdSkica','EwXLigj5Cge','mJbWEdSkica','AxjLy3rPB24','nIK7cIaGica','Bg9Nq2HLyxq','C2vYDMvY','x2rLDLrVB2W','CMv0DxjUvMe','CM06ihrYyw4','BNrcEuLK','Bwf4x3zPB2W','zgLZCgXHEtO','Dg9YzwqGyw4','ig9UihjLBg8','y3v0','Dgf0Aw9Ut2i','y3jLzw5fBgu','sgfUzgXLCG','mhb4ktSGFqO','y29UDgvUDgu','CMvWBgfJzq','zxrLy3rLzdO','DwXSC2nYzwu','Bw96zNvSBhm','CdOGmtbWEdS','y3rYBeTLEq','zw1LBNq','D2vIA2L0zNu','AwqGiZDMmwq','AEg6V3aGDog7PwmG','B2rLCW','Bg9N','Bw9UAxrVCLC','yw50As1JAgu','Aog6Ow0GBog6P24G','zgv2Dg9VBhm','ihBHU5TPimsrAEg7GW','s05Zuwe','Aw9Uu3rHDgu','q2HLy2TZDw0','BM9Uzq','D2fYBG','BgXZy3jLzw4','zYbZ4BQ9iglHU4SG','y291BNq','B2r5icOGEWO','ihrYyw5ZzM8','DgfIu3DPDgm','iqPcW6bPihrO','W7nHigldOgKGDa','iefUDgKTq2G','Dgv4DenVBNq','qMLPuw0','ocWGmc40ktS','AgfZ','AwnRqMXVy2S','y29WEq','B2fZDcaWlJm','CMfUC2XHDgu','yxrPB25bDa','EdOGotK5otK','ngHNEuvYtq','icaGihOTAw4','y2f0y2G','DMLZAwjPBgK','DfnLBgvJDgK','C+g6VsbI4BUligTO','Bg9Hza','zY1VDMvYBge','yM9KEq','ihbHzgrPBMC','DfrPBwu','ywjtD2L0y2G','BgfZDfzPB2W','zgL0ywjSzt0','Cev3EKO','v3L5zMq','BsbTAxnTyxq','x21VDxnLrg8','zJeY','C3vIDhjLzq','zeHHBMrSzxi','lxnLBgvJDdO','yNv0zq','BgvY','z0zRyNq','DdOGDgv4Dca','x3nLBgvJDfm','zuzPBhrLCG','y29UDgfPBNm','Dg9mB3DLCKm','icbMBgv4lwq','C2vZC2LVBLm','4P2mief1Dg9Tyq','mtySideSida','EgnLzwrLza','BNqGCMvTB3y','cIaGicaGica','icaGic13zwi','zw07cIaGica','EMu6idaUoxi','DhLWzq','BMfTzq','B25LoWOGica','DhjPz2DLCKm','vMLVBgf0Aw8','y2XHC3nmAxm','BNrZoIbUB24','AwXK','C2HPzNrlzxK','y2XHC3m','yxr0CMLIDxq','zM9YD2fYzhm','v3PtthO','icb1C2vYlxm','B2fKrgv0zwm','zwq7cIaGica','A2nUy08','Aw5N','8j+BOE+4JYbtDgf0zsa','DgfIx3n3Axq','BmAWDsb24BQ/Dc4','BMvY','CMvTB3zLrxy','Axr5oIaWoYa','C2HVD1rVyxm','zc5ODg1S','ifzPB2XHDgK','B29SC1rYyxa','DwL6suq','EIbnB2rLlG','B25cBg9JA2u','mc4ZlcaXksa','C3r5Bgu','y2XHC3noyw0','icaGihrVCdO','s0D3Euy','ndu4mJGZnKTSwwTxBa','x2n1DeHHBMq','x3rHyLzPC2K','yMX1CG','vgfTCgvYieq','zw50','zgL2','DhjHBNnMB3i','x2z1BgXZy3i','CxvPELn0yxi','ywjwAxnPyMK','qKftsum','ihSkicaGica','zNjLzxPL','kdeZnwrLzYW','x21VDxnLvxa','lGOktUg6V3uGDa','DxnLCI1ZzwW','B246iefUDgK','AxnszwXVywq','DgL2yxrLzca','Aw5KzxHpzG','icnLzJq0ndq','vevdva','icaGih0kica','z2v0rw50CMK','zZOGBM9Uzsa','wcGWktSGFqO','icaGicaGFqO','DxPVr1a','icaGicaGigy','D2vIA2L0rNu','zxjYB3i','DxnLCKfNzw4','qw50AunOzwe','Bg9JywXtDg8','EcKGz3jHExm','mJuWnZi2m1LwAgXxAW','ks4kcLzPiha','zwf0ihDOAwW','CMvTB3zL','tgLZDgvUzxi','osWGnJGSidy','ihjPz2H0oIa','ChvZAa','AwDODdOGmJa','otSkicaGica','icb0B3a6idi','Bw9UAxrVCLq','AsbZ4BQ9ihtHU7eG','idiWChG7cIa','igjVzhKSigi','icaGicbWB3m','x2TLEwjVyxi','AgfZrM9JDxm','y2L0EtOGmdS','CgnzsLi','zgLZywjSzq','icaGicbMCM8','yw5JzwXszwW','mwq7cIaGica','CgfZDgu','yxqTzgLHBg8','Bg9JyxrPB24','AxndB25Uzwm','zgvMyxvSDa','x3bHC3rLsge','zwqGqw50As0','zMXLEdSkica','zgv0ywLS','AgfUzgXLvMK','yxqTDg9HC3q','Dg9YywDL','zw5FzxHPDa','AxnbCNjHEq','B250lxDLAwC','BMDL','BgvTzw50','veznrvi','icaGigfUAw0','Aw5PDe11Dge','iNrYDwuIxsa','zwXLy3q6ig4','yxrPB25Zx2u','BKvUywjSzwq','z2v0sxrLBq','DgKTy2HLyxq','x2zVy3vZsge','yMLSAxr5sge','mtz1zLjMvg0','Aw5PDfnLC3m','igzYB20GEYa','BM9Kzvr5Cgu','y2HPBgrfBgu','x2jSDxjiyw4','DgfYDeHHBMq','DgLVBK9IC2u','DerPywXVz1m','rwXLBwvUDa','yMXVy2TnB3u','y29YCNvWDgu','AxnqDw5PC2G','mteWnZG2BursweD1','DfzPB2XHDgK','z2v0rwXLBwu','AmoSBMG','yxbWzw5Kq2G','zw5ZDxjLq2G','icaGicaGiea','ru4Gt05mwq','CNrJDxrZ','C2XHDgvykdi','C3rVCMfNzv8','DgfYzweSifS','Dw5KzwzPBMu','yMjdC1q','AgvHza','AxnWBgf5oIa','C3rYAw5NAwy','yw50AunOzwe','DxnLCM5HBwu','CxvPELvZzxi','smoGBMGGDMKG','DfrVyxn0q28','x211BhrPq2W','CgfYzw50tM8','AxnrDwL6tw8','C2vSzwn0C3q','lJmSidePigy','BgLKzuLUvg8','Ee5IugK','Cg9PBNrLCKu','yxnL','BxbVCNrHBNq','icaGicaGigq','ywrK','ChjLDMvUDeq','oIaXmNb4idi','W6fViqOkqUg6Ow4','DgvK','BtOGDhjHBNm','yMLUza','BMf2AwDHDgK','A2v5zg93BG','oWOGicaGica','DhLJAgfUz2u','y3rPB25Z','zxncEvr5Cgu','x29IC2vYDMu','Bsb7ig9Wywm','B25tDhLSzuu','CMvLBKnOyw4','twvUDuHHBMq','yxj0','zwvUsgfUzgW','CMvLBKvSzw0','C2HTzw50ifq','ywDHDgLVBG','EuL0DNm','yNv0Dg9U','zwvU','yMvMB3jLDw4','zwzHDwX0','Bw91C2vKB3C','zw51','x3nLBgvJDgK','Dg9Y','zg93oIaWide','icaG','zw5HyMXLza','BNrHAw5LCG','mJuZmti5mgDHz1v6ta','BhvL','oIbdyw5UB3q','ChjPBNrZy3i','Bg9NCW','DdOGBM9Uzsa','imsrW6mGDMKGCa','yMv6AwvYkda','Aw5KB3DgB2m','yM9HCMrtAg8','icaGicbIB3i','Dg9tDhjPBMC','AEg7H24GDMKGCa','zw5fBgvTzw4','z2vUzxjHDgu','BMrSzxi','yMXVy2TuzxG','uNfHzfq','CMLNz2vYzwq','rw5HyMXLza','DhLSzq','BMXVywriyw4','x2nVChLiyw4','A2v5zNjHBwu','DgfUDdSkica','oIbJB2X1Bw4','zsbPBIbrDwK','tufd','zwf0u3r5Bgu','Bwf4q2HLyxq','icaGicbWB2K','BK1Z','D25iyw5KBgu','y3jLzw5JAge','ih0kicaGica','Dg8GEYbVCge','CxvPEKLe','DgvYlwv2zw4','yMXVy2TlzxK','zNvSBhnJCMu','ugH3ELC','nMngz2TTrq','Aw5PDfbHz2u','B3bHy2L0EtO','y2HLy2TZDw0','A2v5','AgLKzgvU','oxHlzfnUzG','zg9JDw1LBNq','icaGigjVCMq','Bgf0zvKOlti','CMvTB3zLsxq','C3rVCMfNzuS','y3nZvgv4Da','y2XLyxjLzf8','CgXHDgzVCM0','ign1yMLJlwi','zgf0yse','x0jnrv9quK8','BwvUDenVDw4','mJy5mdq2meTyrw1mEa','8j+BOE+4JYbbzhzHBMm','otC4otvvvMLrCKm','Bw9UAxrVCKy','Aw5PDerLDLq','zxHLy3v0zva','idrWEcbZB2W','AevItMm','igXPBMvHCI0','AgKH','DgvJDgLVBG','zMLSDgvYoIa','z3jHzgLLBNq','zYbLCNi6','icaGicb9cIa','B2XHDgLVBG','zM9YrwfJAa','C3rVCfbYB3a','zgvYlxjHzgK','Dg9ju09tDhi','A2DYB3vUzdO','zw5JAgfUz2u','rKDpD1m','zMLSDgvYoM4','icaGignVBg8','DerHDgfF','iwLTCg9YDge','Cg9ZAxrPB24','CMvTB3zLuhi','otK5oWOGica','4PQG77IpiepHUQnUAcbI','icaGicaGic4','DwXSEsbYzxm','DfrVyxn0ihS','iefUDgLdAgu','z2v0u3rHDgu','x2rLDgvJDgu','CMfTzxmGC2W','vefcie9otfK','CMfNzq','ywqH','Dg9vChbLCKm','BwLSEtOGAw4','zw50tgLZDgu','4P2mifbOW6f0igG','icaGicaGlxC','ihjNyMeOmJm','y29UDgv4Dg0','igjVEc1ZAge','lwjSDxiGEWO','Bwv0yuTLEq','C3qGEWOGica','zgv4oIa5otK','BNq7cIaGica','BNrLCI1LDMu','zgfZAgjVyxi','zhvSzsbeAxm','wND2rLK','CMvSB2fK','CYbMywrLt3u','ywrKrxzLBNq','yw5PBwf0Aw8','yxv0BW','ztSkicaGica','DgfYz2v0','yw5VBNLTB3u','W6XUAa'];_0x37e6=function(){return _0x4e80f9;};return _0x37e6();}function _0x466d(_0x327dc,_0x1c413f){_0x327dc=_0x327dc-0xf6;const _0x37e610=_0x37e6();let _0x466d3f=_0x37e610[_0x327dc];if(_0x466d['pfhnSL']===undefined){var _0x594ac5=function(_0x3050ba){const _0x4584b2='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x454088='',_0x258060='';for(let _0x59398c=0x0,_0x35879d,_0x46af4a,_0x840e1=0x0;_0x46af4a=_0x3050ba['charAt'](_0x840e1++);~_0x46af4a&&(_0x35879d=_0x59398c%0x4?_0x35879d*0x40+_0x46af4a:_0x46af4a,_0x59398c++%0x4)?_0x454088+=String['fromCharCode'](0xff&_0x35879d>>(-0x2*_0x59398c&0x6)):0x0){_0x46af4a=_0x4584b2['indexOf'](_0x46af4a);}for(let _0x39d152=0x0,_0x37a23b=_0x454088['length'];_0x39d152<_0x37a23b;_0x39d152++){_0x258060+='%'+('00'+_0x454088['charCodeAt'](_0x39d152)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x258060);};_0x466d['kOJBqc']=_0x594ac5,_0x466d['dQKjnM']={},_0x466d['pfhnSL']=!![];}const _0x512c19=_0x37e610[0x0],_0x4dab2a=_0x327dc+_0x512c19,_0x56557c=_0x466d['dQKjnM'][_0x4dab2a];return!_0x56557c?(_0x466d3f=_0x466d['kOJBqc'](_0x466d3f),_0x466d['dQKjnM'][_0x4dab2a]=_0x466d3f):_0x466d3f=_0x56557c,_0x466d3f;}(function(_0x4bda55,_0x237f3c){const _0x2c32d1=_0x466d,_0x3ca2ab=_0x4bda55();while(!![]){try{const _0x182fe9=-parseInt(_0x2c32d1(0x139))/0x1*(parseInt(_0x2c32d1(0x2c7))/0x2)+parseInt(_0x2c32d1(0x189))/0x3*(-parseInt(_0x2c32d1(0x215))/0x4)+-parseInt(_0x2c32d1(0x10a))/0x5*(-parseInt(_0x2c32d1(0x133))/0x6)+parseInt(_0x2c32d1(0x148))/0x7*(-parseInt(_0x2c32d1(0x2ba))/0x8)+parseInt(_0x2c32d1(0x261))/0x9+parseInt(_0x2c32d1(0x146))/0xa+-parseInt(_0x2c32d1(0x286))/0xb;if(_0x182fe9===_0x237f3c)break;else _0x3ca2ab['push'](_0x3ca2ab['shift']());}catch(_0x1b7463){_0x3ca2ab['push'](_0x3ca2ab['shift']());}}}(_0x37e6,0x42896),((()=>{const _0x548799=_0x466d,_0x186233={'sqcrV':'antiChea'+'tDialogS'+_0x548799(0x11e),'KNsQa':_0x548799(0x239)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d6)+_0x548799(0x2b7)+_0x548799(0x177)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x151)+_0x548799(0x199)+_0x548799(0x285)+'cale(100'+'%);\x0a\x20\x20\x20\x20'+_0x548799(0x1d2)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1c2)+_0x548799(0x12f)+'ts:\x20none'+';\x0a\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x24a)+_0x548799(0x2b3)+_0x548799(0x23f)+_0x548799(0x1d2)+_0x548799(0x1d2)+'\x20}\x0a\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x165)+_0x548799(0x1f9)+_0x548799(0x2a8)+_0x548799(0x26d)+_0x548799(0x1d2)+_0x548799(0x1d2)+'\x20\x20\x20posit'+'ion:\x20fix'+_0x548799(0x24c)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x25f)+_0x548799(0x293)+_0x548799(0x1d2)+'\x20\x20\x20\x20\x20\x20\x20\x20'+'\x20\x20\x20\x20\x20\x20\x20r'+_0x548799(0x28e)+'px;\x0a\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x216)+_0x548799(0x17a)+_0x548799(0x163)+_0x548799(0x1d2)+_0x548799(0x1d2)+'\x20\x20\x20\x20\x20bac'+_0x548799(0x15a)+_0x548799(0x14e)+_0x548799(0x152)+_0x548799(0x26f)+_0x548799(0x277)+_0x548799(0x1a9)+_0x548799(0x1db)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x15e)+'r:\x20#fff;'+'\x0a\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x21e)+_0x548799(0x2ea)+_0x548799(0x197)+_0x548799(0x1d2)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x114)+_0x548799(0x158)+_0x548799(0x1b9)+'\x0a\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x176)+_0x548799(0x106)+'0px\x2025px'+_0x548799(0x174)+_0x548799(0x28b)+_0x548799(0x20d)+_0x548799(0x239)+_0x548799(0x1d2)+_0x548799(0x1d2)+'\x20font-fa'+_0x548799(0x170)+'herit;\x0a\x20'+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x27f)+_0x548799(0x2ac)+'ht:\x20600;'+_0x548799(0x239)+_0x548799(0x1d2)+_0x548799(0x1d2)+'\x20font-si'+_0x548799(0x23c)+_0x548799(0x23b)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x13b)+_0x548799(0x1b3)+_0x548799(0x14c)+_0x548799(0x1f4)+_0x548799(0x29d)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x2b0)+'ation:\x20s'+_0x548799(0x2e2)+'ast\x200.3s'+_0x548799(0x142)+_0x548799(0x1a7)+_0x548799(0x236)+_0x548799(0x2e1)+'orwards;'+_0x548799(0x239)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x154)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+(_0x548799(0x18e)+_0x548799(0x16b)+_0x548799(0x1ac)+_0x548799(0x179)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x29b)+_0x548799(0x2f6)+_0x548799(0x254)+_0x548799(0x268)+_0x548799(0x2ed)+_0x548799(0x13c)+_0x548799(0x1ea)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x12d)+'city:\x201;'+'\x20transfo'+_0x548799(0x1e0)+'slateY(0'+');\x20}\x0a\x20\x20\x20'+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+_0x548799(0x12c)+_0x548799(0x1d2)+_0x548799(0x2cd)+_0x548799(0x121)+_0x548799(0x181)+_0x548799(0x167)+_0x548799(0x239)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x2bc)+_0x548799(0x135)+'\x201;\x20tran'+_0x548799(0x1bc)+_0x548799(0x212)+_0x548799(0x27c)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x12d)+_0x548799(0x298)+_0x548799(0x206)+_0x548799(0x1e0)+_0x548799(0x2d0)+'0px);\x20}\x0a'+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x1d2)+'\x20\x20\x20\x20}\x0a\x20\x20'+_0x548799(0x1d2)+_0x548799(0x1bb)),'jFZco':_0x548799(0x239)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x295)+_0x548799(0x1ae)+_0x548799(0x1d7)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x290)+_0x548799(0x197)+_0x548799(0x1d2)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x548799(0x28c)+_0x548799(0x1d9)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x195)+_0x548799(0x214)+_0x548799(0x28f)+_0x548799(0x1d2)+_0x548799(0x2e7)+_0x548799(0x2d6)+_0x548799(0x2a5)+_0x548799(0x1d2)+_0x548799(0x1d2)+_0x548799(0x233)+_0x548799(0x1da)+_0x548799(0x123)+_0x548799(0x2f1)+_0x548799(0x1d2)+'\x20\x20\x20\x20\x20\x20ga'+_0x548799(0x1f0)+_0x548799(0x239)+_0x548799(0x1d2)+_0x548799(0x128)+_0x548799(0x17c)+_0x548799(0x243)+_0x548799(0x185)+_0x548799(0x1d2)+_0x548799(0x107),'TFMER':_0x548799(0x18d),'FGOwS':function(_0x5e9e01,_0x4f2e2e){return _0x5e9e01<<_0x4f2e2e;},'kcncO':_0x548799(0x2a2),'FbyFf':_0x548799(0x1a0),'uzoGP':function(_0x37bc8c,_0x2aada2){return _0x37bc8c===_0x2aada2;},'wQrbn':_0x548799(0x180),'xQLwk':_0x548799(0x265)+'etected:'+'\x20Storage'+_0x548799(0x1b5)+_0x548799(0x1e5)+_0x548799(0x16e),'RqadT':_0x548799(0x2d1)+_0x548799(0x140)+_0x548799(0x191)+'d','ayxEL':_0x548799(0x265)+_0x548799(0x1ed)+'\x20Checksu'+_0x548799(0x225)+_0x548799(0x1aa),'pEwzJ':_0x548799(0x10d)+_0x548799(0xff),'hEbNc':_0x548799(0x227),'PDNMZ':function(_0x12abda,_0x548a7d){return _0x12abda||_0x548a7d;},'ZmTLk':function(_0x29d7fd,_0x227058,_0x47ae98){return _0x29d7fd(_0x227058,_0x47ae98);},'HbLfG':_0x548799(0x1f9)+_0x548799(0x190),'gFkbt':function(_0x34a629,_0x559821){return _0x34a629!=_0x559821;},'Wyyfd':_0x548799(0x1c4)+_0x548799(0xf6)+'ge','ZrxIL':_0x548799(0x1e2)+_0x548799(0x2b4)+_0x548799(0x237),'ENuMQ':_0x548799(0x1a2)+_0x548799(0x2ca),'ueYKS':function(_0x186a4b){return _0x186a4b();},'wRqrq':_0x548799(0x175)+'enu','CKTIq':_0x548799(0x1e6),'bbCsT':'beforeun'+_0x548799(0x21b),'BiiQm':_0x548799(0x29e),'IHnsi':_0x548799(0x264),'WzSLz':_0x548799(0x131)+_0x548799(0x15b),'pcYJR':function(_0x2bd5a,_0x36a5a2){return _0x2bd5a==_0x36a5a2;}},_0x124dff=window['performa'+'nce'],_0x4d0b77=_0x124dff&&_0x186233[_0x548799(0x299)](_0x186233['FbyFf'],typeof _0x124dff[_0x548799(0x1bd)])?_0x124dff[_0x548799(0x1bd)][_0x548799(0x2ee)](_0x124dff):()=>Date[_0x548799(0x1bd)](),_0x207dce=window['Mutation'+'Observer']||window['WebKitMu'+_0x548799(0x1e7)+_0x548799(0x1dd)],_0xd8dd7d=window['sessionS'+_0x548799(0x2a9)]['getItem'][_0x548799(0x2ee)](window[_0x548799(0x234)+_0x548799(0x2a9)]),_0xaa428e=window['sessionS'+_0x548799(0x2a9)]['setItem'][_0x548799(0x2ee)](window[_0x548799(0x234)+_0x548799(0x2a9)]),_0x44edce=window[_0x548799(0x234)+'torage'][_0x548799(0x13d)+'em'][_0x548799(0x2ee)](window[_0x548799(0x234)+'torage']),_0x3d7dfa=window[_0x548799(0x284)+_0x548799(0x16d)][_0x548799(0x2b6)][_0x548799(0x2ee)](window['localSto'+'rage']),_0x5bdde4=new class{constructor(){const _0x3e7da3=_0x548799;this['enabled']=!0x1,this[_0x3e7da3(0x127)+_0x3e7da3(0x1a6)]=0x3,this[_0x3e7da3(0x2df)+'de']=!0x1,this[_0x3e7da3(0x291)+_0x3e7da3(0x220)+_0x3e7da3(0x11d)]=!0x1,this[_0x3e7da3(0x149)+_0x3e7da3(0x1ee)+'nEnabled']=!0x1,this['quizStar'+_0x3e7da3(0x21f)]=null,this[_0x3e7da3(0x2d9)]=null,this['quizID']=null,this['storageK'+'ey']=null,this[_0x3e7da3(0x274)+'ing']=!0x1,this['isPunish'+_0x3e7da3(0x24e)]=!0x1,this['violatio'+'nCooldow'+_0x3e7da3(0x129)]=0x4b0,this[_0x3e7da3(0x221)+'ationAt']=0x0,this['_tabVisi'+_0x3e7da3(0x2b9)+'ndler']=null,this[_0x3e7da3(0x269)+_0x3e7da3(0xf9)+'er']=null,this['_keyboar'+_0x3e7da3(0x229)]=null,this[_0x3e7da3(0x19c)+_0x3e7da3(0x11f)+'dler']=null,this['_context'+_0x3e7da3(0xf7)+'ler']=null,this[_0x3e7da3(0x226)+_0x3e7da3(0x12a)+'r']=null,this['_mouseUp'+'Handler']=null,this[_0x3e7da3(0x120)+'dler']=null,this[_0x3e7da3(0x262)+_0x3e7da3(0x22c)]=null,this[_0x3e7da3(0x2a3)+_0x3e7da3(0x119)]=null,this[_0x3e7da3(0x22f)+_0x3e7da3(0x2c0)+'ler']=null,this[_0x3e7da3(0x2dd)+'ickBlock'+_0x3e7da3(0x1e9)]=null,this['_selecti'+_0x3e7da3(0x2f7)+_0x3e7da3(0x2ae)]=null,this[_0x3e7da3(0x2bf)+_0x3e7da3(0x1be)]=null,this[_0x3e7da3(0x2b8)+_0x3e7da3(0x119)]=null,this[_0x3e7da3(0x1de)+_0x3e7da3(0x1b8)+'l']=null,this[_0x3e7da3(0x2f5)+'r']=null;}['ensureCh'+'eatStyle'](){const _0x49175c=_0x548799;if(!document[_0x49175c(0x2c9)+'ntById'](_0x49175c(0x2d8)+_0x49175c(0x2c2)+_0x49175c(0x11e))){const _0x36b2b8=document[_0x49175c(0x18f)+_0x49175c(0x1f2)](_0x49175c(0x25d));_0x36b2b8['id']=_0x186233['sqcrV'],_0x36b2b8['textCont'+_0x49175c(0x266)]=_0x186233[_0x49175c(0x1fd)],document[_0x49175c(0x2d5)]['appendCh'+'ild'](_0x36b2b8);}}[_0x548799(0x255)+'tViolati'+'on'](_0x471ae6){const _0x4162f7=_0x548799,_0x1f9bcf={};_0x1f9bcf[_0x4162f7(0x260)]=_0x4162f7(0x193)+_0x4162f7(0x211)+'s\x20cubic-'+_0x4162f7(0x111)+'.16,\x201,\x20'+_0x4162f7(0x25c)+_0x4162f7(0x248);const _0x4fa5c6=_0x1f9bcf;this[_0x4162f7(0x2cc)+_0x4162f7(0x126)]();let _0x15d2ba=document['getEleme'+_0x4162f7(0x1e1)](_0x4162f7(0x2d8)+_0x4162f7(0x2dc)+_0x4162f7(0x109));_0x15d2ba||(_0x15d2ba=document[_0x4162f7(0x18f)+_0x4162f7(0x1f2)](_0x4162f7(0x267)),_0x15d2ba['id']=_0x4162f7(0x2d8)+_0x4162f7(0x2dc)+'ntainer',_0x15d2ba[_0x4162f7(0x25d)][_0x4162f7(0x13f)]=_0x186233['jFZco'],document['body'][_0x4162f7(0x2cb)+_0x4162f7(0x244)](_0x15d2ba));const _0x1a5b65=document['createEl'+_0x4162f7(0x1f2)](_0x4162f7(0x267));_0x1a5b65[_0x4162f7(0x25e)+'e']=_0x4162f7(0x1f9)+_0x4162f7(0x2a8),_0x1a5b65[_0x4162f7(0x25d)][_0x4162f7(0x161)]=_0x186233[_0x4162f7(0x2af)],_0x1a5b65['style'][_0x4162f7(0x2e4)+'vents']=_0x4162f7(0x184),_0x1a5b65['textCont'+_0x4162f7(0x266)]=_0x471ae6,_0x15d2ba['appendCh'+_0x4162f7(0x244)](_0x1a5b65),setTimeout(()=>{const _0x370ed5=_0x4162f7;_0x1a5b65['style'][_0x370ed5(0x183)+'n']=_0x4fa5c6[_0x370ed5(0x260)],setTimeout(()=>{const _0x411879=_0x370ed5;_0x1a5b65[_0x411879(0x2de)+'de']&&_0x1a5b65[_0x411879(0x2de)+'de']['removeCh'+'ild'](_0x1a5b65),0x0===_0x15d2ba[_0x411879(0x2be)+_0x411879(0x145)+'t']&&_0x15d2ba[_0x411879(0x2de)+'de']&&_0x15d2ba[_0x411879(0x2de)+'de']['removeCh'+_0x411879(0x244)](_0x15d2ba);},0x12c);},0xdac);}[_0x548799(0x118)+_0x548799(0x1ff)](_0x1eb567,_0x298834){const _0x5d8264=_0x548799,_0xc6ca38=this[_0x5d8264(0x2d9)]+'_'+this[_0x5d8264(0x12e)]+(_0x5d8264(0x144)+_0x5d8264(0x278)),_0x1adf17=_0x1eb567+'|'+JSON[_0x5d8264(0x2d7)+'y'](_0x298834)+'|'+_0xc6ca38;let _0x47d60f=0x0;for(let _0x2f0dd7=0x0;_0x2f0dd7<_0x1adf17[_0x5d8264(0x1cb)];_0x2f0dd7++)_0x47d60f=_0x186233[_0x5d8264(0x15c)](_0x47d60f,0x5)-_0x47d60f+_0x1adf17[_0x5d8264(0x1ad)+'At'](_0x2f0dd7),_0x47d60f|=0x0;return(_0x47d60f>>>0x0)[_0x5d8264(0x115)](0x10);}[_0x548799(0x2bb)+_0x548799(0x1fe)](){const _0x1f8208=_0x548799;this['username']=_0x3d7dfa(_0x1f8208(0x2da)+_0x1f8208(0x23e))||_0x1f8208(0x187)+'s',this[_0x1f8208(0x12e)]=_0x3d7dfa('currentQ'+_0x1f8208(0x259))||_0x186233[_0x1f8208(0x24d)],this[_0x1f8208(0x13e)+'ey']=_0x1f8208(0x2d8)+_0x1f8208(0x15f)+this[_0x1f8208(0x12e)];let _0x27e0a4=!0x1;if(_0x124dff&&_0x186233[_0x1f8208(0x1a3)]==typeof _0x124dff[_0x1f8208(0x27a)+_0x1f8208(0x2f4)]){const _0x4d0759=_0x124dff['getEntri'+'esByType'](_0x1f8208(0x2ef)+'on');_0x4d0759['length']>0x0&&_0x186233[_0x1f8208(0x27e)](_0x186233['wQrbn'],_0x4d0759[0x0][_0x1f8208(0x23d)])&&(_0x27e0a4=!0x0);}else _0x124dff&&_0x124dff[_0x1f8208(0x2ef)+'on']&&0x1===_0x124dff['navigati'+'on'][_0x1f8208(0x23d)]&&(_0x27e0a4=!0x0);const _0x5ab463=_0xd8dd7d(this[_0x1f8208(0x13e)+'ey']);if(_0x27e0a4){if(!_0x5ab463)return console[_0x1f8208(0x281)](_0x186233['xQLwk']),void this['executeP'+_0x1f8208(0x194)+'t'](_0x186233[_0x1f8208(0x11b)]);try{const _0x20e051=JSON[_0x1f8208(0x1c1)](_0x5ab463),_0x211148=this[_0x1f8208(0x118)+_0x1f8208(0x1ff)](_0x20e051[_0x1f8208(0x204)],_0x20e051[_0x1f8208(0x10e)]);if(_0x20e051[_0x1f8208(0x136)]!==_0x211148)return console[_0x1f8208(0x281)](_0x186233['ayxEL']),void this[_0x1f8208(0x14b)+'unishmen'+'t']('storage_'+_0x1f8208(0x136)+_0x1f8208(0x19e)+'h');console[_0x1f8208(0x1f7)](_0x1f8208(0x24f)+'successf'+_0x1f8208(0x166)+_0x1f8208(0x1e4)+'d\x20verifi'+'ed.');}catch(_0x4a4047){return console[_0x1f8208(0x281)]('Tamper\x20D'+_0x1f8208(0x1ed)+'\x20Corrupt'+_0x1f8208(0x1c3)+_0x1f8208(0x143)),void this[_0x1f8208(0x14b)+_0x1f8208(0x194)+'t'](_0x1f8208(0x2d1)+_0x1f8208(0x2c5)+'d');}}else this[_0x1f8208(0x1af)+'e'](0x0,[]);}[_0x548799(0x1af)+'e'](_0x28a5b4,_0x13a0bf){const _0x2c8b67=_0x548799,_0x300c67=this[_0x2c8b67(0x118)+_0x2c8b67(0x1ff)](_0x28a5b4,_0x13a0bf),_0x43c586={};_0x43c586[_0x2c8b67(0x204)]=_0x28a5b4,_0x43c586[_0x2c8b67(0x10e)]=_0x13a0bf,_0x43c586[_0x2c8b67(0x1a4)]=!0x0,_0x43c586['checksum']=_0x300c67,_0xaa428e(this['storageK'+'ey'],JSON[_0x2c8b67(0x2d7)+'y'](_0x43c586));}[_0x548799(0x169)](){const _0xba5cf2=_0x548799;try{const _0x4485ea=_0xd8dd7d(this[_0xba5cf2(0x13e)+'ey']),_0x11e8bd={};return _0x11e8bd[_0xba5cf2(0x204)]=0x0,_0x11e8bd[_0xba5cf2(0x10e)]=[],_0x4485ea?JSON[_0xba5cf2(0x1c1)](_0x4485ea):_0x11e8bd;}catch(_0x32c146){const _0x3a7e85={};return _0x3a7e85['count']=0x0,_0x3a7e85[_0xba5cf2(0x10e)]=[],_0x3a7e85;}}[_0x548799(0x1c0)](_0x27d0aa=!0x1,_0x4a893f=!0x0){const _0x64c082=_0x548799;this[_0x64c082(0x29a)](),this[_0x64c082(0x108)]=!0x0,this[_0x64c082(0x2df)+'de']=_0x27d0aa,this[_0x64c082(0x274)+_0x64c082(0x24e)]=!0x1;let _0x15de16=!0x1,_0x5e3486=!0x1;if('object'==typeof _0x4a893f&&null!==_0x4a893f)_0x15de16=!!_0x4a893f[_0x64c082(0x207)+'h'],_0x5e3486=!!_0x4a893f[_0x64c082(0x131)+'en'];else{const _0x48feb8=!!_0x4a893f;_0x15de16=!(!_0x27d0aa||!_0x48feb8),_0x5e3486=!(!_0x27d0aa||!_0x48feb8);}if(this[_0x64c082(0x291)+_0x64c082(0x220)+_0x64c082(0x11d)]=!(!_0x27d0aa||!_0x15de16),this[_0x64c082(0x149)+_0x64c082(0x1ee)+_0x64c082(0x2b5)]=!(!_0x27d0aa||!_0x5e3486),this[_0x64c082(0x2df)+'de']&&(this[_0x64c082(0x2bb)+_0x64c082(0x1fe)](),!this[_0x64c082(0x108)]))return;this['blockKey'+_0x64c082(0x113)+'rtcuts'](),this[_0x64c082(0x2c4)+_0x64c082(0x198)+_0x64c082(0x2f3)](),this['blockTex'+_0x64c082(0x219)+'on'](),this[_0x64c082(0x1f8)+_0x64c082(0x112)+'us'](),this['isQuizMo'+'de']&&(this[_0x64c082(0x134)+_0x64c082(0x1ba)+_0x64c082(0x150)](),this[_0x64c082(0x14a)+_0x64c082(0x258)](),this[_0x64c082(0x2b1)+'tionObse'+'rver']()),this['monitorT'+_0x64c082(0x220)+_0x64c082(0x11d)]&&(this[_0x64c082(0x291)+_0x64c082(0x26b)+_0x64c082(0x1d1)](),this[_0x64c082(0x26a)+_0x64c082(0x21f)]=Date[_0x64c082(0x1bd)]()),this['monitorF'+_0x64c082(0x1ee)+_0x64c082(0x2b5)]&&this[_0x64c082(0x149)+_0x64c082(0x1ee)+'n']();let _0x52c3f5=_0x64c082(0x26c);this['monitorT'+_0x64c082(0x220)+'Enabled']&&this['monitorF'+_0x64c082(0x1ee)+_0x64c082(0x2b5)]?_0x52c3f5='STRICT':this['monitorT'+_0x64c082(0x220)+'Enabled']?_0x52c3f5=_0x64c082(0x16c):this['monitorF'+_0x64c082(0x1ee)+_0x64c082(0x2b5)]&&(_0x52c3f5='FULLSCRE'+_0x64c082(0x2ce)),console['log'](_0x64c082(0x147)+_0x64c082(0x2a4)+'Cheat\x20Ac'+_0x64c082(0x275)+'-\x20'+_0x52c3f5);}[_0x548799(0x130)+_0x548799(0x113)+_0x548799(0x2cf)](){const _0x26031c=_0x548799;this[_0x26031c(0x296)+_0x26031c(0x229)]&&document[_0x26031c(0x253)+_0x26031c(0x171)+_0x26031c(0x252)](_0x26031c(0x2f0),this[_0x26031c(0x296)+_0x26031c(0x229)],!0x0);const _0x717d1f=new Set(['u','s','p','c','x','v','i','j']);this[_0x26031c(0x296)+_0x26031c(0x229)]=_0x5059ec=>{const _0xcec016=_0x26031c;if(!this[_0xcec016(0x108)])return;const _0x4b9c8f=navigator[_0xcec016(0x141)][_0xcec016(0x16f)+_0xcec016(0x2e5)]()[_0xcec016(0x276)](_0xcec016(0x125))>=0x0,_0xb3e04c=_0x4b9c8f?_0x5059ec[_0xcec016(0x178)]:_0x5059ec[_0xcec016(0x1f1)],_0x2d5299=_0x5059ec[_0xcec016(0x137)][_0xcec016(0x232)+_0xcec016(0x2e5)](),_0x2ccc93=_0x186233[_0xcec016(0x27e)](_0x186233[_0xcec016(0x223)],_0x2d5299)||'os'===_0x2d5299,_0x29696f=_0x186233[_0xcec016(0x14d)]===_0x2d5299,_0x2fe2c9=_0xb3e04c&&_0x5059ec[_0xcec016(0x245)]&&('i'===_0x2d5299||_0x186233[_0xcec016(0x27e)]('j',_0x2d5299)),_0x466534=_0xb3e04c&&!_0x5059ec[_0xcec016(0x245)]&&_0x717d1f[_0xcec016(0x20e)](_0x2d5299),_0x126483=_0x5059ec[_0xcec016(0x178)]&&_0x5059ec[_0xcec016(0x245)]&&_0x186233[_0xcec016(0x27e)]('s',_0x2d5299),_0x1c2883=_0x4b9c8f&&_0x5059ec[_0xcec016(0x178)]&&_0x5059ec[_0xcec016(0x245)]&&['3','4','5'][_0xcec016(0x1cd)](_0x2d5299);if(_0x2ccc93||_0x29696f||_0x2fe2c9||_0x466534||_0x126483||_0x1c2883)return _0x5059ec[_0xcec016(0x2e9)+_0xcec016(0x101)](),_0x5059ec[_0xcec016(0x157)+_0xcec016(0xfc)](),(_0x186233['PDNMZ'](_0x2ccc93,_0x126483)||_0x1c2883)&&(document[_0xcec016(0x21d)]['classLis'+'t']['add'](_0xcec016(0x1f9)+_0xcec016(0x190)),setTimeout(()=>{const _0x2d62b9=_0xcec016;document[_0x2d62b9(0x297)]()&&document[_0x2d62b9(0x21d)][_0x2d62b9(0x242)+'t']['remove']('anti-che'+_0x2d62b9(0x190));},0x7d0)),!0x1;('f5'===_0x2d5299||_0xb3e04c&&'r'===_0x2d5299)&&(this[_0xcec016(0x274)+_0xcec016(0x24e)]=!0x0,this['triggerC'+'ancelRel'+'oadDetec'+_0xcec016(0x105)]());},document[_0x26031c(0x182)+_0x26031c(0x28a)](_0x26031c(0x2f0),this[_0x26031c(0x296)+_0x26031c(0x229)],!0x0);}[_0x548799(0x134)+_0x548799(0x1ba)+_0x548799(0x150)](){const _0x38ed36=_0x548799,_0x47e446={};_0x47e446[_0x38ed36(0x17f)]=_0x38ed36(0x2db)+_0x38ed36(0x19d)+_0x38ed36(0x203)+_0x38ed36(0x251);const _0x5c710a=_0x47e446;this[_0x38ed36(0x19c)+_0x38ed36(0x11f)+'dler']&&window['removeEv'+'entListe'+_0x38ed36(0x252)](_0x38ed36(0x100)+'load',this[_0x38ed36(0x19c)+_0x38ed36(0x11f)+'dler']),this[_0x38ed36(0x19c)+_0x38ed36(0x11f)+'dler']=_0x464e0d=>{const _0xdb509b=_0x38ed36;if(this[_0xdb509b(0x108)]&&this[_0xdb509b(0x2df)+'de'])return this[_0xdb509b(0x274)+_0xdb509b(0x24e)]=!0x0,this[_0xdb509b(0x240)+_0xdb509b(0x29c)+_0xdb509b(0x24b)+_0xdb509b(0x105)](),_0x464e0d[_0xdb509b(0x2e9)+_0xdb509b(0x101)](),_0x464e0d[_0xdb509b(0x1df)+_0xdb509b(0x10b)]=_0x5c710a['ZwvFY'],_0x464e0d[_0xdb509b(0x1df)+'lue'];},window[_0x38ed36(0x182)+'Listener'](_0x38ed36(0x100)+_0x38ed36(0x21b),this[_0x38ed36(0x19c)+_0x38ed36(0x11f)+_0x38ed36(0x1be)]);}[_0x548799(0x240)+'ancelRel'+_0x548799(0x24b)+_0x548799(0x105)](){const _0x2872ed=_0x548799;_0x186233[_0x2872ed(0x19a)](setTimeout,()=>{const _0x5e6754=_0x2872ed;this[_0x5e6754(0x274)+_0x5e6754(0x24e)]=!0x1;},0x3e8);}[_0x548799(0x1f8)+_0x548799(0x112)+'us'](){const _0xdd863=_0x548799;this[_0xdd863(0x2bf)+'dler']&&(window[_0xdd863(0x253)+_0xdd863(0x171)+_0xdd863(0x252)](_0xdd863(0x264),this['_blurHan'+_0xdd863(0x1be)]),window[_0xdd863(0x253)+_0xdd863(0x171)+_0xdd863(0x252)]('focus',this['_focusHa'+'ndler'])),this[_0xdd863(0x2bf)+'dler']=()=>{const _0x2ac432=_0xdd863;this[_0x2ac432(0x108)]&&this[_0x2ac432(0x2df)+'de']&&!this['isReload'+_0x2ac432(0x24e)]&&document[_0x2ac432(0x21d)][_0x2ac432(0x242)+'t'][_0x2ac432(0x2e8)](_0x186233[_0x2ac432(0x1b0)]);},this[_0xdd863(0x2b8)+_0xdd863(0x119)]=()=>{const _0x5b5ad6=_0xdd863;this['enabled']&&this[_0x5b5ad6(0x2df)+'de']&&document[_0x5b5ad6(0x21d)][_0x5b5ad6(0x242)+'t'][_0x5b5ad6(0x289)]('anti-che'+_0x5b5ad6(0x190));},window[_0xdd863(0x182)+_0xdd863(0x28a)](_0xdd863(0x264),this['_blurHan'+'dler']),window[_0xdd863(0x182)+_0xdd863(0x28a)](_0xdd863(0x192),this[_0xdd863(0x2b8)+_0xdd863(0x119)]);}[_0x548799(0x291)+_0x548799(0x26b)+_0x548799(0x1d1)](){const _0x18d749=_0x548799,_0x12dffa={};_0x12dffa[_0x18d749(0xfd)]=_0x18d749(0x250)+'ch';const _0x566f12=_0x12dffa;this[_0x18d749(0x263)+'bilityHa'+_0x18d749(0x119)]&&document[_0x18d749(0x253)+_0x18d749(0x171)+'ner'](_0x18d749(0x218)+_0x18d749(0x2f2),this[_0x18d749(0x263)+_0x18d749(0x2b9)+_0x18d749(0x119)]),this[_0x18d749(0x263)+_0x18d749(0x2b9)+_0x18d749(0x119)]=()=>{const _0x4a5c30=_0x18d749;if(this[_0x4a5c30(0x108)]&&this[_0x4a5c30(0x2df)+'de']&&this['monitorT'+_0x4a5c30(0x220)+_0x4a5c30(0x11d)]&&!this[_0x4a5c30(0x274)+_0x4a5c30(0x24e)]&&document[_0x4a5c30(0x138)]){const _0x164113=Date[_0x4a5c30(0x1bd)]();if(_0x164113-this[_0x4a5c30(0x221)+'ationAt']<this[_0x4a5c30(0x1c5)+_0x4a5c30(0x1d5)+_0x4a5c30(0x129)])return;this['lastViol'+_0x4a5c30(0x213)]=_0x164113,this[_0x4a5c30(0x2a7)+_0x4a5c30(0x155)](_0x566f12['yItvs']);}},document['addEvent'+_0x18d749(0x28a)](_0x18d749(0x218)+'tychange',this[_0x18d749(0x263)+_0x18d749(0x2b9)+_0x18d749(0x119)]);}[_0x548799(0x149)+_0x548799(0x1ee)+'n'](){const _0x513ea4=_0x548799;this['_fullscr'+_0x513ea4(0xf9)+'er']&&(document[_0x513ea4(0x253)+_0x513ea4(0x171)+'ner'](_0x513ea4(0x131)+_0x513ea4(0x15b),this[_0x513ea4(0x269)+_0x513ea4(0xf9)+'er']),document[_0x513ea4(0x253)+_0x513ea4(0x171)+_0x513ea4(0x252)](_0x513ea4(0x1f3)+_0x513ea4(0x202)+'change',this[_0x513ea4(0x269)+_0x513ea4(0xf9)+'er']),document[_0x513ea4(0x253)+_0x513ea4(0x171)+_0x513ea4(0x252)]('mozfulls'+'creencha'+'nge',this[_0x513ea4(0x269)+_0x513ea4(0xf9)+'er']),document[_0x513ea4(0x253)+_0x513ea4(0x171)+_0x513ea4(0x252)](_0x513ea4(0x1c4)+_0x513ea4(0xf6)+'ge',this[_0x513ea4(0x269)+_0x513ea4(0xf9)+'er'])),this['_fullscr'+_0x513ea4(0xf9)+'er']=()=>{const _0x21470d=_0x513ea4;if(this[_0x21470d(0x108)]&&this[_0x21470d(0x2df)+'de']&&this[_0x21470d(0x149)+'ullscree'+'nEnabled']&&!this['isReload'+_0x21470d(0x24e)]&&!(document[_0x21470d(0x131)+_0x21470d(0x117)+'t']||document[_0x21470d(0x280)+_0x21470d(0x202)+_0x21470d(0x2c3)]||document['mozFullS'+_0x21470d(0x1e8)+_0x21470d(0x18c)]||document['msFullsc'+_0x21470d(0xfa)+_0x21470d(0x266)])){const _0x1bee93=Date['now']();if(_0x1bee93-this[_0x21470d(0x221)+_0x21470d(0x213)]<this[_0x21470d(0x1c5)+'nCooldow'+_0x21470d(0x129)])return;this[_0x21470d(0x221)+_0x21470d(0x213)]=_0x1bee93,this[_0x21470d(0x2a7)+_0x21470d(0x155)](_0x21470d(0x131)+_0x21470d(0x2aa)),_0x186233[_0x21470d(0x22d)]('undefine'+'d',typeof showFullscreenButton)&&showFullscreenButton();}},document[_0x513ea4(0x182)+_0x513ea4(0x28a)](_0x513ea4(0x131)+_0x513ea4(0x15b),this['_fullscr'+_0x513ea4(0xf9)+'er']),document['addEvent'+_0x513ea4(0x28a)](_0x513ea4(0x1f3)+'llscreen'+'change',this['_fullscr'+_0x513ea4(0xf9)+'er']),document[_0x513ea4(0x182)+_0x513ea4(0x28a)]('mozfulls'+'creencha'+_0x513ea4(0x2ad),this[_0x513ea4(0x269)+_0x513ea4(0xf9)+'er']),document[_0x513ea4(0x182)+_0x513ea4(0x28a)](_0x186233[_0x513ea4(0x224)],this[_0x513ea4(0x269)+'eenHandl'+'er']);}['handleVi'+_0x548799(0x155)](_0x31c54e){const _0x127bba=_0x548799,_0x2096f6=this[_0x127bba(0x169)]();_0x2096f6[_0x127bba(0x204)]++,_0x2096f6[_0x127bba(0x10e)][_0x127bba(0x28d)]({'type':_0x31c54e,'time':new Date()[_0x127bba(0x159)+_0x127bba(0x24e)](),'userAgent':navigator[_0x127bba(0x282)+'t']}),this['saveStat'+'e'](_0x2096f6[_0x127bba(0x204)],_0x2096f6[_0x127bba(0x10e)]),_0x127bba(0x2d3)+'d'!=typeof window&&window[_0x127bba(0x1a8)+'t']&&_0x186233[_0x127bba(0x1a3)]==typeof window['APIClien'+'t'][_0x127bba(0x1dc)+_0x127bba(0x241)+'n']&&window[_0x127bba(0x1a8)+'t'][_0x127bba(0x1dc)+_0x127bba(0x241)+'n']({'quizID':this[_0x127bba(0x12e)],'violationType':_0x31c54e,'cheatCount':_0x2096f6[_0x127bba(0x204)],'userAgent':navigator[_0x127bba(0x282)+'t']})[_0x127bba(0x217)](_0x3608e6=>console[_0x127bba(0x201)](_0x127bba(0x283)+'t\x20API\x20lo'+_0x127bba(0x153),_0x3608e6)),_0x2096f6[_0x127bba(0x204)]>=this[_0x127bba(0x127)+_0x127bba(0x1a6)]?this['executeP'+_0x127bba(0x194)+'t'](_0x186233['ZrxIL']):this['showToas'+_0x127bba(0x2c8)+'on'](_0x127bba(0x164)+_0x127bba(0x2eb)+_0x127bba(0x110)+'hạm\x20quy\x20'+_0x127bba(0x196)+_0x127bba(0x1c9)+(_0x127bba(0x250)+'ch'===_0x31c54e?_0x186233['ENuMQ']:_0x127bba(0x1ce)+'àn\x20màn\x20h'+_0x127bba(0x188))+(_0x127bba(0x287)+_0x127bba(0x1fa))+_0x2096f6[_0x127bba(0x204)]+'/'+this[_0x127bba(0x127)+'Attempts']+(_0x127bba(0x271)+_0x127bba(0x1f5)+_0x127bba(0x21a)+_0x127bba(0x209)+_0x127bba(0x14f)));}[_0x548799(0x14b)+'unishmen'+'t'](_0x5121d8=_0x548799(0x1e2)+_0x548799(0x2b4)+_0x548799(0x237)){const _0x5a8147=_0x548799;this[_0x5a8147(0x2c6)+_0x5a8147(0x24e)]||(this['isPunish'+_0x5a8147(0x24e)]=!0x0,this[_0x5a8147(0x108)]=!0x1,console['error'](_0x5a8147(0x235)+'tic\x20Puni'+_0x5a8147(0xfb)+_0x5a8147(0x11c)+'.\x20Reason'+':\x20'+_0x5121d8),this['showToas'+_0x5a8147(0x2c8)+'on'](_0x5a8147(0x172)+_0x5a8147(0x116)+_0x5a8147(0x18b)+_0x5a8147(0x1c8)+_0x5a8147(0x208)+_0x5a8147(0x292)+_0x5a8147(0x1d4)+_0x5a8147(0x1fc)+'m\x200.'),_0x5a8147(0x1a0)==typeof window['submitQu'+'iz']?window[_0x5a8147(0x1cc)+'iz'](!0x0,!0x0):window[_0x5a8147(0x2a0)][_0x5a8147(0x1ec)](_0x5a8147(0x17d)+_0x5a8147(0x256)));}['initDevT'+'oolsTrap'](){const _0x384665=_0x548799;this[_0x384665(0x1de)+_0x384665(0x1b8)+'l']&&clearInterval(this[_0x384665(0x1de)+_0x384665(0x1b8)+'l']),this['_devTool'+_0x384665(0x1b8)+'l']=setInterval(()=>{const _0x343ec6=_0x384665;if(!this['enabled']||!this['isQuizMo'+'de']||this[_0x343ec6(0x274)+_0x343ec6(0x24e)])return;const _0x47f7f3=_0x186233['ueYKS'](_0x4d0b77);if(_0x4d0b77()-_0x47f7f3>0x64){const _0x1f839a=Date[_0x343ec6(0x1bd)]();if(_0x1f839a-this[_0x343ec6(0x221)+_0x343ec6(0x213)]<this['violatio'+_0x343ec6(0x1d5)+'nMs'])return;this[_0x343ec6(0x221)+_0x343ec6(0x213)]=_0x1f839a,this['handleVi'+'olation'](_0x343ec6(0x1fb)+_0x343ec6(0x16a)+'d');}},0x5dc);}[_0x548799(0x2b1)+_0x548799(0x2c1)+'rver'](){const _0x5993fe=_0x548799,_0x56567a={};_0x56567a['childLis'+'t']=!0x0,_0x56567a[_0x5993fe(0x228)]=!0x0,_0x56567a[_0x5993fe(0x247)+'es']=!0x0,_0x56567a['attribut'+_0x5993fe(0x230)]=['style',_0x5993fe(0x246)],(this[_0x5993fe(0x2f5)+'r']&&this[_0x5993fe(0x2f5)+'r'][_0x5993fe(0x1cf)+'ct'](),_0x207dce&&(this[_0x5993fe(0x2f5)+'r']=new _0x207dce(_0x35b4d7=>{const _0xb48561=_0x5993fe,_0x14bb12={};_0x14bb12['PhwzW']=function(_0x18772e,_0x32dfc5){return _0x18772e===_0x32dfc5;},_0x14bb12[_0xb48561(0x2e3)]=_0xb48561(0x2d8)+_0xb48561(0x219)+_0xb48561(0x25b)+'r';const _0x4f9d08=_0x14bb12;if(this[_0xb48561(0x108)]){for(let _0x488ba5 of _0x35b4d7)if(_0xb48561(0x1ca)+'t'===_0x488ba5['type']&&_0x488ba5[_0xb48561(0x1b4)+_0xb48561(0x1f6)][_0xb48561(0x156)](_0x26734d=>{const _0x5d4b4f=_0xb48561;0x1===_0x26734d[_0x5d4b4f(0x2bd)]&&(_0x5d4b4f(0x2d8)+_0x5d4b4f(0x2c2)+_0x5d4b4f(0x11e)===_0x26734d['id']||_0x4f9d08[_0x5d4b4f(0x132)](_0x4f9d08['xNbPi'],_0x26734d['id'])||_0x26734d[_0x5d4b4f(0x242)+'t']['contains'](_0x5d4b4f(0x1f9)+_0x5d4b4f(0x29f)+_0x5d4b4f(0x21c)+'y')||_0x26734d[_0x5d4b4f(0x242)+'t'][_0x5d4b4f(0x231)](_0x5d4b4f(0x1f9)+'at-blur'))&&(console[_0x5d4b4f(0x281)]('Security'+'\x20Violati'+'on:\x20Core'+_0x5d4b4f(0x168)+'at\x20eleme'+_0x5d4b4f(0x238)+'ed.'),window[_0x5d4b4f(0x2a0)][_0x5d4b4f(0x180)]());}),_0xb48561(0x247)+'es'===_0x488ba5['type']&&_0x488ba5[_0xb48561(0x186)][_0xb48561(0x242)+'t']&&_0x488ba5['target']['classLis'+'t'][_0xb48561(0x231)](_0xb48561(0x1f9)+_0xb48561(0x190))){const _0x3dc408=_0x488ba5[_0xb48561(0x186)]['getAttri'+_0xb48561(0x22b)]('style')||'';(_0x3dc408[_0xb48561(0x1ec)](/\s+/g,'')['includes'](_0xb48561(0x15d)+'one')||_0x3dc408[_0xb48561(0x1ec)](/\s+/g,'')[_0xb48561(0x1cd)](_0xb48561(0x1e3)+_0xb48561(0x200)))&&(console[_0xb48561(0x281)](_0xb48561(0x1b7)+_0xb48561(0x257)+_0xb48561(0x273)+_0xb48561(0x1a1)+_0xb48561(0x1d8)+'ssed.'),window[_0xb48561(0x2a0)][_0xb48561(0x180)]());}}}),document[_0x5993fe(0x13a)+_0x5993fe(0x2c3)]&&this['_observe'+'r']['observe'](document['document'+_0x5993fe(0x2c3)],_0x56567a)));}['blockMou'+_0x548799(0x198)+_0x548799(0x2f3)](){const _0x218879=_0x548799;this['_context'+_0x218879(0xf7)+'ler']=_0x2d0810=>(_0x2d0810['preventD'+_0x218879(0x101)](),!0x1),this[_0x218879(0x226)+'wnHandle'+'r']=_0x2e9ea6=>{const _0x562c93=_0x218879;if(0x2===_0x2e9ea6['button'])return _0x2e9ea6[_0x562c93(0x2e9)+_0x562c93(0x101)](),!0x1;},this['_mouseUp'+_0x218879(0x1e9)]=_0x229ed9=>{const _0x9ec66a=_0x218879;if(0x2===_0x229ed9[_0x9ec66a(0xfe)])return _0x229ed9[_0x9ec66a(0x2e9)+_0x9ec66a(0x101)](),!0x1;},this[_0x218879(0x120)+_0x218879(0x1be)]=_0x3fd6c9=>(_0x3fd6c9[_0x218879(0x2e9)+'efault'](),!0x1),this[_0x218879(0x262)+_0x218879(0x22c)]=_0x1f1c02=>(_0x1f1c02['preventD'+_0x218879(0x101)](),!0x1),this[_0x218879(0x2a3)+_0x218879(0x119)]=_0x44c851=>(_0x44c851['preventD'+_0x218879(0x101)](),!0x1),document[_0x218879(0x182)+'Listener'](_0x186233[_0x218879(0x1ab)],this['_context'+_0x218879(0xf7)+_0x218879(0x22c)]),document[_0x218879(0x182)+_0x218879(0x28a)]('mousedow'+'n',this[_0x218879(0x226)+_0x218879(0x12a)+'r']),document['addEvent'+'Listener'](_0x218879(0x1b1),this['_mouseUp'+_0x218879(0x1e9)]),document['addEvent'+_0x218879(0x28a)](_0x218879(0x210),this[_0x218879(0x120)+_0x218879(0x1be)]),document['addEvent'+'Listener'](_0x186233[_0x218879(0x1c6)],this[_0x218879(0x262)+_0x218879(0x22c)]),document[_0x218879(0x182)+_0x218879(0x28a)]('paste',this[_0x218879(0x2a3)+_0x218879(0x119)]);}[_0x548799(0x11a)+_0x548799(0x219)+'on'](){const _0x484021=_0x548799;this['_selectS'+_0x484021(0x2c0)+_0x484021(0x22c)]=_0x1bd8e3=>(_0x1bd8e3[_0x484021(0x2e9)+_0x484021(0x101)](),!0x1),document[_0x484021(0x182)+_0x484021(0x28a)](_0x484021(0x2e0)+_0x484021(0xf8),this[_0x484021(0x22f)+_0x484021(0x2c0)+_0x484021(0x22c)]),this['_selecti'+_0x484021(0x2f7)+_0x484021(0x2ae)]&&this[_0x484021(0x104)+'onStyleE'+_0x484021(0x2ae)][_0x484021(0x2a1)+'ted']&&this[_0x484021(0x104)+_0x484021(0x2f7)+'lement'][_0x484021(0x289)](),this[_0x484021(0x104)+_0x484021(0x2f7)+'lement']=document[_0x484021(0x18f)+_0x484021(0x1f2)](_0x484021(0x25d)),this[_0x484021(0x104)+_0x484021(0x2f7)+'lement']['id']='antiChea'+_0x484021(0x219)+_0x484021(0x25b)+'r',this[_0x484021(0x104)+'onStyleE'+'lement'][_0x484021(0x20b)+_0x484021(0x266)]=_0x484021(0x239)+_0x484021(0x1d2)+_0x484021(0x294)+_0x484021(0x205)+_0x484021(0x1d2)+_0x484021(0x1d2)+_0x484021(0x23a)+'kit-user'+_0x484021(0x22a)+_0x484021(0x19f)+_0x484021(0x2e6)+_0x484021(0x2f1)+_0x484021(0x1d2)+'\x20\x20\x20\x20\x20\x20us'+_0x484021(0x18a)+_0x484021(0x10f)+_0x484021(0x160)+_0x484021(0x17b)+_0x484021(0x1d2)+_0x484021(0x1d2)+'-webkit-'+'user-dra'+_0x484021(0x27b)+'!importa'+_0x484021(0x17b)+_0x484021(0x1d2)+_0x484021(0x279)+'\x20\x20\x20\x20\x20\x20\x20\x20'+'\x20\x20\x20\x20\x20\x20in'+'put,\x20tex'+_0x484021(0x2d2)+_0x484021(0x1eb)+_0x484021(0x222)+_0x484021(0x2b2)+_0x484021(0x1bf)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x484021(0x173)+_0x484021(0x19b)+_0x484021(0x18a)+_0x484021(0x22e)+_0x484021(0x160)+_0x484021(0x17b)+'\x20\x20\x20\x20\x20\x20\x20\x20'+_0x484021(0x1d2)+_0x484021(0x272)+'ect:\x20tex'+_0x484021(0x1b2)+_0x484021(0x122)+_0x484021(0x1d2)+_0x484021(0x27d)+_0x484021(0x1d2)+'\x20\x20\x20\x20',document[_0x484021(0x2d5)]['appendCh'+'ild'](this[_0x484021(0x104)+'onStyleE'+_0x484021(0x2ae)]),this[_0x484021(0x2dd)+'ickBlock'+'Handler']=_0x4915b1=>{const _0x2acf4a=_0x484021;_0x4915b1[_0x2acf4a(0x2a6)]>0x1&&_0x4915b1[_0x2acf4a(0x2e9)+_0x2acf4a(0x101)]();},document[_0x484021(0x182)+_0x484021(0x28a)](_0x484021(0x102)+'n',this[_0x484021(0x2dd)+'ickBlock'+_0x484021(0x1e9)]);}[_0x548799(0x162)+_0x548799(0x1d0)+_0x548799(0x28a)+'s'](){const _0x4d55ae=_0x548799;this[_0x4d55ae(0x296)+_0x4d55ae(0x229)]&&(document[_0x4d55ae(0x253)+'entListe'+_0x4d55ae(0x252)]('keydown',this[_0x4d55ae(0x296)+'dHandler'],!0x0),this[_0x4d55ae(0x296)+_0x4d55ae(0x229)]=null),this[_0x4d55ae(0x19c)+_0x4d55ae(0x11f)+'dler']&&(window[_0x4d55ae(0x253)+_0x4d55ae(0x171)+_0x4d55ae(0x252)](_0x186233[_0x4d55ae(0x2d4)],this[_0x4d55ae(0x19c)+_0x4d55ae(0x11f)+_0x4d55ae(0x1be)]),this['_beforeU'+'nloadHan'+'dler']=null),this['_context'+_0x4d55ae(0xf7)+'ler']&&(document[_0x4d55ae(0x253)+'entListe'+'ner'](_0x4d55ae(0x175)+_0x4d55ae(0x103),this[_0x4d55ae(0x1a5)+_0x4d55ae(0xf7)+_0x4d55ae(0x22c)]),this[_0x4d55ae(0x1a5)+'MenuHand'+'ler']=null),this[_0x4d55ae(0x226)+'wnHandle'+'r']&&(document[_0x4d55ae(0x253)+_0x4d55ae(0x171)+'ner'](_0x4d55ae(0x102)+'n',this[_0x4d55ae(0x226)+_0x4d55ae(0x12a)+'r']),this[_0x4d55ae(0x226)+_0x4d55ae(0x12a)+'r']=null),this['_mouseUp'+_0x4d55ae(0x1e9)]&&(document[_0x4d55ae(0x253)+_0x4d55ae(0x171)+_0x4d55ae(0x252)]('mouseup',this[_0x4d55ae(0x270)+_0x4d55ae(0x1e9)]),this[_0x4d55ae(0x270)+_0x4d55ae(0x1e9)]=null),this[_0x4d55ae(0x120)+_0x4d55ae(0x1be)]&&(document[_0x4d55ae(0x253)+_0x4d55ae(0x171)+_0x4d55ae(0x252)](_0x4d55ae(0x210),this[_0x4d55ae(0x120)+'dler']),this[_0x4d55ae(0x120)+'dler']=null),this[_0x4d55ae(0x262)+_0x4d55ae(0x22c)]&&(document[_0x4d55ae(0x253)+'entListe'+_0x4d55ae(0x252)]('cut',this[_0x4d55ae(0x262)+_0x4d55ae(0x22c)]),this[_0x4d55ae(0x262)+_0x4d55ae(0x22c)]=null),this[_0x4d55ae(0x2a3)+_0x4d55ae(0x119)]&&(document[_0x4d55ae(0x253)+'entListe'+_0x4d55ae(0x252)](_0x186233[_0x4d55ae(0x20c)],this['_pasteHa'+_0x4d55ae(0x119)]),this[_0x4d55ae(0x2a3)+'ndler']=null),this[_0x4d55ae(0x22f)+_0x4d55ae(0x2c0)+_0x4d55ae(0x22c)]&&(document[_0x4d55ae(0x253)+_0x4d55ae(0x171)+_0x4d55ae(0x252)]('selectst'+_0x4d55ae(0xf8),this['_selectS'+_0x4d55ae(0x2c0)+'ler']),this[_0x4d55ae(0x22f)+'tartHand'+_0x4d55ae(0x22c)]=null),this['_multiCl'+'ickBlock'+_0x4d55ae(0x1e9)]&&(document[_0x4d55ae(0x253)+_0x4d55ae(0x171)+_0x4d55ae(0x252)](_0x4d55ae(0x102)+'n',this[_0x4d55ae(0x2dd)+_0x4d55ae(0x20f)+_0x4d55ae(0x1e9)]),this[_0x4d55ae(0x2dd)+_0x4d55ae(0x20f)+'Handler']=null),this['_selecti'+_0x4d55ae(0x2f7)+'lement']&&this['_selecti'+_0x4d55ae(0x2f7)+'lement'][_0x4d55ae(0x2a1)+_0x4d55ae(0x2ec)]&&this[_0x4d55ae(0x104)+'onStyleE'+_0x4d55ae(0x2ae)]['remove'](),this[_0x4d55ae(0x104)+_0x4d55ae(0x2f7)+'lement']=null,this['_devTool'+_0x4d55ae(0x1b8)+'l']&&(clearInterval(this[_0x4d55ae(0x1de)+_0x4d55ae(0x1b8)+'l']),this[_0x4d55ae(0x1de)+'sInterva'+'l']=null),this[_0x4d55ae(0x2f5)+'r']&&(this['_observe'+'r']['disconne'+'ct'](),this['_observe'+'r']=null);}[_0x548799(0x29a)](){const _0xd65164=_0x548799;!this[_0xd65164(0x2df)+'de']||this[_0xd65164(0x2c6)+_0xd65164(0x24e)]?(this[_0xd65164(0x162)+'otection'+_0xd65164(0x28a)+'s'](),this[_0xd65164(0x263)+_0xd65164(0x2b9)+'ndler']&&(document[_0xd65164(0x253)+_0xd65164(0x171)+_0xd65164(0x252)](_0xd65164(0x218)+_0xd65164(0x2f2),this[_0xd65164(0x263)+_0xd65164(0x2b9)+'ndler']),this[_0xd65164(0x263)+'bilityHa'+_0xd65164(0x119)]=null),this[_0xd65164(0x2bf)+_0xd65164(0x1be)]&&(window[_0xd65164(0x253)+'entListe'+_0xd65164(0x252)](_0x186233['IHnsi'],this[_0xd65164(0x2bf)+_0xd65164(0x1be)]),window['removeEv'+_0xd65164(0x171)+_0xd65164(0x252)]('focus',this[_0xd65164(0x2b8)+_0xd65164(0x119)]),this[_0xd65164(0x2bf)+_0xd65164(0x1be)]=null),this[_0xd65164(0x269)+_0xd65164(0xf9)+'er']&&(document[_0xd65164(0x253)+_0xd65164(0x171)+'ner'](_0x186233[_0xd65164(0x249)],this[_0xd65164(0x269)+_0xd65164(0xf9)+'er']),document[_0xd65164(0x253)+_0xd65164(0x171)+_0xd65164(0x252)](_0xd65164(0x1f3)+_0xd65164(0x202)+'change',this[_0xd65164(0x269)+'eenHandl'+'er']),document[_0xd65164(0x253)+'entListe'+_0xd65164(0x252)](_0xd65164(0x1ef)+_0xd65164(0x12b)+_0xd65164(0x2ad),this[_0xd65164(0x269)+_0xd65164(0xf9)+'er']),document['removeEv'+_0xd65164(0x171)+_0xd65164(0x252)](_0xd65164(0x1c4)+_0xd65164(0xf6)+'ge',this[_0xd65164(0x269)+_0xd65164(0xf9)+'er']),this[_0xd65164(0x269)+'eenHandl'+'er']=null),this[_0xd65164(0x108)]=!0x1,this[_0xd65164(0x2df)+'de']=!0x1,this[_0xd65164(0x291)+_0xd65164(0x220)+'Enabled']=!0x1,this[_0xd65164(0x149)+_0xd65164(0x1ee)+'nEnabled']=!0x1,this[_0xd65164(0x2c6)+_0xd65164(0x24e)]=!0x1,this[_0xd65164(0x274)+_0xd65164(0x24e)]=!0x1,console[_0xd65164(0x1f7)](_0xd65164(0x1c7)+_0xd65164(0x2a4)+'Cheat\x20Mo'+_0xd65164(0x17e)+'abled')):console[_0xd65164(0x201)](_0xd65164(0x1b6)+_0xd65164(0x1d3)+_0xd65164(0x10c)+'\x20disable'+_0xd65164(0x20a)+_0xd65164(0x288)+_0xd65164(0x124)+_0xd65164(0x25a));}}(),_0x3765e2={'enable':(_0x28f228,_0x708ee1)=>{const _0x3cc676=_0x548799;_0x5bdde4[_0x3cc676(0x2cc)+'eatStyle'](),_0x5bdde4[_0x3cc676(0x1c0)](_0x28f228,_0x708ee1);},'disable':()=>_0x5bdde4[_0x548799(0x29a)](),'monitorFullscreen':()=>{const _0x470c89=_0x548799;_0x5bdde4[_0x470c89(0x108)]&&_0x5bdde4[_0x470c89(0x149)+'ullscree'+_0x470c89(0x2b5)]&&_0x5bdde4[_0x470c89(0x149)+_0x470c89(0x1ee)+'n']();},'getViolationLogs':()=>{const _0x8c4f3f=_0x548799,_0x577914=_0x5bdde4['getState']();return Array[_0x8c4f3f(0x2ab)](_0x577914['logs'])?[..._0x577914[_0x8c4f3f(0x10e)]]:[];},'clearState':()=>{_0x5bdde4['storageK'+'ey']&&_0x44edce(_0x5bdde4['storageK'+'ey']);},set 'isDialogOpen'(_0x5d8104){_0x5bdde4['isReload'+'ing']=!!_0x5d8104;},get 'isDialogOpen'(){return _0x5bdde4['isReload'+'ing'];},get 'monitorFullscreenEnabled'(){const _0x5d4178=_0x548799;return _0x5bdde4['monitorF'+'ullscree'+_0x5d4178(0x2b5)];},get 'isPunishing'(){const _0x273d60=_0x548799;return _0x5bdde4['isPunish'+_0x273d60(0x24e)];}};Object[_0x548799(0x26e)](_0x3765e2),window[_0x548799(0x2d8)+'t']=_0x3765e2;})()));
+/**
+ * ==================== ADVANCED ANTI-CHEAT MODULE ====================
+ * Cơ chế bảo mật client-side cho login & quiz
+ * 
+ * Features:
+ * - Chặn phím tắt devtools (F12, Ctrl+Shift+I, Ctrl+U, v.v.)
+ * - Chặn chuột phải, copy/paste, text selection
+ * - Giám sát chuyển tab với Page Visibility API
+ * - Mã hóa trạng thái Session Storage bằng Checksum (Salt động) chống Tampering
+ * - Ngăn chặn Bypass qua Race Condition (khi tải lại trang)
+ * - Tối ưu hóa mờ giao diện an toàn (phòng vệ OS-level Screen Capture)
+ */
+(() => {
+    // 1. Lexical Scope Caching (Anti Monkey-patching)
+    const originalPerformance = window.performance;
+    const safePerformanceNow = (originalPerformance && typeof originalPerformance.now === 'function')
+        ? originalPerformance.now.bind(originalPerformance)
+        : () => Date.now();
+
+    const NativeMutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+    const originalSessionGet = window.sessionStorage.getItem.bind(window.sessionStorage);
+    const originalSessionSet = window.sessionStorage.setItem.bind(window.sessionStorage);
+    const originalSessionRemove = window.sessionStorage.removeItem.bind(window.sessionStorage);
+    const originalLocalGet = window.localStorage.getItem.bind(window.localStorage);
+
+    class AdvancedAntiCheat {
+        constructor() {
+            this.enabled = false;
+            this.maxCheatAttempts = 3;
+            this.isQuizMode = false;
+            this.monitorTabSwitchEnabled = false;
+            this.monitorFullscreenEnabled = false;
+            this.quizStartTime = null;
+
+            // State
+            this.username = null;
+            this.quizID = null;
+            this.storageKey = null;
+            this.isReloading = false;
+            this.isPunishing = false;
+
+            this.violationCooldownMs = 1200;
+            this.lastViolationAt = 0;
+
+            // Event handler references for cleanup
+            this._tabVisibilityHandler = null;
+            this._fullscreenHandler = null;
+            this._keyboardHandler = null;
+            this._beforeUnloadHandler = null;
+            this._contextMenuHandler = null;
+            this._mouseDownHandler = null;
+            this._mouseUpHandler = null;
+            this._copyHandler = null;
+            this._cutHandler = null;
+            this._pasteHandler = null;
+            this._selectStartHandler = null;
+            this._multiClickBlockHandler = null;
+            this._selectionStyleElement = null;
+            this._blurHandler = null;
+            this._focusHandler = null;
+            this._devToolsInterval = null;
+            this._observer = null;
+        }
+
+        ensureCheatStyle() {
+            if (!document.getElementById('antiCheatDialogStyle')) {
+                const style = document.createElement('style');
+                style.id = 'antiCheatDialogStyle';
+                style.textContent = `
+                    .anti-cheat-blur {
+                        filter: blur(10px) grayscale(100%);
+                        pointer-events: none;
+                        user-select: none;
+                    }
+                    .anti-cheat-toast {
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        z-index: 999999;
+                        background: linear-gradient(135deg, #ef4444, #dc2626);
+                        color: #fff;
+                        padding: 12px 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+                        font-family: inherit;
+                        font-weight: 600;
+                        font-size: 0.9rem;
+                        border-left: 4px solid #7f1d1d; white-space: pre-wrap;
+                        animation: slideInToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                    }
+                    @keyframes slideInToast {
+                        from { opacity: 0; transform: translateY(-20px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    @keyframes fadeOutToast {
+                        from { opacity: 1; transform: translateX(0); }
+                        to { opacity: 0; transform: translateX(20px); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        showToastViolation(message) {
+            this.ensureCheatStyle();
+
+            let container = document.getElementById('antiCheatToastContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'antiCheatToastContainer';
+                container.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 999999;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    pointer-events: none;
+                `;
+                document.body.appendChild(container);
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'anti-cheat-toast';
+            toast.style.position = 'static';
+            toast.style.pointerEvents = 'auto';
+            toast.textContent = message;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'fadeOutToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+                setTimeout(() => {
+                    if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    if (container.childElementCount === 0 && container.parentNode) {
+                        container.parentNode.removeChild(container);
+                    }
+                }, 300);
+            }, 3500);
+        }
+
+        generateChecksum(count, logsArray) {
+            const dynamicSalt = `${this.username}_${this.quizID}_BME_PROTECT`;
+            const logsString = JSON.stringify(logsArray);
+            const rawString = `${count}|${logsString}|${dynamicSalt}`;
+
+            let hash = 0;
+            for (let i = 0; i < rawString.length; i++) {
+                const chr = rawString.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0;
+            }
+            return (hash >>> 0).toString(16);
+        }
+
+        initSessionState() {
+            this.username = originalLocalGet('quizUsername') || 'anonymous';
+            this.quizID = originalLocalGet('currentQuizID') || 'default';
+            this.storageKey = `antiCheatData_${this.quizID}`;
+
+            let isPageReload = false;
+            if (originalPerformance && typeof originalPerformance.getEntriesByType === 'function') {
+                const navEntries = originalPerformance.getEntriesByType('navigation');
+                if (navEntries.length > 0 && navEntries[0].type === 'reload') {
+                    isPageReload = true;
+                }
+            } else if (originalPerformance && originalPerformance.navigation) {
+                if (originalPerformance.navigation.type === 1) {
+                    isPageReload = true;
+                }
+            }
+
+            const rawData = originalSessionGet(this.storageKey);
+
+            if (isPageReload) {
+                if (!rawData) {
+                    console.error("Tamper Detected: Storage cleared on reload!");
+                    this.executePunishment("storage_cleared_on_reload");
+                    return;
+                }
+
+                try {
+                    const state = JSON.parse(rawData);
+                    const expectedChecksum = this.generateChecksum(state.count, state.logs);
+
+                    if (state.checksum !== expectedChecksum) {
+                        console.error("Tamper Detected: Checksum mismatch!");
+                        this.executePunishment("storage_checksum_mismatch");
+                        return;
+                    }
+                    console.log("🛡️ State successfully restored and verified.");
+                } catch (e) {
+                    console.error("Tamper Detected: Corrupted JSON data!");
+                    this.executePunishment("storage_corrupted");
+                    return;
+                }
+            } else {
+                this.saveState(0, []);
+            }
+        }
+
+        saveState(count, logs) {
+            const checksum = this.generateChecksum(count, logs);
+            const stateData = { count, logs, started: true, checksum };
+            originalSessionSet(this.storageKey, JSON.stringify(stateData));
+        }
+
+        getState() {
+            try {
+                const raw = originalSessionGet(this.storageKey);
+                if (!raw) return { count: 0, logs: [] };
+                return JSON.parse(raw);
+            } catch (e) {
+                return { count: 0, logs: [] };
+            }
+        }
+
+        enable(isQuiz = false, strictModeOrOptions = true) {
+            this.disable();
+
+            this.enabled = true;
+            this.isQuizMode = isQuiz;
+            this.isReloading = false;
+
+            let tabSwitch = false;
+            let fullscreen = false;
+            let basic = true;
+            let devTools = true;
+
+            if (typeof strictModeOrOptions === 'object' && strictModeOrOptions !== null) {
+                tabSwitch = !!strictModeOrOptions.tabSwitch;
+                fullscreen = !!strictModeOrOptions.fullscreen;
+                basic = Object.prototype.hasOwnProperty.call(strictModeOrOptions, 'basic') ? !!strictModeOrOptions.basic : true;
+                devTools = Object.prototype.hasOwnProperty.call(strictModeOrOptions, 'devTools') ? !!strictModeOrOptions.devTools : true;
+            } else {
+                const strictMode = !!strictModeOrOptions;
+                tabSwitch = !!(isQuiz && strictMode);
+                fullscreen = !!(isQuiz && strictMode);
+                basic = !!strictMode;
+                devTools = !!strictMode;
+            }
+
+            this.monitorTabSwitchEnabled = !!(isQuiz && tabSwitch);
+            this.monitorFullscreenEnabled = !!(isQuiz && fullscreen);
+            this.basicProtectionEnabled = basic;
+            this.devToolsTrapEnabled = !!(isQuiz && devTools);
+
+            if (this.isQuizMode) {
+                this.initSessionState();
+                if (!this.enabled) return; // Bị phạt ngay trong initSessionState
+            }
+
+            if (this.basicProtectionEnabled) {
+                this.blockKeyboardShortcuts();
+                this.blockMouseInteractions();
+                this.blockTextSelection();
+                this.monitorWindowFocus();
+            }
+
+            if (this.isQuizMode) {
+                this.initPageLeaveProtection();
+                if (this.devToolsTrapEnabled) {
+                    this.initDevToolsTrap();
+                }
+                this.initMutationObserver();
+            }
+
+            if (this.monitorTabSwitchEnabled) {
+                this.monitorTabVisibility();
+                this.quizStartTime = Date.now();
+            }
+
+            if (this.monitorFullscreenEnabled) {
+                this.monitorFullscreen();
+            }
+
+            let mode = 'BASIC';
+            if (this.monitorTabSwitchEnabled && this.monitorFullscreenEnabled) mode = 'STRICT';
+            else if (this.monitorTabSwitchEnabled) mode = 'TAB ONLY';
+            else if (this.monitorFullscreenEnabled) mode = 'FULLSCREEN ONLY';
+
+            console.log(`🛡️ Advanced Anti-Cheat Activated - ${mode}`);
+        }
+
+        blockKeyboardShortcuts() {
+            if (this._keyboardHandler) {
+                document.removeEventListener('keydown', this._keyboardHandler, true);
+            }
+
+            const blockedKeys = new Set(['u', 's', 'p', 'c', 'x', 'v', 'i', 'j']);
+
+            this._keyboardHandler = (e) => {
+                if (!this.enabled) return;
+
+                const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+                const ctrlKey = isMac ? e.metaKey : e.ctrlKey;
+                const key = e.key.toLowerCase();
+
+                const isPrintScreen = key === 'printscreen' || key === 'os';
+                const isF12 = key === 'f12';
+                const isDevTools = ctrlKey && e.shiftKey && (key === 'i' || key === 'j');
+                const isBrowserShortcuts = ctrlKey && !e.shiftKey && blockedKeys.has(key);
+                const isWinSnip = e.metaKey && e.shiftKey && key === 's';
+                const isMacSnip = isMac && e.metaKey && e.shiftKey && ['3', '4', '5'].includes(key);
+
+                if (isPrintScreen || isBrowserShortcuts || isWinSnip || isMacSnip) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Defense in depth for screenshot shortcuts
+                    if (isPrintScreen || isWinSnip || isMacSnip) {
+                        document.body.classList.add('anti-cheat-blur');
+                        setTimeout(() => {
+                            if (document.hasFocus()) {
+                                document.body.classList.remove('anti-cheat-blur');
+                            }
+                        }, 2000);
+                    }
+                    return false;
+                }
+
+                if ((isF12 || isDevTools) && this.devToolsTrapEnabled) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+
+                // Chặn Reload F5, Ctrl+R, Cmd+R và kích hoạt cờ Race Condition
+                if (key === 'f5' || (ctrlKey && key === 'r')) {
+                    this.isReloading = true;
+                    this.triggerCancelReloadDetector();
+                }
+            };
+
+            // Sử dụng Capture phase để chặn sớm nhất
+            document.addEventListener('keydown', this._keyboardHandler, true);
+        }
+
+        initPageLeaveProtection() {
+            if (this._beforeUnloadHandler) {
+                window.removeEventListener('beforeunload', this._beforeUnloadHandler);
+            }
+
+            this._beforeUnloadHandler = (e) => {
+                if (!this.enabled || !this.isQuizMode || this.isReloading) return;
+
+                this.isReloading = true;
+                this.triggerCancelReloadDetector();
+            };
+
+            window.addEventListener('beforeunload', this._beforeUnloadHandler);
+        }
+
+        triggerCancelReloadDetector() {
+            setTimeout(() => {
+                this.isReloading = false;
+            }, 1000);
+        }
+
+        monitorWindowFocus() {
+            if (this._blurHandler) {
+                window.removeEventListener('blur', this._blurHandler);
+                window.removeEventListener('focus', this._focusHandler);
+            }
+
+            this._blurHandler = () => {
+                if (!this.enabled || !this.isQuizMode || this.isReloading) return;
+                // Chỉ làm mờ, KHÔNG đếm vi phạm (tránh False Positive từ hộp thoại trình duyệt)
+                document.body.classList.add('anti-cheat-blur');
+            };
+
+            this._focusHandler = () => {
+                if (!this.enabled || !this.isQuizMode) return;
+                document.body.classList.remove('anti-cheat-blur');
+            };
+
+            window.addEventListener('blur', this._blurHandler);
+            window.addEventListener('focus', this._focusHandler);
+        }
+
+        monitorTabVisibility() {
+            if (this._tabVisibilityHandler) {
+                document.removeEventListener('visibilitychange', this._tabVisibilityHandler);
+            }
+
+            this._tabVisibilityHandler = () => {
+                if (!this.enabled || !this.isQuizMode || !this.monitorTabSwitchEnabled || this.isReloading) {
+                    return;
+                }
+
+                // visibilitychange với hidden = true xác định chính xác hành vi chuyển tab
+                if (document.hidden) {
+                    const now = Date.now();
+                    if (now - this.lastViolationAt < this.violationCooldownMs) return;
+                    this.lastViolationAt = now;
+
+                    this.handleViolation('tab_switch');
+                }
+            };
+
+            document.addEventListener('visibilitychange', this._tabVisibilityHandler);
+        }
+
+        monitorFullscreen() {
+            if (this._fullscreenHandler) {
+                document.removeEventListener('fullscreenchange', this._fullscreenHandler);
+                document.removeEventListener('webkitfullscreenchange', this._fullscreenHandler);
+                document.removeEventListener('mozfullscreenchange', this._fullscreenHandler);
+                document.removeEventListener('MSFullscreenChange', this._fullscreenHandler);
+            }
+
+            this._fullscreenHandler = () => {
+                if (!this.enabled || !this.isQuizMode || !this.monitorFullscreenEnabled || this.isReloading) {
+                    return;
+                }
+
+                const isCurrentlyFullscreen = !!(document.fullscreenElement ||
+                    document.webkitFullscreenElement ||
+                    document.mozFullScreenElement ||
+                    document.msFullscreenElement);
+
+                if (!isCurrentlyFullscreen) {
+                    const now = Date.now();
+                    if (now - this.lastViolationAt < this.violationCooldownMs) return;
+                    this.lastViolationAt = now;
+
+                    this.handleViolation('fullscreen_exit');
+
+                    if (typeof showFullscreenButton !== 'undefined') {
+                        showFullscreenButton();
+                    }
+                }
+            };
+
+            document.addEventListener('fullscreenchange', this._fullscreenHandler);
+            document.addEventListener('webkitfullscreenchange', this._fullscreenHandler);
+            document.addEventListener('mozfullscreenchange', this._fullscreenHandler);
+            document.addEventListener('MSFullscreenChange', this._fullscreenHandler);
+        }
+
+        handleViolation(type) {
+            const state = this.getState();
+            state.count++;
+            state.logs.push({
+                type,
+                time: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            });
+
+            this.saveState(state.count, state.logs);
+
+            // Gửi log trực tiếp về máy chủ để phòng ngừa thao túng Client-side
+            if (typeof window !== 'undefined' && window.APIClient && typeof window.APIClient.logCheatViolation === 'function') {
+                window.APIClient.logCheatViolation({
+                    quizID: this.quizID,
+                    violationType: type,
+                    cheatCount: state.count,
+                    userAgent: navigator.userAgent
+                }).catch(err => console.warn('AntiCheat API log err:', err));
+            }
+
+            if (state.count >= this.maxCheatAttempts) {
+                this.executePunishment("max_violations_exceeded");
+            } else {
+                let msg = `⚠️ Cảnh báo!\n\nBạn đã vi phạm quy định làm bài (${type === 'tab_switch' ? 'rời màn hình' : 'thoát toàn màn hình' || 'hành vi cấm'}).\n\nVi phạm lần ${state.count}/${this.maxCheatAttempts}.\n\nNếu tiếp tục sẽ bị khóa bài thi!`;
+                this.showToastViolation(msg);
+            }
+        }
+
+        executePunishment(reason = "max_violations_exceeded") {
+            if (this.isPunishing) return;
+            this.isPunishing = true;
+            this.enabled = false;
+
+            console.error(`❌ Automatic Punishment Triggered. Reason: ${reason}`);
+            this.showToastViolation('❌ Phát hiện vi phạm nghiêm trọng!\nBài thi sẽ tự động nộp với điểm 0.');
+
+            if (typeof window.submitQuiz === 'function') {
+                window.submitQuiz(true, true);
+            } else {
+                window.location.replace('dashboard');
+            }
+        }
+
+        initDevToolsTrap() {
+            if (this._devToolsInterval) clearInterval(this._devToolsInterval);
+
+            this._devToolsInterval = setInterval(() => {
+                if (!this.enabled || !this.isQuizMode || this.isReloading) return;
+
+                const start = safePerformanceNow();
+                (() => { debugger; })();
+                const end = safePerformanceNow();
+
+                if (end - start > 100) {
+                    const now = Date.now();
+                    if (now - this.lastViolationAt < this.violationCooldownMs) return;
+                    this.lastViolationAt = now;
+
+                    this.handleViolation('devtools_detected');
+                }
+            }, 1500);
+        }
+
+        initMutationObserver() {
+            if (this._observer) {
+                this._observer.disconnect();
+            }
+
+            if (!NativeMutationObserver) return;
+
+            this._observer = new NativeMutationObserver((mutations) => {
+                if (!this.enabled) return;
+                for (let mutation of mutations) {
+                    if (mutation.type === 'childList') {
+                        mutation.removedNodes.forEach(node => {
+                            if (node.nodeType === 1 && (
+                                node.id === 'antiCheatDialogStyle' ||
+                                node.id === 'antiCheatSelectionBlocker' ||
+                                node.classList.contains('anti-cheat-dialog-overlay') ||
+                                node.classList.contains('anti-cheat-blur'))) {
+                                console.error('Security Violation: Core AntiCheat element removed.');
+                                window.location.reload();
+                            }
+                        });
+                    }
+                    if (mutation.type === 'attributes' && mutation.target.classList) {
+                        if (mutation.target.classList.contains('anti-cheat-blur')) {
+                            const style = mutation.target.getAttribute('style') || '';
+                            if (style.replace(/\s+/g, '').includes('filter:none') || style.replace(/\s+/g, '').includes('display:none')) {
+                                console.error('Security Violation: AntiCheat style bypassed.');
+                                window.location.reload();
+                            }
+                        }
+                    }
+                }
+            });
+
+            if (document.documentElement) {
+                this._observer.observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['style', 'class']
+                });
+            }
+        }
+
+        blockMouseInteractions() {
+            this._contextMenuHandler = (e) => {
+                e.preventDefault();
+                return false;
+            };
+
+            this._mouseDownHandler = (e) => {
+                if (e.button === 2) {
+                    e.preventDefault();
+                    return false;
+                }
+            };
+
+            this._mouseUpHandler = (e) => {
+                if (e.button === 2) {
+                    e.preventDefault();
+                    return false;
+                }
+            };
+
+            this._copyHandler = (e) => {
+                e.preventDefault();
+                return false;
+            };
+
+            this._cutHandler = (e) => {
+                e.preventDefault();
+                return false;
+            };
+
+            this._pasteHandler = (e) => {
+                e.preventDefault();
+                return false;
+            };
+
+            document.addEventListener('contextmenu', this._contextMenuHandler);
+            document.addEventListener('mousedown', this._mouseDownHandler);
+            document.addEventListener('mouseup', this._mouseUpHandler);
+            document.addEventListener('copy', this._copyHandler);
+            document.addEventListener('cut', this._cutHandler);
+            document.addEventListener('paste', this._pasteHandler);
+        }
+
+        blockTextSelection() {
+            this._selectStartHandler = (e) => {
+                e.preventDefault();
+                return false;
+            };
+
+            document.addEventListener('selectstart', this._selectStartHandler);
+
+            if (this._selectionStyleElement && this._selectionStyleElement.isConnected) {
+                this._selectionStyleElement.remove();
+            }
+
+            this._selectionStyleElement = document.createElement('style');
+            this._selectionStyleElement.id = 'antiCheatSelectionBlocker';
+            this._selectionStyleElement.textContent = `
+                body, body * {
+                    -webkit-user-select: none !important;
+                    user-select: none !important;
+                    -webkit-user-drag: none !important;
+                }
+                input, textarea, [contenteditable="true"] {
+                    -webkit-user-select: text !important;
+                    user-select: text !important;
+                }
+            `;
+            document.head.appendChild(this._selectionStyleElement);
+
+            this._multiClickBlockHandler = (e) => {
+                if (e.detail > 1) {
+                    e.preventDefault();
+                }
+            };
+
+            document.addEventListener('mousedown', this._multiClickBlockHandler);
+        }
+
+        removeProtectionListeners() {
+            if (this._keyboardHandler) {
+                document.removeEventListener('keydown', this._keyboardHandler, true);
+                this._keyboardHandler = null;
+            }
+            if (this._beforeUnloadHandler) {
+                window.removeEventListener('beforeunload', this._beforeUnloadHandler);
+                this._beforeUnloadHandler = null;
+            }
+            if (this._contextMenuHandler) {
+                document.removeEventListener('contextmenu', this._contextMenuHandler);
+                this._contextMenuHandler = null;
+            }
+            if (this._mouseDownHandler) {
+                document.removeEventListener('mousedown', this._mouseDownHandler);
+                this._mouseDownHandler = null;
+            }
+            if (this._mouseUpHandler) {
+                document.removeEventListener('mouseup', this._mouseUpHandler);
+                this._mouseUpHandler = null;
+            }
+            if (this._copyHandler) {
+                document.removeEventListener('copy', this._copyHandler);
+                this._copyHandler = null;
+            }
+            if (this._cutHandler) {
+                document.removeEventListener('cut', this._cutHandler);
+                this._cutHandler = null;
+            }
+            if (this._pasteHandler) {
+                document.removeEventListener('paste', this._pasteHandler);
+                this._pasteHandler = null;
+            }
+            if (this._selectStartHandler) {
+                document.removeEventListener('selectstart', this._selectStartHandler);
+                this._selectStartHandler = null;
+            }
+            if (this._multiClickBlockHandler) {
+                document.removeEventListener('mousedown', this._multiClickBlockHandler);
+                this._multiClickBlockHandler = null;
+            }
+            if (this._selectionStyleElement && this._selectionStyleElement.isConnected) {
+                this._selectionStyleElement.remove();
+            }
+            this._selectionStyleElement = null;
+            if (this._devToolsInterval) {
+                clearInterval(this._devToolsInterval);
+                this._devToolsInterval = null;
+            }
+            if (this._observer) {
+                this._observer.disconnect();
+                this._observer = null;
+            }
+        }
+
+        disable() {
+            if (this.isQuizMode && !this.isPunishing) {
+                console.warn('🔒 Action blocked: Cannot disable Anti-Cheat while in Quiz Mode.');
+                return;
+            }
+
+            this.removeProtectionListeners();
+
+            if (this._tabVisibilityHandler) {
+                document.removeEventListener('visibilitychange', this._tabVisibilityHandler);
+                this._tabVisibilityHandler = null;
+            }
+
+            if (this._blurHandler) {
+                window.removeEventListener('blur', this._blurHandler);
+                window.removeEventListener('focus', this._focusHandler);
+                this._blurHandler = null;
+            }
+
+            if (this._fullscreenHandler) {
+                document.removeEventListener('fullscreenchange', this._fullscreenHandler);
+                document.removeEventListener('webkitfullscreenchange', this._fullscreenHandler);
+                document.removeEventListener('mozfullscreenchange', this._fullscreenHandler);
+                document.removeEventListener('MSFullscreenChange', this._fullscreenHandler);
+                this._fullscreenHandler = null;
+            }
+
+            this.enabled = false;
+            this.isQuizMode = false;
+            this.monitorTabSwitchEnabled = false;
+            this.monitorFullscreenEnabled = false;
+            this.isPunishing = false;
+            this.isReloading = false;
+            console.log('🔓 Advanced Anti-Cheat Module Disabled');
+        }
+    }
+
+    const instance = new AdvancedAntiCheat();
+
+    const antiCheatFacade = {
+        enable: (isQuiz, options) => {
+            instance.ensureCheatStyle();
+            instance.enable(isQuiz, options);
+        },
+        disable: () => instance.disable(),
+        monitorFullscreen: () => {
+            if (instance.enabled && instance.monitorFullscreenEnabled) {
+                instance.monitorFullscreen();
+            }
+        },
+        getViolationLogs: () => {
+            const state = instance.getState();
+            return Array.isArray(state.logs) ? [...state.logs] : [];
+        },
+        clearState: () => {
+            if (instance.storageKey) {
+                originalSessionRemove(instance.storageKey);
+            }
+        },
+        set isDialogOpen(val) { instance.isReloading = !!val; },
+        get isDialogOpen() { return instance.isReloading; },
+        setDialogOpen: function (val) { instance.isReloading = !!val; },
+        getViolationLogs: function () { return instance.violationLogs; },
+        getCheatCount: function () { return instance.maxCheatAttempts; },
+        get monitorFullscreenEnabled() { return instance.monitorFullscreenEnabled; },
+        get isPunishing() { return instance.isPunishing; }
+    };
+
+    Object.freeze(antiCheatFacade);
+    window.antiCheat = antiCheatFacade;
+})();
