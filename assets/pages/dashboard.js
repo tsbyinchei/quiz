@@ -1,1 +1,748 @@
-const _0x104473=_0x5515;(function(_0x390652,_0xaa215a){const _0x482b6d=_0x5515,_0x536d2c=_0x390652();while(!![]){try{const _0x324418=parseInt(_0x482b6d(0x2a7))/0x1+-parseInt(_0x482b6d(0x246))/0x2+-parseInt(_0x482b6d(0x279))/0x3+parseInt(_0x482b6d(0x2e4))/0x4+-parseInt(_0x482b6d(0x2c8))/0x5*(-parseInt(_0x482b6d(0x2be))/0x6)+parseInt(_0x482b6d(0x27c))/0x7*(parseInt(_0x482b6d(0x2c0))/0x8)+parseInt(_0x482b6d(0x280))/0x9*(-parseInt(_0x482b6d(0x230))/0xa);if(_0x324418===_0xaa215a)break;else _0x536d2c['push'](_0x536d2c['shift']());}catch(_0x366ef3){_0x536d2c['push'](_0x536d2c['shift']());}}}(_0x2f56,0xe3f66));let selectedSubject='',allSubjects=[];function getQuizCacheStore(){const _0x388cb1=_0x5515;try{const _0x24140e=JSON['parse'](sessionStorage['getItem'](_0x388cb1(0x1fb)+'bjectCac'+'he')||'{}');return _0x24140e['_timesta'+'mp']&&Date['now']()-_0x24140e['_timesta'+'mp']>0x6ddd00?(sessionStorage[_0x388cb1(0x241)+'em'](_0x388cb1(0x1fb)+_0x388cb1(0x2d2)+'he'),{}):_0x24140e['data']||_0x24140e;}catch(_0x24926f){return{};}}function setQuizCacheStore(_0x17597b){const _0x2db2b4=_0x5515,_0x1b59ee={'_timestamp':Date[_0x2db2b4(0x234)](),'data':_0x17597b||{}};sessionStorage[_0x2db2b4(0x26b)](_0x2db2b4(0x1fb)+_0x2db2b4(0x2d2)+'he',JSON[_0x2db2b4(0x218)+'y'](_0x1b59ee));}function isAuthErrorResult(_0x1d805a){const _0x48d677=_0x5515,_0x2f5c04=String(_0x1d805a&&_0x1d805a[_0x48d677(0x2cd)]||'')[_0x48d677(0x2ae)+_0x48d677(0x23c)]();return _0x2f5c04[_0x48d677(0x200)](_0x48d677(0x239)+'token')||_0x2f5c04['includes'](_0x48d677(0x212)+'ized');}function getStatsCacheKey(){const _0x54e3a5=_0x5515,_0x109c18={};_0x109c18[_0x54e3a5(0x1ef)]=_0x54e3a5(0x2d4)+'s';const _0x4dd01c=_0x109c18;return _0x54e3a5(0x2af)+_0x54e3a5(0x1f0)+(localStorage[_0x54e3a5(0x25f)]('quizUser'+_0x54e3a5(0x1fa))||_0x4dd01c[_0x54e3a5(0x1ef)]);}function checkAuth(){const _0x58b5c2=_0x5515,_0x36c013=AuthManager[_0x58b5c2(0x240)](),_0x333f77=AuthManager[_0x58b5c2(0x24f)+_0x58b5c2(0x1eb)](),_0x4c1479=AuthManager[_0x58b5c2(0x2b3)]();if(!_0x36c013||!_0x333f77)return void(window[_0x58b5c2(0x209)][_0x58b5c2(0x286)]='login.ht'+'ml');if(_0x58b5c2(0x216)===_0x4c1479)return void(window[_0x58b5c2(0x209)][_0x58b5c2(0x286)]=_0x58b5c2(0x257)+'ml');const _0x2a5444=localStorage[_0x58b5c2(0x25f)](_0x58b5c2(0x2cb)+'Name')||_0x333f77,_0x1f2619=document[_0x58b5c2(0x25a)+'ntById'](_0x58b5c2(0x1f1)+'serName');_0x1f2619&&(_0x1f2619[_0x58b5c2(0x2a4)+_0x58b5c2(0x259)]=_0x2a5444);const _0x5460df=document[_0x58b5c2(0x25a)+_0x58b5c2(0x2a9)]('sidebarA'+_0x58b5c2(0x2a6));_0x5460df&&(_0x5460df[_0x58b5c2(0x2a4)+_0x58b5c2(0x259)]=_0x2a5444['charAt'](0x0)['toUpperC'+_0x58b5c2(0x23c)]()),loadDashboard();}async function loadDashboard(){const _0x336ce5=_0x5515,_0x48f00c={'GVkqc':function(_0x4fbb63,_0x17d344){return _0x4fbb63(_0x17d344);},'TPUut':function(_0x304156,_0x4d6f28){return _0x304156(_0x4d6f28);}},_0x2a6786=localStorage[_0x336ce5(0x25f)]('quizUser'+'name'),_0x5aa25a=sessionStorage[_0x336ce5(0x25f)](_0x336ce5(0x25b)+_0x336ce5(0x1ec)+'e'),_0xc166c2=sessionStorage[_0x336ce5(0x25f)](getStatsCacheKey());if(_0x5aa25a)try{const _0x5c7490=JSON[_0x336ce5(0x248)](_0x5aa25a);_0x48f00c[_0x336ce5(0x2aa)](renderSubjects,_0x5c7490),allSubjects=_0x5c7490;}catch(_0x40e56b){sessionStorage[_0x336ce5(0x241)+'em'](_0x336ce5(0x25b)+_0x336ce5(0x1ec)+'e');}if(_0xc166c2)try{renderUserStats(JSON[_0x336ce5(0x248)](_0xc166c2));}catch(_0x1f8335){sessionStorage[_0x336ce5(0x241)+'em'](getStatsCacheKey());}await _0x48f00c['TPUut'](refreshDashboardInit,_0x2a6786);}async function refreshDashboardInit(_0x315540,_0x556cd0=!0x1){const _0x3a0d52=_0x5515,_0x512982={'ouZwX':'object','tbfZN':_0x3a0d52(0x26e)+'dCurrent'+'View','tlRbN':_0x3a0d52(0x1d7)+_0x3a0d52(0x2d0),'PizXp':function(_0x45cd23,_0x54c23c,_0x142e99){return _0x45cd23(_0x54c23c,_0x142e99);},'ATrqI':_0x3a0d52(0x2a0)};try{const _0x100f13=await APIClient['getDashb'+'oardInit'](_0x315540,_0x556cd0);if(!_0x100f13['success'])return isAuthErrorResult(_0x100f13)?(AuthManager[_0x3a0d52(0x227)+'h'](),void(window['location']['href']=_0x3a0d52(0x2c2)+'ml')):void await fallbackLoadDashboardData(_0x315540);const _0x415ec5=_0x100f13[_0x3a0d52(0x211)]||[],_0x2a2b3a=_0x100f13[_0x3a0d52(0x2a0)]||null,_0x3d36d9=_0x100f13[_0x3a0d52(0x222)+_0x3a0d52(0x214)]||{};allSubjects=_0x415ec5,sessionStorage[_0x3a0d52(0x26b)](_0x3a0d52(0x25b)+'ectsCach'+'e',JSON[_0x3a0d52(0x218)+'y'](_0x415ec5)),renderSubjects(_0x415ec5),_0x3d36d9&&_0x512982['ouZwX']==typeof _0x3d36d9&&setQuizCacheStore(_0x3d36d9),_0x2a2b3a&&(sessionStorage[_0x3a0d52(0x26b)](getStatsCacheKey(),JSON[_0x3a0d52(0x218)+'y'](_0x2a2b3a)),renderUserStats(_0x2a2b3a));const _0xdaaa72=sessionStorage[_0x3a0d52(0x25f)](_0x512982[_0x3a0d52(0x2e1)]),_0x426a18=sessionStorage[_0x3a0d52(0x25f)](_0x512982[_0x3a0d52(0x2c3)]);_0x426a18&&_0x415ec5[_0x3a0d52(0x200)](_0x426a18)?selectSubject(_0x426a18,!0x1):_0x415ec5[_0x3a0d52(0x284)]>0x0&&_0x512982[_0x3a0d52(0x242)](selectSubject,_0x415ec5[0x0],!0x1),_0x3a0d52(0x2a0)===_0xdaaa72&&switchDashboardTab(_0x512982['ATrqI']);}catch(_0x1e4894){console['error'](_0x3a0d52(0x236)+_0x3a0d52(0x20f)+_0x3a0d52(0x2c5)+_0x3a0d52(0x271),_0x1e4894),await fallbackLoadDashboardData(_0x315540);}}async function fallbackLoadDashboardData(_0x525b71){const _0x1cd182=_0x5515,_0x1aac67={'HvKYU':function(_0x226a5e,_0x12b19f){return _0x226a5e(_0x12b19f);}};try{const [_0x587f7c,_0x215d5c]=await Promise[_0x1cd182(0x232)]([APIClient[_0x1cd182(0x2ca)+'cts'](),APIClient[_0x1cd182(0x1e6)+_0x1cd182(0x2e3)](_0x525b71)]);if(isAuthErrorResult(_0x587f7c)||isAuthErrorResult(_0x215d5c))return AuthManager['clearAut'+'h'](),void(window[_0x1cd182(0x209)]['href']=_0x1cd182(0x2c2)+'ml');if(_0x587f7c&&_0x587f7c['success']){const _0x4b9289=_0x587f7c[_0x1cd182(0x211)]||[];allSubjects=_0x4b9289,sessionStorage[_0x1cd182(0x26b)](_0x1cd182(0x25b)+_0x1cd182(0x1ec)+'e',JSON['stringif'+'y'](_0x4b9289)),renderSubjects(_0x4b9289);}_0x215d5c&&_0x215d5c[_0x1cd182(0x1d5)]&&_0x215d5c[_0x1cd182(0x2a0)]&&(sessionStorage['setItem'](getStatsCacheKey(),JSON[_0x1cd182(0x218)+'y'](_0x215d5c['stats'])),_0x1aac67[_0x1cd182(0x1fe)](renderUserStats,_0x215d5c[_0x1cd182(0x2a0)]));}catch(_0x1f01b7){console[_0x1cd182(0x23e)](_0x1cd182(0x21c)+_0x1cd182(0x2c5)+'rd\x20load\x20'+'failed:',_0x1f01b7);}}function renderSubjects(_0x4286cf){const _0x770e4a=_0x5515,_0x4ac01d={};_0x4ac01d[_0x770e4a(0x22d)]=function(_0x42b860,_0x262c2d){return _0x42b860!==_0x262c2d;};const _0x3c199e=_0x4ac01d,_0xe5c326=document[_0x770e4a(0x25a)+_0x770e4a(0x2a9)](_0x770e4a(0x211)+_0x770e4a(0x1df));_0xe5c326[_0x770e4a(0x206)+'L']='',_0x4286cf&&_0x3c199e['LPHjb'](0x0,_0x4286cf[_0x770e4a(0x284)])?_0x4286cf[_0x770e4a(0x2a3)](_0x2a3e6c=>{const _0x2033ac=_0x770e4a,_0x37b3d0=document[_0x2033ac(0x1ff)+_0x2033ac(0x27f)](_0x2033ac(0x25d));_0x37b3d0[_0x2033ac(0x2ba)+'e']='subject-'+_0x2033ac(0x2b4),_0x37b3d0['type']=_0x2033ac(0x25d),_0x37b3d0[_0x2033ac(0x2a4)+'ent']=_0x2a3e6c,_0x37b3d0['addEvent'+_0x2033ac(0x1f4)](_0x2033ac(0x203),()=>selectSubject(_0x2a3e6c)),_0xe5c326[_0x2033ac(0x252)+'ild'](_0x37b3d0);}):_0xe5c326[_0x770e4a(0x206)+'L']=_0x770e4a(0x2d6)+'=\x22empty-'+_0x770e4a(0x269)+_0x770e4a(0x28b)+_0x770e4a(0x225)+_0x770e4a(0x2cf)+_0x770e4a(0x29e)+_0x770e4a(0x2b9);}function switchDashboardTab(_0xf9accd,_0x338667=null){const _0x29ce70=_0x5515,_0x54c4ce={};_0x54c4ce[_0x29ce70(0x1de)]=_0x29ce70(0x287)+'e',_0x54c4ce[_0x29ce70(0x21b)]=_0x29ce70(0x26e)+_0x29ce70(0x291)+_0x29ce70(0x2ce);const _0x570d24=_0x54c4ce,_0x1348f1=document[_0x29ce70(0x1ed)+_0x29ce70(0x204)]('.dashboa'+_0x29ce70(0x255));document[_0x29ce70(0x1ed)+_0x29ce70(0x258)](_0x29ce70(0x1fc)+_0x29ce70(0x263)+'tn')[_0x29ce70(0x2a3)](_0x3fdbbe=>_0x3fdbbe['classLis'+'t'][_0x29ce70(0x243)](_0x29ce70(0x2de)));const _0x561e20=_0x338667||document[_0x29ce70(0x1ed)+_0x29ce70(0x204)](_0x29ce70(0x1fc)+_0x29ce70(0x263)+_0x29ce70(0x2bd)+_0x29ce70(0x2b2)+_0xf9accd+'\x22]');_0x561e20&&_0x561e20[_0x29ce70(0x22c)+'t'][_0x29ce70(0x1f7)](_0x29ce70(0x2de)),sessionStorage[_0x29ce70(0x26b)](_0x570d24[_0x29ce70(0x21b)],_0xf9accd),document[_0x29ce70(0x1ed)+_0x29ce70(0x258)](_0x29ce70(0x1fc)+_0x29ce70(0x2cc)+_0x29ce70(0x1f5)+_0x29ce70(0x249)+_0x29ce70(0x1f8)+'b')[_0x29ce70(0x2a3)](_0xbe8d16=>{const _0x3f5d8d=_0x29ce70;_0xbe8d16[_0x3f5d8d(0x22c)+'t']['remove'](_0x3f5d8d(0x2dc)+'ab');}),'stats'===_0xf9accd?(document[_0x29ce70(0x1ed)+_0x29ce70(0x204)](_0x29ce70(0x1fc)+_0x29ce70(0x2cc)+_0x29ce70(0x1e4))[_0x29ce70(0x22c)+'t'][_0x29ce70(0x1f7)](_0x29ce70(0x2dc)+'ab'),_0x1348f1&&(_0x1348f1[_0x29ce70(0x22c)+'t'][_0x29ce70(0x243)]('mobile-v'+_0x29ce70(0x2d8)),_0x1348f1['classLis'+'t'][_0x29ce70(0x1f7)](_0x29ce70(0x267)+_0x29ce70(0x201)+'s')),document[_0x29ce70(0x1ed)+_0x29ce70(0x258)](_0x29ce70(0x20b)+'-pill')['forEach'](_0x2b82d7=>{const _0x783711=_0x29ce70;_0x2b82d7[_0x783711(0x22c)+'t'][_0x783711(0x243)](_0x570d24['crjip']);})):(document[_0x29ce70(0x1ed)+_0x29ce70(0x204)](_0x29ce70(0x1fc)+_0x29ce70(0x20a)+_0x29ce70(0x20c))[_0x29ce70(0x22c)+'t'][_0x29ce70(0x1f7)]('active-t'+'ab'),_0x1348f1&&(_0x1348f1[_0x29ce70(0x22c)+'t'][_0x29ce70(0x243)](_0x29ce70(0x267)+_0x29ce70(0x201)+'s'),_0x1348f1[_0x29ce70(0x22c)+'t'][_0x29ce70(0x1f7)]('mobile-v'+'iew-quiz')));}function openStatsModal(){const _0x385810=_0x5515,_0x259d9d={};_0x259d9d['iGWKL']=_0x385810(0x261)+_0x385810(0x293)+'y',_0x259d9d['WZUwQ']=_0x385810(0x2e0);const _0x45c9e7=_0x259d9d,_0x28a827=document['getEleme'+_0x385810(0x2a9)](_0x45c9e7[_0x385810(0x2b1)]);_0x28a827&&_0x28a827[_0x385810(0x22c)+'t'][_0x385810(0x1f7)](_0x45c9e7['WZUwQ']);}function closeStatsModal(){const _0x97dd82=_0x5515,_0x5993ec={};_0x5993ec[_0x97dd82(0x1e1)]='show';const _0x2e7800=_0x5993ec,_0x50dd8d=document[_0x97dd82(0x25a)+'ntById'](_0x97dd82(0x261)+'alOverla'+'y');_0x50dd8d&&_0x50dd8d[_0x97dd82(0x22c)+'t'][_0x97dd82(0x243)](_0x2e7800['uiNNb']);}function closeStatsModalOnBackdrop(_0x20261b){const _0xda628c=_0x5515;_0x20261b[_0xda628c(0x2e6)]&&'statsMod'+'alOverla'+'y'===_0x20261b[_0xda628c(0x2e6)]['id']&&closeStatsModal();}function scrollDashboardToTop(){const _0x25da31=_0x5515,_0x4dc73c={};_0x4dc73c[_0x25da31(0x26f)]=0x0,_0x4dc73c[_0x25da31(0x20e)]=_0x25da31(0x2c6),window[_0x25da31(0x2bc)](_0x4dc73c);}async function selectSubject(_0x4be9c4,_0x3e353f=!0x0){const _0x467a20=_0x5515,_0x56b44e={'vfLcQ':_0x467a20(0x26e)+_0x467a20(0x291)+'View','VYKCZ':_0x467a20(0x226),'eNPSZ':function(_0x2d8a07,_0x5b25b2){return _0x2d8a07(_0x5b25b2);},'VEFQO':'Error\x20lo'+_0x467a20(0x22a)+_0x467a20(0x25c)};selectedSubject=_0x4be9c4,document[_0x467a20(0x25a)+_0x467a20(0x2a9)]('selected'+_0x467a20(0x262)+_0x467a20(0x208))['textCont'+_0x467a20(0x259)]=_0x4be9c4,sessionStorage[_0x467a20(0x26b)](_0x56b44e[_0x467a20(0x2d1)],_0x56b44e['VYKCZ']),'Tất\x20cả'!==_0x4be9c4?sessionStorage[_0x467a20(0x26b)]('quizLast'+_0x467a20(0x2d0),_0x4be9c4):sessionStorage['removeIt'+'em'](_0x467a20(0x1d7)+_0x467a20(0x2d0)),document['querySel'+_0x467a20(0x258)](_0x467a20(0x20b)+_0x467a20(0x210))[_0x467a20(0x2a3)](_0x2a35b7=>{const _0x2aa48f=_0x467a20;_0x2a35b7[_0x2aa48f(0x22c)+'t'][_0x2aa48f(0x2c4)](_0x2aa48f(0x287)+'e',_0x2a35b7['textCont'+_0x2aa48f(0x259)]===_0x4be9c4);});const _0x4f2eea=Reflect[_0x467a20(0x1ee)](quizCacheStore,_0x4be9c4);if(Array['isArray'](_0x4f2eea)&&(renderQuizzes(_0x4f2eea),handleMobileSubjectSelection()),_0x3e353f)try{const _0x1b0c47=await APIClient[_0x467a20(0x215)+_0x467a20(0x283)+_0x467a20(0x1e8)](_0x4be9c4);if(_0x1b0c47[_0x467a20(0x1d5)]){const _0x37e1c6=_0x1b0c47[_0x467a20(0x28f)]||[];Reflect[_0x467a20(0x299)](quizCacheStore,_0x4be9c4,_0x37e1c6),setQuizCacheStore(quizCacheStore),_0x56b44e[_0x467a20(0x27d)](renderQuizzes,_0x37e1c6),handleMobileSubjectSelection();}}catch(_0x5ea13e){console['error'](_0x56b44e['VEFQO'],_0x5ea13e);}}function handleMobileSubjectSelection(){const _0x27319b=_0x5515,_0x4478b9={'PQiRx':_0x27319b(0x1fc)+_0x27319b(0x20a)+'tab','PqPmk':function(_0x54244b,_0x3fc515){return _0x54244b(_0x3fc515);}};window['innerWid'+'th']<=0x300&&(_0x4478b9[_0x27319b(0x270)](switchDashboardTab,_0x27319b(0x226)),setTimeout(()=>{const _0x4f76b5=_0x27319b,_0xac97bd=document['querySel'+_0x4f76b5(0x204)](_0x4478b9[_0x4f76b5(0x277)]);_0xac97bd&&window[_0x4f76b5(0x2bc)]({'top':_0xac97bd[_0x4f76b5(0x295)+'p']-0x46,'behavior':_0x4f76b5(0x2c6)});},0x32));}function _0x5515(_0x517877,_0x22f4c9){_0x517877=_0x517877-0x1d4;const _0x2f566a=_0x2f56();let _0x55155d=_0x2f566a[_0x517877];if(_0x5515['wFiocY']===undefined){var _0xaf69b2=function(_0x45072b){const _0x596d46='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x44a4a7='',_0x522660='';for(let _0x5da632=0x0,_0x3c58e0,_0x51ade7,_0x39985a=0x0;_0x51ade7=_0x45072b['charAt'](_0x39985a++);~_0x51ade7&&(_0x3c58e0=_0x5da632%0x4?_0x3c58e0*0x40+_0x51ade7:_0x51ade7,_0x5da632++%0x4)?_0x44a4a7+=String['fromCharCode'](0xff&_0x3c58e0>>(-0x2*_0x5da632&0x6)):0x0){_0x51ade7=_0x596d46['indexOf'](_0x51ade7);}for(let _0x3a63ff=0x0,_0x265797=_0x44a4a7['length'];_0x3a63ff<_0x265797;_0x3a63ff++){_0x522660+='%'+('00'+_0x44a4a7['charCodeAt'](_0x3a63ff)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x522660);};_0x5515['nvwrRe']=_0xaf69b2,_0x5515['LmGPPx']={},_0x5515['wFiocY']=!![];}const _0x5996bd=_0x2f566a[0x0],_0x3d3a41=_0x517877+_0x5996bd,_0x67c9a1=_0x5515['LmGPPx'][_0x3d3a41];return!_0x67c9a1?(_0x55155d=_0x5515['nvwrRe'](_0x55155d),_0x5515['LmGPPx'][_0x3d3a41]=_0x55155d):_0x55155d=_0x67c9a1,_0x55155d;}function renderQuizzes(_0x56f3c7){const _0x2b8c5f=_0x5515,_0x46eb7f={};_0x46eb7f[_0x2b8c5f(0x274)]=_0x2b8c5f(0x22f)+_0x2b8c5f(0x23b),_0x46eb7f[_0x2b8c5f(0x1d9)]=_0x2b8c5f(0x29d)+'\x20mô\x20tả.',_0x46eb7f[_0x2b8c5f(0x2d7)]=_0x2b8c5f(0x20d),_0x46eb7f[_0x2b8c5f(0x24c)]=_0x2b8c5f(0x235)+_0x2b8c5f(0x265),_0x46eb7f[_0x2b8c5f(0x1e9)]=_0x2b8c5f(0x25d),_0x46eb7f['JMNPR']='Bắt\x20Đầu\x20'+_0x2b8c5f(0x2df),_0x46eb7f[_0x2b8c5f(0x2d3)]=function(_0x2a454e,_0x49ce50){return _0x2a454e!==_0x49ce50;};const _0x6e2239=_0x46eb7f,_0x34cbe9=document[_0x2b8c5f(0x25a)+_0x2b8c5f(0x2a9)](_0x2b8c5f(0x289));_0x34cbe9['innerHTM'+'L']='',_0x6e2239[_0x2b8c5f(0x2d3)](0x0,_0x56f3c7[_0x2b8c5f(0x284)])?_0x56f3c7[_0x2b8c5f(0x2a3)](_0x5c5fb7=>{const _0x31e91c=_0x2b8c5f,_0x3b228a=document['createEl'+_0x31e91c(0x27f)](_0x31e91c(0x20d));_0x3b228a[_0x31e91c(0x2ba)+'e']=_0x6e2239['uAWve'];const _0x958476=(_0x5c5fb7[_0x31e91c(0x205)+'ion']||_0x6e2239[_0x31e91c(0x1d9)])[_0x31e91c(0x23a)](),_0x444d8e=Number(_0x5c5fb7['question'+_0x31e91c(0x2da)]),_0xd44e3c=Number[_0x31e91c(0x266)](_0x444d8e)&&_0x444d8e>=0x0?_0x444d8e:0x0,_0x2502d5=Number(_0x5c5fb7[_0x31e91c(0x220)+'mpts']),_0x354821=Number[_0x31e91c(0x266)](_0x2502d5)&&_0x2502d5>=0x0?_0x2502d5:0x0,_0x3aaa72=document[_0x31e91c(0x1ff)+_0x31e91c(0x27f)](_0x6e2239['yHVTz']);_0x3aaa72[_0x31e91c(0x2ba)+'e']=_0x31e91c(0x223)+'a-row';const _0x74ae55=document['createEl'+_0x31e91c(0x27f)](_0x31e91c(0x1dd));_0x74ae55['textCont'+'ent']=String(selectedSubject||_0x5c5fb7[_0x31e91c(0x2ab)]||_0x31e91c(0x27a));const _0x9a4bb8=document[_0x31e91c(0x1ff)+'ement'](_0x31e91c(0x1dd));_0x9a4bb8['textCont'+_0x31e91c(0x259)]='⏱\x20'+String(_0x5c5fb7[_0x31e91c(0x21f)+'t']||'')+'\x20phút',_0x3aaa72[_0x31e91c(0x252)+_0x31e91c(0x2dd)](_0x74ae55),_0x3aaa72[_0x31e91c(0x252)+'ild'](_0x9a4bb8);const _0x1073fe=document[_0x31e91c(0x1ff)+'ement']('h4');_0x1073fe[_0x31e91c(0x2a4)+_0x31e91c(0x259)]=String(_0x5c5fb7[_0x31e91c(0x1ea)]||_0x31e91c(0x26d));const _0x4efcb9=document[_0x31e91c(0x1ff)+_0x31e91c(0x27f)]('p');_0x4efcb9[_0x31e91c(0x2ba)+'e']=_0x31e91c(0x244)+'c',_0x4efcb9[_0x31e91c(0x2a4)+_0x31e91c(0x259)]=_0x958476;const _0x1fd8d6=document['createEl'+_0x31e91c(0x27f)](_0x6e2239[_0x31e91c(0x2d7)]);_0x1fd8d6[_0x31e91c(0x2ba)+'e']=_0x31e91c(0x213)+_0x31e91c(0x24a);const _0x4a4841=document[_0x31e91c(0x1ff)+_0x31e91c(0x27f)](_0x31e91c(0x20d));_0x4a4841[_0x31e91c(0x2ba)+'e']='quiz-ins'+_0x31e91c(0x22e),_0x4a4841[_0x31e91c(0x206)+'L']='<strong>'+_0x31e91c(0x298)+_0x31e91c(0x2db)+_0x31e91c(0x2e2),_0x4a4841[_0x31e91c(0x252)+'ild'](document[_0x31e91c(0x238)+_0x31e91c(0x2c9)](String(_0xd44e3c)));const _0x3880e7=document[_0x31e91c(0x1ff)+_0x31e91c(0x27f)](_0x31e91c(0x20d));_0x3880e7[_0x31e91c(0x2ba)+'e']=_0x31e91c(0x213)+'ight',_0x3880e7[_0x31e91c(0x206)+'L']=_0x31e91c(0x1db)+_0x31e91c(0x254)+_0x31e91c(0x2d5)+'>',_0x3880e7[_0x31e91c(0x252)+_0x31e91c(0x2dd)](document[_0x31e91c(0x238)+_0x31e91c(0x2c9)](String(_0x354821)));const _0x1cc34b=document['createEl'+'ement']('button');_0x1cc34b[_0x31e91c(0x2ba)+'e']=_0x6e2239['BeJPm'],_0x1cc34b['type']=_0x6e2239[_0x31e91c(0x1e9)],_0x1cc34b[_0x31e91c(0x2a4)+'ent']=_0x6e2239[_0x31e91c(0x256)],_0x1fd8d6[_0x31e91c(0x252)+_0x31e91c(0x2dd)](_0x4a4841),_0x1fd8d6[_0x31e91c(0x252)+'ild'](_0x3880e7),_0x3b228a[_0x31e91c(0x252)+'ild'](_0x3aaa72),_0x3b228a['appendCh'+_0x31e91c(0x2dd)](_0x1073fe),_0x3b228a[_0x31e91c(0x252)+_0x31e91c(0x2dd)](_0x4efcb9),_0x3b228a[_0x31e91c(0x252)+_0x31e91c(0x2dd)](_0x1fd8d6),_0x3b228a[_0x31e91c(0x252)+_0x31e91c(0x2dd)](_0x1cc34b),_0x1cc34b['addEvent'+_0x31e91c(0x1f4)](_0x31e91c(0x203),()=>startQuiz(_0x5c5fb7['quizID'])),_0x34cbe9[_0x31e91c(0x252)+_0x31e91c(0x2dd)](_0x3b228a);}):_0x34cbe9[_0x2b8c5f(0x206)+'L']=_0x2b8c5f(0x2d6)+_0x2b8c5f(0x221)+'state\x22>K'+_0x2b8c5f(0x28b)+'bài\x20quiz'+_0x2b8c5f(0x2b8);}function startQuiz(_0x25dcae){const _0x13ac30=_0x5515,_0x244edd={};_0x244edd[_0x13ac30(0x228)]='quiz.htm'+'l';const _0x422da7=_0x244edd;localStorage[_0x13ac30(0x26b)]('currentQ'+_0x13ac30(0x2a5),_0x25dcae),window[_0x13ac30(0x209)][_0x13ac30(0x286)]=_0x422da7['wnXoo'];}function renderUserStats(_0x4025b2){const _0x8f1ad6=_0x5515,_0x93e076={'jDVOR':'Khác','TAKbv':_0x8f1ad6(0x247)+'stat-inf'+'o','puIEF':'div','WdMPk':function(_0x320dc4,_0x887ceb){return _0x320dc4(_0x887ceb);},'UsyXX':_0x8f1ad6(0x247)+_0x8f1ad6(0x2b0)+'id'};if(!_0x4025b2)return;document[_0x8f1ad6(0x25a)+_0x8f1ad6(0x2a9)](_0x8f1ad6(0x2af)+'s')[_0x8f1ad6(0x288)][_0x8f1ad6(0x281)]=_0x8f1ad6(0x26a);const _0x52f6e4=_0x4025b2[_0x8f1ad6(0x2bb)]||0x0,_0x34b1a0=(_0x4025b2[_0x8f1ad6(0x1fd)+_0x8f1ad6(0x1e2)]||0x0)[_0x8f1ad6(0x278)](0x2),_0x23d172=(_0x4025b2[_0x8f1ad6(0x273)+_0x8f1ad6(0x1e2)]||0x0)['toFixed'](0x2);document[_0x8f1ad6(0x25a)+_0x8f1ad6(0x2a9)](_0x8f1ad6(0x23f)+_0x8f1ad6(0x2ac))[_0x8f1ad6(0x2a4)+_0x8f1ad6(0x259)]=_0x52f6e4,document['getEleme'+_0x8f1ad6(0x2a9)](_0x8f1ad6(0x1fd)+_0x8f1ad6(0x1e2))[_0x8f1ad6(0x2a4)+_0x8f1ad6(0x259)]=_0x34b1a0,document[_0x8f1ad6(0x25a)+_0x8f1ad6(0x2a9)](_0x8f1ad6(0x273)+'core')[_0x8f1ad6(0x2a4)+_0x8f1ad6(0x259)]=_0x23d172;const _0xf77d3a=document['getEleme'+_0x8f1ad6(0x2a9)](_0x8f1ad6(0x251)+_0x8f1ad6(0x2d9)+'ts'),_0x3f55a5=document[_0x8f1ad6(0x25a)+_0x8f1ad6(0x2a9)]('modalHig'+_0x8f1ad6(0x224)+'e'),_0x373c8e=document[_0x8f1ad6(0x25a)+_0x8f1ad6(0x2a9)](_0x8f1ad6(0x2a8)+_0x8f1ad6(0x29a)+'e');_0xf77d3a&&(_0xf77d3a['textCont'+'ent']=_0x52f6e4),_0x3f55a5&&(_0x3f55a5[_0x8f1ad6(0x2a4)+_0x8f1ad6(0x259)]=_0x34b1a0),_0x373c8e&&(_0x373c8e[_0x8f1ad6(0x2a4)+_0x8f1ad6(0x259)]=_0x23d172);const _0x332956=document[_0x8f1ad6(0x25a)+_0x8f1ad6(0x2a9)](_0x8f1ad6(0x24d)+'tatsCont'+_0x8f1ad6(0x21d));if(_0x332956){_0x332956[_0x8f1ad6(0x206)+'L']='';const _0x21d291=_0x4025b2[_0x8f1ad6(0x1fd)+'coresByQ'+_0x8f1ad6(0x29f)]||{};if(Object[_0x8f1ad6(0x28c)](_0x21d291)[_0x8f1ad6(0x284)]>0x0){const _0x577179=document[_0x8f1ad6(0x1ff)+_0x8f1ad6(0x27f)]('h3');_0x577179['classNam'+'e']=_0x8f1ad6(0x247)+_0x8f1ad6(0x292)+_0x8f1ad6(0x1e5),_0x577179['textCont'+_0x8f1ad6(0x259)]=_0x8f1ad6(0x21e)+_0x8f1ad6(0x2b5)+'eo\x20bài\x20t'+'hi',_0x332956[_0x8f1ad6(0x252)+_0x8f1ad6(0x2dd)](_0x577179);const _0xa3a010=document[_0x8f1ad6(0x1ff)+_0x8f1ad6(0x27f)](_0x8f1ad6(0x20d));_0xa3a010['classNam'+'e']=_0x93e076['UsyXX'];const _0x396a08=JSON['parse'](sessionStorage[_0x8f1ad6(0x25f)](_0x8f1ad6(0x1fb)+'bjectCac'+'he')||'{}')[_0x8f1ad6(0x2ad)]||{},_0x2c1589={};_0x396a08&&Object[_0x8f1ad6(0x28c)](_0x396a08)[_0x8f1ad6(0x2a3)](_0x360280=>{const _0x44ea47=_0x8f1ad6,_0x3ecf47=Reflect[_0x44ea47(0x1ee)](_0x396a08,_0x360280);Array[_0x44ea47(0x28e)](_0x3ecf47)&&_0x3ecf47[_0x44ea47(0x2a3)](_0x4987f4=>{const _0x114a39=_0x44ea47;Reflect[_0x114a39(0x299)](_0x2c1589,_0x4987f4[_0x114a39(0x1dc)],{'subject':_0x360280,'title':_0x4987f4[_0x114a39(0x1ea)]});});}),Object[_0x8f1ad6(0x28c)](_0x21d291)['forEach'](_0x5267ca=>{const _0x5d1399=_0x8f1ad6,_0x150658=Reflect[_0x5d1399(0x1ee)](_0x21d291,_0x5267ca),_0x2b8bb4=Reflect[_0x5d1399(0x1ee)](_0x2c1589,_0x5267ca)||{'title':_0x5267ca,'subject':_0x93e076[_0x5d1399(0x29b)]},_0x2cec76=document['createEl'+'ement'](_0x5d1399(0x20d));_0x2cec76['classNam'+'e']=_0x5d1399(0x247)+'stat-car'+'d';const _0x2e0a80=document['createEl'+_0x5d1399(0x27f)]('div');_0x2e0a80[_0x5d1399(0x2ba)+'e']=_0x93e076[_0x5d1399(0x2a1)];const _0x3d5c4d=document[_0x5d1399(0x1ff)+_0x5d1399(0x27f)](_0x5d1399(0x20d));_0x3d5c4d[_0x5d1399(0x2ba)+'e']=_0x5d1399(0x247)+'stat-nam'+'e',_0x3d5c4d['textCont'+_0x5d1399(0x259)]=_0x2b8bb4[_0x5d1399(0x1ea)];const _0x58ad74=document[_0x5d1399(0x1ff)+_0x5d1399(0x27f)](_0x93e076[_0x5d1399(0x296)]);_0x58ad74[_0x5d1399(0x2ba)+'e']=_0x5d1399(0x247)+_0x5d1399(0x231),_0x58ad74['textCont'+_0x5d1399(0x259)]=_0x2b8bb4['subject'],_0x2e0a80['appendCh'+_0x5d1399(0x2dd)](_0x3d5c4d),_0x2e0a80['appendCh'+_0x5d1399(0x2dd)](_0x58ad74);const _0x4b2d4f=document[_0x5d1399(0x1ff)+_0x5d1399(0x27f)]('div');_0x4b2d4f[_0x5d1399(0x2ba)+'e']=_0x5d1399(0x247)+_0x5d1399(0x294)+'re';const _0x2a0948=document['createEl'+'ement'](_0x5d1399(0x1dd));_0x2a0948[_0x5d1399(0x2a4)+_0x5d1399(0x259)]=_0x93e076[_0x5d1399(0x260)](Number,_0x150658)[_0x5d1399(0x278)](0x2),_0x4b2d4f['appendCh'+_0x5d1399(0x2dd)](_0x2a0948),_0x2cec76['appendCh'+'ild'](_0x2e0a80),_0x2cec76[_0x5d1399(0x252)+_0x5d1399(0x2dd)](_0x4b2d4f),_0xa3a010[_0x5d1399(0x252)+_0x5d1399(0x2dd)](_0x2cec76);}),_0x332956[_0x8f1ad6(0x252)+'ild'](_0xa3a010);}}}function logout(){const _0x46a804=_0x5515;AuthManager[_0x46a804(0x227)+'h'](),window['location'][_0x46a804(0x286)]=_0x46a804(0x2c2)+'ml';}function toggleDashboardAccountMenu(_0x3e6d6b){const _0x318494=_0x5515,_0x581bb7={};_0x581bb7[_0x318494(0x2b6)]='is-open';const _0x2a4355=_0x581bb7;_0x3e6d6b['preventD'+_0x318494(0x2a2)](),_0x3e6d6b[_0x318494(0x25e)+'agation']();const _0xc30406=document[_0x318494(0x25a)+'ntById'](_0x318494(0x26e)+'dAccount'+_0x318494(0x24b));_0xc30406&&_0xc30406['classLis'+'t'][_0x318494(0x2c4)](_0x2a4355[_0x318494(0x2b6)]);}function closeDashboardAccountMenu(){const _0x403f2e=_0x5515,_0x443fc9={};_0x443fc9['COnbB']=_0x403f2e(0x285);const _0xe42564=_0x443fc9,_0x2c11ef=document[_0x403f2e(0x25a)+_0x403f2e(0x2a9)](_0x403f2e(0x26e)+_0x403f2e(0x2c7)+_0x403f2e(0x24b));_0x2c11ef&&_0x2c11ef[_0x403f2e(0x22c)+'t'][_0x403f2e(0x243)](_0xe42564[_0x403f2e(0x29c)]);}function goToAccountInfo(){const _0x58796e=_0x5515;window[_0x58796e(0x209)][_0x58796e(0x286)]=_0x58796e(0x1d6)+'l';}function goToChangePassword(){const _0x398f59=_0x5515;window[_0x398f59(0x209)][_0x398f59(0x286)]=_0x398f59(0x1e3)+'.html';}function bindDashboardControls(){const _0x3eb154=_0x5515,_0xaff87d={};_0xaff87d[_0x3eb154(0x2e5)]=_0x3eb154(0x203),_0xaff87d[_0x3eb154(0x22b)]=_0x3eb154(0x28d),_0xaff87d[_0x3eb154(0x21a)]=_0x3eb154(0x26e)+_0x3eb154(0x2c7)+_0x3eb154(0x24b),_0xaff87d[_0x3eb154(0x1e0)]=_0x3eb154(0x1fc)+_0x3eb154(0x263)+'tn',_0xaff87d['bZsyW']=_0x3eb154(0x261)+_0x3eb154(0x293)+'y',_0xaff87d[_0x3eb154(0x1f2)]=_0x3eb154(0x27e)+_0x3eb154(0x26f);const _0x3c79e1=_0xaff87d,_0x3b2f85=document[_0x3eb154(0x25a)+_0x3eb154(0x2a9)](_0x3eb154(0x276)+_0x3eb154(0x1e7));_0x3b2f85&&_0x3b2f85[_0x3eb154(0x264)+_0x3eb154(0x1f4)](_0x3c79e1['RIrrV'],()=>setGridMode(_0x3eb154(0x229)===_0x3b2f85['value']));const _0x29d9ef=document[_0x3eb154(0x25a)+_0x3eb154(0x2a9)]('statsMod'+_0x3eb154(0x1da));_0x29d9ef&&_0x29d9ef[_0x3eb154(0x264)+'Listener'](_0x3c79e1['NfdFT'],openStatsModal);const _0x43e5b6=document[_0x3eb154(0x25a)+_0x3eb154(0x2a9)](_0x3eb154(0x26e)+_0x3eb154(0x2c7)+_0x3eb154(0x202));_0x43e5b6&&_0x43e5b6[_0x3eb154(0x264)+_0x3eb154(0x1f4)](_0x3eb154(0x203),toggleDashboardAccountMenu);const _0x43a6a3=document[_0x3eb154(0x25a)+_0x3eb154(0x2a9)](_0x3c79e1[_0x3eb154(0x21a)]);_0x43a6a3&&(_0x43a6a3[_0x3eb154(0x1ed)+_0x3eb154(0x204)](_0x3eb154(0x23d)+_0x3eb154(0x219)+_0x3eb154(0x1f6)+_0x3eb154(0x207))?.[_0x3eb154(0x264)+'Listener']('click',goToAccountInfo),_0x43a6a3[_0x3eb154(0x1ed)+'ector'](_0x3eb154(0x23d)+_0x3eb154(0x2c1)+_0x3eb154(0x28a)+_0x3eb154(0x217))?.['addEvent'+'Listener'](_0x3eb154(0x203),goToChangePassword),_0x43a6a3['querySel'+_0x3eb154(0x204)](_0x3eb154(0x23d)+'tion=\x22lo'+'gout\x22]')?.[_0x3eb154(0x264)+_0x3eb154(0x1f4)](_0x3eb154(0x203),logout)),document[_0x3eb154(0x1ed)+_0x3eb154(0x258)](_0x3c79e1[_0x3eb154(0x1e0)])[_0x3eb154(0x2a3)](_0x3ade16=>{const _0x1c6f0a=_0x3eb154;_0x3ade16[_0x1c6f0a(0x264)+_0x1c6f0a(0x1f4)](_0x3c79e1[_0x1c6f0a(0x2e5)],()=>switchDashboardTab(_0x3ade16[_0x1c6f0a(0x1d8)][_0x1c6f0a(0x20c)],_0x3ade16));});const _0x2b5de5=document[_0x3eb154(0x25a)+'ntById'](_0x3c79e1[_0x3eb154(0x2bf)]);_0x2b5de5&&_0x2b5de5[_0x3eb154(0x264)+_0x3eb154(0x1f4)](_0x3c79e1[_0x3eb154(0x2e5)],closeStatsModalOnBackdrop);const _0x6bfc1f=document[_0x3eb154(0x1ed)+_0x3eb154(0x204)](_0x3eb154(0x245)+'dalOverl'+'ay\x20.stat'+_0x3eb154(0x250)+_0x3eb154(0x290));_0x6bfc1f&&_0x6bfc1f[_0x3eb154(0x264)+'Listener'](_0x3c79e1[_0x3eb154(0x2e5)],closeStatsModal);const _0x2aaa05=document[_0x3eb154(0x25a)+_0x3eb154(0x2a9)](_0x3c79e1[_0x3eb154(0x1f2)]);_0x2aaa05&&_0x2aaa05['addEvent'+_0x3eb154(0x1f4)](_0x3eb154(0x203),scrollDashboardToTop);}function _0x2f56(){const _0x35aff8=['y2XVC2vZDa','yxzLCMfNzvm','DufxDMu','yxnZAwDU','DMLLD01Vzgu','uffPuNG','Dg9gAxHLza','ntq0nJuZnM9yzgPYCG','tCo0BIbO4BUnyW','CxvPEKDYAwq','mta0nJu3vLbfAhDJ','zu5qu1O','yMfJAY10BY0','zw1LBNq','nde5ntqZmwL4B0LouW','zgLZCgXHEq','C2nYB2XS','zxncEvn1yMO','BgvUz3rO','AxmTB3bLBG','AhjLzG','AxmTywn0Axy','C3r5Bgu','CxvPEKXPC3q','yw5Nzs1Wyxm','Amo0BMCGy8oZia','A2v5CW','y2HHBMDL','AxnbCNjHEq','CxvPENPLCW','y2XVC2u','zen1CNjLBNq','C3rHDhmTDgK','ywXpDMvYBge','C3rHDc1Zy28','B2zMC2v0vg8','Chvjruy','A2v5','u+g7KsbJW6j1igG','C2v0','CMfNzvnJB3i','AKrwt1i','q09UyKi','s2JdTg5NigpdSW','DcdeKEg7Mw5NlJW','DwL6','C3rHDhm','veflyNy','zwzHDwX0','zM9YrwfJAa','Dgv4DenVBNq','DwL6suq','DMf0yxi','mtiXotCWohngrLPIyG','Bw9KywXbDMu','BNrcEuLK','r1zRCwm','C3vIAMvJDa','zw1WDhm','zgf0yq','Dg9mB3DLCKm','CxvPELn0yxq','C3rHDhmTz3i','AuDxs0W','DgfIpsi','z2v0uM9Szq','CgLSBa','ig5O4BQLDcb0Aa','D0vgtue','zw5HyMXL','ig7dOg88l3a+','l3a+','y2XHC3noyw0','yxr0zw1WDhm','C2nYB2XSvg8','Dg5Bzgf0ys0','nJqYodq0mNLfwxPSrW','yLPZEvC','oteYzefmCu52','DgLVBJ0Iy2G','Bg9NAw4UAhq','DgXsyK4','Dg9Nz2XL','igrHC2HIB2e','C21VB3rO','zefJy291BNq','nuHxquD3uG','EhroB2rL','z2v0u3vIAMu','CxvPEKz1BgW','CMqTC3rHDhm','BwvZC2fNzq','vMLLDW','XjfHBMCGAg/HUQe','u3vIAMvJDa','DMzmy1e','yMPLy3rdywm','vuP1Bva','yw5VBNLTB3u','pc9ZDhjVBMC','phaGy2XHC3m','EuHwvhO','Awv3lxf1AxO','ywXbDhrLBxa','q291BNq','4BUpAtWVC3rYBW','ywn0AxzLlxq','AwXK','ywn0AxzL','tmoGBsbcW6bP','C2HVDW','DgjMwK4','BMC+','Dgf0CW','nZiXmJqWngnWq1PIBG','tMzKrLq','DgfYz2v0','De1LBNu','C3vJy2vZCW','Aw5MBY5ODg0','CxvPEKXHC3q','zgf0yxnLDa','Du9VBva','ywXcDg4','phn0CM9UzZ4','CxvPEKLe','C3bHBG','y3jQAxa','tgLZDa','rKP3y3u','DwLotMi','y29Yzq','CgfZC3DVCMq','lxrHyG','DgXL','z2v0vxnLCLm','u2vSzwn0','zwn0','CwHrCw4','DgL0Bgu','yw1L','zwn0C0nHy2G','CxvLCNLtzwW','z2v0','DeLtqNy','C0nHy2HLoG','C2LKzwjHCLu','B2TkuNm','EwLlA1G','tgLZDgvUzxi','lxrHyIWGlMq','y291BNqTAw4','ywrK','lxf1AxOTDge','CMrby2nVDw4','BMfTzq','CxvPEKj5u3u','lMrHC2HIB2e','AgLNAgvZDfm','shzlwvu','y3jLyxrLrwW','Aw5JBhvKzxm','Awv3lxn0yxq','twvUDuj0BG','y2XPy2S','zwn0B3i','zgvZy3jPChq','Aw5Uzxjive0','zM8Ixq','ywjLBa','Bg9JyxrPB24','CMqTCxvPEI0','lNn1yMPLy3q','DgfI','zgL2','yMvOyxzPB3i','zNjLC2HPBMC','lxbPBgW','C3vIAMvJDhm','Dw5HDxrOB3i','CxvPEI1PBNm','Evn1yMPLy3q','z2v0uxvPENO','qwrTAw4','C3DVCMqIxq','C3rYAw5NAwy','DgLVBJ0Iywm','Bvf4uKu','C2vYDhi','rMfSBgjHy2S','ywLUzxi','XjbP4BUdBsbJyw8','DgLTzuXPBwK','DxnLCKf0Dgu','psjLBxb0Es0','CxvPENPLC0i','CxvPEI1Tzxq','AgvZDfnJB3i','BCo0BIbO4BUnyYa','CxvPEG','y2XLyxjbDxq','D25yB28','Dhj1zq','ywrPBMCGCxu','uKLYCLy','y2XHC3nmAxm','tfbiAMi','AwDODa','CxvPEI1Jyxi','ntbOtvz0C0i','C3rHDc1ZDwi','ywXS','AwPJtxG','BM93','yNrUlxn0yxi','rxjYB3iGCMu','zNvUy3rPB24','y3jLyxrLvgu','Aw52ywXPzca','DhjPBq','zc1TB2rLCM4','yxnL','w2rHDgeTywm','zxjYB3i','Dg90ywXbDhq','z2v0vg9Rzw4','CMvTB3zLsxq','ugL6wha','CMvTB3zL','CxvPEI1Kzxm','i3n0yxrZtw8','mtqZnZe3ohr4DMXmsq','C3vIAMvJDc0','CgfYC2u','yxnOyM9HCMq','AwDODc1YB3C','twvUDq','qMvkug0','C3vIAMvJDfm','yw50AunOzwe','z2v0vxnLCM4','CY1TB2rHBc0','Bw9KywXuB3q','yxbWzw5Kq2G','tw9Kzq','tmAW4BUJDcbSW6bT','CMqTBwfPBG','sK1oufi','ywrTAw4UAhq','zwn0B3jbBgW','zw50','z2v0rwXLBwu','CxvPELn1yMO','AxP6zxm6','yNv0Dg9U','C3rVCfbYB3a','z2v0sxrLBq','v2rnugS','C3rHDhnnB2q','u3vIAMvJDeW','CMqTDgfIlwi','ywrKrxzLBNq','Dc1XDwL6','AxngAw5PDgu','Bw9IAwXLlxy','DMfSDwu','C3rHDguIpKS','yMXVy2S','C2v0sxrLBq','rxnJyxbL','uxvPEG','zgfZAgjVyxi','Dg9W','uhfqBwS','CMqGAw5PDdO'];_0x2f56=function(){return _0x35aff8;};return _0x2f56();}function updateGridModeSelect(_0x1fbcdf){const _0x2efc38=_0x5515,_0x4d6863=document[_0x2efc38(0x25a)+_0x2efc38(0x2a9)](_0x2efc38(0x276)+'Select');_0x4d6863&&(_0x4d6863[_0x2efc38(0x268)]=String(!!_0x1fbcdf));}function setGridMode(_0x188b3e){const _0x23d75f=_0x5515,_0x58de8b=!!_0x188b3e;localStorage[_0x23d75f(0x26b)](_0x23d75f(0x27b)+_0x23d75f(0x253),String(_0x58de8b)),updateGridModeSelect(_0x58de8b);}function initGridModeToggle(){const _0x38ed7f=_0x5515,_0x2c8759={};_0x2c8759[_0x38ed7f(0x233)]='true';const _0x1a9ae4=_0x2c8759;document[_0x38ed7f(0x25a)+'ntById'](_0x38ed7f(0x276)+_0x38ed7f(0x1e7))&&setGridMode(_0x1a9ae4['ijcMx']===localStorage['getItem']('quizGrid'+_0x38ed7f(0x253)),!0x0);}window['addEvent'+_0x104473(0x1f4)](_0x104473(0x282),()=>{const _0x51348b=_0x104473,_0x3328f5={};_0x3328f5[_0x51348b(0x1f3)]=_0x51348b(0x2e0);const _0x57dfe8=_0x3328f5,_0x3ba4f6=document[_0x51348b(0x25a)+'ntById'](_0x51348b(0x27e)+_0x51348b(0x26f));window['scrollY']>0x12c?_0x3ba4f6['classLis'+'t'][_0x51348b(0x1f7)](_0x57dfe8[_0x51348b(0x1f3)]):_0x3ba4f6[_0x51348b(0x22c)+'t'][_0x51348b(0x243)](_0x51348b(0x2e0));}),window[_0x104473(0x24e)+'t']&&_0x104473(0x237)==typeof window[_0x104473(0x24e)+'t'][_0x104473(0x2b7)]&&window[_0x104473(0x24e)+'t']['enable'](!0x1),window[_0x104473(0x264)+_0x104473(0x1f4)]('keydown',_0x3d83f7=>{const _0x2644fb=_0x104473;_0x2644fb(0x26c)===_0x3d83f7[_0x2644fb(0x297)]&&(closeStatsModal(),closeDashboardAccountMenu());}),document[_0x104473(0x264)+_0x104473(0x1f4)](_0x104473(0x203),_0x1ccc58=>{const _0x1eb5bf=_0x104473;document[_0x1eb5bf(0x25a)+_0x1eb5bf(0x2a9)](_0x1eb5bf(0x26e)+_0x1eb5bf(0x2c7)+_0x1eb5bf(0x24b))&&(_0x1ccc58[_0x1eb5bf(0x2e6)][_0x1eb5bf(0x272)]('#dashboa'+_0x1eb5bf(0x1f9)+_0x1eb5bf(0x1d4))||closeDashboardAccountMenu());}),initGridModeToggle(),bindDashboardControls(),checkAuth(),Object[_0x104473(0x275)](window,{'openStatsModal':openStatsModal,'closeStatsModal':closeStatsModal,'closeStatsModalOnBackdrop':closeStatsModalOnBackdrop,'scrollDashboardToTop':scrollDashboardToTop,'toggleDashboardAccountMenu':toggleDashboardAccountMenu,'closeDashboardAccountMenu':closeDashboardAccountMenu,'goToAccountInfo':goToAccountInfo,'goToChangePassword':goToChangePassword,'logout':logout,'switchDashboardTab':switchDashboardTab,'checkAuth':checkAuth,'selectSubject':selectSubject,'startQuiz':startQuiz});
+let selectedSubject = '';
+        let allSubjects = [];
+
+
+                function getQuizCacheStore() {
+            try {
+                const stored = JSON.parse(sessionStorage.getItem('quizBySubjectCache') || '{}');
+                // Check TTL (2 hours = 7200000 ms)
+                if (stored._timestamp && Date.now() - stored._timestamp > 7200000) {
+                    sessionStorage.removeItem('quizBySubjectCache');
+                    return {};
+                }
+                return stored.data || stored; // Fallback for old cache format
+            } catch (error) {
+                return {};
+            }
+        }
+
+        function setQuizCacheStore(cacheStore) {
+            const dataToStore = {
+                _timestamp: Date.now(),
+                data: cacheStore || {}
+            };
+            sessionStorage.setItem('quizBySubjectCache', JSON.stringify(dataToStore));
+        }
+
+        function isAuthErrorResult(result) {
+            const message = String((result && result.message) || '').toLowerCase();
+            return message.includes('invalid token') || message.includes('unauthorized');
+        }
+
+        function getStatsCacheKey() {
+            const username = localStorage.getItem('quizUsername') || 'anonymous';
+            return `quizStatsCache:${username}`;
+        }
+
+        // Kiểm tra authentication
+        function checkAuth() {
+            const token = AuthManager.getToken();
+            const username = AuthManager.getUsername();
+            const role = AuthManager.getRole();
+
+            if (!token || !username) {
+                window.location.href = 'login';
+                return;
+            }
+
+            if (role === 'Admin') {
+                window.location.href = 'admin';
+                return;
+            }
+
+            const fullName = localStorage.getItem('quizFullName') || '';
+            const displayName = fullName || username;
+            
+            const sidebarUserName = document.getElementById('sidebarUserName');
+            if (sidebarUserName) {
+                sidebarUserName.textContent = displayName;
+            }
+
+            const sidebarAvatar = document.getElementById('sidebarAvatar');
+            if (sidebarAvatar) {
+                sidebarAvatar.textContent = displayName.charAt(0).toUpperCase();
+            }
+
+            loadDashboard();
+        }
+
+        // Load dữ liệu Dashboard
+        async function loadDashboard() {
+            const username = localStorage.getItem('quizUsername');
+            const cachedSubjects = sessionStorage.getItem('quizSubjectsCache');
+            const cachedStats = sessionStorage.getItem(getStatsCacheKey());
+
+            if (cachedSubjects) {
+                try {
+                    const subjects = JSON.parse(cachedSubjects);
+                    renderSubjects(subjects);
+                    allSubjects = subjects;
+                } catch (error) {
+                    sessionStorage.removeItem('quizSubjectsCache');
+                }
+            }
+
+            if (cachedStats) {
+                try {
+                    renderUserStats(JSON.parse(cachedStats));
+                } catch (error) {
+                    sessionStorage.removeItem(getStatsCacheKey());
+                }
+            }
+
+            await refreshDashboardInit(username);
+
+            // Kiểm tra xem có cần cảnh báo thiếu Email không
+            try {
+                const accountResult = await APIClient.getAccountInfo();
+                if (accountResult && accountResult.success && accountResult.account) {
+                    const hasEmail = !!accountResult.account.email;
+                    const ignoreWarning = localStorage.getItem('quiz_ignore_email_warning') === 'true';
+                    const role = AuthManager.getRole();
+
+                    if (!hasEmail && !ignoreWarning && role !== 'Admin') {
+                        // Hiển thị popup
+                        const noEmailPopup = document.getElementById('noEmailPopup');
+                        const confirmIgnorePopup = document.getElementById('confirmIgnorePopup');
+                        
+                        if (noEmailPopup && confirmIgnorePopup) {
+                            document.getElementById('btnUpdateEmailNow').onclick = () => {
+                                window.location.href = 'info?action=updateEmail';
+                            };
+                            
+                            document.getElementById('btnRemindLater').onclick = () => {
+                                noEmailPopup.classList.add('hidden');
+                            };
+
+                            document.getElementById('btnDontRemind').onclick = () => {
+                                noEmailPopup.classList.add('hidden');
+                                confirmIgnorePopup.classList.remove('hidden');
+                            };
+
+                            document.getElementById('btnCancelIgnore').onclick = () => {
+                                confirmIgnorePopup.classList.add('hidden');
+                                noEmailPopup.classList.remove('hidden');
+                            };
+
+                            document.getElementById('btnConfirmIgnore').onclick = () => {
+                                localStorage.setItem('quiz_ignore_email_warning', 'true');
+                                confirmIgnorePopup.classList.add('hidden');
+                            };
+
+                            noEmailPopup.classList.remove('hidden');
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to fetch account info for email warning", err);
+            }
+        }
+
+        async function refreshDashboardInit(username, forceRefresh = false) {
+            try {
+                const result = await APIClient.getDashboardInit(username, forceRefresh);
+
+                if (!result.success) {
+                    if (isAuthErrorResult(result)) {
+                        AuthManager.clearAuth();
+                        window.location.href = 'login';
+                        return;
+                    }
+                    await fallbackLoadDashboardData(username);
+                    return;
+                }
+
+                const subjects = result.subjects || [];
+                const stats = result.stats || null;
+                const quizzesBySubject = result.quizzesBySubject || {};
+
+                allSubjects = subjects;
+                sessionStorage.setItem('quizSubjectsCache', JSON.stringify(subjects));
+                renderSubjects(subjects);
+
+                if (quizzesBySubject && typeof quizzesBySubject === 'object') {
+                    setQuizCacheStore(quizzesBySubject);
+                }
+
+                if (stats) {
+                    sessionStorage.setItem(getStatsCacheKey(), JSON.stringify(stats));
+                    renderUserStats(stats);
+                }
+                
+                const currentView = sessionStorage.getItem('dashboardCurrentView');
+
+                const lastSub = sessionStorage.getItem('quizLastSubject');
+                if (lastSub && subjects.includes(lastSub)) {
+                    selectSubject(lastSub, false);
+                } else {
+                    selectSubject('Tất cả', false);
+                }
+                
+                if (currentView === 'stats') {
+                    switchDashboardView('stats');
+                }
+            } catch (error) {
+                console.error('Error refreshing dashboard init:', error);
+                await fallbackLoadDashboardData(username);
+            }
+        }
+
+        async function fallbackLoadDashboardData(username) {
+            try {
+                const [subjectResult, statsResult] = await Promise.all([
+                    APIClient.getSubjects(),
+                    APIClient.getUserStats(username)
+                ]);
+
+                if (isAuthErrorResult(subjectResult) || isAuthErrorResult(statsResult)) {
+                    AuthManager.clearAuth();
+                    window.location.href = 'login';
+                    return;
+                }
+
+                if (subjectResult && subjectResult.success) {
+                    const subjects = subjectResult.subjects || [];
+                    allSubjects = subjects;
+                    sessionStorage.setItem('quizSubjectsCache', JSON.stringify(subjects));
+                    renderSubjects(subjects);
+                }
+
+                if (statsResult && statsResult.success && statsResult.stats) {
+                    sessionStorage.setItem(getStatsCacheKey(), JSON.stringify(statsResult.stats));
+                    renderUserStats(statsResult.stats);
+                }
+            } catch (fallbackError) {
+                console.error('Fallback dashboard load failed:', fallbackError);
+            }
+        }
+
+        // Render danh sách môn học
+        function renderSubjects(subjects) {
+            const container = document.getElementById('subjectsList');
+            container.innerHTML = '';
+
+            if (!subjects || subjects.length === 0) {
+                container.innerHTML = '<p class="empty-state">Không có môn học đang hoạt động.</p>';
+                return;
+            }
+
+            subjects.forEach(subject => {
+                const button = document.createElement('button');
+                button.className = 'subject-pill';
+                button.type = 'button';
+                button.textContent = subject;
+                button.addEventListener('click', () => selectSubject(subject));
+                container.appendChild(button);
+            });
+        }
+
+        
+        
+        async function handleDashboardRefresh(btn) {
+            if (btn) btn.disabled = true;
+            const originalText = btn ? btn.textContent : '';
+            if (btn) btn.textContent = '...';
+            
+            document.body.style.pointerEvents = 'none';
+            document.body.style.opacity = '0.7';
+            document.body.style.transition = 'opacity 0.2s';
+            
+            sessionStorage.removeItem('quizBySubjectCache');
+            
+            const username = AuthManager.getUsername();
+            await refreshDashboardInit(username, true);
+            
+            document.body.style.pointerEvents = '';
+            document.body.style.opacity = '';
+            
+            if (btn) {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        
+        function toggleDashboardSidebar() {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.dashboard-sidebar').classList.toggle('is-open');
+                const overlay = document.getElementById('dashboardPinOverlay');
+                if (overlay) overlay.classList.toggle('is-open');
+            } else {
+                document.querySelector('.dashboard-layout').classList.toggle('sidebar-closed');
+            }
+        }
+
+        function switchDashboardView(view) {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.dashboard-sidebar').classList.remove('is-open');
+                const overlay = document.getElementById('dashboardPinOverlay');
+                if (overlay) overlay.classList.remove('is-open');
+            }
+            
+            sessionStorage.setItem('dashboardCurrentView', view);
+            
+            // Update nav links
+            document.querySelectorAll('.sidebar-link[data-view]').forEach(btn => {
+                btn.classList.remove('active', 'is-active');
+                if (btn.getAttribute('data-view') === view) {
+                    btn.classList.add('is-active');
+                }
+            });
+
+            // Update title
+            const titleEl = document.getElementById('dashboardViewTitle');
+            if (view === 'quiz') {
+                titleEl.textContent = 'Tất cả bài thi';
+                document.getElementById('quizPanel').classList.remove('is-hidden');
+                document.getElementById('statsPanel').classList.add('is-hidden');
+                selectSubject('Tất cả', false);
+            } else if (view === 'stats') {
+                titleEl.textContent = 'Thống kê cá nhân';
+                document.getElementById('quizPanel').classList.add('is-hidden');
+                document.getElementById('statsPanel').classList.remove('is-hidden');
+                document.querySelectorAll('.subject-pill').forEach(btn => {
+                    btn.classList.remove('is-active');
+                });
+            }
+        }
+
+        function switchDashboardTab_old(tabName) {
+            const dashboardMain = document.querySelector('.dashboard-main');
+
+            document.querySelectorAll('.dashboard-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            const activeButton = triggerButton || document.querySelector(`.dashboard-tab-btn[data-tab="${tabName}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            document.querySelectorAll('.dashboard-stats-tab, .dashboard-quiz-tab').forEach(tab => {
+                tab.classList.remove('active-tab');
+            });
+
+            if (tabName === 'stats') {
+                document.querySelector('.dashboard-stats-tab').classList.add('active-tab');
+                if (dashboardMain) {
+                    dashboardMain.classList.remove('mobile-view-quiz');
+                    dashboardMain.classList.add('mobile-view-stats');
+                }
+            } else {
+                document.querySelector('.dashboard-quiz-tab').classList.add('active-tab');
+                if (dashboardMain) {
+                    dashboardMain.classList.remove('mobile-view-stats');
+                    dashboardMain.classList.add('mobile-view-quiz');
+                }
+            }
+        }
+
+        function openStatsModal() {
+            const modal = document.getElementById('statsModalOverlay');
+            if (modal) {
+                modal.classList.add('show');
+            }
+        }
+
+        function closeStatsModal() {
+            const modal = document.getElementById('statsModalOverlay');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        }
+
+        function closeStatsModalOnBackdrop(event) {
+            if (event.target && event.target.id === 'statsModalOverlay') {
+                closeStatsModal();
+            }
+        }
+
+        document.querySelector('.dashboard-content-area').addEventListener('scroll', () => {
+            const btn = document.getElementById('back-to-top');
+            if (document.querySelector('.dashboard-content-area').scrollTop > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        function scrollDashboardToTop() {
+            document.querySelector('.dashboard-content-area').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Chọn môn học
+        
+        async function selectSubject(subject, revalidate = true) {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.dashboard-sidebar').classList.remove('is-open');
+                const overlay = document.getElementById('dashboardPinOverlay');
+                if (overlay) overlay.classList.remove('is-open');
+            }
+            selectedSubject = subject;
+            document.getElementById('selectedSubjectLabel').textContent = subject;
+            if (subject !== 'Tất cả') {
+                sessionStorage.setItem('quizLastSubject', subject);
+            } else {
+                sessionStorage.removeItem('quizLastSubject');
+            }
+
+            // Dảm bảo luôn hiển thị màn hình quiz khi chọn môn học
+            sessionStorage.setItem('dashboardCurrentView', 'quiz');
+            document.getElementById('quizPanel').classList.remove('is-hidden');
+            document.getElementById('statsPanel').classList.add('is-hidden');
+            document.getElementById('dashboardViewTitle').textContent = subject === 'Tất cả' ? 'Tất cả bài thi' : 'Danh sách bài thi';
+            
+            // Đổi active link trên sidebar về Tất cả bài thi
+            document.querySelectorAll('.sidebar-link[data-view]').forEach(btn => {
+                btn.classList.remove('active', 'is-active');
+                if (btn.getAttribute('data-view') === 'quiz') {
+                    btn.classList.add('is-active');
+                }
+            });
+
+            // Update pills
+            document.querySelectorAll('.subject-pill').forEach((node) => {
+                node.classList.toggle('is-active', node.textContent === subject);
+            });
+            
+            // Update Tất cả bài thi button
+            const allBtn = document.querySelector('.sidebar-link[data-view="quiz"]');
+            if (subject === 'Tất cả') {
+                if(allBtn) allBtn.classList.add('is-active');
+                document.querySelectorAll('.subject-pill').forEach(n => n.classList.remove('is-active'));
+            } else {
+                if(allBtn) allBtn.classList.remove('is-active');
+            }
+
+            const quizCacheStore = getQuizCacheStore();
+            
+            if (subject === 'Tất cả') {
+                let allQuizzes = [];
+                for (const key in quizCacheStore) {
+                    if (Array.isArray(quizCacheStore[key])) {
+                        allQuizzes = allQuizzes.concat(quizCacheStore[key]);
+                    }
+                }
+                
+                // remove duplicates just in case
+                const uniqueIds = new Set();
+                const uniqueQuizzes = [];
+                allQuizzes.forEach(q => {
+                    if(!uniqueIds.has(q.quizID)) {
+                        uniqueIds.add(q.quizID);
+                        uniqueQuizzes.push(q);
+                    }
+                });
+                
+                renderQuizzes(uniqueQuizzes);
+                handleMobileSubjectSelection();
+                return;
+            }
+
+            if (Array.isArray(quizCacheStore[subject])) {
+                renderQuizzes(quizCacheStore[subject]);
+                handleMobileSubjectSelection();
+            }
+
+            if (!revalidate) {
+                return;
+            }
+
+            try {
+                const result = await APIClient.getQuizzesBySubject(subject);
+
+                if (result.success) {
+                    const quizzes = result.quizzes || [];
+                    quizCacheStore[subject] = quizzes;
+                    setQuizCacheStore(quizCacheStore);
+                    renderQuizzes(quizzes);
+                    handleMobileSubjectSelection();
+                }
+            } catch (error) {
+                console.error('Error loading quizzes:', error);
+            }
+        }
+
+        function handleMobileSubjectSelection() {
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    const quizSection = document.getElementById('quizPanel');
+                    if (quizSection) {
+                        const offsetTop = quizSection.offsetTop - 70;
+                        document.querySelector('.dashboard-content-area').scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    }
+                }, 50);
+            }
+        }
+
+        function handleMobileSubjectSelection_old() {
+            if (window.innerWidth <= 768) {
+                switchDashboardTab('quiz');
+                setTimeout(() => {
+                    const quizSection = document.querySelector('.dashboard-quiz-tab');
+                    if (quizSection) {
+                        const offsetTop = quizSection.offsetTop - 70;
+                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    }
+                }, 50);
+            }
+        }
+
+        // Render danh sách bài quiz
+        function renderQuizzes(quizzes) {
+            const container = document.getElementById('quizList');
+            container.innerHTML = '';
+
+            if (quizzes.length === 0) {
+                container.innerHTML = '<p class="empty-state">Không có bài quiz nào</p>';
+                return;
+            }
+
+            quizzes.forEach(quiz => {
+                const card = document.createElement('div');
+                card.className = 'quiz-card-modern';
+                const safeDescription = (quiz.description || 'Không có mô tả.').trim();
+                const parsedQuestionCount = Number(quiz.questionCount);
+                const questionCount = Number.isFinite(parsedQuestionCount) && parsedQuestionCount >= 0
+                    ? parsedQuestionCount
+                    : 0;
+                const parsedUserAttempts = Number(quiz.userAttempts);
+                const userAttempts = Number.isFinite(parsedUserAttempts) && parsedUserAttempts >= 0
+                    ? parsedUserAttempts
+                    : 0;
+                const metaRow = document.createElement('div');
+                metaRow.className = 'quiz-meta-row';
+
+                const subjectNode = document.createElement('span');
+                const displaySubject = selectedSubject === 'Tất cả' ? (quiz.subject || 'Môn học') : (selectedSubject || quiz.subject || 'Môn học');
+                subjectNode.textContent = String(displaySubject);
+
+                const timeNode = document.createElement('span');
+                timeNode.textContent = `⏱ ${String(quiz.timeLimit || '')} phút`;
+
+                metaRow.appendChild(subjectNode);
+                metaRow.appendChild(timeNode);
+
+                const titleNode = document.createElement('h4');
+                titleNode.textContent = String(quiz.title || 'Quiz');
+
+                const descNode = document.createElement('p');
+                descNode.className = 'quiz-desc';
+                descNode.textContent = safeDescription;
+
+                const insightRow = document.createElement('div');
+                insightRow.className = 'quiz-insight-row';
+
+                const questionInsight = document.createElement('div');
+                questionInsight.className = 'quiz-insight';
+                questionInsight.innerHTML = '<strong>Số câu hỏi</strong>';
+                questionInsight.appendChild(document.createTextNode(String(questionCount)));
+
+                const attemptInsight = document.createElement('div');
+                attemptInsight.className = 'quiz-insight';
+                attemptInsight.innerHTML = '<strong>Lượt làm</strong>';
+                attemptInsight.appendChild(document.createTextNode(String(userAttempts)));
+
+                const startBtn = document.createElement('button');
+                startBtn.className = 'btn-start-quiz';
+                startBtn.type = 'button';
+                startBtn.textContent = 'Bắt Đầu Làm Bài';
+
+                insightRow.appendChild(questionInsight);
+                insightRow.appendChild(attemptInsight);
+
+                card.appendChild(metaRow);
+                card.appendChild(titleNode);
+                card.appendChild(descNode);
+                card.appendChild(insightRow);
+                card.appendChild(startBtn);
+                startBtn.addEventListener('click', () => startQuiz(quiz.quizID));
+                container.appendChild(card);
+            });
+        }
+
+        async function startQuiz(quizID) {
+            const draft = localStorage.getItem('quiz_draft_' + quizID);
+            const state = localStorage.getItem('quiz_state_' + quizID);
+            
+            if (draft || state) {
+                let wantResume = true;
+                if (typeof showInAppConfirm === 'function') {
+                    wantResume = await showInAppConfirm('Bạn đang có bài thi làm dở. Bạn có muốn tiếp tục làm bài này không?\n\n- Chọn "Đồng ý" để làm tiếp.\n- Chọn "Hủy" để làm bài mới hoàn toàn.');
+                } else {
+                    wantResume = confirm('Bạn đang có bài thi làm dở. Bấm OK để làm tiếp, bấm Cancel để làm bài mới hoàn toàn.');
+                }
+                
+                if (!wantResume) {
+                    localStorage.removeItem('quiz_draft_' + quizID);
+                    localStorage.removeItem('quiz_state_' + quizID);
+                    localStorage.removeItem('quiz_flagged_' + quizID);
+                    localStorage.removeItem('quiz_correct_' + quizID);
+                }
+            }
+            
+            localStorage.setItem('currentQuizID', quizID);
+            window.location.href = 'quiz';
+        }
+
+        // Load thống kê cá nhân
+        function renderUserStats(stats) {
+            if (!stats) {
+                return;
+            }
+
+            document.getElementById('quizStats').style.display = 'block';
+            const attempts = stats.attempts || 0;
+            const highestScore = (stats.highestScore || 0).toFixed(2);
+            const averageScore = (stats.averageScore || 0).toFixed(2);
+
+            document.getElementById('totalAttempts').textContent = attempts;
+            document.getElementById('highestScore').textContent = highestScore + '/10';
+            document.getElementById('averageScore').textContent = averageScore + '/10';
+
+            const modalAttempts = document.getElementById('modalTotalAttempts');
+            const modalHighest = document.getElementById('modalHighestScore');
+            const modalAverage = document.getElementById('modalAverageScore');
+
+            if (modalAttempts) {
+                modalAttempts.textContent = attempts;
+            }
+            if (modalHighest) {
+                modalHighest.textContent = highestScore;
+            }
+            if (modalAverage) {
+                modalAverage.textContent = averageScore;
+            }
+
+            // Render Highest Scores by Subject
+            const container = document.getElementById('subjectStatsContainer');
+            if (container) {
+                container.innerHTML = '';
+                const highestScoresByQuiz = stats.highestScoresByQuiz || {};
+                
+                if (Object.keys(highestScoresByQuiz).length > 0) {
+                    const title = document.createElement('h3');
+                    title.className = 'subject-stats-title';
+                    title.textContent = 'Điểm cao nhất theo bài thi';
+                    container.appendChild(title);
+                    
+                    const grid = document.createElement('div');
+                    grid.className = 'subject-stats-grid';
+                    
+                    // Map quizID to title
+                    const quizCache = JSON.parse(sessionStorage.getItem('quizBySubjectCache') || '{}').data || {};
+                    const quizMap = {};
+                    if (quizCache) {
+                        Object.keys(quizCache).forEach(subject => {
+                            const quizzes = quizCache[subject];
+                            if (Array.isArray(quizzes)) {
+                                quizzes.forEach(q => {
+                                    quizMap[q.quizID] = { subject: subject, title: q.title };
+                                });
+                            }
+                        });
+                    }
+
+                    Object.keys(highestScoresByQuiz).forEach(quizID => {
+                        const score = highestScoresByQuiz[quizID];
+                        const qInfo = quizMap[quizID] || { title: quizID, subject: 'Khác' };
+                        
+                        const card = document.createElement('div');
+                        card.className = 'subject-stat-card';
+                        
+                        card.innerHTML = `
+                            <div class="subject-stat-info">
+                                <div class="subject-stat-name">${qInfo.title}</div>
+                                <div class="subject-stat-sub">${qInfo.subject}</div>
+                            </div>
+                            <div class="subject-stat-score">
+                                <span>${Number(score).toFixed(2)}</span>
+                            </div>
+                        `;
+                        
+                        grid.appendChild(card);
+                    });
+                    
+                    container.appendChild(grid);
+                }
+            }
+        }
+
+        // Đăng xuất
+        function logout() {
+            AuthManager.clearAuth();
+            window.location.href = 'login';
+        }
+
+        function toggleDashboardAccountMenu(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const menu = document.getElementById('dashboardAccountMenu');
+            if (menu) {
+                menu.classList.toggle('is-open');
+            }
+        }
+
+        function closeDashboardAccountMenu() {
+            const menu = document.getElementById('dashboardAccountMenu');
+            if (menu) {
+                menu.classList.remove('is-open');
+            }
+        }
+
+        function goToAccountInfo() {
+            window.location.href = 'info';
+        }
+
+        function goToChangePassword() {
+            window.location.href = 'password';
+        }
+
+        function updateGridModeSelect(isGridMode) {
+            const select = document.getElementById('viewModeSelect');
+            if (!select) {
+                return;
+            }
+
+            select.value = String(!!isGridMode);
+        }
+
+        function setGridMode(isGridMode, silent = false) {
+            const normalizedValue = !!isGridMode;
+            localStorage.setItem('quizGridMode', String(normalizedValue));
+
+            updateGridModeSelect(normalizedValue);
+        }
+
+        function initGridModeToggle() {
+            const select = document.getElementById('viewModeSelect');
+            if (!select) {
+                return;
+            }
+
+            const isGridMode = localStorage.getItem('quizGridMode') === 'true';
+            setGridMode(isGridMode, true);
+        }
+
+        // Khởi chạy khi trang load
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeStatsModal();
+                closeDashboardAccountMenu();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            const menu = document.getElementById('dashboardAccountMenu');
+            if (!menu) {
+                return;
+            }
+
+            if (event.target.closest('#dashboardAccountMenu')) {
+                return;
+            }
+
+            closeDashboardAccountMenu();
+        });
+
+        initGridModeToggle();
+        checkAuth();
