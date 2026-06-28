@@ -138,7 +138,7 @@ def process_pdf(pdf_path, output_dir):
 # ==========================================
 if __name__ == "__main__":
     print("="*60)
-    print("HỆ THỐNG CHUYỂN ĐỔI PDF SANG AIKEN - QUIZ LAB (TỐI ƯU)")
+    print("HỆ THỐNG CHUYỂN ĐỔI PDF SANG AIKEN - TSBYIN EXAM (TỐI ƯU)")
     print("="*60)
     
     input_folder = "pdf_input" # Đổi tên folder đầu vào của bạn ở đây nếu cần
