@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const inputFile = path.join(__dirname, 'Quiz_Lab_Backend.gs');
+const inputFile = path.join(__dirname, 'TsByin_Exam_Backend.gs');
 const outDir = path.join(__dirname, 'gs_modules');
 
 if (!fs.existsSync(outDir)) {
@@ -14,7 +14,7 @@ const lines = content.split(/\r?\n/);
 const functionMap = {
     'getSpreadsheet_': 'Utils.gs',
     'getSheetsRef_': 'Utils.gs',
-    'doPost': 'Quiz_Lab_Backend.gs',
+    'doPost': 'TsByin_Exam_Backend.gs',
     'handleLogin': 'Auth.gs',
     'handleRegisterUser': 'Auth.gs',
     'handleRequestPasswordReset': 'Auth.gs',
@@ -108,7 +108,7 @@ const functionMap = {
     'buildAllUserStatsFromLogs_': 'Utils.gs',
     'buildUserStatsFromLogs_': 'Utils.gs',
     'normalizeQuizListBooleanFlags_': 'Admin.gs',
-    'test': 'Quiz_Lab_Backend.gs'
+    'test': 'TsByin_Exam_Backend.gs'
 };
 
 const output = {
@@ -119,7 +119,7 @@ const output = {
     'Grading.gs': [],
     'Admin.gs': [],
     'Utils.gs': [],
-    'Quiz_Lab_Backend.gs': []
+    'TsByin_Exam_Backend.gs': []
 };
 
 // Top configuration block
@@ -144,7 +144,7 @@ for (let i = 27; i < lines.length; i++) {
         insideFn = true;
         braceCount = (line.match(/\{/g) || []).length - (line.match(/\}/g) || []).length;
         const fnName = fnMatch[1];
-        currentModule = functionMap[fnName] || 'Quiz_Lab_Backend.gs';
+        currentModule = functionMap[fnName] || 'TsByin_Exam_Backend.gs';
         
         // Add preceding comments to the function block
         currentFn = [...buffer, line];
@@ -175,9 +175,9 @@ for (let i = 27; i < lines.length; i++) {
 // Write the output files
 Object.keys(output).forEach(mod => {
     let text = output[mod].join('\n');
-    if (mod === 'Quiz_Lab_Backend.gs') {
-        // Just write to gs_modules/Quiz_Lab_Backend_Main.gs as a temp
-        fs.writeFileSync(path.join(outDir, 'Quiz_Lab_Backend_Main.gs'), text, 'utf8');
+    if (mod === 'TsByin_Exam_Backend.gs') {
+        // Just write to gs_modules/TsByin_Exam_Backend_Main.gs as a temp
+        fs.writeFileSync(path.join(outDir, 'TsByin_Exam_Backend_Main.gs'), text, 'utf8');
     } else {
         fs.writeFileSync(path.join(outDir, mod), text, 'utf8');
     }
